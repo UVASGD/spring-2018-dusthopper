@@ -205,7 +205,7 @@ Prefab:
     - target: {fileID: 114032795580790410, guid: 8f9cc746676414d5a83ca0e11fa81af6,
         type: 2}
       propertyPath: dampTime
-      value: 0.15
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114644461886171184, guid: 8f9cc746676414d5a83ca0e11fa81af6,
         type: 2}
@@ -253,6 +253,7 @@ GameObject:
   - component: {fileID: 1511771304}
   - component: {fileID: 1511771307}
   - component: {fileID: 1511771308}
+  - component: {fileID: 1511771310}
   - component: {fileID: 1511771309}
   m_Layer: 0
   m_Name: GM
@@ -409,6 +410,17 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1511771310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1511771303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff019a555878a42dd9a8ea1f7c57aedc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1911141029
 Prefab:
   m_ObjectHideFlags: 0
@@ -453,6 +465,12 @@ Prefab:
       propertyPath: speed
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 114063645533586838, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: animPrefab
+      value: 
+      objectReference: {fileID: 4596830954289954, guid: 5729404da8c6d4eada95ab071d42dc63,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0

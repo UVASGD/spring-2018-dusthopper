@@ -60,8 +60,11 @@ public class TimeManipulator : MonoBehaviour {
 					asteroids [i].velocities.Clear ();
 				}
 			}
-
-			Time.timeScale = 1;
+			//print (Time.timeScale);
+			Time.timeScale = Mathf.Lerp (Time.timeScale, 1f, 2 * Time.unscaledDeltaTime);
+			if (1 - Time.timeScale < 0.1f) {
+				Time.timeScale = 1;
+			}
 		}
 
 		mapOpenLF = GameState.mapOpen;

@@ -20,11 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4596830954289954}
   - component: {fileID: 212633577863705494}
-  - component: {fileID: 50148766609807220}
-  - component: {fileID: 114063645533586838}
+  - component: {fileID: 114132077345255226}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
+  m_Name: AnimationPlayer
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,27 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50148766609807220
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1700396702069538}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &114063645533586838
+--- !u!114 &114132077345255226
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -70,12 +49,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1700396702069538}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b7888059f8f4f8fadf7d7d9ca4c0aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e8a29947e68d4e99827e66ee6c40572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
-  skin: 0.1
-  animPrefab: {fileID: 0}
+  origin: {fileID: 0}
+  destination: {fileID: 0}
+  animationSpeed: 2
 --- !u!212 &212633577863705494
 SpriteRenderer:
   m_ObjectHideFlags: 1

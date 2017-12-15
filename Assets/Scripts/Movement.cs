@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour {
 	//public Transform asteroid;
 	private Vector3 lastPos;
 	[SerializeField] private float skin = 0.1f;
+	[SerializeField] private Transform animPrefab;
 
 	private int asteroidNum = 0;
 
@@ -42,7 +43,12 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 targVel = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized * speed;
+		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * speed;
+
+		if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
+			targVel = Vector3.zero;
+		}
+
 		//print (asteroid.GetComponent<Rigidbody2D> ().velocity);
 		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.localScale.x / 2 - skin) {
 			rb.velocity = targVel;
@@ -55,6 +61,11 @@ public class Movement : MonoBehaviour {
 	}
 
 	public void SwitchAsteroid (Transform a) {
+		print ("Instantiating!");
+		Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
+		inst.GetComponent<JumpAnimation> ().origin = transform;
+		inst.GetComponent<JumpAnimation> ().destination = a;
+		//inst.GetComponent<JumpAnimation> ().Animate ();
 		transform.position = GameState.asteroid.position;
 		GameState.asteroid = a;
 	}
@@ -63,10 +74,10 @@ public class Movement : MonoBehaviour {
 		if (GameState.asteroid == null) {
 			return;
 		}
-		transform.position = GameState.asteroid.position;
+		//transform.position = GameState.asteroid.position;
 
 		asteroidNum = (asteroidNum + 1) % GameObject.FindGameObjectsWithTag ("Asteroid").Length;
 
-		GameState.asteroid = GameObject.FindGameObjectsWithTag ("Asteroid") [asteroidNum].transform;
+		SwitchAsteroid(GameObject.FindGameObjectsWithTag ("Asteroid") [asteroidNum].transform);
 	}
 }

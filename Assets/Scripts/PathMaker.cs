@@ -22,10 +22,6 @@ public class PathMaker : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GameState.mapOpen) {
-			if (!mapOpenLF) {
-				//lr.SetPosition (pathCount - 1, new Vector3 (asteroid.position.x, asteroid.position.y, 5f));
-			}
-
 			AddToPath ();
 		} else if (mapOpenLF) {
 			//path.Clear ();
@@ -57,21 +53,20 @@ public class PathMaker : MonoBehaviour {
 				lr.positionCount++;
 				pathCount++;
 				lr.SetPosition (pathCount - 1, new Vector3 (hit.transform.position.x, hit.transform.position.y, 5f));
-				print (hit.name + " added to path!");
+//				print (hit.name + " added to path!");
 //				print (path.Count);
 			}
 		}
 	}
 
 	IEnumerator TraversePath () {
-		print ("Path Count: " + path.Count);
 		yield return new WaitForSeconds (GameState.jumpsPerSecond);
 		int stepCount = path.Count;
 		for (int i = 0; i < stepCount; i++) {
 			//print ("Step " + (i+1) + " out of " + path.Count);
 			if ((path.Peek ().position - player.transform.position).sqrMagnitude < (GameState.maxAsteroidDistance * GameState.maxAsteroidDistance)) {
 				if (path.Count > 0) {
-					print ("Moving to " + path.Peek().name);
+					//print ("Moving to " + path.Peek().name);
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Dequeue ());
 
 					yield return new WaitForSeconds (GameState.jumpsPerSecond);
