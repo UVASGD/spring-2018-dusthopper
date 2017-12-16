@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3485dcf72e6fb46429b835d84af24ecf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSpeed: 5
+  camSpeed: 6
 --- !u!4 &1151648265 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4596830954289954, guid: 4a22abeeec077469fb2510ed590d0168,
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89314a543a9474d9d938b05de3fc4425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeScale: 1
+  timeScale: 5
 --- !u!114 &1511771305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286edd6d6d80b4c34aaefc728511aff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDist: 5
+  maxDist: 20
 --- !u!4 &1511771306
 Transform:
   m_ObjectHideFlags: 0
@@ -331,8 +331,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circle: {fileID: 1184000033098114, guid: d323380edac1c40a6a94161caa8c2ea5, type: 2}
   quantity: 200
-  radius: 100
-  maxSpeed: 2
+  radius: 200
+  maxSpeed: 1.5
 --- !u!120 &1511771309
 LineRenderer:
   m_ObjectHideFlags: 0

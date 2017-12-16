@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeManipulator : MonoBehaviour {
 
-	[SerializeField] [Range(0, 10)] private float timeScale = 1;
+	[SerializeField] [Range(0, 10)] private float timeScale = 10f;
 
 	private Asteroid[] asteroids;
 	private GameObject[] instances;

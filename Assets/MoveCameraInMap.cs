@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoveCameraInMap : MonoBehaviour {
 
-	public float camSpeed = 5;
+	public float camSpeed = 10f;
 	private Transform mapCenter;
 
 	private Transform camTarg;
