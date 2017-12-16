@@ -7,6 +7,7 @@ public class SmoothCamera2D : MonoBehaviour {
 	private Vector3 velocity = Vector3.zero;
 	public Transform target;
 	public Vector3 lastPos;
+	//public float maxSpeed = 10f;
 
 	void Start () {
 		if (target) {
@@ -22,16 +23,18 @@ public class SmoothCamera2D : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () 
+	void Update () 
 	{
-		if (target && target.tag == "Player")
+		if (target)
 		{
-			transform.parent = GameState.asteroid;
+			if (target.tag == "Player") {
+				transform.parent = GameState.asteroid;
+			}
 
 			Vector3 point = Camera.main.WorldToViewportPoint(target.position);
 			Vector3 delta = target.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
 			Vector3 destination = transform.position + delta;
-			transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
+			transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime, Mathf.Infinity, Time.unscaledDeltaTime);
 
 			lastPos = target.position;
 		}

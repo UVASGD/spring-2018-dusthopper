@@ -5,6 +5,7 @@ public class FPSDisplay : MonoBehaviour
 {
 	float deltaTime = 0.0f;
 	public Color myColor;
+	public bool showFPS = false;
 
 	void Update()
 	{
@@ -13,6 +14,9 @@ public class FPSDisplay : MonoBehaviour
 
 	void OnGUI()
 	{
+		if (!showFPS)
+			return;
+		
 		int w = Screen.width, h = Screen.height;
 
 		GUIStyle style = new GUIStyle();
