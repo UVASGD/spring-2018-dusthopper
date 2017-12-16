@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour {
 	void Update () {
 		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * speed;
 
-		if (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) {
+		if ((Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) || GameState.mapOpen) {
 			targVel = Vector3.zero;
 		}
 
@@ -61,7 +61,7 @@ public class Movement : MonoBehaviour {
 	}
 
 	public void SwitchAsteroid (Transform a) {
-		print ("Instantiating!");
+//		print ("Instantiating!");
 		Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
 		inst.GetComponent<JumpAnimation> ().origin = transform;
 		inst.GetComponent<JumpAnimation> ().destination = a;

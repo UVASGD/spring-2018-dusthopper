@@ -9,6 +9,8 @@ public class TimeManipulator : MonoBehaviour {
 	private Asteroid[] asteroids;
 	private GameObject[] instances;
 
+
+
 	private bool mapOpenLF;
 
 	// Use this for initialization

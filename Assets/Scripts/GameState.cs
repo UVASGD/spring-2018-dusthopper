@@ -8,6 +8,7 @@ public static class GameState {
 	public static float maxAsteroidDistance = 15;
 	public static float jumpsPerSecond = 1f;
 	public static float fieldRadius = 100f;
+	public static float sensorRange = 10f;
 	public static Transform asteroid;
 	//public static GameObject player;
 
