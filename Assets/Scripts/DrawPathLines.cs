@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class DrawPathLines : MonoBehaviour {
 
-	public float maxDist = 20;
-
 	private GameObject[] asteroidList;
 	private GameObject[] lines;
 

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114846801071704128}
   - component: {fileID: 114395603968462722}
   - component: {fileID: 114797571220618790}
+  - component: {fileID: 114632074741626290}
   m_Layer: 8
   m_Name: CircleGO
   m_TagString: Asteroid
@@ -92,6 +93,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedRange: {x: 0.25, y: 0.5}
+--- !u!114 &114632074741626290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1184000033098114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81d7f85b4ac63477d9387cb37edd0af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasSensors: 0
+  sensorRange: 30
+  sensorTimeRange: 30
 --- !u!114 &114797571220618790
 MonoBehaviour:
   m_ObjectHideFlags: 1

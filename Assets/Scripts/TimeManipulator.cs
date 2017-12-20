@@ -53,7 +53,7 @@ public class TimeManipulator : MonoBehaviour {
 			Rect rect = new Rect(Screen.width / 2, Screen.height - 40, 30, 30);
 			style.alignment = TextAnchor.MiddleCenter;
 			style.normal.textColor = new Color (1f, 1f, 1f, 1.0f);
-			string text = string.Format("{0:000.00}",timeFromNow);
+			string text = string.Format("{0:0.00}",timeFromNow);
 			GUI.Label(rect, text, style);
 
 			if (!mapOpenLF) {
