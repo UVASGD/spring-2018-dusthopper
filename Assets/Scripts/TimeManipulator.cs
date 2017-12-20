@@ -9,7 +9,6 @@ public class TimeManipulator : MonoBehaviour {
 	private Asteroid[] asteroids;
 	private GameObject[] instances;
 	private Stack<float> frameTimes;
-	private float initialTime;
 	public float timeFromNow;
 
 
@@ -46,7 +45,9 @@ public class TimeManipulator : MonoBehaviour {
 			}
 
 			if (GUI.RepeatButton (new Rect (Screen.width / 2 + 40, Screen.height - 40, 30, 30), ">>")) {
-				StartCoroutine ("StepForward");
+				if (timeFromNow < GameState.sensorTimeRange) {
+					StartCoroutine ("StepForward");
+				}
 			}
 
 			GUIStyle style = new GUIStyle();
@@ -61,7 +62,6 @@ public class TimeManipulator : MonoBehaviour {
 					asteroids [i].initialPosition = asteroids [i].instance.position;
 					asteroids [i].initialVelocity = asteroids [i].instance.GetComponent<Rigidbody2D>().velocity;
 				}
-				initialTime = Time.time;
 				timeFromNow = 0f;
 			}
 		} else {
@@ -93,7 +93,7 @@ public class TimeManipulator : MonoBehaviour {
 			asteroids [i].velocities.Push (asteroids [i].instance.GetComponent<Rigidbody2D>().velocity);
 
 		}
-		timeFromNow = Time.time - initialTime;
+		timeFromNow += Time.deltaTime;
 		frameTimes.Push (timeFromNow);
 		yield return null;
 	}
@@ -107,9 +107,6 @@ public class TimeManipulator : MonoBehaviour {
 				}
 			}
 			timeFromNow = frameTimes.Pop ();
-		} else {
-			initialTime = Time.time;
-			timeFromNow = 0f;
 		}
 		yield return null;
 	}
