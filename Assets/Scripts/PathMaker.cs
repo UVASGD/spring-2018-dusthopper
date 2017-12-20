@@ -60,7 +60,7 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	IEnumerator TraversePath () {
-		yield return new WaitForSeconds (GameState.jumpsPerSecond);
+		yield return new WaitForSeconds (GameState.secondsPerJump);
 		int stepCount = path.Count;
 		for (int i = 0; i < stepCount; i++) {
 			//print ("Step " + (i+1) + " out of " + path.Count);
@@ -69,7 +69,7 @@ public class PathMaker : MonoBehaviour {
 					//print ("Moving to " + path.Peek().name);
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Dequeue ());
 
-					yield return new WaitForSeconds (GameState.jumpsPerSecond);
+					yield return new WaitForSeconds (GameState.secondsPerJump);
 				} else {
 					print ("End of path!");
 				}
