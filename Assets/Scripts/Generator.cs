@@ -6,7 +6,7 @@ public class Generator : MonoBehaviour {
 
 	public GameObject circle;
 	public int quantity = 200;
-	public float radius = 50;
+	public float radius = 200;
 	public float maxSpeed = 5;
 
 	//proc gen sensor stuff

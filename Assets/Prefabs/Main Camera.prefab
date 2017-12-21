@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114263033540493174}
   - component: {fileID: 114032795580790410}
   - component: {fileID: 114644461886171184}
+  - component: {fileID: 114698572849470948}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -101,7 +102,7 @@ Transform:
   m_LocalScale: {x: 80, y: 80, z: 80}
   m_Children: []
   m_Father: {fileID: 4733900357851680}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4705059845845844
 Transform:
@@ -110,11 +111,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1970548704994746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: 4.98, z: 110}
-  m_LocalScale: {x: 40, y: 40, z: 40}
+  m_LocalPosition: {x: 3.3, y: 0.4, z: 110}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_Children: []
   m_Father: {fileID: 4733900357851680}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4720082752901868
 Transform:
@@ -123,8 +124,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1808335892668020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: -4.58, z: 160}
-  m_LocalScale: {x: 40, y: 40, z: 40}
+  m_LocalPosition: {x: -4.5, y: -7.1, z: 160}
+  m_LocalScale: {x: 80, y: 80, z: 80}
   m_Children: []
   m_Father: {fileID: 4733900357851680}
   m_RootOrder: 2
@@ -139,8 +140,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4444465492588960}
   - {fileID: 4705059845845844}
+  - {fileID: 4444465492588960}
   - {fileID: 4720082752901868}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -365,8 +366,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8473b6e6ad3a94ae0afed89255628293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dampTime: 0.15
-  target: {fileID: 4733900357851680}
+  dampTime: 0.5
+  target: {fileID: 0}
+  lastPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114222593407221024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -390,6 +392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myColor: {r: 0, g: 1, b: 0.17241383, a: 0}
+  showFPS: 0
 --- !u!114 &114274131449353832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,7 +416,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 10
+  minPlayerModeSize: 0.75
+  maxPlayerModeSizeWithMap: 10
+  maxPlayerModeSizeWithoutMap: 14
+  minMapModeSize: 16.5
   mapSize: 20
+--- !u!114 &114698572849470948
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174826790699396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3485dcf72e6fb46429b835d84af24ecf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camSpeed: 6
 --- !u!114 &114709109880862098
 MonoBehaviour:
   m_ObjectHideFlags: 1

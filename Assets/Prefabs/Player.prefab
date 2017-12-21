@@ -73,9 +73,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b7888059f8f4f8fadf7d7d9ca4c0aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.5
+  speed: 0.2
   skin: 0.1
-  animPrefab: {fileID: 0}
+  animPrefab: {fileID: 4596830954289954, guid: 5729404da8c6d4eada95ab071d42dc63, type: 2}
 --- !u!212 &212633577863705494
 SpriteRenderer:
   m_ObjectHideFlags: 1
