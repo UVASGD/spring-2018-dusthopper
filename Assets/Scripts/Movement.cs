@@ -68,6 +68,13 @@ public class Movement : MonoBehaviour {
 		//inst.GetComponent<JumpAnimation> ().Animate ();
 		transform.position = GameState.asteroid.position;
 		GameState.asteroid = a;
+		GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
+		GameState.sensorRange = a.GetComponent<AsteroidSensorInfo> ().sensorRange;
+		GameState.sensorTimeRange = a.GetComponent<AsteroidSensorInfo> ().sensorTimeRange;
+
+//		print (GameState.hasSensors);
+//		print (GameState.sensorRange);
+//		print (GameState.sensorTimeRange);
 	}
 
 	public void ChangeAsteroid () {

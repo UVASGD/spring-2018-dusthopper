@@ -8,6 +8,7 @@ public static class GameState {
 	public static float maxAsteroidDistance = 20f;
 	public static float secondsPerJump = 5f;
 	public static float fieldRadius = 250f;
+	public static bool hasSensors = true;
 	public static float sensorRange = 30f;
 	public static float sensorTimeRange = 30f;
 	public static Transform asteroid;

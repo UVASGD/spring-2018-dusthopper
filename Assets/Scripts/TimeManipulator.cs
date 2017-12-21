@@ -11,6 +11,14 @@ public class TimeManipulator : MonoBehaviour {
 	private Stack<float> frameTimes;
 	public float timeFromNow;
 
+	//Text field for how many seconds in future we are
+	private GUIStyle style;
+	private Rect rect;
+
+	//Text fields for how many seconds in future we are allowed to go, and 0.00 (just for aesthetic)
+	private Rect rect2;
+	private Rect rect3;
+
 
 
 	private bool mapOpenLF;
@@ -28,6 +36,16 @@ public class TimeManipulator : MonoBehaviour {
 		}
 		frameTimes = new Stack<float> (0);
 		Time.timeScale = 0;
+
+		//Time text field
+		style = new GUIStyle();
+		rect = new Rect(Screen.width / 2, Screen.height - 40, 30, 30);
+		style.alignment = TextAnchor.MiddleCenter;
+		style.normal.textColor = new Color (1f, 1f, 1f, 1.0f);
+
+		rect2 = new Rect(Screen.width / 2 + 80, Screen.height - 40, 30, 30);
+
+		rect3 = new Rect(Screen.width / 2 - 80, Screen.height - 40, 30, 30);
 	}
 	
 //	// Update is called once per frame
@@ -50,12 +68,17 @@ public class TimeManipulator : MonoBehaviour {
 				}
 			}
 
-			GUIStyle style = new GUIStyle();
-			Rect rect = new Rect(Screen.width / 2, Screen.height - 40, 30, 30);
-			style.alignment = TextAnchor.MiddleCenter;
-			style.normal.textColor = new Color (1f, 1f, 1f, 1.0f);
+			if (timeFromNow > GameState.sensorTimeRange) {
+				timeFromNow = GameState.sensorTimeRange;
+			}
+			string zero = "0.00";
+			GUI.Label (rect3, zero, style);
+
 			string text = string.Format("{0:0.00}",timeFromNow);
 			GUI.Label(rect, text, style);
+
+			string text2 = string.Format("{0:0.00}",GameState.sensorTimeRange);
+			GUI.Label(rect2, text2, style);
 
 			if (!mapOpenLF) {
 				for (int i = 0; i < asteroids.Length; i++) {

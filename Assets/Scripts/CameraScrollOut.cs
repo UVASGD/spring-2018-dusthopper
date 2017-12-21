@@ -5,8 +5,12 @@ using UnityEngine;
 public class CameraScrollOut : MonoBehaviour {
 
 	public float scrollSpeed = 5;
-	public Vector2 sizeRange;
-	public float mapSize = 20;
+	public float minPlayerModeSize; //most the player can zoom in
+	public float maxPlayerModeSizeWithMap; //most player can zoom out before entering the map
+	public float maxPlayerModeSizeWithoutMap; //most player can zoom out if on an asteroid without map access
+	public float minMapModeSize; //Most the player can zoom in in map mode before exiting map mode
+	public float mapSize = 20; //zoom amount of map mode (fixed)
+
 
 	private float scrollAmount;
 
@@ -35,29 +39,38 @@ public class CameraScrollOut : MonoBehaviour {
 		if (d > 0f) {
 			scrollAmount += Time.unscaledDeltaTime * scrollSpeed;
 
-			if (scrollAmount > mapSize)
-				scrollAmount = mapSize;
+			if (GameState.hasSensors) {
+				if (scrollAmount > mapSize) {
+					scrollAmount = mapSize;
+				}
+			} else if (scrollAmount > maxPlayerModeSizeWithoutMap) {
+				scrollAmount = maxPlayerModeSizeWithoutMap;
+			}
 		} else if (d < 0f) {
 			scrollAmount -= Time.unscaledDeltaTime * scrollSpeed;
 
-			if (scrollAmount < sizeRange.x)
-				scrollAmount = sizeRange.x;
+			if (scrollAmount < minPlayerModeSize)
+				scrollAmount = minPlayerModeSize;
 		}
 
-		if (scrollAmount <= sizeRange.y) {
+		if (scrollAmount <= maxPlayerModeSizeWithMap) {
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		} else {
 			if (!GameState.mapOpen) {
-				scrollAmount = mapSize;
-				GameState.mapOpen = true;
+				if (GameState.hasSensors) {
+					scrollAmount = mapSize;
+					GameState.mapOpen = true;
+				}
 			} else {
-				if (scrollAmount < mapSize * 5 / 6) {
-					scrollAmount = sizeRange.y;
+				if (scrollAmount < minMapModeSize) {
+					scrollAmount = maxPlayerModeSizeWithMap;
 					d = 0f;
 					GameState.mapOpen = false;
 				}
 			}
-			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, mapSize, 10 * Time.unscaledDeltaTime);
+			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		}
+//		print ("orthographic size: " + GetComponent<Camera> ().orthographicSize);
+//		print ("scrollAmount: " + scrollAmount);
 	}
 }
