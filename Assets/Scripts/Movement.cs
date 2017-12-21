@@ -49,12 +49,14 @@ public class Movement : MonoBehaviour {
 			targVel = Vector3.zero;
 		}
 
+		//Keep constrained on current asteroid
 		//print (asteroid.GetComponent<Rigidbody2D> ().velocity);
 		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.localScale.x / 2 - skin) {
 			rb.velocity = targVel;
 		} else {
 			rb.velocity = Vector2.zero;
 		}
+
 		transform.position += GameState.asteroid.position - lastPos;
 		lastPos = GameState.asteroid.position;
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PathMaker : MonoBehaviour {
 
 	public Queue<Transform> path;
+	//public SortedList<float,Transform> path;
 	private GameObject player;
 	private bool mapOpenLF;
 	private LineRenderer lr;
