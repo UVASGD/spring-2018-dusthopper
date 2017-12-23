@@ -10,6 +10,7 @@ public class CameraScrollOut : MonoBehaviour {
 	public float maxPlayerModeSizeWithoutMap; //most player can zoom out if on an asteroid without map access
 	public float minMapModeSize; //Most the player can zoom in in map mode before exiting map mode
 	public float mapSize = 20; //zoom amount of map mode (fixed)
+	public bool jumpingToAsteroidWithMap = false;
 
 
 	private float scrollAmount;
@@ -18,10 +19,11 @@ public class CameraScrollOut : MonoBehaviour {
 	void Start () {
 		scrollAmount = GetComponent<Camera> ().orthographicSize;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
+		//toggle starfields
 		if (GameState.mapOpen) {
 			for (int i = 0; i < transform.childCount; i++) {
 				transform.GetChild (i).gameObject.SetActive (false);
@@ -32,8 +34,19 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 		}
 
+		//if jumping from asteroid without map to asteroid with map, only modify zoom in this way
+		if(jumpingToAsteroidWithMap){
+			if (GetComponent<Camera> ().orthographicSize < maxPlayerModeSizeWithMap) {
+				scrollAmount = GetComponent<Camera> ().orthographicSize;
+				jumpingToAsteroidWithMap = false;
+			} else {
+				scrollAmount = maxPlayerModeSizeWithMap - 0.05f;
+				GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
+				return;
+			}
+		}
 
-
+		//normal zooming
 		var d = Input.GetAxis ("Mouse ScrollWheel");
 
 		if (d > 0f) {
@@ -52,7 +65,6 @@ public class CameraScrollOut : MonoBehaviour {
 			if (scrollAmount < minPlayerModeSize)
 				scrollAmount = minPlayerModeSize;
 		}
-
 		if (scrollAmount <= maxPlayerModeSizeWithMap) {
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		} else {

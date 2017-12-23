@@ -418,9 +418,10 @@ MonoBehaviour:
   scrollSpeed: 10
   minPlayerModeSize: 0.75
   maxPlayerModeSizeWithMap: 10
-  maxPlayerModeSizeWithoutMap: 14
+  maxPlayerModeSizeWithoutMap: 12
   minMapModeSize: 16.5
   mapSize: 20
+  jumpingToAsteroidWithMap: 0
 --- !u!114 &114698572849470948
 MonoBehaviour:
   m_ObjectHideFlags: 1

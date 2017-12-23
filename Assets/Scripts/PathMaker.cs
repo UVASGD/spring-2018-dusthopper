@@ -5,12 +5,15 @@ using UnityEngine;
 public class PathMaker : MonoBehaviour {
 
 	public Queue<Transform> path;
-	//public SortedList<float,Transform> path;
+//	public SortedList<float,Transform> path;
 	private GameObject player;
 	private bool mapOpenLF;
 	private LineRenderer lr;
 	private int pathCount = 0;
 	//private Transform asteroid;
+
+	private float timeOfJump;
+	private float timeToStartCharging;
 
 	// Use this for initialization
 	void Start () {

@@ -157,6 +157,11 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1151648265}
+    - target: {fileID: 114263033540493174, guid: 8f9cc746676414d5a83ca0e11fa81af6,
+        type: 2}
+      propertyPath: showFPS
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
   m_IsPrefabParent: 0
@@ -168,6 +173,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1511771306}
+  - component: {fileID: 1511771311}
   - component: {fileID: 1511771305}
   - component: {fileID: 1511771304}
   - component: {fileID: 1511771307}
@@ -345,6 +351,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff019a555878a42dd9a8ea1f7c57aedc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1511771311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1511771303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ae02a9f4fdb42b3891006509424d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1647041930
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +392,7 @@ AudioSource:
   m_Volume: 0.504
   m_Pitch: 1
   Loop: 1
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
