@@ -5,7 +5,7 @@ using UnityEngine;
 public static class GameState {
 
 	public static bool mapOpen;
-	public static float time = 0f; //A copy of Time.time which is only incremented when not in a map
+	public static float time = 0f; //A copy of Time.time which is only incremented when not in a map (for jump scheduling)
 	public static float maxAsteroidDistance = 20f;
 	public static float secondsPerJump = 5f;
 	public static float fieldRadius = 250f;

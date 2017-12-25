@@ -160,7 +160,7 @@ Prefab:
     - target: {fileID: 114263033540493174, guid: 8f9cc746676414d5a83ca0e11fa81af6,
         type: 2}
       propertyPath: showFPS
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
@@ -235,6 +235,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479764182f49847ec9a283d00c2fa596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialTime: 0
+  tolerance: 2
 --- !u!114 &1511771308
 MonoBehaviour:
   m_ObjectHideFlags: 0
