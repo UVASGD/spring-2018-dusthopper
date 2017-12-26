@@ -55,37 +55,29 @@ public class PathMaker : MonoBehaviour {
 		if (lines.Count > 0) {
 			lines[0].GetComponent<LineRenderer> ().SetPosition (0, new Vector3 (GameState.asteroid.position.x, GameState.asteroid.position.y, 5f));
 			lines[0].GetComponent<LineRenderer> ().SetPosition (1, new Vector3 (path.Values[0].position.x, path.Values[0].position.y, 5f));
-			float a = Alpha (GetComponent<TimeManipulator> ().timeFromNow + initialTime, 0);
+			float a = getAlpha (GetComponent<TimeManipulator> ().timeFromNow + initialTime, 0);
 			lines[0].GetComponent<LineRenderer> ().startColor = new Color(1f,0.69f,0f,a);
 			lines[0].GetComponent<LineRenderer> ().endColor = new Color(1f,0.69f,0f,a);
 			for(int i = 1; i < path.Count; i++){
 				lines[i].GetComponent<LineRenderer> ().SetPosition (0, new Vector3 (path.Values[i-1].position.x, path.Values[i-1].position.y, 5f));
 				lines[i].GetComponent<LineRenderer> ().SetPosition (1, new Vector3 (path.Values[i].position.x, path.Values[i].position.y, 5f));
-				a = Alpha (GetComponent<TimeManipulator> ().timeFromNow + initialTime, i);
+				a = getAlpha (GetComponent<TimeManipulator> ().timeFromNow + initialTime, i);
 				lines[i].GetComponent<LineRenderer> ().startColor = new Color(1f,0.69f,0f,a);
 				lines[i].GetComponent<LineRenderer> ().endColor = new Color(1f,0.69f,0f,a);
 			}
 			
 		}
-//		foreach (GameObject line in lines) {
-//			print("line
-//		}
 		mapOpenLF = GameState.mapOpen;
 	}
 
-	float Alpha(float time, int pathIndex){
+	float getAlpha(float time, int pathIndex){
 		float chargeTime = path.Keys [pathIndex];
 		float jumpTime = jumpTimes.Keys [pathIndex];
 		if (time >= chargeTime && time <= jumpTime) {
-			return ((1 - percentIdle) / GameState.secondsPerJump) * (time - chargeTime) + percentIdle;
+			return ((1 - percentIdle) / GameState.secondsPerJump) * (time - jumpTime) + 1;
 		}
-		if(time >= jumpTime){
-			if (time <= jumpTime + timeTakesToJump) {
-				return 1;
-			}
-			if (time <= jumpTime + GameState.secondsPerJump) {
-				return  1 - (((1 - percentIdle) / GameState.secondsPerJump) * (time - jumpTime) + percentIdle);
-			}
+		if(time >= jumpTime && time <= jumpTime + GameState.secondsPerJump){
+			return  ((percentIdle - 1) / GameState.secondsPerJump) * (time - jumpTime) + 1;
 		}
 		return percentIdle;
 	}
