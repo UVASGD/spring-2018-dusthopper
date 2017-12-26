@@ -7,7 +7,7 @@ public class DrawPathLines : MonoBehaviour {
 
 	private GameObject[] asteroidList;
 	private GameObject[] lines;
-	public float percentToFullyRender;
+	public float percentToFullyRender; //If two asteroids are within this percentage of the max dist from each other, alpha should be 1. Otherwise, ramp down to zero.
 
 	// Use this for initialization
 	void Start () {

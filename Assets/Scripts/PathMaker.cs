@@ -11,8 +11,7 @@ public class PathMaker : MonoBehaviour {
 	private GameObject player;
 	private bool mapOpenLF;
 	private List<GameObject> lines;
-	public float percentIdle;
-	public float timeTakesToJump;
+	public float percentIdle;//jumps not currently active should be still dimly lit so the player can see the long term plan. This is the alpha value for those jumps.
 //	private LineRenderer lr;
 //	private int pathCount = 0;
 
@@ -156,6 +155,7 @@ public class PathMaker : MonoBehaviour {
 				}
 				path.RemoveAt (0);
 				jumpTimes.RemoveAt (0);
+				Destroy (lines [0]);
 				lines.RemoveAt (0);
 				timeSinceChargingStarted = 0f;
 			} else if (GameState.time != GameStateTimeLF) {
