@@ -63,18 +63,20 @@ public class Movement : MonoBehaviour {
 	}
 
 	public void SwitchAsteroid (Transform a) {
+		if (a != GameState.asteroid) {//shouldn't be able to jump to yourself
 //		print ("Instantiating!");
-		Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
-		inst.GetComponent<JumpAnimation> ().origin = transform;
-		inst.GetComponent<JumpAnimation> ().destination = a;
-		//inst.GetComponent<JumpAnimation> ().Animate ();
-		transform.position = GameState.asteroid.position;
-		GameState.asteroid = a;
-		GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
-		GameState.sensorRange = a.GetComponent<AsteroidSensorInfo> ().sensorRange;
-		GameState.sensorTimeRange = a.GetComponent<AsteroidSensorInfo> ().sensorTimeRange;
-		if (GameState.hasSensors) {
-			Camera.main.GetComponent<CameraScrollOut> ().jumpingToAsteroidWithMap = true;
+			Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
+			inst.GetComponent<JumpAnimation> ().origin = transform;
+			inst.GetComponent<JumpAnimation> ().destination = a;
+			//inst.GetComponent<JumpAnimation> ().Animate ();
+			transform.position = GameState.asteroid.position;
+			GameState.asteroid = a;
+			GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
+			GameState.sensorRange = a.GetComponent<AsteroidSensorInfo> ().sensorRange;
+			GameState.sensorTimeRange = a.GetComponent<AsteroidSensorInfo> ().sensorTimeRange;
+			if (GameState.hasSensors) {
+				Camera.main.GetComponent<CameraScrollOut> ().jumpingToAsteroidWithMap = true;
+			}
 		}
 //		print (GameState.hasSensors);
 //		print (GameState.sensorRange);

@@ -28,7 +28,17 @@ public class DrawPathLines : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		DrawPaths ();
+		if (GameState.mapOpen) {
+			DrawPaths ();
+		} else {
+			int iter = 0;
+			for (int i = 1; i < asteroidList.Length; i++) {
+				for (int j = i; j < asteroidList.Length; j++) {
+					lines [iter].GetComponent<LineRenderer> ().enabled = false;
+					iter++;
+				}
+			}
+		}
 	}
 
 	float getAlpha(float dist){
@@ -50,10 +60,6 @@ public class DrawPathLines : MonoBehaviour {
 					lines [iter].GetComponent<LineRenderer> ().startColor = new Color(0,1,0,a);
 					lines [iter].GetComponent<LineRenderer> ().endColor = new Color(0,1,0,a);
 				} else {
-					lines [iter].GetComponent<LineRenderer> ().enabled = false;
-				}
-
-				if (!GameState.mapOpen) {
 					lines [iter].GetComponent<LineRenderer> ().enabled = false;
 				}
 				iter++;

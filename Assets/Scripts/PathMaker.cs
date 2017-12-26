@@ -52,6 +52,8 @@ public class PathMaker : MonoBehaviour {
 				}
 			}
 		}
+
+		//update display
 		if (lines.Count > 0) {
 			lines[0].GetComponent<LineRenderer> ().SetPosition (0, new Vector3 (GameState.asteroid.position.x, GameState.asteroid.position.y, 5f));
 			lines[0].GetComponent<LineRenderer> ().SetPosition (1, new Vector3 (path.Values[0].position.x, path.Values[0].position.y, 5f));
@@ -81,6 +83,7 @@ public class PathMaker : MonoBehaviour {
 		}
 		return percentIdle;
 	}
+
 	void EditPath () {
 		//click to toggle adding / removing from path
 		if (Input.GetMouseButtonDown(0))
@@ -88,7 +91,7 @@ public class PathMaker : MonoBehaviour {
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			Collider2D hit = Physics2D.OverlapPoint (mousePos);
 
-			if (hit != null && hit.tag == "Asteroid" && hit != GameState.asteroid) {
+			if (hit != null && hit.tag == "Asteroid") {
 				//Try to find the jump in the current path
 				bool foundIt = false;
 				int i = 0;
