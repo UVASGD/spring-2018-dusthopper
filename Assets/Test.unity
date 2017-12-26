@@ -160,7 +160,7 @@ Prefab:
     - target: {fileID: 114263033540493174, guid: 8f9cc746676414d5a83ca0e11fa81af6,
         type: 2}
       propertyPath: showFPS
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286edd6d6d80b4c34aaefc728511aff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentToFullyRender: 0.6
 --- !u!4 &1511771306
 Transform:
   m_ObjectHideFlags: 0
@@ -235,6 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479764182f49847ec9a283d00c2fa596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  percentIdle: 0.2
+  timeTakesToJump: 1
   initialTime: 0
   tolerance: 2
 --- !u!114 &1511771308
