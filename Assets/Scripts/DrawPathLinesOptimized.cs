@@ -40,12 +40,9 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 		if (GameState.mapOpen) {
 			DrawPaths ();
 		} else if(mapOpenLF){
-			int iter = 0;
-			for (int i = 1; i < asteroidList.Length; i++) {
-				for (int j = i; j < asteroidList.Length; j++) {
-					lines [iter].GetComponent<LineRenderer> ().enabled = false;
-					iter++;
-				}
+			for (int i = 0; i < numLinesNeededLF; i++)
+			{
+				lines [i].GetComponent<LineRenderer> ().enabled = false;
 			}
 		}
 		mapOpenLF = GameState.mapOpen;
@@ -81,6 +78,7 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 		int iter = 0;
 		int ast = 0;
 		numLinesNeededLF = 0;
+		int comparisonsMade = 0;
 		float screenSize = Camera.main.orthographicSize * Screen.width / Screen.height;
 		while (ast < asteroidList.Length-1 && asteroidList [ast].transform.position.x < mapCenter.position.x - screenSize - GameState.maxAsteroidDistance) {
 			ast++;
@@ -101,9 +99,11 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 					numLinesNeededLF++;
 					iter++;
 				}
+				comparisonsMade++;
 				otherAst++;
 			}
 			ast++;
 		}
+//		print (comparisonsMade + " comparisons made");
 	}
 }
