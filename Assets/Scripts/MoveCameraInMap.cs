@@ -52,11 +52,13 @@ public class MoveCameraInMap : MonoBehaviour {
 
 			targVel = targVel.normalized * camSpeed;
 			if ((mapCenter.position + targVel - camTarg.position).sqrMagnitude > GameState.sensorRange * GameState.sensorRange) {
-				targVel = Vector3.zero;
+				//shunt back toward player
+				mapCenter.position += (Vector3)(camParent.position - mapCenter.position).normalized * camSpeed * Time.unscaledDeltaTime;
+			} else {
+				mapCenter.position += (Vector3)targVel * Time.unscaledDeltaTime;
 			}
 //			print (targVel);
 
-			mapCenter.position += (Vector3)targVel * Time.unscaledDeltaTime;
 		} else {
 			if (mapOpenLF) {
 				GetComponent<SmoothCamera2D> ().target = camTarg;

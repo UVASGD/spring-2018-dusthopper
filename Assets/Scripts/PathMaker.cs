@@ -94,9 +94,12 @@ public class PathMaker : MonoBehaviour {
 				//Try to find the jump in the current path
 				bool foundIt = false;
 				int i = 0;
+				int prevAsteroidIndex = -1;
 				while (i < path.Keys.Count && !foundIt) {
-					if (hit.transform == path.Values[i] && 
-						GetComponent<TimeManipulator> ().timeFromNow >= path.Keys [i] && GetComponent<TimeManipulator> ().timeFromNow <= jumpTimes.Keys[i]) {
+					if (jumpTimes.Keys [i] < GetComponent<TimeManipulator> ().timeFromNow + initialTime) {
+						prevAsteroidIndex = i;
+					}
+					if (hit.transform == path.Values[i] && Mathf.Abs(GetComponent<TimeManipulator> ().timeFromNow + initialTime - jumpTimes.Keys[i]) <= GameState.secondsPerJump) {
 						foundIt = true;
 						print ("removing jump to asteroid " + hit.transform.gameObject.name + " at time " + jumpTimes.Keys [i]);
 						path.RemoveAt (i);
@@ -107,37 +110,47 @@ public class PathMaker : MonoBehaviour {
 					i++;
 				}
 				if (!foundIt) {//If you didn't find a jump to remove, the player is trying to add a jump
-					timeOfJump = GetComponent<TimeManipulator> ().timeFromNow + initialTime;
-					timeToStartCharging = timeOfJump - GameState.secondsPerJump;
-					//Is it a valid jump?
-					if (timeToStartCharging >= initialTime) {
-						bool overlap = false;
-						i = 0;
-						while (i < path.Keys.Count && !overlap) {
-							if (Mathf.Abs (path.Keys [i] - timeToStartCharging) < GameState.secondsPerJump) {
-								overlap = true;
-								print ("jump not scheduled because it overlaps with an existing jump");
+					Transform prevAsteroid;
+					if (prevAsteroidIndex == -1) {
+						prevAsteroid = GameState.asteroid;
+					} else {
+						prevAsteroid = path.Values [prevAsteroidIndex];
+					}
+					if (prevAsteroid != hit.transform) {//don't let player add jumps to current asteroid
+						timeOfJump = GetComponent<TimeManipulator> ().timeFromNow + initialTime;
+						timeToStartCharging = timeOfJump - GameState.secondsPerJump;
+						//Is it a valid jump?
+						if (timeToStartCharging >= initialTime) {
+							bool overlap = false;
+							i = 0;
+							while (i < path.Keys.Count && !overlap) {
+								if (Mathf.Abs (path.Keys [i] - timeToStartCharging) < GameState.secondsPerJump) {
+									overlap = true;
+									print ("jump not scheduled because it overlaps with an existing jump");
+								}
+								i++;
 							}
-							i++;
-						}
-						if (!overlap) {
-							print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
-							path.Add (timeToStartCharging, hit.transform);
-							jumpTimes.Add (timeOfJump, timeOfJump);
-							GameObject newLine = new GameObject ();
-							newLine.name = "Line" + i.ToString ();
-							newLine.transform.parent = transform;
-							newLine.AddComponent (typeof(LineRenderer));
-							newLine.GetComponent<LineRenderer> ().material = new Material(Shader.Find ("Sprites/Default"));
-							newLine.GetComponent<LineRenderer> ().startColor = new Color (1f,0.69f,0f,1);
-							newLine.GetComponent<LineRenderer> ().endColor = new Color (1f,0.69f,0f,1);
-							newLine.GetComponent<LineRenderer> ().startWidth = 0.3f;
-							newLine.GetComponent<LineRenderer> ().endWidth = 0.3f;
-							newLine.GetComponent<LineRenderer> ().positionCount = 2;
-							lines.Add (newLine);
+							if (!overlap) {
+								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
+								path.Add (timeToStartCharging, hit.transform);
+								jumpTimes.Add (timeOfJump, timeOfJump);
+								GameObject newLine = new GameObject ();
+								newLine.name = "Line" + i.ToString ();
+								newLine.transform.parent = transform;
+								newLine.AddComponent (typeof(LineRenderer));
+								newLine.GetComponent<LineRenderer> ().material = new Material (Shader.Find ("Sprites/Default"));
+								newLine.GetComponent<LineRenderer> ().startColor = new Color (1f, 0.69f, 0f, 1);
+								newLine.GetComponent<LineRenderer> ().endColor = new Color (1f, 0.69f, 0f, 1);
+								newLine.GetComponent<LineRenderer> ().startWidth = 0.3f;
+								newLine.GetComponent<LineRenderer> ().endWidth = 0.3f;
+								newLine.GetComponent<LineRenderer> ().positionCount = 2;
+								lines.Add (newLine);
+							}
+						} else {
+							print ("jump not scheduled because you can't charge in time");
 						}
 					} else {
-						print ("jump not scheduled because you can't charge in time");
+						print ("jump not scheduled because player tried to jump to the asteroid they'll be on");
 					}
 				}
 			}
@@ -145,7 +158,7 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	void TraversePath(){
-		if (path.Count > 0 && GameState.time >= path.Keys [0]) {
+		if (path.Count > 0 && GameState.time >= path.Keys [0] && path.Values[0] != GameState.asteroid) {
 			if (timeSinceChargingStarted >= GameState.secondsPerJump){
 				if ((path.Values [0].position - player.transform.position).sqrMagnitude < (GameState.maxAsteroidDistance * GameState.maxAsteroidDistance + tolerance)) {
 					print ("jumping to asteroid " + path.Values [0].gameObject.name + " at time " + GameState.time);

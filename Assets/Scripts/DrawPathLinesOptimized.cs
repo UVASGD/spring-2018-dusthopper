@@ -78,7 +78,6 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 		int iter = 0;
 		int ast = 0;
 		numLinesNeededLF = 0;
-		int comparisonsMade = 0;
 		float screenSize = Camera.main.orthographicSize * Screen.width / Screen.height;
 		while (ast < asteroidList.Length-1 && asteroidList [ast].transform.position.x < mapCenter.position.x - screenSize - GameState.maxAsteroidDistance) {
 			ast++;
@@ -99,11 +98,9 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 					numLinesNeededLF++;
 					iter++;
 				}
-				comparisonsMade++;
 				otherAst++;
 			}
 			ast++;
 		}
-//		print (comparisonsMade + " comparisons made");
 	}
 }
