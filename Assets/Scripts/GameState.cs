@@ -13,6 +13,7 @@ public static class GameState {
 	public static float sensorRange = 30f;
 	public static float sensorTimeRange = 30f;
 	public static Transform asteroid;
+	public static bool manualJumpsDisabled = false;
 	//public static GameObject player;
 
 

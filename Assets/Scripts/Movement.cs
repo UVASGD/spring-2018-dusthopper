@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+
 public class Movement : MonoBehaviour {
 
 	[SerializeField][Range(0f, 10f)] private float speed = 5;
-
+	private AudioSource asrc;
+	public AudioClip jumpSound;
 	private Rigidbody2D rb;
 	//public Transform asteroid;
 	private Vector3 lastPos;
@@ -18,6 +20,7 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		asrc = GetComponent<AudioSource> ();
 		GameState.asteroid = GameObject.FindWithTag ("Asteroid").transform;
 		transform.position = GameState.asteroid.position;
 		lastPos = transform.position;
@@ -68,6 +71,7 @@ public class Movement : MonoBehaviour {
 			Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
 			inst.GetComponent<JumpAnimation> ().origin = transform;
 			inst.GetComponent<JumpAnimation> ().destination = a;
+			asrc.PlayOneShot (jumpSound, 0.4f);
 			//inst.GetComponent<JumpAnimation> ().Animate ();
 			transform.position = GameState.asteroid.position;
 			GameState.asteroid = a;

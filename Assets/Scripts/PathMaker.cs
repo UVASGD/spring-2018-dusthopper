@@ -9,6 +9,8 @@ public class PathMaker : MonoBehaviour {
 	public SortedList<float,Transform> path; //key = time to start charging jump , value = transform of target asteroid
 	public SortedList<float,float> jumpTimes;
 	private GameObject player;
+	private AudioSource asrc;
+	public AudioClip chargeJump;
 	private bool mapOpenLF;
 	private List<GameObject> lines;
 	public float percentIdle;//jumps not currently active should be still dimly lit so the player can see the long term plan. This is the alpha value for those jumps.
@@ -29,6 +31,7 @@ public class PathMaker : MonoBehaviour {
 		path = new SortedList<float,Transform> (0);
 		jumpTimes = new SortedList<float, float> (0);
 		player = GameObject.FindWithTag ("Player");
+		asrc = player.GetComponent<AudioSource> ();
 		lines = new List<GameObject> ();
 		GameStateTimeLF = 0f;
 		timeSinceChargingStarted = 0f;
@@ -171,8 +174,13 @@ public class PathMaker : MonoBehaviour {
 				Destroy (lines [0]);
 				lines.RemoveAt (0);
 				timeSinceChargingStarted = 0f;
+				GameState.manualJumpsDisabled = false;
 			} else if (GameState.time != GameStateTimeLF) {
 				timeSinceChargingStarted += Time.deltaTime;
+				GameState.manualJumpsDisabled = true;
+				if (!asrc.isPlaying) {
+					asrc.PlayOneShot (chargeJump, 0.4f);
+				}
 			}
 		}
 		GameStateTimeLF = GameState.time;

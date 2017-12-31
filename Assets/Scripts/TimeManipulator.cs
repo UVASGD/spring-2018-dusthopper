@@ -33,6 +33,8 @@ public class TimeManipulator : MonoBehaviour {
 			//asteroids [i].initialVelocity = instances [i].GetComponent<Rigidbody2D> ().velocity;
 			asteroids [i].positions = new Stack<Vector3> (0);
 			asteroids [i].velocities = new Stack<Vector3> (0);
+			asteroids [i].rotations = new Stack<Quaternion> (0);
+			asteroids [i].angularVelocities = new Stack<float> (0);
 		}
 		frameTimes = new Stack<float> (0);
 		Time.timeScale = 0;
@@ -84,6 +86,8 @@ public class TimeManipulator : MonoBehaviour {
 				for (int i = 0; i < asteroids.Length; i++) {
 					asteroids [i].initialPosition = asteroids [i].instance.position;
 					asteroids [i].initialVelocity = asteroids [i].instance.GetComponent<Rigidbody2D>().velocity;
+					asteroids [i].initialRotation = asteroids [i].instance.rotation;
+					asteroids [i].initialAngularVelocity = asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity;
 				}
 				timeFromNow = 0f;
 			}
@@ -92,8 +96,12 @@ public class TimeManipulator : MonoBehaviour {
 				for (int i = 0; i < asteroids.Length; i++) {
 					asteroids [i].instance.position = asteroids [i].initialPosition;
 					asteroids [i].instance.GetComponent<Rigidbody2D>().velocity = asteroids [i].initialVelocity;
+					asteroids [i].instance.rotation = asteroids [i].initialRotation;
+					asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity = asteroids [i].initialAngularVelocity;
 					asteroids [i].positions.Clear ();
 					asteroids [i].velocities.Clear ();
+					asteroids [i].rotations.Clear ();
+					asteroids [i].angularVelocities.Clear ();
 				}
 				frameTimes.Clear ();
 			}
@@ -114,6 +122,8 @@ public class TimeManipulator : MonoBehaviour {
 		for (int i = 0; i < asteroids.Length; i++) {
 			asteroids [i].positions.Push (asteroids [i].instance.position);
 			asteroids [i].velocities.Push (asteroids [i].instance.GetComponent<Rigidbody2D>().velocity);
+			asteroids [i].rotations.Push (asteroids [i].instance.rotation);
+			asteroids [i].angularVelocities.Push (asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity);
 
 		}
 		timeFromNow += Time.deltaTime;
@@ -127,6 +137,8 @@ public class TimeManipulator : MonoBehaviour {
 				if (asteroids [i].positions.Count > 0) {
 					asteroids [i].instance.position = asteroids [i].positions.Pop ();
 					asteroids [i].instance.GetComponent<Rigidbody2D> ().velocity = asteroids [i].velocities.Pop ();
+					asteroids [i].instance.rotation = asteroids [i].rotations.Pop ();
+					asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity = asteroids [i].angularVelocities.Pop ();
 				}
 			}
 			timeFromNow = frameTimes.Pop ();
@@ -138,7 +150,11 @@ public class TimeManipulator : MonoBehaviour {
 		public Transform instance;
 		public Vector2 initialVelocity;
 		public Vector3 initialPosition;
+		public Quaternion initialRotation;
+		public float initialAngularVelocity;
 		public Stack<Vector3> velocities;
 		public Stack<Vector3> positions;
+		public Stack<Quaternion> rotations;
+		public Stack<float> angularVelocities;
 	}
 }

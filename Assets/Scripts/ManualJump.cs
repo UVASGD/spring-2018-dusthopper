@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ManualJump : MonoBehaviour {
 	private float timeHeld = 0f;
+	public AudioSource asrc;
 
 	void Start(){
 		timeHeld = 0f;
@@ -11,7 +12,7 @@ public class ManualJump : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 //		print (timeHeld);
-		if (!GameState.mapOpen) {
+		if (!GameState.mapOpen && !GameState.manualJumpsDisabled) {
 			if (Input.GetMouseButton (0)) {
 				if (timeHeld >= GameState.secondsPerJump) {
 					Vector2 directionOfCursor = (Vector2)(Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position);
@@ -25,11 +26,18 @@ public class ManualJump : MonoBehaviour {
 						//TODO "jump" to point in space at end of raycast and die / lose a life
 					}
 					timeHeld = 0;
+					asrc.Stop ();
 				} else {
 					timeHeld += Time.deltaTime;
+					if (!asrc.isPlaying) {
+						asrc.Play ();
+					}
 				}
 			} else {
 				timeHeld = 0;
+				if (asrc.isPlaying) {
+					asrc.Stop ();
+				}
 			}
 		}
 	}
