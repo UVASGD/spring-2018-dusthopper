@@ -140,6 +140,7 @@ public class PathMaker : MonoBehaviour {
 								GameObject newLine = new GameObject ();
 								newLine.name = "Line" + i.ToString ();
 								newLine.transform.parent = transform;
+								newLine.layer = LayerMask.NameToLayer ("UI");
 								newLine.AddComponent (typeof(LineRenderer));
 								newLine.GetComponent<LineRenderer> ().material = new Material (Shader.Find ("Sprites/Default"));
 								newLine.GetComponent<LineRenderer> ().startColor = new Color (1f, 0.69f, 0f, 1);

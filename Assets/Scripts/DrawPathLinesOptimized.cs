@@ -22,6 +22,7 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 			lines [i] = new GameObject ();
 			lines [i].name = "Line" + i.ToString ();
 			lines [i].transform.parent = transform;
+			lines [i].layer = LayerMask.NameToLayer ("UI");
 			lines [i].AddComponent (typeof(LineRenderer));
 			lines [i].GetComponent<LineRenderer> ().material = new Material(Shader.Find ("Sprites/Default"));
 			lines [i].GetComponent<LineRenderer> ().startColor = Color.green;

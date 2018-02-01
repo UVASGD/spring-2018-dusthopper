@@ -1,4 +1,4 @@
-﻿ using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,12 @@ public class CameraScrollOut : MonoBehaviour {
 
 	private float scrollAmount;
 
+	public List<GameObject> disabledObjects;
+
 	// Use this for initialization
 	void Start () {
 		scrollAmount = GetComponent<Camera> ().orthographicSize;
+		disabledObjects = new List<GameObject> (0);
 	}
 
 	// Update is called once per frame
@@ -71,18 +74,39 @@ public class CameraScrollOut : MonoBehaviour {
 			if (!GameState.mapOpen) {
 				if (GameState.hasSensors) {
 					scrollAmount = mapSize;
+					SetEnabledNonAsteroids (false);
 					GameState.mapOpen = true;
 				}
 			} else {
 				if (scrollAmount < minMapModeSize) {
 					scrollAmount = maxPlayerModeSizeWithMap;
 					d = 0f;
+					SetEnabledNonAsteroids (true);
 					GameState.mapOpen = false;
 				}
 			}
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		}
-//		print ("orthographic size: " + GetComponent<Camera> ().orthographicSize);
-//		print ("scrollAmount: " + scrollAmount);
+		//        print ("orthographic size: " + GetComponent<Camera> ().orthographicSize);
+		//        print ("scrollAmount: " + scrollAmount);
+	}
+
+	public void SetEnabledNonAsteroids (bool enabled) {
+		//If you are disabling
+		if (!enabled) {
+			GameObject[] allObjectsArray = FindObjectsOfType <GameObject> ();
+
+			foreach (GameObject item in allObjectsArray) {
+				if (item.layer != LayerMask.NameToLayer("Asteroid") && item.layer != LayerMask.NameToLayer("UI") && item.layer != LayerMask.NameToLayer("Control")) {
+					item.SetActive (false);
+					disabledObjects.Add (item);
+				}
+			}
+		} else {
+			foreach (GameObject item in disabledObjects) {
+				item.SetActive (true);
+			}
+			disabledObjects.Clear ();
+		}
 	}
 }
