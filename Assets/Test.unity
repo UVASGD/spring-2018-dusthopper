@@ -688,6 +688,10 @@ Prefab:
       propertyPath: asrc
       value: 
       objectReference: {fileID: 606581428}
+    - target: {fileID: 1700396702069538, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
