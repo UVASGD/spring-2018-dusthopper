@@ -24,12 +24,12 @@ public class SmoothCamera2D : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
 		if (target)
 		{
 			if (target.tag == "Player") {
-				transform.parent = GameState.asteroid;
+				//transform.parent = GameState.asteroid;
 //				theAsteroid = GameState.asteroid;
 			}
 			transform.rotation = Quaternion.identity;
