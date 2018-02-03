@@ -27,21 +27,15 @@ public class SmoothCamera2D : MonoBehaviour {
 	{
 		if(GameState.mapOpen)
 		{
-			Vector3 temp = /*GameState.asteroid.position +*/ this.gameObject.GetComponent<MoveCameraInMap>().mapCenter.position;
-			temp.z = this.transform.position.z;
-			this.transform.position = temp;
+			FixedUpdate();
 		}
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		if (target)
+		if (target != null)
 		{
-			if (target.tag == "Player") {
-				//transform.parent = GameState.asteroid;
-//				theAsteroid = GameState.asteroid;
-			}
 			transform.rotation = Quaternion.identity;
 			Vector3 point = Camera.main.WorldToViewportPoint(target.position);
 			Vector3 delta = target.position - Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
