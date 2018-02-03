@@ -23,6 +23,16 @@ public class SmoothCamera2D : MonoBehaviour {
 		dampTime = d;
 	}
 
+	void Update()
+	{
+		if(GameState.mapOpen)
+		{
+			Vector3 temp = /*GameState.asteroid.position +*/ this.gameObject.GetComponent<MoveCameraInMap>().mapCenter.position;
+			temp.z = this.transform.position.z;
+			this.transform.position = temp;
+		}
+	}
+
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
@@ -40,6 +50,5 @@ public class SmoothCamera2D : MonoBehaviour {
 
 			lastPos = target.position;
 		}
-
 	}
 }
