@@ -16,9 +16,11 @@ public class Movement : MonoBehaviour {
 	[SerializeField] private Transform animPrefab;
 
 	private int asteroidNum = 0;
+	private UpgradeManager upgradeMgr;
 
 	// Use this for initialization
 	void Start () {
+		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
 		rb = GetComponent<Rigidbody2D> ();
 		asrc = GetComponent<AudioSource> ();
 		GameState.asteroid = GameObject.FindWithTag ("Asteroid").transform;
@@ -46,9 +48,9 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * speed;
+		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * (speed * upgradeMgr.walkSpeedMod);
 
-		if ((Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0) || GameState.mapOpen) {
+		if (GameState.mapOpen || (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0)) {
 			targVel = Vector3.zero;
 		}
 
