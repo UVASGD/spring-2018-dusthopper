@@ -8,6 +8,7 @@ public class PathMaker : MonoBehaviour {
 //	lr.material = new Material(Shader.Find("Particles/Additive (Soft)"));
 	public SortedList<float,Transform> path; //key = time to start charging jump , value = transform of target asteroid
 	public SortedList<float,float> jumpTimes;
+	public GameObject container;
 	private GameObject player;
 	private AudioSource asrc;
 	public AudioClip chargeJump;
@@ -139,7 +140,7 @@ public class PathMaker : MonoBehaviour {
 								jumpTimes.Add (timeOfJump, timeOfJump);
 								GameObject newLine = new GameObject ();
 								newLine.name = "Line" + i.ToString ();
-								newLine.transform.parent = transform;
+								newLine.transform.parent = container.transform;
 								newLine.layer = LayerMask.NameToLayer ("UI");
 								newLine.AddComponent (typeof(LineRenderer));
 								newLine.GetComponent<LineRenderer> ().material = new Material (Shader.Find ("Sprites/Default"));

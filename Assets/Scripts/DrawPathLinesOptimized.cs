@@ -8,6 +8,7 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 
 	private GameObject[] asteroidList;
 	private GameObject[] lines;
+	public GameObject container;
 	private bool mapOpenLF;
 	public float percentToFullyRender; //If two asteroids are within this percentage of the max dist from each other, alpha should be 1. Otherwise, ramp down to zero.
 	private Transform mapCenter;
@@ -21,7 +22,7 @@ public class DrawPathLinesOptimized : MonoBehaviour {
 		for (int i = 0; i < lines.Length; i++) {
 			lines [i] = new GameObject ();
 			lines [i].name = "Line" + i.ToString ();
-			lines [i].transform.parent = transform;
+			lines [i].transform.parent = container.transform;
 			lines [i].layer = LayerMask.NameToLayer ("UI");
 			lines [i].AddComponent (typeof(LineRenderer));
 			lines [i].GetComponent<LineRenderer> ().material = new Material(Shader.Find ("Sprites/Default"));

@@ -11,6 +11,7 @@ public class CameraScrollOut : MonoBehaviour {
 	public float minMapModeSize; //Most the player can zoom in in map mode before exiting map mode
 	public float mapSize = 20; //zoom amount of map mode (fixed)
 	public bool jumpingToAsteroidWithMap = false;
+	public bool swapScroll = false;
 
 
 	private float scrollAmount;
@@ -51,6 +52,7 @@ public class CameraScrollOut : MonoBehaviour {
 
 		//normal zooming
 		var d = Input.GetAxis ("Mouse ScrollWheel");
+		if (swapScroll) d = d * -1;
 
 		if (d > 0f) {
 			scrollAmount += Time.unscaledDeltaTime * scrollSpeed;
