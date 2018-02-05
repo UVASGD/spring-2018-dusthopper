@@ -1,5 +1,5 @@
-# Dusthopper-Test
+# Dusthopper
 
-Proof of concept of a game for UVA student gamedevs
+A game for UVA student gamedevs
 
 Thanks for reading me.
