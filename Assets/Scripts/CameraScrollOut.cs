@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class CameraScrollOut : MonoBehaviour {
 
-	public float scrollSpeed = 5;
+	public float scrollSpeed; //How sensitive the scroll wheel is ingame.
+	public bool swapScroll = false; //A player might choose to invert the scroll wheel from settings.
 	public float minPlayerModeSize; //most the player can zoom in
 	public float maxPlayerModeSizeWithMap; //most player can zoom out before entering the map
 	public float maxPlayerModeSizeWithoutMap; //most player can zoom out if on an asteroid without map access
 	public float minMapModeSize; //Most the player can zoom in in map mode before exiting map mode
-	public float mapSize = 20; //zoom amount of map mode (fixed)
+	private float mapSize = 20f; //zoom amount of map mode (fixed)
+
+	//There is a special zoom procedure for jumping from an asteroid without a map to an asteroid with a map to prevent the map from immediately opening when jump is made.
+	//This will be set while that's happening
 	public bool jumpingToAsteroidWithMap = false;
-	public bool swapScroll = false;
 
 
+	//The target size which the camera will zoom towards
 	private float scrollAmount;
 
+	//When entering the map, we want to disable most non-asteroid objects so that they don't do stuff when fast-forwarding in the map.
+	//When exiting the map, we want to reenable whatever we disabled.
+	//This list caches whatever we disabled last time we entered the map.
 	public List<GameObject> disabledObjects;
 
 	// Use this for initialization
@@ -89,10 +96,9 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		}
-		//        print ("orthographic size: " + GetComponent<Camera> ().orthographicSize);
-		//        print ("scrollAmount: " + scrollAmount);
 	}
 
+	//Most objects besides asteroids will get disabled by this when the map is opened and enabled
 	public void SetEnabledNonAsteroids (bool enabled) {
 		//If you are disabling
 		if (!enabled) {

@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PathMaker : MonoBehaviour {
+	//This script maintains the list of jumps the player has scheduled.
+	//To do that it also:
+	//		Plays a charge jump sound effect when a scheduled jump is imminent
+	// 		Disables manual jumps when a scheduled jump is imminent
+	// 		Calls SwitchAsteroid in the movement script when the jump is supposed to happen
+	// 		Updates the scheduled path lines in the map
+	// 		Allows the player to add / remove jumps from the schedule by clicking on asteroids.
+
 
 //	public Queue<Transform> path;
 //	lr.material = new Material(Shader.Find("Particles/Additive (Soft)"));

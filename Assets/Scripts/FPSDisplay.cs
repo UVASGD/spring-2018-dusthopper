@@ -3,6 +3,7 @@ using System.Collections;
 
 public class FPSDisplay : MonoBehaviour
 {
+	//Shows some game stats.
 	float deltaTime = 0.0f;
 	public Color myColor;
 	public bool showFPS = false;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeManipulator : MonoBehaviour {
+	//This script handles the fast forward / rewind stuff in the map, including the GUI
 
 	[SerializeField] [Range(0, 10)] private float timeScale = 10f;
 

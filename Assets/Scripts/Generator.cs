@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator : MonoBehaviour {
+	//This populates the world with asteroids. Every special asteroid and object generation thing will eventually have to be put here
 
 	public GameObject circle;
 	public GameObject container;

@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StayInRadius : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+	//This script bounces an asteroid off the edge of the world (which is a big circle) keeping it from drifting away
 	
 	// Update is called once per frame
 	void FixedUpdate () {

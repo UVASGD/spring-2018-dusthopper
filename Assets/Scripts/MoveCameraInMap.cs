@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveCameraInMap : MonoBehaviour {
+	//The camera movement in the map is based on a different system because time is not moving unless fast-forwarding is being done, so we can't use Update()
+	//We instead use OnGUI() and Time.unscaledDeltaTime
 
 	public float camSpeed = 10f;
 	private Transform mapCenter;

@@ -5,6 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class Movement : MonoBehaviour {
+	//This handles player movement, including:
+	//		WASDing around on current asteroid 
+	//		keeping movement restricted to radius away from the center of current asteroid
+	// 		SwitchAsteroid, the method which actually switches asteroids to a target and updates some variables to do with that
+	// 		Playing some sound effects
 
 	[SerializeField][Range(0f, 10f)] private float speed = 5;
 	private AudioSource asrc;
@@ -28,23 +33,12 @@ public class Movement : MonoBehaviour {
 		lastPos = transform.position;
 	}
 
+	//This is just to control the "Switch Asteroid" debug button in the bottom of the screen
 	void OnGUI() {
 		if (GUI.Button(new Rect(10, Screen.height - 40, 120, 30), "Switch Asteroid")) {
 			ChangeAsteroid ();
 		}
-
-//		print (GetComponent<Rigidbody2D> ().velocity);
 	}
-
-	/*void FixedUpdate () {
-		if (Input.GetMouseButtonDown(0))
-		{
-			Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-			Collider2D hit = Physics2D.OverlapPoint (mousePos);
-
-			if (hit != null && hit.tag == "Asteroid" && (hit.transform.position - transform.position).sqrMagnitude < GameState.maxAsteroidDistance * GameState.maxAsteroidDistance) SwitchAsteroid (hit.transform);
-		}
-	}*/
 	
 	// Update is called once per frame
 	void Update () {
@@ -54,8 +48,7 @@ public class Movement : MonoBehaviour {
 			targVel = Vector3.zero;
 		}
 
-		//Keep constrained on current asteroid
-		//print (asteroid.GetComponent<Rigidbody2D> ().velocity);
+		//Keep constrained on current asteroidj
 		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.localScale.x / 2 - skin) {
 			rb.velocity = targVel;
 		} else {
@@ -74,7 +67,6 @@ public class Movement : MonoBehaviour {
 			inst.GetComponent<JumpAnimation> ().origin = transform;
 			inst.GetComponent<JumpAnimation> ().destination = a;
 			asrc.PlayOneShot (jumpSound, 0.4f);
-			//inst.GetComponent<JumpAnimation> ().Animate ();
 			transform.position = GameState.asteroid.position;
 			GameState.asteroid = a;
 			GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
@@ -89,6 +81,8 @@ public class Movement : MonoBehaviour {
 //		print (GameState.sensorTimeRange);
 	}
 
+	//This is just used by the "Switch Asteroid" debug button in the bottom of the screen
+	//SwitchAsteroid(Transform a) is the function you want to call to switch an asteroid.
 	public void ChangeAsteroid () {
 		if (GameState.asteroid == null) {
 			return;
