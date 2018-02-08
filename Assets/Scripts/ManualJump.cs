@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ManualJump : MonoBehaviour {
 	//Allows the player to charge up a jump by holding down left mouse button and then jumps to the first asteroid in the direction of cursor.
+	//TODO: sound effect weirdness
 	private float timeHeld = 0f;
 	public AudioSource asrc;
 

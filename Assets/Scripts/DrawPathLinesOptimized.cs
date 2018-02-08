@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//Finished for now
 public class DrawPathLinesOptimized : MonoBehaviour {
 	//This script draws all possible jumps between asteroids on screen when map is open (the green lines)
 

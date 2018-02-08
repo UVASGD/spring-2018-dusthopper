@@ -12,10 +12,8 @@ public class PathMaker : MonoBehaviour {
 	// 		Allows the player to add / remove jumps from the schedule by clicking on asteroids.
 
 
-//	public Queue<Transform> path;
-//	lr.material = new Material(Shader.Find("Particles/Additive (Soft)"));
 	public SortedList<float,Transform> path; //key = time to start charging jump , value = transform of target asteroid
-	public SortedList<float,float> jumpTimes;
+	public SortedList<float,float> jumpTimes; //key and value are both the time the jump will actually take place
 	public GameObject container;
 	private GameObject player;
 	private AudioSource asrc;
@@ -23,10 +21,7 @@ public class PathMaker : MonoBehaviour {
 	private bool mapOpenLF;
 	private List<GameObject> lines;
 	public float percentIdle;//jumps not currently active should be still dimly lit so the player can see the long term plan. This is the alpha value for those jumps.
-//	private LineRenderer lr;
-//	private int pathCount = 0;
 
-//	private Transform futureAsteroid;
 
 	public float initialTime;
 	private float timeOfJump;

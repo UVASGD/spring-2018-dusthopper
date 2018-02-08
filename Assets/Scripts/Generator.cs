@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator : MonoBehaviour {
-	//This populates the world with asteroids. Every special asteroid and object generation thing will eventually have to be put here
+	//This populates the world with asteroids. 
+	//TODO: Every special asteroid and object generation thing will eventually have to be put here
 
-	public GameObject circle;
-	public GameObject container;
-	public int quantity = 200;
-	public float radius = 200;
-	public float maxSpeed = 5;
+	public GameObject circle; //"circle" is the default Asteroid Prefab. Not a very good name but it's not final by any means. TODO: Make this a list of prefabs
+	public GameObject container; // Newly created asteroids will be children of this object. For Hierarchy organization. Potential TODO: Create in script as opposed to using reference
+	public int quantity = 200; //how many asteroids?
+	public float radius = 200; //how far away from the center can they spawn?
+	public float maxSpeed = 5; //how fast can they be going at the start?
 
 	//proc gen sensor stuff
 	public float sensorChance;
@@ -23,6 +24,7 @@ public class Generator : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake (){
+		//Generate Asteroids TODO: Put this in Generate() function
 		for (int i = 0; i < quantity; i++) {
 			Vector3 pos = Random.insideUnitCircle * radius;
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour {
+	//This script will handle upgrades to the player's stats
     private static UpgradeManager _instance;
 
     public static UpgradeManager Instance { get { return _instance; } }

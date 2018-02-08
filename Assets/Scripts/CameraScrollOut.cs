@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Finished for now
 public class CameraScrollOut : MonoBehaviour {
 
 	public float scrollSpeed; //How sensitive the scroll wheel is ingame.

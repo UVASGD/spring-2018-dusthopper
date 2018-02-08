@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Finished, but need to abstract to other things if anything other than player jumps
 public class JumpAnimation : MonoBehaviour {
 
 	public Transform origin;

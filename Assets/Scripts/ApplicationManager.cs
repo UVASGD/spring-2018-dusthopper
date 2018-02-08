@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Finished for now
 public class ApplicationManager : MonoBehaviour {
+	//handles quitting and target framerate
 
 	[SerializeField] [Range(0, 4)] private int vSyncCount = 1;
 	private int vSyncCountCached = 1;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Finished
 public class Parallax : MonoBehaviour {
 
 	private float weight;

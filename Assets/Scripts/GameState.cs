@@ -7,7 +7,7 @@ public static class GameState {
 
 	public static bool mapOpen; //whether or not the map is currently open
 
-	//These are only set from UpdateTime.cs
+	//These are only set from UpdateTime.cs. TODO: move the functionality from UpdateTime.cs into here and delete that script
 	public static float time = 0f; //A copy of Time.time which is only incremented when not in a map (for scripts with timing)
 	public static float deltaTime = 0f; //A copy of Time.deltaTime which is set to 0 when in a map (for scripts with timing)
 

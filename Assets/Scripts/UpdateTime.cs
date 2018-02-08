@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Finished for now
 public class UpdateTime : MonoBehaviour {
 	//This script's job is to keep GameState.time and GameState.deltaTime synced with Time.time and Time.deltaTime, except for time spent fast-forwarding in the map.
 
