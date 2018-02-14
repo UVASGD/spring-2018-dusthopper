@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Asteroid
+  - Food
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Asteroid
   - Control
-  - 
+  - Player
   - 
   - 
   - 

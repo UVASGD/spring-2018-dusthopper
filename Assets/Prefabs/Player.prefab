@@ -27,7 +27,9 @@ GameObject:
   - component: {fileID: 82588561798729888}
   - component: {fileID: 114408134968344080}
   - component: {fileID: 114982525918687968}
-  m_Layer: 8
+  - component: {fileID: 114238825700592304}
+  - component: {fileID: 60624065981931306}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -67,6 +69,33 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &60624065981931306
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700396702069538}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5}
+      - {x: -0.4330127, y: -0.25000003}
+      - {x: 0.43301272, y: -0.24999996}
 --- !u!82 &82588561798729888
 AudioSource:
   m_ObjectHideFlags: 1
@@ -187,6 +216,18 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 99009426421624ac5befffd9cfb61347, type: 3}
   skin: 0.1
   animPrefab: {fileID: 4596830954289954, guid: 5729404da8c6d4eada95ab071d42dc63, type: 2}
+--- !u!114 &114238825700592304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700396702069538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec368e90ebf6474b8a6058fbbc93434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nom: {fileID: 8300000, guid: 5920d06fe5a81419ea4b452572195831, type: 3}
 --- !u!114 &114408134968344080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -199,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hungerBarColor: {r: 0.5901257, g: 0.74264705, b: 0.30033523, a: 1}
-  maxHunger: 20
+  maxHunger: 30
 --- !u!114 &114982525918687968
 MonoBehaviour:
   m_ObjectHideFlags: 1
