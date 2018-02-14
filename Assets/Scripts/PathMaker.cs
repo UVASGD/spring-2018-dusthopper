@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: figure out situations where the player places a jump but there would not be time to charge it up.
+//Currently the player is blocked from doing this, but possibly let them fail? Possibly alert them to why their jump is not being placed?
 public class PathMaker : MonoBehaviour {
 	//This script maintains the list of jumps the player has scheduled.
 	//To do that it also:

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Finished
 public class StayInRadius : MonoBehaviour {
 	//This script bounces an asteroid off the edge of the world (which is a big circle) keeping it from drifting away
 	

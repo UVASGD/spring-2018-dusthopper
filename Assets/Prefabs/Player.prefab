@@ -25,6 +25,8 @@ GameObject:
   - component: {fileID: 114004829312517264}
   - component: {fileID: 114042274269727972}
   - component: {fileID: 82588561798729888}
+  - component: {fileID: 114408134968344080}
+  - component: {fileID: 114982525918687968}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -169,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42e3b8abb44474514a76c09d276a61e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeedMod: 0
 --- !u!114 &114063645533586838
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -184,6 +187,30 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 99009426421624ac5befffd9cfb61347, type: 3}
   skin: 0.1
   animPrefab: {fileID: 4596830954289954, guid: 5729404da8c6d4eada95ab071d42dc63, type: 2}
+--- !u!114 &114408134968344080
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700396702069538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa8eea41937045bd9bf221344e5a337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerBarColor: {r: 0.5901257, g: 0.74264705, b: 0.30033523, a: 1}
+  maxHunger: 20
+--- !u!114 &114982525918687968
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700396702069538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bad020ddeea44ad3ba49f5fca23dbd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212633577863705494
 SpriteRenderer:
   m_ObjectHideFlags: 1
