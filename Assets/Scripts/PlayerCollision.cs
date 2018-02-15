@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCollision : MonoBehaviour {
 
 	private Hunger hunger;
-	private AudioSource asrc;
+	public AudioSource asrc;
 	public AudioClip nom;
 
 	void Start(){

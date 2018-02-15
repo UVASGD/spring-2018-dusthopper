@@ -169,7 +169,7 @@ public class PathMaker : MonoBehaviour {
 
 	void TraversePath(){
 		if (path.Count > 0 && GameState.time >= path.Keys [0] && path.Values[0] != GameState.asteroid) {
-			if (timeSinceChargingStarted >= GameState.secondsPerJump){
+			if (timeSinceChargingStarted >= GameState.secondsPerJump) {
 				if ((path.Values [0].position - player.transform.position).sqrMagnitude < (GameState.maxAsteroidDistance * GameState.maxAsteroidDistance + tolerance)) {
 					print ("jumping to asteroid " + path.Values [0].gameObject.name + " at time " + GameState.time);
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);

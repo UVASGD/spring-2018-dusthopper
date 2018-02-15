@@ -12,7 +12,7 @@ public class Movement : MonoBehaviour {
 	// 		Playing some sound effects
 
 	[SerializeField][Range(0f, 10f)] private float speed = 5;
-	private AudioSource asrc;
+	public AudioSource asrc;
 	public AudioClip jumpSound;
 	private Rigidbody2D rb;
 	//public Transform asteroid;
@@ -27,7 +27,6 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
 		rb = GetComponent<Rigidbody2D> ();
-		asrc = GetComponent<AudioSource> ();
 		GameState.asteroid = GameObject.FindWithTag ("Asteroid").transform;
 		transform.position = GameState.asteroid.position;
 		lastPos = transform.position;
