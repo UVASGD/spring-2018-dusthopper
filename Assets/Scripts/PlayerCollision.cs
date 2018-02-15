@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour {
 
+	//This script handles every interaction between the player and an object on the ground
+
 	private Hunger hunger;
-	public AudioSource asrc;
-	public AudioClip nom;
+	public AudioSource nom;
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
-		asrc = gameObject.GetComponent<AudioSource> ();
 	}
 
+	//Add cases for what to do with certain objects here
 	void OnTriggerEnter2D ( Collider2D other){
 		if (other.gameObject.tag == "Food"){
 			print ("EATING FOOD");
@@ -22,7 +23,7 @@ public class PlayerCollision : MonoBehaviour {
 
 	void Eat(GameObject food){
 		hunger.addToHunger (food.GetComponent<Food> ().hungerUp);
-		asrc.PlayOneShot (nom, 0.5f);
+		nom.Play ();
 		Destroy (food);
 	}
 }

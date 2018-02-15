@@ -18,8 +18,7 @@ public class PathMaker : MonoBehaviour {
 	public SortedList<float,float> jumpTimes; //key and value are both the time the jump will actually take place
 	public GameObject container;
 	private GameObject player;
-	private AudioSource asrc;
-	public AudioClip chargeJump;
+	public AudioSource chargeJump;
 	private bool mapOpenLF;
 	private List<GameObject> lines;
 	public float percentIdle;//jumps not currently active should be still dimly lit so the player can see the long term plan. This is the alpha value for those jumps.
@@ -37,7 +36,6 @@ public class PathMaker : MonoBehaviour {
 		path = new SortedList<float,Transform> (0);
 		jumpTimes = new SortedList<float, float> (0);
 		player = GameObject.FindWithTag ("Player");
-		asrc = player.GetComponent<AudioSource> ();
 		lines = new List<GameObject> ();
 		GameStateTimeLF = 0f;
 		timeSinceChargingStarted = 0f;
@@ -185,8 +183,8 @@ public class PathMaker : MonoBehaviour {
 			} else if (GameState.time != GameStateTimeLF) {
 				timeSinceChargingStarted += Time.deltaTime;
 				GameState.manualJumpsDisabled = true;
-				if (!asrc.isPlaying) {
-					asrc.PlayOneShot (chargeJump, 0.4f);
+				if (!chargeJump.isPlaying) {
+					chargeJump.Play ();
 				}
 			}
 		}

@@ -12,8 +12,7 @@ public class Movement : MonoBehaviour {
 	// 		Playing some sound effects
 
 	[SerializeField][Range(0f, 10f)] private float speed = 5;
-	public AudioSource asrc;
-	public AudioClip jumpSound;
+	public AudioSource jumpSound;
 	private Rigidbody2D rb;
 	//public Transform asteroid;
 	private Vector3 lastPos;
@@ -65,7 +64,7 @@ public class Movement : MonoBehaviour {
 			Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
 			inst.GetComponent<JumpAnimation> ().origin = transform;
 			inst.GetComponent<JumpAnimation> ().destination = a;
-			asrc.PlayOneShot (jumpSound, 0.4f);
+			jumpSound.Play ();
 			transform.position = GameState.asteroid.position;
 			GameState.asteroid = a;
 			GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
