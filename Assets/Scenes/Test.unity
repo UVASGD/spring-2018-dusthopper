@@ -650,6 +650,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c1a2adc7a394053a801d7b47026cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroidTypes:
+  - {fileID: 1184000033098114, guid: d323380edac1c40a6a94161caa8c2ea5, type: 2}
+  - {fileID: 1471416880941140, guid: f35ac0f5901fda04287e7fd5fcd4668e, type: 2}
+  - {fileID: 1708250766477868, guid: b56f614de50b2fe46bfc18d09064d808, type: 2}
+  maxStroids: 1400000032000000f4010000
   circle: {fileID: 1184000033098114, guid: d323380edac1c40a6a94161caa8c2ea5, type: 2}
   container: {fileID: 1120569470}
   quantity: 200
