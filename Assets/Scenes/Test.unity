@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroids:
-  - goObj: {fileID: 1184000033098114, guid: e9df21292137f45d3b3cb926efdc52f0, type: 2}
+  - goObj: {fileID: 1777078011565096, guid: 1c1187bed07434aa8ba13c4153eab2d8, type: 2}
     num: 1
   container: {fileID: 1120569470}
   quantity: 200
