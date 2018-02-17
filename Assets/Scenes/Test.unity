@@ -77,18 +77,15 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
-    m_ShowResolutionOverlay: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -110,8 +107,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &74261322
 GameObject:
@@ -650,7 +645,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c1a2adc7a394053a801d7b47026cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circle: {fileID: 1184000033098114, guid: d323380edac1c40a6a94161caa8c2ea5, type: 2}
+  circle: {fileID: 1184000033098114, guid: e9df21292137f45d3b3cb926efdc52f0, type: 2}
   container: {fileID: 1120569470}
   quantity: 200
   radius: 200
@@ -670,7 +665,6 @@ LineRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 0
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -686,7 +680,6 @@ LineRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -984,6 +977,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1977073555 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1700396702069538, guid: 4a22abeeec077469fb2510ed590d0168,
+    type: 2}
+  m_PrefabInternal: {fileID: 752193522}
+--- !u!114 &1977073565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1977073555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca23e08037ccba543a2fe11c761ab5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2072925251
 GameObject:
   m_ObjectHideFlags: 0
