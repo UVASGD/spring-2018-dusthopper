@@ -12,7 +12,18 @@ public class AsteroidGenerate : MonoBehaviour {
     public int avgSensorTimeRange;
     public int sensorTimeRangeRange;
 
-    public float maxSpeed = 5; //how fast can they be going at the start?
+    [SerializeField]
+    private float maxSpeed = 5; //how fast can they be going at the start?
+
+    public void InitDefault()
+    {
+        sensorChance = 0.35f;
+        avgSensorRange = 30;
+        sensorRangeRange = 15;
+        avgSensorTimeRange = 30;
+        sensorTimeRangeRange = 15;
+        hasSensorColor = Color.yellow;
+    }
 
     public void generate(int asteroidNum){
         name = "Asteroid" + asteroidNum.ToString();

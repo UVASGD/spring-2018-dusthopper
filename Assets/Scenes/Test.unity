@@ -650,22 +650,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c1a2adc7a394053a801d7b47026cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroidTypes:
-  - {fileID: 1184000033098114, guid: d323380edac1c40a6a94161caa8c2ea5, type: 2}
-  - {fileID: 1471416880941140, guid: f35ac0f5901fda04287e7fd5fcd4668e, type: 2}
-  - {fileID: 1708250766477868, guid: b56f614de50b2fe46bfc18d09064d808, type: 2}
-  maxStroids: 1400000032000000f4010000
-  circle: {fileID: 1184000033098114, guid: d323380edac1c40a6a94161caa8c2ea5, type: 2}
+  asteroids:
+  - goObj: {fileID: 1184000033098114, guid: e9df21292137f45d3b3cb926efdc52f0, type: 2}
+    num: 1
   container: {fileID: 1120569470}
   quantity: 200
   radius: 200
-  maxSpeed: 1.5
-  sensorChance: 0.35
-  avgSensorRange: 30
-  sensorRangeRange: 15
-  avgSensorTimeRange: 30
-  sensorTimeRangeRange: 15
-  hasSensorColor: {r: 0.875, g: 0.6126556, b: 0.34099266, a: 1}
 --- !u!120 &1511771309
 LineRenderer:
   m_ObjectHideFlags: 0

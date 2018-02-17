@@ -19,9 +19,10 @@ public class Generator : MonoBehaviour {
         generate();
 	}
 
+    
     public void generate(){
         //Generate Asteroids TODO: Put this in Generate() function
-
+        
         for (int i = 0; i < quantity; i++)
         {
             float toGenerate = Random.value;
@@ -30,8 +31,14 @@ public class Generator : MonoBehaviour {
             while (asteroidIndex < asteroids.Capacity){
                 if (toGenerate < asteroids[asteroidIndex].num)
                 {
-                    GameObject inst = Instantiate(asteroids[asteroidIndex].goObj, pos, Quaternion.identity) as GameObject;
-                    inst.GetComponent<AsteroidGenerate>().generate(i);
+                    GameObject inst = GameObject.Instantiate(asteroids[asteroidIndex].goObj, pos, Quaternion.identity) as GameObject;
+                    AsteroidGenerate ag = inst.GetComponent<AsteroidGenerate>();
+                    if(ag == null){
+                        ag = inst.AddComponent<AsteroidGenerate>();
+                        ag.InitDefault();
+                        Debug.LogWarning("Object prefab in list of asteroid objects to generate() in Generator.cs on GM does not have compotent type AsteroidGenerate: " + ag.gameObject.name);
+                    }
+                    ag.generate(i);
                     inst.transform.parent = container.transform;
                 }
                 asteroidIndex++;
