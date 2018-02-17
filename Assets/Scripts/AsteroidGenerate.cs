@@ -13,7 +13,7 @@ public class AsteroidGenerate : MonoBehaviour {
     public int sensorTimeRangeRange;
 
     [SerializeField]
-    private float maxSpeed = 5; //how fast can they be going at the start?
+    private float maxSpeed = 1.5f; //how fast can they be going at the start?
 
     public void InitDefault()
     {
@@ -23,6 +23,7 @@ public class AsteroidGenerate : MonoBehaviour {
         avgSensorTimeRange = 30;
         sensorTimeRangeRange = 15;
         hasSensorColor = Color.yellow;
+		print ("initdefault called");
     }
 
     public void generate(int asteroidNum){

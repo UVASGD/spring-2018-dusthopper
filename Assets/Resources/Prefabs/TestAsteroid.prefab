@@ -41,7 +41,7 @@ Transform:
   m_GameObject: {fileID: 1777078011565096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.301, y: 3.178, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,13 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f627c09b90d4c9458287b548665fc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasSensorColor: {r: 0, g: 0, b: 0, a: 0}
+  hasSensorColor: {r: 0.561896, g: 0.77205884, b: 0.5222751, a: 1}
   sensorChance: 0.35
   avgSensorRange: 30
   sensorRangeRange: 15
   avgSensorTimeRange: 30
   sensorTimeRangeRange: 15
-  maxSpeed: 5
+  maxSpeed: 1.5
 --- !u!114 &114340769987054860
 MonoBehaviour:
   m_ObjectHideFlags: 1
