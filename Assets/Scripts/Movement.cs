@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
 		rb = GetComponent<Rigidbody2D> ();
-		GameState.asteroid = GameObject.FindWithTag ("Asteroid").transform;
+		GameState.asteroid = GameObject.FindWithTag ("Hub").transform;
 		transform.position = GameState.asteroid.position;
 		lastPos = transform.position;
 	}
