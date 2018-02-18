@@ -92,7 +92,8 @@ public static class GameState {
 			playerSpeed = data.playerSpeed;
 			maxHunger = data.maxHunger;
 
-			player.transform.localPosition = SerialVec3.convFrom(data.playerPos);
+			asteroid = GameObject.FindWithTag("Hub").transform;
+			player.transform.position = asteroid.position;
 		}
 		PrintState();
 	}
@@ -104,7 +105,8 @@ public static class GameState {
 		playerSpeed = Random.Range (0.2f, 2f);
 		maxHunger = Random.Range (20f, 50f);
 		//player.transform.position = Vector3.zero;
-		asteroid = GameObject.FindWithTag("Asteroid").transform;
+		asteroid = GameObject.FindWithTag("Hub").transform;
+		player.transform.position = asteroid.position;
 		PrintState();
 	}
 

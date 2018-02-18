@@ -6,6 +6,8 @@ public class Generator : MonoBehaviour {
 	//This populates the world with asteroids. 
 	//TODO: Every special asteroid and object generation thing will eventually have to be put here
 
+    public GameObject hubPrefab;
+
     [SerializeField]
 	public List<GameObjectAndFloat> asteroids; //this list represents the probability distribution of the different asteroid type
     public GameObject container; // Newly created asteroids will be children of this object. For Hierarchy organization. Potential TODO: Create in script as opposed to using reference
@@ -16,11 +18,19 @@ public class Generator : MonoBehaviour {
 	// Use this for initialization
 	void Awake (){
         asteroids.Sort( (p1,p2) => p1.num.CompareTo(p2.num) );
-        generate();
+        MakeHub();
+        Generate();
 	}
 
-    
-    public void generate(){
+    public void MakeHub()
+    {
+        if(hubPrefab != null)
+        {
+            GameState.asteroid = Instantiate(hubPrefab, Vector3.zero, Quaternion.identity, container.transform).transform;
+        }
+    }
+
+    public void Generate(){
         //Generate Asteroids TODO: Put this in Generate() function
         
         for (int i = 0; i < quantity; i++)
@@ -31,14 +41,14 @@ public class Generator : MonoBehaviour {
             while (asteroidIndex < asteroids.Capacity){
                 if (toGenerate < asteroids[asteroidIndex].num)
                 {
-                    GameObject inst = GameObject.Instantiate(asteroids[asteroidIndex].goObj, pos, Quaternion.identity) as GameObject;
+                    GameObject inst = GameObject.Instantiate(asteroids[asteroidIndex].goObj, pos, Quaternion.identity, container.transform) as GameObject;
                     AsteroidGenerate ag = inst.GetComponent<AsteroidGenerate>();
                     if(ag == null){
                         ag = inst.AddComponent<AsteroidGenerate>();
                         ag.InitDefault();
                         Debug.LogWarning("Object prefab in list of asteroid objects to generate() in Generator.cs on GM does not have compotent type AsteroidGenerate: " + ag.gameObject.name);
                     }
-                    ag.generate(i);
+                    ag.Generate(i);
                     inst.transform.parent = container.transform;
                 }
                 asteroidIndex++;

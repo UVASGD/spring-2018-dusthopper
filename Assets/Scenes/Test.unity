@@ -662,6 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c1a2adc7a394053a801d7b47026cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hubPrefab: {fileID: 1175468082650272, guid: 83777795c01d54c5aa4f72759418d75d, type: 2}
   asteroids:
   - goObj: {fileID: 1777078011565096, guid: 1c1187bed07434aa8ba13c4153eab2d8, type: 2}
     num: 200

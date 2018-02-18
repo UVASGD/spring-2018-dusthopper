@@ -11,7 +11,7 @@ public class SaveLoadTest : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetKeyDown (KeyCode.M)) {
+		/*if (Input.GetKeyDown (KeyCode.M)) {
 			print ("Saving!");
 			GameState.SaveGame ();
 		} else if (Input.GetKeyDown (KeyCode.N)) {
@@ -22,7 +22,7 @@ public class SaveLoadTest : MonoBehaviour {
 			GameState.secondsPerJump = Random.Range (1f, 5f);
 			GameState.playerSpeed = Random.Range (0.2f, 2f);
 			GameState.maxHunger = Random.Range (20f, 50f);
-		}
+		}*/ //hate this...
 	}
 
 	void OnGUI()

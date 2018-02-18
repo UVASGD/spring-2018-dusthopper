@@ -26,7 +26,7 @@ public class AsteroidGenerate : MonoBehaviour {
 		print ("initdefault called");
     }
 
-    public void generate(int asteroidNum){
+    public void Generate(int asteroidNum){
         name = "Asteroid" + asteroidNum.ToString();
         GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * maxSpeed;
         if (Random.value <= sensorChance)
