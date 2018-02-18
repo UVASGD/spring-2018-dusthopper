@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 //This contains a bunch of important global variables.
 public static class GameState {
+
+	private static bool inited = false;
+	static long dataSaveNumber = 0;
 
 	public static bool mapOpen; //whether or not the map is currently open
 
@@ -43,40 +46,99 @@ public static class GameState {
 	//Functions
 	/*************************************************************************************************/
 	public static void SaveGame () {
-		string path = "Assets/Resources/stats.txt";
 
-		StreamWriter writer = new StreamWriter (path, false);
-		writer.WriteLine (maxAsteroidDistance);
-		writer.WriteLine (secondsPerJump);
-		writer.WriteLine (playerSpeed);
-		writer.WriteLine (maxHunger);
-		writer.Close ();
+		if(!inited)
+		{
+			Init();
+		}
 
-		//Re-import the file to update the reference in the editor
-//		AssetDatabase.ImportAsset(path); 
-//		TextAsset asset = Resources.Load("stats.txt") as TextAsset;
+		BinaryFormatter bf = new BinaryFormatter();
+		if(!File.Exists(GetPath()))
+		{
+			File.Create(GetPath());
+		}
+		FileStream fileStream = File.Open(GetPath(), FileMode.Open);
 
-		//Print the text from the file
-//		Debug.Log(asset.text);
+		Stats data = new Stats();
+		data.maxAsteroidDistance = maxAsteroidDistance;
+		data.secondsPerJump = secondsPerJump;
+		data.playerSpeed = playerSpeed;
+		data.maxHunger = maxHunger;
+
+		data.playerPos = SerialVec3.convTo(player.transform.localPosition);
+
+		bf.Serialize(fileStream, data);
+		fileStream.Close();
 	}
 
 	public static void LoadGame () {
-		string path = "Assets/Resources/stats.txt";
 
-		//Read the text from directly from the test.txt file
-		StreamReader reader = new StreamReader(path); 
-		if (!reader.EndOfStream) {
-			float.TryParse(reader.ReadLine(), out maxAsteroidDistance);
-			float.TryParse(reader.ReadLine(), out secondsPerJump);
-			float.TryParse(reader.ReadLine(), out playerSpeed);
-			float.TryParse(reader.ReadLine(), out maxHunger);
-			reader.Close ();
+		if(!inited)
+		{
+			Init();
 		}
 
+		if(File.Exists(GetPath()))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream fileStream = File.Open(GetPath(), FileMode.Open);
+			Stats data = (Stats)bf.Deserialize(fileStream);
+			fileStream.Close();
+			
+			maxAsteroidDistance = data.maxAsteroidDistance;
+			secondsPerJump = data.secondsPerJump;
+			playerSpeed = data.playerSpeed;
+			maxHunger = data.maxHunger;
+
+			player.transform.localPosition = SerialVec3.convFrom(data.playerPos);
+		}
+		PrintState();
+	}
+
+	/*************************************************************************************************/
+
+	public static void ResetGame()
+	{
+		maxAsteroidDistance = Random.Range (20f, 30f);
+		secondsPerJump = Random.Range (1f, 5f);
+		playerSpeed = Random.Range (0.2f, 2f);
+		maxHunger = Random.Range (20f, 50f);
+		player.transform.position = Vector3.zero;
+		PrintState();
+	}
+
+	private static void PrintState()
+	{
 		Debug.Log ("Max Asteroid Distance: " + maxAsteroidDistance);
 		Debug.Log ("Seconds per jump: " + secondsPerJump);
 		Debug.Log ("Player speed: " + playerSpeed);
 		Debug.Log ("Max hunger: " + maxHunger);
+		Debug.Log ("Player Position: " + player.transform.position);
 	}
-	/*************************************************************************************************/
+
+	private static string GetPath()
+	{
+		return Application.persistentDataPath + "/stats.dat";
+	} 
+
+	private static void Init()
+	{
+		player = GameObject.FindGameObjectWithTag("Player");
+		if(player == null)
+		{
+			Debug.LogError("No GameObject with Tag Player; Saving and Loading Borked.");
+		}
+		inited = true;
+	}
+}
+
+[System.Serializable]
+class Stats
+{
+	public float maxAsteroidDistance;
+	public float secondsPerJump;
+	public float playerSpeed;
+	public float maxHunger;
+
+	public SerialVec3 playerPos;
 }
