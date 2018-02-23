@@ -67,9 +67,9 @@ public class Movement : MonoBehaviour {
 			jumpSound.Play ();
 			transform.position = GameState.asteroid.position;
 			GameState.asteroid = a;
-			GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
-			GameState.sensorRange = a.GetComponent<AsteroidSensorInfo> ().sensorRange;
-			GameState.sensorTimeRange = a.GetComponent<AsteroidSensorInfo> ().sensorTimeRange;
+			GameState.hasSensors = a.GetComponent<AsteroidInfo> ().hasSensors;
+			GameState.sensorRange = a.GetComponent<AsteroidInfo> ().sensorRange;
+			GameState.sensorTimeRange = a.GetComponent<AsteroidInfo> ().sensorTimeRange;
 			if (GameState.hasSensors) {
 				Camera.main.GetComponent<CameraScrollOut> ().jumpingToAsteroidWithMap = true;
 			}
