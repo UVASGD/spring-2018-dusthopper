@@ -11,7 +11,8 @@ public static class GameState {
 	static long dataSaveNumber = 0;
 
 	public static bool mapOpen; //whether or not the map is currently open
-	public static bool runActice; //whether or not the player is currently on a run
+	public static bool runActive; //whether or not the player is currently on a run
+	public static bool debugMode = true; // If enabled, displays debug buttons and text
 
 
 	//Game Constants (AKA they shouldn't really be fiddled with)
@@ -122,6 +123,7 @@ public static class GameState {
 		Debug.Log ("Player speed: " + playerSpeed);
 		Debug.Log ("Max hunger: " + maxHunger);
 		Debug.Log ("Scrap: " + scrap);
+		Debug.Log ("----------------------------------");
 		//Debug.Log ("Player Position: " + player.transform.position);
 	}
 		

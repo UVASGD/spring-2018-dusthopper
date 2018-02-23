@@ -653,8 +653,8 @@ GameObject:
   - component: {fileID: 1511771307}
   - component: {fileID: 1511771308}
   - component: {fileID: 1511771310}
-  - component: {fileID: 1511771309}
   - component: {fileID: 1511771305}
+  - component: {fileID: 1511771309}
   m_Layer: 9
   m_Name: GM
   m_TagString: Untagged

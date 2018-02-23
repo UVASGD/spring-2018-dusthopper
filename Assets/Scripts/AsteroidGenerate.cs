@@ -31,14 +31,14 @@ public class AsteroidGenerate : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * maxSpeed;
         if (Random.value <= sensorChance)
         {
-            GetComponent<AsteroidSensorInfo>().hasSensors = true;
-            GetComponent<AsteroidSensorInfo>().sensorRange = Random.Range(avgSensorRange - sensorRangeRange, avgSensorRange + sensorRangeRange);
-            GetComponent<AsteroidSensorInfo>().sensorTimeRange = Random.Range(avgSensorTimeRange - sensorTimeRangeRange, avgSensorRange + sensorTimeRangeRange);
+            GetComponent<AsteroidInfo>().hasSensors = true;
+            GetComponent<AsteroidInfo>().sensorRange = Random.Range(avgSensorRange - sensorRangeRange, avgSensorRange + sensorRangeRange);
+            GetComponent<AsteroidInfo>().sensorTimeRange = Random.Range(avgSensorTimeRange - sensorTimeRangeRange, avgSensorRange + sensorTimeRangeRange);
             GetComponent<SpriteRenderer>().color = hasSensorColor;
         }
         else
         {
-            GetComponent<AsteroidSensorInfo>().hasSensors = false;
+            GetComponent<AsteroidInfo>().hasSensors = false;
         }
     }
 }

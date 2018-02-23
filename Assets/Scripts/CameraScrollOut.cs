@@ -135,12 +135,13 @@ public class CameraScrollOut : MonoBehaviour {
 	{
 		GameObject[] asteroidList = GameObject.FindGameObjectsWithTag ("Asteroid");
 		foreach (GameObject asteroid in asteroidList) {
-			if (asteroid.GetComponent<AsteroidSensorInfo> ().hasSensors) {
-				asteroid.GetComponent<SpriteRenderer> ().sprite = mapIconWithSensors;
-				asteroid.GetComponent<SpriteRenderer> ().color = iconWithSensor; // Remove color changes when we get art
-			} else {
-				asteroid.GetComponent<SpriteRenderer> ().sprite = mapIconWithoutSensors;
-				asteroid.GetComponent<SpriteRenderer> ().color = iconWithoutSensor; // Remove color changes when we get art
+			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().mapIcon;
+			// We can remove this if/else when we have art
+			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
+				asteroid.GetComponent<SpriteRenderer> ().color = iconWithSensor;
+			} 
+			else {
+				asteroid.GetComponent<SpriteRenderer> ().color = iconWithoutSensor;
 			}
 		}
 	}
@@ -149,12 +150,12 @@ public class CameraScrollOut : MonoBehaviour {
 	{
 		GameObject[] asteroidList = GameObject.FindGameObjectsWithTag ("Asteroid");
 		foreach (GameObject asteroid in asteroidList) {
-			if (asteroid.GetComponent<AsteroidSensorInfo> ().hasSensors) {
-				asteroid.GetComponent<SpriteRenderer> ().sprite = asteroidSpriteWithSensors;
-				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidGenerate> ().hasSensorColor; // Remove color changes when we get art
+			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo>().asteroidSprite;
+			// We can remove this if/else when we have art
+			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidGenerate> ().hasSensorColor;
 			} else {
-				asteroid.GetComponent<SpriteRenderer> ().sprite = asteroidSpriteWithoutSensors;
-				asteroid.GetComponent<SpriteRenderer> ().color = Color.white; // Remove color changes when we get art
+				asteroid.GetComponent<SpriteRenderer> ().color = Color.white;
 			}
 		}
 	}

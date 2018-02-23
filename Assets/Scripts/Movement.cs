@@ -33,8 +33,15 @@ public class Movement : MonoBehaviour {
 
 	//This is just to control the "Switch Asteroid" debug button in the bottom of the screen
 	void OnGUI() {
+		if (!GameState.debugMode)
+			return;
+		
 		if (GUI.Button(new Rect(10, Screen.height - 40, 120, 30), "Switch Asteroid")) {
 			ChangeAsteroid ();
+		}
+
+		if (GUI.Button(new Rect(Screen.width - 130, Screen.height - 40, 120, 30), "Return to Hub")) {
+			SwitchAsteroid (GameObject.FindGameObjectWithTag ("Hub").transform);
 		}
 	}
 	
@@ -67,9 +74,9 @@ public class Movement : MonoBehaviour {
 			jumpSound.Play ();
 			transform.position = GameState.asteroid.position;
 			GameState.asteroid = a;
-			GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
-			GameState.sensorRange = a.GetComponent<AsteroidSensorInfo> ().sensorRange;
-			GameState.sensorTimeRange = a.GetComponent<AsteroidSensorInfo> ().sensorTimeRange;
+			GameState.hasSensors = a.GetComponent<AsteroidInfo> ().hasSensors;
+			GameState.sensorRange = a.GetComponent<AsteroidInfo> ().sensorRange;
+			GameState.sensorTimeRange = a.GetComponent<AsteroidInfo> ().sensorTimeRange;
 			if (GameState.hasSensors) {
 				Camera.main.GetComponent<CameraScrollOut> ().jumpingToAsteroidWithMap = true;
 			}
@@ -83,6 +90,7 @@ public class Movement : MonoBehaviour {
 	//SwitchAsteroid(Transform a) is the function you want to call to switch an asteroid.
 	public void ChangeAsteroid () {
 		if (GameState.asteroid == null) {
+			Debug.LogError ("No current asteroid to swap from!");
 			return;
 		}
 		//transform.position = GameState.asteroid.position;

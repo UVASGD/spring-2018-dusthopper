@@ -27,6 +27,9 @@ public class SaveLoadTest : MonoBehaviour {
 
 	void OnGUI()
 	{
+		if (!GameState.debugMode)
+			return;
+		
 		if(GUI.Button(new Rect(20,20,50,20), "Save"))
 		{
 			//Debug.Log ("Saving!");
