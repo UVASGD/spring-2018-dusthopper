@@ -25,8 +25,9 @@ public static class GameState {
 	/*************************************************************************************************/
 
 
-	//Upgradeable Player Stats
+	//Player Stats
 	/*************************************************************************************************/
+	public static int scrap = 0; // Monies that player possesses
 	public static float maxAsteroidDistance = 20f; //The distance the player can jump
 	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
 	public static float playerSpeed = 1f; //Speed at which player travels on asteroids
@@ -67,6 +68,7 @@ public static class GameState {
 		data.secondsPerJump = secondsPerJump;
 		data.playerSpeed = playerSpeed;
 		data.maxHunger = maxHunger;
+		data.scrap = scrap;
 
 		data.playerPos = SerialVec3.convTo(player.transform.localPosition);
 
@@ -93,6 +95,8 @@ public static class GameState {
 			playerSpeed = data.playerSpeed;
 			maxHunger = data.maxHunger;
 
+			scrap = data.scrap;
+
 			asteroid = GameObject.FindWithTag("Hub").transform;
 			player.transform.position = asteroid.position;
 		}
@@ -105,6 +109,7 @@ public static class GameState {
 		secondsPerJump = Random.Range (1f, 5f);
 		playerSpeed = Random.Range (0.2f, 2f);
 		maxHunger = Random.Range (20f, 50f);
+		scrap = 0;
 		//player.transform.position = Vector3.zero;
 		asteroid = GameObject.FindWithTag("Hub").transform;
 		player.transform.position = asteroid.position;
@@ -117,10 +122,11 @@ public static class GameState {
 		Debug.Log ("Seconds per jump: " + secondsPerJump);
 		Debug.Log ("Player speed: " + playerSpeed);
 		Debug.Log ("Max hunger: " + maxHunger);
+		Debug.Log ("Scrap: " + scrap);
 		Debug.Log ("----------------------------------");
 		//Debug.Log ("Player Position: " + player.transform.position);
 	}
-
+		
 	private static string GetPath()
 	{
 		return Application.persistentDataPath + "/stats.dat";
@@ -136,11 +142,35 @@ public static class GameState {
 		inited = true;
 	}
 	/*************************************************************************************************/
-}
 
+	/* Upgrade Stats Functions */
+	public static void UpgradeMaxAsteroidDistance(float increasePercentage = 0.05f) {
+		maxHunger *= 1 + increasePercentage;
+	}
+
+	public static void UpgradeSecondsPerJump(float decreasePercentage = 0.05f) {
+		secondsPerJump *= 1 - decreasePercentage;
+	}
+
+	public static void UpgradePlayerSpeed(float increasePercentage = 0.05f) {
+		playerSpeed *= 1 + increasePercentage;
+	}
+
+	public static void UpgradeMaxHunger(float increasePercentage = 0.05f) {
+		maxHunger *= 1 + increasePercentage;
+		if (!inited) {
+			Init ();
+		}
+		Hunger hungerScript = player.GetComponent<Hunger>();
+		hungerScript.addToHunger (maxHunger * increasePercentage);
+	}
+
+}
 [System.Serializable]
 class Stats
 {
+	public int scrap;
+
 	public float maxAsteroidDistance;
 	public float secondsPerJump;
 	public float playerSpeed;
