@@ -76,7 +76,11 @@ public class Movement : MonoBehaviour {
 			inst.GetComponent<JumpAnimation> ().origin = transform;
 			inst.GetComponent<JumpAnimation> ().destination = a;
 			jumpSound.Play ();
-			transform.position = a.position;
+			if (isAsteroid) {
+				transform.position = GameState.asteroid.position;
+			} else {
+				transform.position = a.position;
+			}
 
 			//If the jump location is not an asteroid, don't change asteroid values
 			if (!isAsteroid)
