@@ -9,8 +9,9 @@ public class TimeManipulator : MonoBehaviour {
 	[SerializeField] [Range(0, 10)] private float timeScale = 10f;
 
 	private Asteroid[] asteroids;
-	private GameObject[] instances;
+	private List<GameObject> instances;
 	private Stack<float> frameTimes;
+	public GameObject asteroidContainer;
 	public float timeFromNow;
 
 	//Text field for how many seconds in future we are
@@ -27,9 +28,12 @@ public class TimeManipulator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		instances = new List<GameObject> ();
 		mapOpenLF = GameState.mapOpen;
-		instances = GameObject.FindGameObjectsWithTag ("Asteroid");
-		asteroids = new Asteroid[instances.Length];
+		foreach (Transform child in asteroidContainer.transform) {
+			instances.Add (child.gameObject);
+		}
+		asteroids = new Asteroid[instances.Count];
 		for (int i = 0; i < asteroids.Length; i++) {
 			asteroids [i].instance = instances [i].transform;
 			//asteroids [i].initialVelocity = instances [i].GetComponent<Rigidbody2D> ().velocity;

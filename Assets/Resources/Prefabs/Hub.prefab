@@ -53,7 +53,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175468082650272}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hasSensorColor: {r: 0.561896, g: 0.77205884, b: 0.5222751, a: 1}
-  sensorChance: 0.35
+  sensorChance: 1
   avgSensorRange: 30
   sensorRangeRange: 15
   avgSensorTimeRange: 30
