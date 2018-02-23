@@ -12,6 +12,7 @@ public static class GameState {
 
 	public static bool mapOpen; //whether or not the map is currently open
 	public static bool runActive; //whether or not the player is currently on a run
+	public static bool debugMode = true; // If enabled, displays debug buttons and text
 
 
 	//Game Constants (AKA they shouldn't really be fiddled with)
