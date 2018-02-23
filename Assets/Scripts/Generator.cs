@@ -42,11 +42,11 @@ public class Generator : MonoBehaviour {
                 if (toGenerate < asteroids[asteroidIndex].num)
                 {
                     GameObject inst = GameObject.Instantiate(asteroids[asteroidIndex].goObj, pos, Quaternion.identity, container.transform) as GameObject;
-                    AsteroidGenerate ag = inst.GetComponent<AsteroidGenerate>();
+                    AsteroidInterface ag = inst.GetComponent<AsteroidInterface>();
                     if(ag == null){
-                        ag = inst.AddComponent<AsteroidGenerate>();
+                        ag = inst.AddComponent<AsteroidPlain>();
                         ag.InitDefault();
-                        Debug.LogWarning("Object prefab in list of asteroid objects to generate() in Generator.cs on GM does not have compotent type AsteroidGenerate: " + ag.gameObject.name);
+                        Debug.LogWarning("Object prefab in list of asteroid objects to generate() in Generator.cs on GM does not implement AsteroidInterface: " + inst.name);
                     }
                     ag.Generate(i);
                     inst.transform.parent = container.transform;
