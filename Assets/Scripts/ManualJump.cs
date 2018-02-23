@@ -27,6 +27,7 @@ public class ManualJump : MonoBehaviour {
 					} else {
 						print ("didn't hit anything");
 						//TODO "jump" to point in space at end of raycast and die / lose a life
+						JumpFail();
 					}
 					timeHeld = 0;
 					asrc.Stop ();
@@ -43,5 +44,10 @@ public class ManualJump : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+
+	void JumpFail () {
+
 	}
 }

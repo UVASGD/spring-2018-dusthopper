@@ -32,7 +32,7 @@ public class RunHandler : MonoBehaviour {
 
 	//Call this when starting a run. More or less randomizes asteroid belt
 	public void StartRun () {
-
+		
 	}
 
 	//Call this any time a run ends, whether due to death or returning to hub

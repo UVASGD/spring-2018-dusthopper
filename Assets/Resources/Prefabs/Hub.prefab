@@ -65,7 +65,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &60048071679211338
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81d7f85b4ac63477d9387cb37edd0af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasSensors: 0
+  hasSensors: 1
   sensorRange: 30
   sensorTimeRange: 30
   mapIcon: {fileID: 0}

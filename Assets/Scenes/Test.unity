@@ -288,7 +288,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4596830954289954, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
@@ -635,6 +635,11 @@ Prefab:
       propertyPath: iconWithoutSensor.a
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114698572849470948, guid: 8f9cc746676414d5a83ca0e11fa81af6,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114263033540493174, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
@@ -655,6 +660,7 @@ GameObject:
   - component: {fileID: 1511771310}
   - component: {fileID: 1511771305}
   - component: {fileID: 1511771309}
+  - component: {fileID: 1511771313}
   m_Layer: 9
   m_Name: GM
   m_TagString: Untagged
@@ -857,6 +863,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 74261322}
   percentToFullyRender: 0.6
+--- !u!114 &1511771313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1511771303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8772cd3525f4a5ab9bc322b971752c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHub: 0
+  onHubLF: 0
 --- !u!1 &1552148725
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +935,7 @@ Transform:
   - {fileID: 2072925252}
   - {fileID: 833777997}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1647041930
 GameObject:
