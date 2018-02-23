@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour {
 	//public Transform asteroid;
 	private Vector3 lastPos;
 	[SerializeField] private float skin = 0.1f;
-	[SerializeField] private Transform animPrefab;
+	public Transform animPrefab;
 
 	private int asteroidNum = 0;
 	private UpgradeManager upgradeMgr;
@@ -53,6 +53,10 @@ public class Movement : MonoBehaviour {
 			targVel = Vector3.zero;
 		}
 
+		//Stop following asteroid movement if there is none
+		if (!GameState.asteroid)
+			return;
+		
 		//Keep constrained on current asteroidj
 		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.localScale.x / 2 - skin) {
 			rb.velocity = targVel;
@@ -65,14 +69,19 @@ public class Movement : MonoBehaviour {
 
 	}
 
-	public void SwitchAsteroid (Transform a) {
+	public void SwitchAsteroid (Transform a, bool isAsteroid = true) {
 		if (a != GameState.asteroid) {//shouldn't be able to jump to yourself
 //		print ("Instantiating!");
 			Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
 			inst.GetComponent<JumpAnimation> ().origin = transform;
 			inst.GetComponent<JumpAnimation> ().destination = a;
 			jumpSound.Play ();
-			transform.position = GameState.asteroid.position;
+			transform.position = a.position;
+
+			//If the jump location is not an asteroid, don't change asteroid values
+			if (!isAsteroid)
+				return;
+
 			GameState.asteroid = a;
 			GameState.hasSensors = a.GetComponent<AsteroidInfo> ().hasSensors;
 			GameState.sensorRange = a.GetComponent<AsteroidInfo> ().sensorRange;

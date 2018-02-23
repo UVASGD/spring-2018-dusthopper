@@ -17,7 +17,8 @@ public class ManualJump : MonoBehaviour {
 		if (!GameState.mapOpen && !GameState.manualJumpsDisabled) {
 			if (Input.GetMouseButton (0)) {
 				if (timeHeld >= GameState.secondsPerJump) {
-					Vector2 directionOfCursor = (Vector2)(Camera.main.ScreenToWorldPoint (Input.mousePosition) - transform.position);
+					Vector3 cursorPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+					Vector2 directionOfCursor =  (Vector2)(cursorPosition - transform.position);
 					int everythingExceptAsteroids = ~LayerMask.NameToLayer ("Asteroid"); //ignore raycasts with everything except asteroids
 					RaycastHit2D[] thingsIHit = Physics2D.RaycastAll ((Vector2)transform.position, directionOfCursor, GameState.maxAsteroidDistance, everythingExceptAsteroids);
 					if (thingsIHit.Length > 2) {
@@ -27,7 +28,7 @@ public class ManualJump : MonoBehaviour {
 					} else {
 						print ("didn't hit anything");
 						//TODO "jump" to point in space at end of raycast and die / lose a life
-						JumpFail();
+						JumpFail(directionOfCursor);
 					}
 					timeHeld = 0;
 					asrc.Stop ();
@@ -46,8 +47,14 @@ public class ManualJump : MonoBehaviour {
 		}
 	}
 
-
-	void JumpFail () {
-
+	// If you click and hold and there's no asteroid in your path
+	void JumpFail (Vector3 targPos) {
+		print ("Jump fail! Going to point " + targPos);
+		//GameState.asteroid = null;
+		GameState.manualJumpsDisabled = true;
+//		GameState.player.transform.parent = null;
+		GameObject target = new GameObject("FailJumpPoint");
+		target.transform.position = targPos;
+		GetComponent<Movement> ().SwitchAsteroid (target.transform, false);
 	}
 }
