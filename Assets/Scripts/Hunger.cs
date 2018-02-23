@@ -45,6 +45,9 @@ public class Hunger : MonoBehaviour {
 	void OnGUI () {
 		GUI.Box (new Rect (140, Screen.height * 15/16, hungerBarWidth * (hunger / maxHunger), 15), "", gstyle);
 
+		if (!GameState.debugMode)
+			return;
+		
 		//This is just a debug button to toggle hunger loss (in case having to worry about that is annoying for testing)
 		if (GUI.Button(new Rect(10, Screen.height - 80, 120, 30), "No hunger")) {
 			debugDontLoseHunger = !debugDontLoseHunger;
