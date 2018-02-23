@@ -674,6 +674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeScale: 5
+  asteroidContainer: {fileID: 1120569470}
   timeFromNow: 0
 --- !u!114 &1511771305
 MonoBehaviour:
@@ -855,7 +856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3c6a6bf7043452dad2f6fc841febca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 74261322}
+  lineContainer: {fileID: 1552148725}
+  asteroidContainer: {fileID: 1120569470}
   percentToFullyRender: 0.6
 --- !u!1 &1552148725
 GameObject:
