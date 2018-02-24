@@ -56,5 +56,6 @@ public class ManualJump : MonoBehaviour {
 		GameObject target = new GameObject("FailJumpPoint");
 		target.transform.position = targPos;
 		GetComponent<Movement> ().SwitchAsteroid (target.transform, false);
+		GetComponent<Death> ().Die ();
 	}
 }

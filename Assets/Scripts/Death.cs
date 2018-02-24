@@ -28,7 +28,7 @@ public class Death : MonoBehaviour {
                 runOnce = false;
                 Die();
             } else {
-                print("Time: " + Time.fixedTime);
+                print("Time.fixedTime: " + Time.fixedTime);
             }
         
         }

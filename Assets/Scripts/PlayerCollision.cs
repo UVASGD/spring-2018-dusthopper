@@ -37,6 +37,14 @@ public class PlayerCollision : MonoBehaviour {
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
 		}
+
+		if (other.tag == "Plant" && holding) {
+			if (heldObject.GetComponent<Seed> ().name == other.GetComponent<Plant> ().mySeed) {
+				Debug.Log ("for some reason, you gave the plant a seed!");
+				Destroy (other.gameObject);
+				Destroy (heldObject);
+			}
+		}
 	}
 
 	void Eat(GameObject food){
