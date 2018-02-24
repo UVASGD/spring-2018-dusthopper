@@ -13,12 +13,14 @@ public class Death : MonoBehaviour {
     }
 
     public void Die(){
+
         if (GameState.isAlive == true) {
             print("begining death sequence");
             fade.fadeOut(1.0F);
             GameState.isAlive = false;
             StartCoroutine(reloadScene());
         }
+
     }
 
     public IEnumerator reloadScene() {
