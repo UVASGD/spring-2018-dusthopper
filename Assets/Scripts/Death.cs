@@ -13,7 +13,6 @@ public class Death : MonoBehaviour {
     }
 
     public void Die(){
-
         if (GameState.isAlive == true) {
             print("begining death sequence");
             float speed = 1.0F;     //the speed at which the screen fades to black     
@@ -21,7 +20,6 @@ public class Death : MonoBehaviour {
             GameState.isAlive = false;
             StartCoroutine(reloadScene(speed));
         }
-
     }
 
     public IEnumerator reloadScene(float speed) {

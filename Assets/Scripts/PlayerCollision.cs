@@ -31,18 +31,20 @@ public class PlayerCollision : MonoBehaviour {
 			Eat (other.gameObject);
 		}
 
-		if (other.tag == "Seed" && !holding) {
-			print ("Picked up a seed");
+		if (other.tag == "Pollen" && !holding) {
+			print ("Picked up pollen");
 			heldObject = other.gameObject;
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
 		}
 
 		if (other.tag == "Plant" && holding) {
-			if (heldObject.GetComponent<Seed> ().name == other.GetComponent<Plant> ().mySeed) {
-				Debug.Log ("for some reason, you gave the plant a seed!");
-				Destroy (other.gameObject);
-				Destroy (heldObject);
+			if (heldObject.GetComponent<Pollen> () != null) {
+				if (heldObject.GetComponent<Pollen> ().name == other.GetComponent<Plant> ().myPollen) {
+					Debug.Log ("you gave the plant some pollen!");
+					other.GetComponent<Plant> ().dispenseReward ();
+					Destroy (heldObject);
+				}
 			}
 		}
 	}
@@ -54,7 +56,7 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void drop() {
-		print ("Dropped a seed");
+		print ("Dropped pollen");
 		holding = false;
 		heldObject.transform.parent = GameState.asteroid;
 	}

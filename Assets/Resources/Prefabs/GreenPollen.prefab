@@ -21,10 +21,10 @@ GameObject:
   - component: {fileID: 4222886069617674}
   - component: {fileID: 212118189189420362}
   - component: {fileID: 58353878087658218}
-  - component: {fileID: 114730729380100054}
+  - component: {fileID: 114239575743689426}
   m_Layer: 0
-  m_Name: GreenSeed
-  m_TagString: Seed
+  m_Name: GreenPollen
+  m_TagString: Pollen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114730729380100054
+--- !u!114 &114239575743689426
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -65,10 +65,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1013170403800838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b9456b91d582438d88594e79f200904, type: 3}
+  m_Script: {fileID: 11500000, guid: 5026d7e6890a4493393c43e2831d425f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: GreenSeed
+  name: GreenPollen
 --- !u!212 &212118189189420362
 SpriteRenderer:
   m_ObjectHideFlags: 1

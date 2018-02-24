@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c71fd53713c8417f8574b7d2ec801b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mySeed: GreenSeed
+  myPollen: GreenPollen
 --- !u!212 &212948586281098932
 SpriteRenderer:
   m_ObjectHideFlags: 1

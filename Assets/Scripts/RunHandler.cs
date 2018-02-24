@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class RunHandler : MonoBehaviour {
 
-	public bool onHub;
-	public bool onHubLF;
+	//public bool onHub;
+	//public bool onHubLF;
 
 	// Use this for initialization
 	void Awake () {
-		onHubLF = true;
+		//onHubLF = true;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	/*void Update () {
 		if (GameState.asteroid.tag == "Hub") {
 			onHub = true;
 
@@ -28,7 +28,7 @@ public class RunHandler : MonoBehaviour {
 			}
 		}
 		onHubLF = onHub;
-	}
+	}*/
 
 	//Call this when starting a run. More or less randomizes asteroid belt
 	public void StartRun () {
