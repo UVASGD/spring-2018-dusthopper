@@ -58,7 +58,7 @@ public class Movement : MonoBehaviour {
 			return;
 		
 		//Keep constrained on current asteroidj
-		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.localScale.x / 2 - skin) {
+		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.GetComponent<AsteroidInfo>().radius - skin) {
 			rb.velocity = targVel;
 		} else {
 			rb.velocity = Vector2.zero;

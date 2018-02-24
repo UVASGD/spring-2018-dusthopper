@@ -91,15 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662e0f9aa0640a14f8dd77bf29624a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasSensorColor: {r: 0.27816498, g: 0.83823526, b: 0.17257786, a: 1}
-  sensorChance: 0.35
-  avgSensorRange: 30
-  sensorRangeRange: 15
-  avgSensorTimeRange: 30
-  sensorTimeRangeRange: 15
-  food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
-  foodChance: 0.5
-  maxSpeed: 1.5
+  info: {fileID: 0}
 --- !u!114 &114785418626624326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +119,22 @@ MonoBehaviour:
   sensorTimeRange: 30
   mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
+  radius: 0.5
+  hasSensorColor: {r: 0.2784314, g: 0.8392157, b: 0.17254902, a: 1}
+  sensorChance: 0.35
+  avgSensorRange: 15
+  sensorRangeRange: 30
+  avgSensorTimeRange: 15
+  sensorTimeRangeRange: 15
+  food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
+  foodChance: 0.5
+  maxSpeed: 1.5
+  itempool:
+  - goObj: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
+    num: 0.5
+  - goObj: {fileID: 1013170403800838, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
+    num: 1
+  maxItems: 0
 --- !u!212 &212566673774725310
 SpriteRenderer:
   m_ObjectHideFlags: 1
