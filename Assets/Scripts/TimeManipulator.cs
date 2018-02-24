@@ -47,13 +47,13 @@ public class TimeManipulator : MonoBehaviour {
 
 		//Time text field
 		style = new GUIStyle();
-		rect = new Rect(Screen.width / 2, Screen.height - 40, 30, 30);
+		rect = new Rect(Screen.width / 2, Screen.height - 70, 30, 30);
 		style.alignment = TextAnchor.MiddleCenter;
 		style.normal.textColor = new Color (1f, 1f, 1f, 1.0f);
 
-		rect2 = new Rect(Screen.width / 2 + 80, Screen.height - 40, 30, 30);
+		rect2 = new Rect(Screen.width / 2 + 80, Screen.height - 70, 30, 30);
 
-		rect3 = new Rect(Screen.width / 2 - 80, Screen.height - 40, 30, 30);
+		rect3 = new Rect(Screen.width / 2 - 80, Screen.height - 70, 30, 30);
 	}
 	
 //	// Update is called once per frame
@@ -63,14 +63,14 @@ public class TimeManipulator : MonoBehaviour {
 //
 	void OnGUI() {
 		if (GameState.mapOpen) {
-			if (GUI.RepeatButton (new Rect (Screen.width / 2 - 40, Screen.height - 40, 30, 30), "<<")) {
+			if (GUI.RepeatButton (new Rect (Screen.width / 2 - 40, Screen.height - 70, 30, 30), "<<")) {
 				StartCoroutine ("StepBackward");
 			} else {
 				//asteroids [i].initialVelocity = asteroids [i].instance.GetComponent<Rigidbody2D> ().velocity;
 				Time.timeScale = 0;
 			}
 
-			if (GUI.RepeatButton (new Rect (Screen.width / 2 + 40, Screen.height - 40, 30, 30), ">>")) {
+			if (GUI.RepeatButton (new Rect (Screen.width / 2 + 40, Screen.height - 70, 30, 30), ">>")) {
 				if (timeFromNow < GameState.sensorTimeRange) {
 					StartCoroutine ("StepForward");
 				}
