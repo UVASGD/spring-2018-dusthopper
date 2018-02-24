@@ -30,7 +30,7 @@ public class Death : MonoBehaviour {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
         GameState.isAlive = true;
-        print("reload scene done");
+//        print("reload scene done");
 
     }
 }

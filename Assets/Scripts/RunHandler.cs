@@ -9,6 +9,7 @@ public class RunHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		GameState.inited = false;
 		EndRun (false);
 	}
 	

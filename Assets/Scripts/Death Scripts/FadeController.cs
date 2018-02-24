@@ -19,13 +19,13 @@ public class FadeController : MonoBehaviour {
 	}
 
     public void fadeIn(float speed) {
-        print("begining a fadeIn in class FadeControler");
+        //print("begining a fadeIn in class FadeControler");
         anim.speed = speed;
         anim.SetTrigger("FadeIn");
     }
 
     public void fadeOut(float speed) {
-        print("begining a fadeOut in class FadeControler");
+        //print("begining a fadeOut in class FadeControler");
         anim.speed = speed;
         anim.SetTrigger("FadeOut");
 

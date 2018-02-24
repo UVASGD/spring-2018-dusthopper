@@ -7,7 +7,7 @@ using System.IO;
 //This contains a bunch of important global variables.
 public static class GameState {
 
-	private static bool inited = false;
+	public static bool inited = false;
 	static long dataSaveNumber = 0;
 
 	public static bool mapOpen; //whether or not the map is currently open
@@ -29,10 +29,10 @@ public static class GameState {
 	//Player Stats
 	/*************************************************************************************************/
 	public static int scrap = 0; // Monies that player possesses
-	public static float maxAsteroidDistance = 20f; //The distance the player can jump
+	public static float maxAsteroidDistance = 22f; //The distance the player can jump
 	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
 	public static float playerSpeed = 1f; //Speed at which player travels on asteroids
-	public static float maxHunger = 10f; //Maximum hunger, or how many seconds until death without replenishing
+	public static float maxHunger = 30f; //Maximum hunger, or how many seconds until death without replenishing
 	/*************************************************************************************************/
 
 

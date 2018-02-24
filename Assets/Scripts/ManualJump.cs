@@ -49,14 +49,14 @@ public class ManualJump : MonoBehaviour {
 
 	// If you click and hold and there's no asteroid in your path
 	void JumpFail (Vector3 targPos) {
-		print ("Jump fail! Going to point " + targPos);
+		//print ("Jump fail! Going to point " + targPos);
 		//GameState.asteroid = null;
 		GameState.manualJumpsDisabled = true;
 //		GameState.player.transform.parent = null;
 		GameObject target = new GameObject("FailJumpPoint");
 		target.transform.position = targPos;
 		GetComponent<Movement> ().SwitchAsteroid (target.transform, false);
-		print ("WHAT");
+		//print ("WHAT");
 		GetComponent<Death> ().Die ();
 	}
 }
