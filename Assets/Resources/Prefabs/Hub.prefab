@@ -274,6 +274,18 @@ MonoBehaviour:
   sensorTimeRange: 30
   mapIcon: {fileID: 0}
   asteroidSprite: {fileID: 0}
+  radius: 1
+  hasSensorColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 0}
+  sensorChance: 1
+  avgSensorRange: 15
+  sensorRangeRange: 30
+  avgSensorTimeRange: 30
+  sensorTimeRangeRange: 15
+  food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
+  foodChance: 0
+  maxSpeed: 1.5
+  itempool: []
+  maxItems: 0
 --- !u!212 &212414500148523378
 SpriteRenderer:
   m_ObjectHideFlags: 1

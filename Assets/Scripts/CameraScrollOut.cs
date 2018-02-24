@@ -153,7 +153,7 @@ public class CameraScrollOut : MonoBehaviour {
 			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo>().asteroidSprite;
 			// We can remove this if/else when we have art
 			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
-				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidPlain> ().hasSensorColor;
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo>().hasSensorColor;
 			} else {
 				asteroid.GetComponent<SpriteRenderer> ().color = Color.white;
 			}

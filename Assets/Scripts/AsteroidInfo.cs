@@ -12,7 +12,30 @@ public class AsteroidInfo : MonoBehaviour {
 	[HideInInspector]
 	public Sprite asteroidSprite;
 
-	void Start() {
+    public float radius;
+
+    //proc gen sensor stuff
+    public Color hasSensorColor;
+    public float sensorChance;
+    public int avgSensorRange;
+    public int sensorRangeRange;
+    public int avgSensorTimeRange;
+    public int sensorTimeRangeRange;
+
+    //proc gen food stuff
+    public GameObject food;
+    public float foodChance;
+
+    [SerializeField]
+    public float maxSpeed = 1.5f; //how fast can they be going at the start?
+                                  // Use this for initialization
+
+    //proc gen itempool
+    [SerializeField]
+    public List<GameObjectAndFloat> itempool;
+    public int maxItems;
+
+    void Start() {
 		asteroidSprite = GetComponent<SpriteRenderer> ().sprite;
 	}
 }
