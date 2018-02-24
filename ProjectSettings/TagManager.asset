@@ -6,9 +6,9 @@ TagManager:
   tags:
   - Asteroid
   - Food
-  - Seed
   - Plant
   - Hub
+  - Pollen
   layers:
   - Default
   - TransparentFX

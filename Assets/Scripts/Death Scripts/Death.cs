@@ -13,20 +13,19 @@ public class Death : MonoBehaviour {
     }
 
     public void Die(){
+
         if (GameState.isAlive == true) {
             print("begining death sequence");
-            float speed = 1.0F;     //the speed at which the screen fades to black     
-
+            fade.fadeOut(1.0F);
             GameState.isAlive = false;
-            StartCoroutine(reloadScene(speed));
+            StartCoroutine(reloadScene());
         }
+
     }
 
-    public IEnumerator reloadScene(float speed) {
+    public IEnumerator reloadScene() {
 
-        //It will take (speed) time to fade to black.  We'll start fading and then pause until thats finished.
-        fade.fadeOut(speed);
-        yield return new WaitForSeconds(speed);
+        yield return new WaitForSeconds(1.0F);
 
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);

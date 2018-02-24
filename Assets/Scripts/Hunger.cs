@@ -10,14 +10,14 @@ public class Hunger : MonoBehaviour {
 	private Color currentHungerBarColor;
 	private bool debugDontLoseHunger;
 	private GUIStyle gstyle;
-	public float maxHunger;
+	//public float maxHunger;
 	private int hungerBarWidth;
 	private int hungerBarHeight = 25;
 	public bool changeColor = true;
 
 	// Use this for initialization
 	void Start () {
-		hunger = maxHunger;
+		hunger = GameState.maxHunger;
 		hungerBarWidth = Screen.width * 3 / 8;
 		debugDontLoseHunger = false;
 		gstyle = new GUIStyle ();
@@ -36,14 +36,14 @@ public class Hunger : MonoBehaviour {
 			}
 			//print ("hunger: " + hunger);
 			if (changeColor) {
-				currentHungerBarColor = Color.Lerp (emptyHungerBarColor, fullHungerBarColor, hunger / maxHunger);
+				currentHungerBarColor = Color.Lerp (emptyHungerBarColor, fullHungerBarColor, hunger / GameState.maxHunger);
 				gstyle.normal.background = MakeTex ((int)(hungerBarWidth + 1), hungerBarHeight, currentHungerBarColor);
 			}
 		}
 	}
 
 	void OnGUI () {
-		GUI.Box (new Rect (140, Screen.height * 15/16, hungerBarWidth * (hunger / maxHunger), 15), "", gstyle);
+		GUI.Box (new Rect (140, Screen.height * 15/16, hungerBarWidth * (hunger / GameState.maxHunger), 15), "", gstyle);
 
 		if (!GameState.debugMode)
 			return;
@@ -60,8 +60,8 @@ public class Hunger : MonoBehaviour {
 
 	public void addToHunger(float amount){
 		hunger += amount;
-		if (hunger > maxHunger) {
-			hunger = maxHunger;
+		if (hunger > GameState.maxHunger) {
+			hunger = GameState.maxHunger;
 		}
 	}
 

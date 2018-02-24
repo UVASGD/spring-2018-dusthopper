@@ -86,6 +86,12 @@ public class Movement : MonoBehaviour {
 			if (!isAsteroid)
 				return;
 
+			if (GameState.asteroid.tag != "Hub" && a.tag == "Hub") {
+				GameObject.FindObjectOfType<RunHandler> ().EndRun (false);
+			} else if (GameState.asteroid.tag == "Hub" && a.tag != "Hub") {
+				GameObject.FindObjectOfType<RunHandler> ().StartRun ();
+			}
+
 			GameState.asteroid = a;
 			GameState.hasSensors = a.GetComponent<AsteroidInfo> ().hasSensors;
 			GameState.sensorRange = a.GetComponent<AsteroidInfo> ().sensorRange;
