@@ -87,7 +87,7 @@ public class Movement : MonoBehaviour {
 				return;
 
 			if (GameState.asteroid.tag != "Hub" && a.tag == "Hub") {
-				GameObject.FindObjectOfType<RunHandler> ().EndRun (false);
+				GameObject.FindObjectOfType<RunHandler> ().EndRun (true);
 			} else if (GameState.asteroid.tag == "Hub" && a.tag != "Hub") {
 				GameObject.FindObjectOfType<RunHandler> ().StartRun ();
 			}
