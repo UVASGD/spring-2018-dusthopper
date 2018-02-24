@@ -12,12 +12,7 @@ public class Death : MonoBehaviour {
     }
 
     public void Die(){
-		//TODO: make something actually happen when you die.
-<<<<<<< HEAD
 		print ("begining death sequence");
-=======
-//		print ("ripperoni");
->>>>>>> 3db511585a8e7c079dc979385aa23542e381ec22
 	}
 
     //Damon Work
