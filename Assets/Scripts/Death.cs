@@ -22,7 +22,7 @@ public class Death : MonoBehaviour {
     public bool runOnce = false;
 
     private void Update() {
-
+		
         if (runOnce == false) {
             if (Time.fixedTime > 5) {
                 runOnce = true;
