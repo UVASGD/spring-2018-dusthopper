@@ -13,6 +13,8 @@ public class Death : MonoBehaviour {
 
     public void Die(){
 		print ("begining death sequence");
+		GameState.isAlive = false;
+		fade.fadeOut (1f);
 	}
 
     //Damon Work
@@ -27,7 +29,7 @@ public class Death : MonoBehaviour {
                 print("calling death sequence");
                 fade.fadeOut(1.0F);
             } else {
-                print("Time.fixedTime: " + Time.fixedTime);
+//                print("Time.fixedTime: " + Time.fixedTime);
             }
         }
 
