@@ -9,7 +9,7 @@ public class RunHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		//onHubLF = true;
+		EndRun (false);
 	}
 	
 	// Update is called once per frame
@@ -32,7 +32,7 @@ public class RunHandler : MonoBehaviour {
 
 	//Call this when starting a run. More or less randomizes asteroid belt
 	public void StartRun () {
-		
+		print ("Starting run!");
 	}
 
 	//Call this any time a run ends, whether due to death or returning to hub
