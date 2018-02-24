@@ -11,6 +11,8 @@ public class PlayerCollision : MonoBehaviour {
 
 	private bool holding; //Whether or not you are holding something
 	GameObject heldObject; //The object being held.
+	GameObject justDroppedObj;  //The object that was recently held
+	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
@@ -20,6 +22,13 @@ public class PlayerCollision : MonoBehaviour {
 	void Update () {
 		if (Input.GetMouseButtonDown (1) && holding) {
 			drop ();
+		}
+		if (timeSinceDrop > 0.0f) {
+			timeSinceDrop -= GameState.deltaTime;
+			if (timeSinceDrop <= 0.0f) {
+				timeSinceDrop = 0.0f;
+				justDroppedObj = null;
+			}
 		}
 	}
 
@@ -31,7 +40,7 @@ public class PlayerCollision : MonoBehaviour {
 			Eat (other.gameObject);
 		}
 
-		if (other.tag == "Pollen" && !holding) {
+		if (other.tag == "Pollen" && !holding && other.gameObject != justDroppedObj) {
 			print ("Picked up pollen");
 			heldObject = other.gameObject;
 			holding = true;
@@ -59,6 +68,9 @@ public class PlayerCollision : MonoBehaviour {
 		print ("Dropped pollen");
 		holding = false;
 		heldObject.transform.parent = GameState.asteroid;
+		justDroppedObj = heldObject;
+		heldObject = null;
+		timeSinceDrop = 0.5f;
 	}
 
 }
