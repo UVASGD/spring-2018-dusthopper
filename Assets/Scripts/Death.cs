@@ -25,7 +25,7 @@ public class Death : MonoBehaviour {
             if (Time.fixedTime > 5) {
                 runOnce = true;
                 print("calling death sequence");
-                fade.fadeIn(1.0F);
+                fade.fadeOut(1.0F);
             } else {
                 print("Time.fixedTime: " + Time.fixedTime);
             }
