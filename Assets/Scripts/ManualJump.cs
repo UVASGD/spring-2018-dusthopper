@@ -28,7 +28,7 @@ public class ManualJump : MonoBehaviour {
 					} else {
 						print ("didn't hit anything");
 						//TODO "jump" to point in space at end of raycast and die / lose a life
-						JumpFail(directionOfCursor);
+						JumpFail(directionOfCursor.normalized * GameState.maxAsteroidDistance + (Vector2)transform.position);
 					}
 					timeHeld = 0;
 					asrc.Stop ();
