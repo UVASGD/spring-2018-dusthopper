@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4222886069617674}
   - component: {fileID: 212118189189420362}
   - component: {fileID: 58353878087658218}
+  - component: {fileID: 114730729380100054}
   m_Layer: 0
   m_Name: GreenSeed
   m_TagString: Seed
@@ -56,6 +57,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &114730729380100054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013170403800838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b9456b91d582438d88594e79f200904, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: GreenSeed
 --- !u!212 &212118189189420362
 SpriteRenderer:
   m_ObjectHideFlags: 1
