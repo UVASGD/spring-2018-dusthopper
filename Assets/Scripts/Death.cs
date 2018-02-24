@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Death : MonoBehaviour {
 
+    public bool runOnce = true;
     FadeController fade;
 
     private void Start() {
@@ -12,33 +13,24 @@ public class Death : MonoBehaviour {
     }
 
     public void Die(){
-		print ("begining death sequence");
-		GameState.isAlive = false;
-		fade.fadeOut (1f);
-	}
 
-    //Damon Work
-
-    public bool runOnce = false;
-
-    private void Update() {
-
-        if (runOnce == false) {
-            if (Time.fixedTime > 5) {
-                runOnce = true;
-                print("calling death sequence");
-                fade.fadeOut(1.0F);
-            } else {
-//                print("Time.fixedTime: " + Time.fixedTime);
-            }
+        if (GameState.isAlive == true) {
+            print("begining death sequence");
+            fade.fadeOut(1.0F);
+            GameState.isAlive = false;
+            StartCoroutine(reloadScene());
         }
 
     }
 
-    public void reloadScene() {
+    public IEnumerator reloadScene() {
 
-        print("reloading scene");
-        //Scene scene = SceneManager.GetActiveScene();
-        //SceneManager.LoadScene(scene.name);
+        yield return new WaitForSeconds(1.0F);
+
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        GameState.isAlive = true;
+        print("reload scene done");
+
     }
 }
