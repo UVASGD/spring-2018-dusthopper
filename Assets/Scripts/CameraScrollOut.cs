@@ -26,6 +26,16 @@ public class CameraScrollOut : MonoBehaviour {
 	//This list caches whatever we disabled last time we entered the map.
 	public List<GameObject> disabledObjects;
 
+	// We might need to change this when we have more kinds of asteroids
+	public Sprite mapIconWithSensors;
+	public Sprite mapIconWithoutSensors;
+	public Sprite asteroidSpriteWithSensors;
+	public Sprite asteroidSpriteWithoutSensors;
+
+	// Need these until we get map icon art
+	public Color iconWithSensor;
+	public Color iconWithoutSensor;
+
 	// Use this for initialization
 	void Start () {
 		scrollAmount = GetComponent<Camera> ().orthographicSize;
@@ -86,6 +96,7 @@ public class CameraScrollOut : MonoBehaviour {
 					scrollAmount = mapSize;
 					SetEnabledNonAsteroids (false);
 					GameState.mapOpen = true;
+					SwapToMapIcons ();
 				}
 			} else {
 				if (scrollAmount < minMapModeSize) {
@@ -93,6 +104,7 @@ public class CameraScrollOut : MonoBehaviour {
 					d = 0f;
 					SetEnabledNonAsteroids (true);
 					GameState.mapOpen = false;
+					SwapToAsteroidSprites();
 				}
 			}
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
@@ -116,6 +128,35 @@ public class CameraScrollOut : MonoBehaviour {
 				item.SetActive (true);
 			}
 			disabledObjects.Clear ();
+		}
+	}
+
+	private void SwapToMapIcons ()
+	{
+		GameObject[] asteroidList = GameObject.FindGameObjectsWithTag ("Asteroid");
+		foreach (GameObject asteroid in asteroidList) {
+			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().mapIcon;
+			// We can remove this if/else when we have art
+			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
+				asteroid.GetComponent<SpriteRenderer> ().color = iconWithSensor;
+			} 
+			else {
+				asteroid.GetComponent<SpriteRenderer> ().color = iconWithoutSensor;
+			}
+		}
+	}
+
+	private void SwapToAsteroidSprites ()
+	{
+		GameObject[] asteroidList = GameObject.FindGameObjectsWithTag ("Asteroid");
+		foreach (GameObject asteroid in asteroidList) {
+			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo>().asteroidSprite;
+			// We can remove this if/else when we have art
+			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidPlain> ().hasSensorColor;
+			} else {
+				asteroid.GetComponent<SpriteRenderer> ().color = Color.white;
+			}
 		}
 	}
 }

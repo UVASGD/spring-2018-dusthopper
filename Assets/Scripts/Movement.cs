@@ -17,7 +17,7 @@ public class Movement : MonoBehaviour {
 	//public Transform asteroid;
 	private Vector3 lastPos;
 	[SerializeField] private float skin = 0.1f;
-	[SerializeField] private Transform animPrefab;
+	public Transform animPrefab;
 
 	private int asteroidNum = 0;
 	private UpgradeManager upgradeMgr;
@@ -26,15 +26,22 @@ public class Movement : MonoBehaviour {
 	void Start () {
 		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
 		rb = GetComponent<Rigidbody2D> ();
-		GameState.asteroid = GameObject.FindWithTag ("Asteroid").transform;
+		GameState.asteroid = GameObject.FindWithTag ("Hub").transform;
 		transform.position = GameState.asteroid.position;
 		lastPos = transform.position;
 	}
 
 	//This is just to control the "Switch Asteroid" debug button in the bottom of the screen
 	void OnGUI() {
+		if (!GameState.debugMode)
+			return;
+		
 		if (GUI.Button(new Rect(10, Screen.height - 40, 120, 30), "Switch Asteroid")) {
 			ChangeAsteroid ();
+		}
+
+		if (GUI.Button(new Rect(Screen.width - 130, Screen.height - 40, 120, 30), "Return to Hub")) {
+			SwitchAsteroid (GameObject.FindGameObjectWithTag ("Hub").transform);
 		}
 	}
 	
@@ -46,6 +53,10 @@ public class Movement : MonoBehaviour {
 			targVel = Vector3.zero;
 		}
 
+		//Stop following asteroid movement if there is none
+		if (!GameState.asteroid)
+			return;
+		
 		//Keep constrained on current asteroidj
 		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.localScale.x / 2 - skin) {
 			rb.velocity = targVel;
@@ -58,18 +69,27 @@ public class Movement : MonoBehaviour {
 
 	}
 
-	public void SwitchAsteroid (Transform a) {
+	public void SwitchAsteroid (Transform a, bool isAsteroid = true) {
 		if (a != GameState.asteroid) {//shouldn't be able to jump to yourself
 //		print ("Instantiating!");
 			Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
 			inst.GetComponent<JumpAnimation> ().origin = transform;
 			inst.GetComponent<JumpAnimation> ().destination = a;
 			jumpSound.Play ();
-			transform.position = GameState.asteroid.position;
+			if (isAsteroid) {
+				transform.position = GameState.asteroid.position;
+			} else {
+				transform.position = a.position;
+			}
+
+			//If the jump location is not an asteroid, don't change asteroid values
+			if (!isAsteroid)
+				return;
+
 			GameState.asteroid = a;
-			GameState.hasSensors = a.GetComponent<AsteroidSensorInfo> ().hasSensors;
-			GameState.sensorRange = a.GetComponent<AsteroidSensorInfo> ().sensorRange;
-			GameState.sensorTimeRange = a.GetComponent<AsteroidSensorInfo> ().sensorTimeRange;
+			GameState.hasSensors = a.GetComponent<AsteroidInfo> ().hasSensors;
+			GameState.sensorRange = a.GetComponent<AsteroidInfo> ().sensorRange;
+			GameState.sensorTimeRange = a.GetComponent<AsteroidInfo> ().sensorTimeRange;
 			if (GameState.hasSensors) {
 				Camera.main.GetComponent<CameraScrollOut> ().jumpingToAsteroidWithMap = true;
 			}
@@ -83,6 +103,7 @@ public class Movement : MonoBehaviour {
 	//SwitchAsteroid(Transform a) is the function you want to call to switch an asteroid.
 	public void ChangeAsteroid () {
 		if (GameState.asteroid == null) {
+			Debug.LogError ("No current asteroid to swap from!");
 			return;
 		}
 		//transform.position = GameState.asteroid.position;
