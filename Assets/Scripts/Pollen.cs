@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Seed : MonoBehaviour {
+public class Pollen : MonoBehaviour {
 
 	public string name;
 
