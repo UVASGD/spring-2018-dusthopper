@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hunger : MonoBehaviour {
 	//Does a hunger bar incl. GUI and has methods relating to hunger
-	private float hunger;
+	//private float hunger;
 	public Color fullHungerBarColor; //TODO: Change display to show a colored rectangle. also make red / yellow for when close to death
 	public Color emptyHungerBarColor;
 	private Color currentHungerBarColor;
@@ -17,7 +17,7 @@ public class Hunger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		hunger = GameState.maxHunger;
+		GameState.hunger = GameState.maxHunger;
 		hungerBarWidth = Screen.width * 3 / 8;
 		debugDontLoseHunger = false;
 		gstyle = new GUIStyle ();
@@ -27,23 +27,23 @@ public class Hunger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (hunger <= 0) {
-			hunger = 0;
+		if (GameState.hunger <= 0) {
+			GameState.hunger = 0;
 			gameObject.GetComponent<Death> ().Die ();
 		} else {
-			if (!debugDontLoseHunger) {
-				hunger -= GameState.deltaTime;
+			if (!debugDontLoseHunger && GameState.hungerEnabled) {
+				GameState.hunger -= GameState.deltaTime;
 			}
 			//print ("hunger: " + hunger);
 			if (changeColor) {
-				currentHungerBarColor = Color.Lerp (emptyHungerBarColor, fullHungerBarColor, hunger / GameState.maxHunger);
+				currentHungerBarColor = Color.Lerp (emptyHungerBarColor, fullHungerBarColor, GameState.hunger / GameState.maxHunger);
 				gstyle.normal.background = MakeTex ((int)(hungerBarWidth + 1), hungerBarHeight, currentHungerBarColor);
 			}
 		}
 	}
 
 	void OnGUI () {
-		GUI.Box (new Rect (140, Screen.height * 15/16, hungerBarWidth * (hunger / GameState.maxHunger), 15), "", gstyle);
+		GUI.Box (new Rect (140, Screen.height * 15/16, hungerBarWidth * (GameState.hunger / GameState.maxHunger), 15), "", gstyle);
 
 		if (!GameState.debugMode)
 			return;
@@ -55,18 +55,18 @@ public class Hunger : MonoBehaviour {
 	}
 
 	public void setHunger(float newHunger){
-		hunger = newHunger;
+		GameState.hunger = newHunger;
 	}
 
 	public void addToHunger(float amount){
-		hunger += amount;
-		if (hunger > GameState.maxHunger) {
-			hunger = GameState.maxHunger;
+		GameState.hunger += amount;
+		if (GameState.hunger > GameState.maxHunger) {
+			GameState.hunger = GameState.maxHunger;
 		}
 	}
 
 	public float getHunger(){
-		return hunger;
+		return GameState.hunger;
 	}
 
 	private Texture2D MakeTex( int width, int height, Color col )

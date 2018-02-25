@@ -34,10 +34,13 @@ public class RunHandler : MonoBehaviour {
 	//Call this when starting a run. More or less randomizes asteroid belt
 	public void StartRun () {
 		print ("Starting run!");
+		GameState.hungerEnabled = true;
 	}
 
 	//Call this any time a run ends, whether due to death or returning to hub
 	public void EndRun (bool successful) {
+		GameState.hungerEnabled = false;
+		GameState.hunger = GameState.maxHunger;
 		if (successful) {
 			print ("Successfully completed run!");
 			GameState.SaveGame ();

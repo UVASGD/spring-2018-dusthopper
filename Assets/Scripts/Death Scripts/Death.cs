@@ -18,6 +18,7 @@ public class Death : MonoBehaviour {
             print("begining death sequence");
             fade.fadeOut(1.0F);
             GameState.isAlive = false;
+			GameState.manualJumpsDisabled = false;
             StartCoroutine(reloadScene());
         }
 

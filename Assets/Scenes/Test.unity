@@ -1615,6 +1615,42 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4444465492588960, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444465492588960, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444465492588960, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705059845845844, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705059845845844, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705059845845844, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720082752901868, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720082752901868, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4720082752901868, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114263033540493174, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
@@ -1715,7 +1751,7 @@ MonoBehaviour:
     num: 200
   container: {fileID: 1120569470}
   quantity: 200
-  radius: 200
+  radius: 100
 --- !u!120 &1511771309
 LineRenderer:
   m_ObjectHideFlags: 0

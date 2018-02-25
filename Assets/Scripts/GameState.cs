@@ -14,8 +14,6 @@ public static class GameState {
 	public static bool runActive; //whether or not the player is currently on a run
 	public static bool debugMode = true; // If enabled, displays debug buttons and text
 
-	public static bool isAlive = true;
-
 	//Game Constants (AKA they shouldn't really be fiddled with)
 	/*************************************************************************************************/
 	//These are only set from UpdateTime.cs. TODO: move the functionality from UpdateTime.cs into here and delete that script
@@ -33,6 +31,14 @@ public static class GameState {
 	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
 	public static float playerSpeed = 1f; //Speed at which player travels on asteroids
 	public static float maxHunger = 30f; //Maximum hunger, or how many seconds until death without replenishing
+	/*************************************************************************************************/
+
+
+	//Player Nonupgradeable Stats
+	/*************************************************************************************************/
+	public static bool isAlive = true;
+	public static bool hungerEnabled = true;
+	public static float hunger = 30f;
 	/*************************************************************************************************/
 
 
@@ -95,6 +101,9 @@ public static class GameState {
 			secondsPerJump = data.secondsPerJump;
 			playerSpeed = data.playerSpeed;
 			maxHunger = data.maxHunger;
+			hasSensors = true;
+			sensorTimeRange = 30f;
+			sensorRange = 30f;
 
 			scrap = data.scrap;
 
