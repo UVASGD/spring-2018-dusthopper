@@ -157,8 +157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afa8eea41937045bd9bf221344e5a337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerBarColor: {r: 0.5901257, g: 0.74264705, b: 0.30033523, a: 1}
-  maxHunger: 30
+  fullHungerBarColor: {r: 0.5882353, g: 0.7411765, b: 0.3019608, a: 1}
+  emptyHungerBarColor: {r: 0.8235294, g: 0.30882353, b: 0.30882353, a: 1}
+  changeColor: 1
 --- !u!114 &114982525918687968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bad020ddeea44ad3ba49f5fca23dbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runOnce: 1
 --- !u!212 &212633577863705494
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -623,66 +623,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: nom
-      value: 
-      objectReference: {fileID: 833777998}
-    - target: {fileID: 114063645533586838, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 2072925253}
     - target: {fileID: 114004829312517264, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
       propertyPath: asrc
       value: 
       objectReference: {fileID: 606581428}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
+    - target: {fileID: 114063645533586838, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
-      propertyPath: fullHungerBarColor.r
-      value: 0.5882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 2072925253}
+    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
-      propertyPath: fullHungerBarColor.g
-      value: 0.7411765
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: fullHungerBarColor.b
-      value: 0.3019608
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: fullHungerBarColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: emptyHungerBarColor.r
-      value: 0.8235294
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: emptyHungerBarColor.g
-      value: 0.30882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: emptyHungerBarColor.b
-      value: 0.30882353
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: emptyHungerBarColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: changeColor
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: nom
+      value: 
+      objectReference: {fileID: 833777998}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
@@ -1597,7 +1552,7 @@ MonoBehaviour:
     num: 200
   container: {fileID: 1120569470}
   quantity: 200
-  radius: 100
+  radius: 160
 --- !u!120 &1511771309
 LineRenderer:
   m_ObjectHideFlags: 0

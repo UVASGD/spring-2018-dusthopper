@@ -119,12 +119,12 @@ MonoBehaviour:
   sensorTimeRange: 30
   mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
-  radius: 0.5
-  hasSensorColor: {r: 0.2784314, g: 0.8392157, b: 0.17254902, a: 1}
+  radius: 0.4
+  hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   sensorChance: 0.35
-  avgSensorRange: 15
-  sensorRangeRange: 30
-  avgSensorTimeRange: 15
+  avgSensorRange: 30
+  sensorRangeRange: 15
+  avgSensorTimeRange: 30
   sensorTimeRangeRange: 15
   food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
   foodChance: 0.5
@@ -133,8 +133,10 @@ MonoBehaviour:
   - goObj: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
     num: 0.5
   - goObj: {fileID: 1013170403800838, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
-    num: 1
-  maxItems: 0
+    num: 0.5
+  - goObj: {fileID: 1758696637372082, guid: eb14b6e2337d544d19dd1cfafa41e221, type: 2}
+    num: 0.5
+  maxItems: 5
 --- !u!212 &212566673774725310
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -170,7 +172,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.41960788, g: 0.70980394, b: 0.76470596, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
