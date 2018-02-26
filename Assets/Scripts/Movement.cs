@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour {
 	private Rigidbody2D rb;
 	//public Transform asteroid;
 	private Vector3 lastPos;
-	[SerializeField] private float skin = 0.1f;
 	public Transform animPrefab;
 
 	private int asteroidNum = 0;
@@ -58,7 +57,7 @@ public class Movement : MonoBehaviour {
 			return;
 		
 		//Keep constrained on current asteroidj
-		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.GetComponent<AsteroidInfo>().radius - skin) {
+		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.GetComponent<AsteroidInfo>().radius) {
 			rb.velocity = targVel;
 		} else {
 			rb.velocity = Vector2.zero;

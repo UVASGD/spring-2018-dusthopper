@@ -42,6 +42,7 @@ public class Generator : MonoBehaviour {
                 if (toGenerate < asteroids[asteroidIndex].num)
                 {
                     GameObject inst = GameObject.Instantiate(asteroids[asteroidIndex].goObj, pos, Quaternion.identity, container.transform) as GameObject;
+					inst.GetComponent<Rigidbody2D> ().freezeRotation = true; //asteroids rotating is against the law
                     AsteroidInterface ag = inst.GetComponent<AsteroidInterface>();
                     if(ag == null){
                         ag = inst.AddComponent<AsteroidPlain>();

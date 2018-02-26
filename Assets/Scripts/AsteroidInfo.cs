@@ -16,6 +16,8 @@ public class AsteroidInfo : MonoBehaviour {
 
     //proc gen sensor stuff
     public Color hasSensorColor;
+	[HideInInspector]
+	public Color noSensorColor;
     public float sensorChance;
     public int avgSensorRange;
     public int sensorRangeRange;
@@ -37,5 +39,6 @@ public class AsteroidInfo : MonoBehaviour {
 
     void Start() {
 		asteroidSprite = GetComponent<SpriteRenderer> ().sprite;
+		noSensorColor = GetComponent<SpriteRenderer> ().color;
 	}
 }

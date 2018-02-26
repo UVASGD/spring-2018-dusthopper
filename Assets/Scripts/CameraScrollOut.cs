@@ -155,7 +155,7 @@ public class CameraScrollOut : MonoBehaviour {
 			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
 				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo>().hasSensorColor;
 			} else {
-				asteroid.GetComponent<SpriteRenderer> ().color = Color.white;
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo>().noSensorColor;
 			}
 		}
 	}

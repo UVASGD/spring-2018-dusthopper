@@ -53,6 +53,7 @@ public class PlayerCollision : MonoBehaviour {
 					Debug.Log ("you gave the plant some pollen!");
 					other.GetComponent<Plant> ().dispenseReward ();
 					Destroy (heldObject);
+					holding = false;
 				}
 			}
 		}
