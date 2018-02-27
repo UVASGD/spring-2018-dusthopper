@@ -272,10 +272,11 @@ MonoBehaviour:
   hasSensors: 1
   sensorRange: 30
   sensorTimeRange: 30
-  mapIcon: {fileID: 0}
+  mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
   radius: 1
-  hasSensorColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 0}
+  hasSensorColor: {r: 1, g: 1, b: 1, a: 1}
+  noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 1
   avgSensorRange: 15
   sensorRangeRange: 30

@@ -121,6 +121,7 @@ MonoBehaviour:
   asteroidSprite: {fileID: 0}
   radius: 0.4
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
+  noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
   avgSensorRange: 30
   sensorRangeRange: 15

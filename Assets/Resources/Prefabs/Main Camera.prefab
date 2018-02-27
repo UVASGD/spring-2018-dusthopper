@@ -415,6 +415,7 @@ MonoBehaviour:
   minMapModeSize: 16.5
   jumpingToAsteroidWithMap: 0
   disabledObjects: []
+  asteroidContainer: {fileID: 0}
   mapIconWithSensors: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   mapIconWithoutSensors: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec,
     type: 3}

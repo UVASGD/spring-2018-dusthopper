@@ -97,7 +97,7 @@ public class PathMaker : MonoBehaviour {
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			Collider2D hit = Physics2D.OverlapPoint (mousePos);
 
-			if (hit != null && hit.tag == "Asteroid") {
+			if (hit != null && hit.gameObject.layer == LayerMask.NameToLayer("Asteroid")) {
 				//Try to find the jump in the current path
 				bool foundIt = false;
 				int i = 0;

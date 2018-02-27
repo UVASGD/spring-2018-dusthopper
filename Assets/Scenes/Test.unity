@@ -621,7 +621,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4596830954289954, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114004829312517264, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
@@ -1448,6 +1448,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114644461886171184, guid: 8f9cc746676414d5a83ca0e11fa81af6,
+        type: 2}
+      propertyPath: asteroidContainer
+      value: 
+      objectReference: {fileID: 1120569470}
     - target: {fileID: 114032795580790410, guid: 8f9cc746676414d5a83ca0e11fa81af6,
         type: 2}
       propertyPath: target
@@ -1875,7 +1880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1694114611
 GameObject:

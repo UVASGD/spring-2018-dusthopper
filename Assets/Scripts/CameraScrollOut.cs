@@ -26,6 +26,12 @@ public class CameraScrollOut : MonoBehaviour {
 	//This list caches whatever we disabled last time we entered the map.
 	public List<GameObject> disabledObjects;
 
+	//When entering the map, we want to switch asteroid sprites to map icons.
+	//When exiting the map, we want switch the sprites back.
+	//All the asteroids are children of asteroidContainer
+	public GameObject asteroidContainer;
+	private GameObject[] theAsteroids;
+
 	// We might need to change this when we have more kinds of asteroids
 	public Sprite mapIconWithSensors;
 	public Sprite mapIconWithoutSensors;
@@ -38,6 +44,11 @@ public class CameraScrollOut : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		List<GameObject> theAsteroidsTemp = new List<GameObject> ();
+		foreach (Transform child in asteroidContainer.transform) {
+			theAsteroidsTemp.Add (child.gameObject);
+		}
+		theAsteroids = theAsteroidsTemp.ToArray ();
 		scrollAmount = GetComponent<Camera> ().orthographicSize;
 		disabledObjects = new List<GameObject> (0);
 	}
@@ -133,8 +144,7 @@ public class CameraScrollOut : MonoBehaviour {
 
 	private void SwapToMapIcons ()
 	{
-		GameObject[] asteroidList = GameObject.FindGameObjectsWithTag ("Asteroid");
-		foreach (GameObject asteroid in asteroidList) {
+		foreach (GameObject asteroid in theAsteroids) {
 			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().mapIcon;
 			// We can remove this if/else when we have art
 			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
@@ -148,8 +158,7 @@ public class CameraScrollOut : MonoBehaviour {
 
 	private void SwapToAsteroidSprites ()
 	{
-		GameObject[] asteroidList = GameObject.FindGameObjectsWithTag ("Asteroid");
-		foreach (GameObject asteroid in asteroidList) {
+		foreach (GameObject asteroid in theAsteroids) {
 			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo>().asteroidSprite;
 			// We can remove this if/else when we have art
 			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
