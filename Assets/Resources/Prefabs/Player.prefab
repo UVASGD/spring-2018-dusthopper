@@ -132,7 +132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.2
   jumpSound: {fileID: 0}
-  skin: 0.1
   animPrefab: {fileID: 4596830954289954, guid: 5729404da8c6d4eada95ab071d42dc63, type: 2}
 --- !u!114 &114238825700592304
 MonoBehaviour:

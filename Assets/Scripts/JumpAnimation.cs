@@ -5,7 +5,9 @@ using UnityEngine;
 //Finished, but need to abstract to other things if anything other than player jumps
 public class JumpAnimation : MonoBehaviour {
 
+	[HideInInspector]
 	public Transform origin;
+	[HideInInspector]
 	public Transform destination;
 
 	public float animationSpeed = 2;

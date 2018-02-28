@@ -24,6 +24,7 @@ public class PathMaker : MonoBehaviour {
 	public float percentIdle;//jumps not currently active should be still dimly lit so the player can see the long term plan. This is the alpha value for those jumps.
 
 
+	[HideInInspector]
 	public float initialTime;
 	private float timeOfJump;
 	private float timeToStartCharging;

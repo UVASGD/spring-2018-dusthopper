@@ -12,6 +12,7 @@ public class TimeManipulator : MonoBehaviour {
 	private List<GameObject> instances;
 	private Stack<float> frameTimes;
 	public GameObject asteroidContainer;
+	[HideInInspector]
 	public float timeFromNow;
 
 	//Text field for how many seconds in future we are
