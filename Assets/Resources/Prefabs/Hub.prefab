@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114604221741052928}
   - component: {fileID: 60048071679211338}
   - component: {fileID: 114338330975532192}
+  - component: {fileID: 114269449410968116}
   m_Layer: 8
   m_Name: Hub
   m_TagString: Hub
@@ -229,6 +230,21 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114269449410968116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175468082650272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6f12ba5597340d9a716048050e9d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  asteroidLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  multiplier: 100
 --- !u!114 &114338330975532192
 MonoBehaviour:
   m_ObjectHideFlags: 1

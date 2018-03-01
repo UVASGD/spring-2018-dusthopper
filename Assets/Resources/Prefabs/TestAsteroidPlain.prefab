@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114855310851036712}
   - component: {fileID: 58236886599823124}
   - component: {fileID: 114615033012177974}
-  - component: {fileID: 114515961079681630}
   m_Layer: 8
   m_Name: TestAsteroidPlain
   m_TagString: Asteroid
@@ -81,20 +80,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &114515961079681630
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1276523927128796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be6f12ba5597340d9a716048050e9d28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  asteroidLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &114615033012177974
 MonoBehaviour:
   m_ObjectHideFlags: 1
