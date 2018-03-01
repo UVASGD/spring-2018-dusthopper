@@ -119,6 +119,7 @@ public static class GameState {
 		secondsPerJump = Random.Range (1f, 5f);
 		playerSpeed = Random.Range (0.2f, 2f);
 		maxHunger = Random.Range (20f, 50f);
+		hunger = maxHunger;
 		scrap = 0;
 		//player.transform.position = Vector3.zero;
 		asteroid = GameObject.FindWithTag("Hub").transform;

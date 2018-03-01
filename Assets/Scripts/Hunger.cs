@@ -18,7 +18,7 @@ public class Hunger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GameState.hunger = GameState.maxHunger;
-		hungerBarWidth = Screen.width * 3 / 8;
+		hungerBarWidth = Screen.width * 4 / 8;
 		debugDontLoseHunger = false;
 		gstyle = new GUIStyle ();
 		currentHungerBarColor = fullHungerBarColor;
@@ -43,7 +43,7 @@ public class Hunger : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		GUI.Box (new Rect (140, Screen.height * 15/16, hungerBarWidth * (GameState.hunger / GameState.maxHunger), 15), "", gstyle);
+		GUI.Box (new Rect (Screen.width * 4/16, Screen.height * 15/16, hungerBarWidth * (GameState.hunger / GameState.maxHunger), 15), "", gstyle);
 
 		if (!GameState.debugMode)
 			return;
@@ -56,6 +56,10 @@ public class Hunger : MonoBehaviour {
 
 	public void setHunger(float newHunger){
 		GameState.hunger = newHunger;
+		if (GameState.hunger >= GameState.maxHunger) {
+			GameState.hunger = GameState.maxHunger;
+		}
+
 	}
 
 	public void addToHunger(float amount){

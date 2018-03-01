@@ -8,6 +8,7 @@ public class Gravity : MonoBehaviour {
 	private Rigidbody2D rb;
 	Rigidbody2D otherRB;
 	public LayerMask asteroidLayer;
+	[Range(0f, 1000f)] public float multiplier = 10f;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +20,11 @@ public class Gravity : MonoBehaviour {
 		Collider2D[] closeAsteroids = Physics2D.OverlapCircleAll (transform.position, 30f, asteroidLayer);
 
 		foreach (var asteroid in closeAsteroids) {
-			if (asteroid.tag == "Hub") {
+			if (asteroid.tag != "Hub" && asteroid != GetComponent<Collider2D>()) {
 				otherRB = asteroid.GetComponent<Rigidbody2D> ();
 				if (rb && otherRB) {
-				Vector2 forceVector = asteroid.transform.position - transform.position;
-					otherRB.AddForce (10 * forceVector.normalized * rb.mass * otherRB.mass / forceVector.sqrMagnitude);
+					Vector2 forceVector = transform.position - asteroid.transform.position;
+					otherRB.AddForce (multiplier * forceVector.normalized * rb.mass * otherRB.mass / forceVector.sqrMagnitude);
 				}
 			}
 		}
