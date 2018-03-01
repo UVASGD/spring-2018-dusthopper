@@ -43,7 +43,7 @@ public class Hunger : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		GUI.Box (new Rect (Screen.width * 4/16, Screen.height * 15/16, hungerBarWidth * (GameState.hunger / GameState.maxHunger), 15), "", gstyle);
+		GUI.Box (new Rect (Screen.width * 4/16, Screen.height * 31/32, hungerBarWidth * (GameState.hunger / GameState.maxHunger), 15), "", gstyle);
 
 		if (!GameState.debugMode)
 			return;
