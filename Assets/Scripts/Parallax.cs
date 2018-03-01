@@ -7,6 +7,7 @@ public class Parallax : MonoBehaviour {
 
 	private float weight;
 
+
 	// Use this for initialization
 	void Start () {
 		weight = 1 / (5 * transform.position.z + 1);
