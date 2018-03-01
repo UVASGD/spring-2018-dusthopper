@@ -6,6 +6,7 @@ public class SmoothCamera2D : MonoBehaviour {
 	public float dampTime = 0.15f;
 	private Vector3 velocity = Vector3.zero;
 	public Transform target;
+	[HideInInspector]
 	public Vector3 lastPos;
 //	private Transform theAsteroid;
 	//public float maxSpeed = 10f;

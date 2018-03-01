@@ -623,21 +623,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114004829312517264, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: asrc
-      value: 
-      objectReference: {fileID: 606581428}
-    - target: {fileID: 114063645533586838, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 2072925253}
     - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
       propertyPath: nom
       value: 
       objectReference: {fileID: 833777998}
+    - target: {fileID: 114063645533586838, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 2072925253}
+    - target: {fileID: 114004829312517264, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: asrc
+      value: 
+      objectReference: {fileID: 606581428}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0

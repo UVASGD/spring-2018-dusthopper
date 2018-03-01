@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraScrollOut : MonoBehaviour {
 
 	public float scrollSpeed; //How sensitive the scroll wheel is ingame.
+	[HideInInspector]
 	public bool swapScroll = false; //A player might choose to invert the scroll wheel from settings.
 	public float minPlayerModeSize; //most the player can zoom in
 	public float maxPlayerModeSizeWithMap; //most player can zoom out before entering the map
@@ -15,6 +16,7 @@ public class CameraScrollOut : MonoBehaviour {
 
 	//There is a special zoom procedure for jumping from an asteroid without a map to an asteroid with a map to prevent the map from immediately opening when jump is made.
 	//This will be set while that's happening
+	[HideInInspector]
 	public bool jumpingToAsteroidWithMap = false;
 
 
@@ -24,7 +26,7 @@ public class CameraScrollOut : MonoBehaviour {
 	//When entering the map, we want to disable most non-asteroid objects so that they don't do stuff when fast-forwarding in the map.
 	//When exiting the map, we want to reenable whatever we disabled.
 	//This list caches whatever we disabled last time we entered the map.
-	public List<GameObject> disabledObjects;
+	private List<GameObject> disabledObjects;
 
 	//When entering the map, we want to switch asteroid sprites to map icons.
 	//When exiting the map, we want switch the sprites back.
@@ -35,8 +37,6 @@ public class CameraScrollOut : MonoBehaviour {
 	// We might need to change this when we have more kinds of asteroids
 	public Sprite mapIconWithSensors;
 	public Sprite mapIconWithoutSensors;
-	public Sprite asteroidSpriteWithSensors;
-	public Sprite asteroidSpriteWithoutSensors;
 
 	// Need these until we get map icon art
 	public Color iconWithSensor;
