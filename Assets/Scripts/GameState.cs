@@ -29,8 +29,8 @@ public static class GameState {
 	public static int scrap = 0; // Monies that player possesses
 	public static float maxAsteroidDistance = 22f; //The distance the player can jump
 	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
-	public static float playerSpeed = 1f; //Speed at which player travels on asteroids
-	public static float maxHunger = 30f; //Maximum hunger, or how many seconds until death without replenishing
+	public static float playerSpeed = 0.3f; //Speed at which player travels on asteroids
+	public static float maxHunger = 60f; //Maximum hunger, or how many seconds until death without replenishing
 	/*************************************************************************************************/
 
 
@@ -105,6 +105,7 @@ public static class GameState {
 			sensorTimeRange = 30f;
 			sensorRange = 30f;
 
+			hunger = maxHunger;
 			scrap = data.scrap;
 
 			asteroid = GameObject.FindWithTag("Hub").transform;
@@ -115,16 +116,28 @@ public static class GameState {
 
 	public static void ResetGame()
 	{
-		maxAsteroidDistance = Random.Range (20f, 30f);
-		secondsPerJump = Random.Range (1f, 5f);
-		playerSpeed = Random.Range (0.2f, 2f);
-		maxHunger = Random.Range (20f, 50f);
+		maxAsteroidDistance = 22f;
+		secondsPerJump = 5f;
+		playerSpeed = 0.3f;
+		maxHunger = 60f;
 		hunger = maxHunger;
 		scrap = 0;
 		//player.transform.position = Vector3.zero;
 		asteroid = GameObject.FindWithTag("Hub").transform;
-		player.transform.position = asteroid.position;
-		PrintState();
+		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
+		//PrintState();
+	}
+
+	public static void RandomizeStats()
+	{
+		maxAsteroidDistance = Random.Range (20f, 30f);
+		secondsPerJump = Random.Range (2f, 10f);
+		playerSpeed = Random.Range (0.2f, 0.5f);
+		maxHunger = Random.Range (30f, 120f);
+		hunger = maxHunger;
+
+		//player.transform.position = Vector3.zero;
+		//PrintState();
 	}
 
 	private static void PrintState()

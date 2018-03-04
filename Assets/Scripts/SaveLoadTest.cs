@@ -47,5 +47,11 @@ public class SaveLoadTest : MonoBehaviour {
 			//Debug.Log ("Loading!");
 			GameState.ResetGame ();
 		}
+
+		if(GUI.Button(new Rect(20,110,50,20), "Rand"))
+		{
+			//Debug.Log ("Loading!");
+			GameState.RandomizeStats ();
+		}
 	}
 }
