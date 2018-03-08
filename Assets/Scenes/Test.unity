@@ -113,6 +113,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &48249553 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1174826790699396, guid: 8f9cc746676414d5a83ca0e11fa81af6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1492399330}
+--- !u!114 &48249554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 48249553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb698c85d5bfc44738eb7d06afe5a8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &74261322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,16 +1469,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114644461886171184, guid: 8f9cc746676414d5a83ca0e11fa81af6,
-        type: 2}
-      propertyPath: asteroidContainer
-      value: 
-      objectReference: {fileID: 1120569470}
     - target: {fileID: 114032795580790410, guid: 8f9cc746676414d5a83ca0e11fa81af6,
         type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 1151648265}
+    - target: {fileID: 114644461886171184, guid: 8f9cc746676414d5a83ca0e11fa81af6,
+        type: 2}
+      propertyPath: asteroidContainer
+      value: 
+      objectReference: {fileID: 1120569470}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
   m_IsPrefabParent: 0
