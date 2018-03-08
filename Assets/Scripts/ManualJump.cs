@@ -18,12 +18,16 @@ public class ManualJump : MonoBehaviour {
 			if (Input.GetMouseButton (0)) {
 				if (timeHeld >= GameState.secondsPerJump) {
 					Vector3 cursorPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-					Vector2 directionOfCursor =  (Vector2)(cursorPosition - transform.position);
-					int everythingExceptAsteroids = ~LayerMask.NameToLayer ("Asteroid"); //ignore raycasts with everything except asteroids
-					RaycastHit2D[] thingsIHit = Physics2D.RaycastAll ((Vector2)transform.position, directionOfCursor, GameState.maxAsteroidDistance, everythingExceptAsteroids);
-					if (thingsIHit.Length > 2) {
-						Transform otherAsteroid = thingsIHit[2].transform; ////thingsIHit[0] is us and thingsIHit[1] is the asteroid we're standing on so we want the next one
-						print(otherAsteroid.gameObject.name);
+					Vector2 directionOfCursor = (Vector2)(cursorPosition - transform.position);
+					int onlyAsteroids = (1 << LayerMask.NameToLayer("Asteroid"));
+					RaycastHit2D[] thingsIHit = Physics2D.RaycastAll ((Vector2)transform.position, directionOfCursor, GameState.maxAsteroidDistance, onlyAsteroids);
+					foreach (RaycastHit2D thing in thingsIHit) {
+						print (thing.transform.gameObject.name);
+					}
+					print ("done");
+					if (thingsIHit.Length > 1) {
+						Transform otherAsteroid = thingsIHit[1].transform; ////thingsIHit[0]  is the asteroid we're standing on so we want the next one
+//						print(otherAsteroid.gameObject.name);
 						GetComponent<Movement> ().SwitchAsteroid (otherAsteroid);
 					} else {
 						print ("didn't hit anything");
