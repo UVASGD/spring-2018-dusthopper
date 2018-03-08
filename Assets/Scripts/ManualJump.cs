@@ -21,13 +21,9 @@ public class ManualJump : MonoBehaviour {
 					Vector2 directionOfCursor = (Vector2)(cursorPosition - transform.position);
 					int onlyAsteroids = (1 << LayerMask.NameToLayer("Asteroid"));
 					RaycastHit2D[] thingsIHit = Physics2D.RaycastAll ((Vector2)transform.position, directionOfCursor, GameState.maxAsteroidDistance, onlyAsteroids);
-					foreach (RaycastHit2D thing in thingsIHit) {
-						print (thing.transform.gameObject.name);
-					}
-					print ("done");
 					if (thingsIHit.Length > 1) {
-						Transform otherAsteroid = thingsIHit[1].transform; ////thingsIHit[0]  is the asteroid we're standing on so we want the next one
-//						print(otherAsteroid.gameObject.name);
+						Transform otherAsteroid = thingsIHit[1].transform; // thingsIHit[0]  is the asteroid we're standing on so we want the next one
+						print(otherAsteroid.gameObject.name);
 						GetComponent<Movement> ().SwitchAsteroid (otherAsteroid);
 					} else {
 						print ("didn't hit anything");

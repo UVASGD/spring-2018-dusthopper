@@ -22,7 +22,7 @@ public class ApplicationManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Escape)) {
+		if (Input.GetKeyDown(KeyCode.Q)) {
 			QuitGame ();
 		}
 

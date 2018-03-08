@@ -113,9 +113,11 @@ public class TimeManipulator : MonoBehaviour {
 				frameTimes.Clear ();
 			}
 			//print (Time.timeScale);
-			Time.timeScale = Mathf.Lerp (Time.timeScale, 1f, 2 * Time.unscaledDeltaTime);
-			if (1 - Time.timeScale < 0.1f) {
-				Time.timeScale = 1;
+			if (!GameState.gamePaused) {
+				Time.timeScale = Mathf.Lerp (Time.timeScale, 1f, 2 * Time.unscaledDeltaTime);
+				if (1 - Time.timeScale < 0.1f) {
+					Time.timeScale = 1;
+				}
 			}
 		}
 

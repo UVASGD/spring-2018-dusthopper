@@ -11,6 +11,7 @@ public static class GameState {
 	static long dataSaveNumber = 0;
 
 	public static bool mapOpen; //whether or not the map is currently open
+	public static bool gamePaused; //whether or not the pause menu is open
 	public static bool runActive; //whether or not the player is currently on a run
 	public static bool debugMode = true; // If enabled, displays debug buttons and text
 

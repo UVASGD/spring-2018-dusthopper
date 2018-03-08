@@ -27,7 +27,7 @@ public class SmoothCamera2D : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (target)
+		if (target && !GameState.gamePaused)
 		{
 			if (target.tag == "Player") {
 				transform.parent = GameState.asteroid;
