@@ -20,13 +20,13 @@ public class PauseController : MonoBehaviour {
 		print ("Time.timeScale: " + Time.timeScale);
 	}
 
-	void Resume(){
+	public void Resume(){
 		GameState.gamePaused = false;
 		pauseMenuUI.SetActive (false);
 		Time.timeScale = prevTimeScale;
 	}
 
-	void Pause(){
+	public void Pause(){
 		print ("pause called");
 		GameState.gamePaused = true;
 		pauseMenuUI.SetActive (true);

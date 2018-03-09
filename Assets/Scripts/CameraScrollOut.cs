@@ -67,6 +67,10 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 		}
 
+		if (GameState.gamePaused) {//If game paused just don't do any scrolling
+			return;
+		}
+
 		//if jumping from asteroid without map to asteroid with map, only modify zoom in this way
 		if(jumpingToAsteroidWithMap){
 			if (GetComponent<Camera> ().orthographicSize < maxPlayerModeSizeWithMap) {
@@ -82,7 +86,7 @@ public class CameraScrollOut : MonoBehaviour {
 		//normal zooming
 		var d = Input.GetAxis ("Mouse ScrollWheel");
 		if (swapScroll) d = d * -1;
-
+		
 		if (d > 0f) {
 			scrollAmount += Time.unscaledDeltaTime * scrollSpeed;
 

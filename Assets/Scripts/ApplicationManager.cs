@@ -22,10 +22,7 @@ public class ApplicationManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Q)) {
-			QuitGame ();
-		}
-
+		
 		if (this.targetFrameRateCached != this.targetFrameRate || vSyncCountCached != vSyncCount) 
 		{
 			timer += Time.unscaledDeltaTime;
@@ -49,7 +46,7 @@ public class ApplicationManager : MonoBehaviour {
 		}
 	}
 
-	void QuitGame () {
+	public void QuitGame () {
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#endif

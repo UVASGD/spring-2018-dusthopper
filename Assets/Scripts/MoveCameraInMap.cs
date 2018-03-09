@@ -39,26 +39,28 @@ public class MoveCameraInMap : MonoBehaviour {
 				targVel = Vector3.zero;
 			}
 			print (targVel);*/
-			Vector3 targVel = Vector3.zero;
-			if (Input.GetKey (KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
-				targVel += Vector3.up;
-			}
-				if (Input.GetKey (KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-				targVel += Vector3.left;
-			}
-				if (Input.GetKey (KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-				targVel += Vector3.down;
-			}
-				if (Input.GetKey (KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-				targVel += Vector3.right;
-			}
+			if (!GameState.gamePaused) {
+				Vector3 targVel = Vector3.zero;
+				if (Input.GetKey (KeyCode.W) || Input.GetKey (KeyCode.UpArrow)) {
+					targVel += Vector3.up;
+				}
+				if (Input.GetKey (KeyCode.A) || Input.GetKey (KeyCode.LeftArrow)) {
+					targVel += Vector3.left;
+				}
+				if (Input.GetKey (KeyCode.S) || Input.GetKey (KeyCode.DownArrow)) {
+					targVel += Vector3.down;
+				}
+				if (Input.GetKey (KeyCode.D) || Input.GetKey (KeyCode.RightArrow)) {
+					targVel += Vector3.right;
+				}
 
-			targVel = targVel.normalized * camSpeed;
-			if ((mapCenter.position + targVel - camTarg.position).sqrMagnitude > GameState.sensorRange * GameState.sensorRange) {
-				//shunt back toward player
-				mapCenter.position += (Vector3)(camParent.position - mapCenter.position).normalized * camSpeed * Time.unscaledDeltaTime;
-			} else {
-				mapCenter.position += (Vector3)targVel * Time.unscaledDeltaTime;
+				targVel = targVel.normalized * camSpeed;
+				if ((mapCenter.position + targVel - camTarg.position).sqrMagnitude > GameState.sensorRange * GameState.sensorRange) {
+					//shunt back toward player
+					mapCenter.position += (Vector3)(camParent.position - mapCenter.position).normalized * camSpeed * Time.unscaledDeltaTime;
+				} else {
+					mapCenter.position += (Vector3)targVel * Time.unscaledDeltaTime;
+				}
 			}
 //			print (targVel);
 
