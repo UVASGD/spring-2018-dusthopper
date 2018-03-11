@@ -14,7 +14,7 @@ public class ManualJump : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 //		print (timeHeld);
-		if (!GameState.mapOpen && !GameState.manualJumpsDisabled) {
+		if (!GameState.mapOpen && !GameState.manualJumpsDisabled && !GameState.gamePaused) {
 			if (Input.GetMouseButton (0)) {
 				if (timeHeld >= GameState.secondsPerJump) {
 					Vector3 cursorPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);

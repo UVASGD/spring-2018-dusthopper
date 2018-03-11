@@ -31,7 +31,7 @@ public class Generator : MonoBehaviour {
     }
 
     public void Generate(){
-        //Generate Asteroids TODO: Put this in Generate() function
+        //Generate Asteroids
         
         for (int i = 0; i < quantity; i++)
         {
@@ -43,13 +43,14 @@ public class Generator : MonoBehaviour {
                 {
                     GameObject inst = GameObject.Instantiate(asteroids[asteroidIndex].goObj, pos, Quaternion.identity, container.transform) as GameObject;
 					inst.GetComponent<Rigidbody2D> ().freezeRotation = true; //asteroids rotating is against the law
+					inst.name = "Asteroid" + i.ToString();
                     AsteroidInterface ag = inst.GetComponent<AsteroidInterface>();
                     if(ag == null){
                         ag = inst.AddComponent<AsteroidPlain>();
                         ag.InitDefault();
                         Debug.LogWarning("Object prefab in list of asteroid objects to generate() in Generator.cs on GM does not implement AsteroidInterface: " + inst.name);
                     }
-                    ag.Generate(i);
+                    ag.Generate();
                     inst.transform.parent = container.transform;
                 }
                 asteroidIndex++;
@@ -70,4 +71,15 @@ public struct GameObjectAndFloat
     public GameObject goObj;
     [SerializeField]
     public float num;
+}
+
+[System.Serializable]
+public struct ItemPoolItem
+{
+	[SerializeField]
+	public GameObject obj;
+	[SerializeField]
+	public float spawnChance;
+	[SerializeField]
+	public bool uniqueSpawn;
 }

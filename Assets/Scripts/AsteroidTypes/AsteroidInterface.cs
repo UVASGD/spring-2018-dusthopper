@@ -5,7 +5,7 @@ using UnityEngine;
 public interface AsteroidInterface {
 
     // Function called to generate asteroid data on the surface
-    void Generate(int asteroidNum);
+    void Generate();
 
     void InitDefault();
 }

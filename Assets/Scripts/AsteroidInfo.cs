@@ -34,7 +34,7 @@ public class AsteroidInfo : MonoBehaviour {
 
     //proc gen itempool
     [SerializeField]
-    public List<GameObjectAndFloat> itempool;
+    public List<ItemPoolItem> itempool; //struct contained in Generator.cs
     public int maxItems;
 
     void Start() {

@@ -24,9 +24,8 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
     }
 
 
-    public void Generate(int asteroidNum)
+    public void Generate()
     {
-        name = "Asteroid" + asteroidNum.ToString();
         GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * info.maxSpeed;
         if (Random.value <= info.sensorChance)
         {
@@ -40,22 +39,23 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
             GetComponent<AsteroidInfo>().hasSensors = false;
         }
 
-        int itemCount = (int)(Random.value * info.maxItems);
-        for (int x = 0; x < itemCount; x++)
-        {
-            int itemIndex = 0;
-            float toGenerate = Random.value;
-            while (itemIndex < info.itempool.Capacity)
-            {
-                if (toGenerate < info.itempool[itemIndex].num)
-                {
-					float distFromCenter = Random.Range (GameState.minSpawnDist, info.radius);
-					Vector3 pos = Random.insideUnitCircle.normalized * distFromCenter;
-                    GameObject inst = GameObject.Instantiate(info.itempool[itemIndex].goObj, transform.position + pos, Quaternion.identity, this.transform) as GameObject;
-                    inst.transform.parent = this.transform;
-                }
-                itemIndex++;
-            }
-        }
+		List<ItemPoolItem> itempool = info.itempool;
+        int numToSpawn = (int)(Random.value * info.maxItems);
+		int numSpawned = 0;
+		int randomIndex = 0;
+		while (numSpawned < numToSpawn) {
+			randomIndex = Random.Range (0, itempool.Count);
+			float diceRoll = Random.value;
+			if (diceRoll <= itempool [randomIndex].spawnChance) {
+				numSpawned++;
+				float distFromCenter = Random.Range (GameState.minSpawnDist, info.radius);
+				Vector3 pos = Random.insideUnitCircle.normalized * distFromCenter;
+				GameObject inst = GameObject.Instantiate(itempool[randomIndex].obj, transform.position + pos, Quaternion.identity, this.transform) as GameObject;
+				inst.transform.parent = this.transform;
+				if (itempool [randomIndex].uniqueSpawn) {
+					itempool.Remove (itempool [randomIndex]);
+				}
+			}
+		}
     }
 }
