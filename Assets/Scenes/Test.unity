@@ -1335,7 +1335,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1151648265 stripped
 Transform:
@@ -2028,7 +2028,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.487803, y: 7.449765, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1627101702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2247,7 +2248,7 @@ Transform:
   - {fileID: 74261323}
   - {fileID: 1155296981}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1627101701
 GameObject:
@@ -2270,15 +2271,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1627101701}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.016677197, y: -1.1003971, z: -0.2037754}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.50448, y: -8.550162, z: -0.2037754}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 606581429}
   - {fileID: 2072925252}
   - {fileID: 833777997}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1511771306}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1647041930
 GameObject:
@@ -2306,9 +2307,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 243218779967335928, guid: 4e65d4d7609194874b9d6853440c5159,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0b8466579afa344e1a15452ead5f8cf8, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9938258981d8f4447870473bc54fdf08, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.504
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2794,7 +2795,7 @@ RectTransform:
   - {fileID: 513472725}
   - {fileID: 1397097860}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3133,5 +3134,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

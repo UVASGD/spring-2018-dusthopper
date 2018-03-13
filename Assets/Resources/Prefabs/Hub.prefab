@@ -27,6 +27,7 @@ GameObject:
   - component: {fileID: 60048071679211338}
   - component: {fileID: 114338330975532192}
   - component: {fileID: 114269449410968116}
+  - component: {fileID: 114605504197452634}
   m_Layer: 8
   m_Name: Hub
   m_TagString: Hub
@@ -54,7 +55,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175468082650272}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -244,7 +245,7 @@ MonoBehaviour:
   asteroidLayer:
     serializedVersion: 2
     m_Bits: 256
-  multiplier: 100
+  multiplier: 0.5
 --- !u!114 &114338330975532192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,7 +263,7 @@ MonoBehaviour:
   sensorRangeRange: 15
   avgSensorTimeRange: 30
   sensorTimeRangeRange: 15
-  maxSpeed: 1.5
+  maxSpeed: 2
 --- !u!114 &114441999579174916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc091076d3e0b4d8fb4d7264d5c401f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 2
 --- !u!114 &114604221741052928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,6 +305,18 @@ MonoBehaviour:
   maxSpeed: 1.5
   itempool: []
   maxItems: 0
+--- !u!114 &114605504197452634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175468082650272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ab6fb291c70444c0b6709acbb5192b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 100
 --- !u!212 &212414500148523378
 SpriteRenderer:
   m_ObjectHideFlags: 1
