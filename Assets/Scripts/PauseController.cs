@@ -17,7 +17,7 @@ public class PauseController : MonoBehaviour {
 				Resume ();
 			}
 		}
-		print ("Time.timeScale: " + Time.timeScale);
+//		print ("Time.timeScale: " + Time.timeScale);
 	}
 
 	public void Resume(){
