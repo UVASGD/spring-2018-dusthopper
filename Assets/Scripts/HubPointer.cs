@@ -76,7 +76,7 @@ public class HubPointer : MonoBehaviour {
 
 //		print ("hubAspect: " + hubAspect);
 		if (hubAspect > screenAspect) {
-			if (targPos.y < 0) {
+			if ((targPos.y - screenCenter.y) < 0) {
 				currentCorner1 = bottomLeftCorner;
 				currentCorner2 = bottomRightCorner;
 			} else {
@@ -84,7 +84,7 @@ public class HubPointer : MonoBehaviour {
 				currentCorner2 = topRightCorner;
 			}
 		} else {
-			if (targPos.x > 0) {
+			if ((targPos.x - screenCenter.x) > 0) {
 				currentCorner1 = topRightCorner;
 				currentCorner2 = bottomRightCorner;
 			} else {
