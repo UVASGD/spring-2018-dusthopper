@@ -24,6 +24,7 @@ public class HubPointer : MonoBehaviour {
 	void Start () {
 		hub = GameObject.FindGameObjectWithTag ("Hub");
 		myImage = GetComponent<Image> ();
+
 		topLeftCorner = new Vector2 (skin + tinyAmount, Screen.height - skin);
 		topRightCorner = new Vector2 (Screen.width - skin + tinyAmount, Screen.height - skin);
 		bottomLeftCorner = new Vector2 (skin, skin);
@@ -76,7 +77,7 @@ public class HubPointer : MonoBehaviour {
 
 //		print ("hubAspect: " + hubAspect);
 		if (hubAspect > screenAspect) {
-			if ((targPos.y - screenCenter.y) < 0) {
+			if (targPos.y < screenCenter.y ) {
 				currentCorner1 = bottomLeftCorner;
 				currentCorner2 = bottomRightCorner;
 			} else {
@@ -84,7 +85,7 @@ public class HubPointer : MonoBehaviour {
 				currentCorner2 = topRightCorner;
 			}
 		} else {
-			if ((targPos.x - screenCenter.x) > 0) {
+			if (targPos.x > screenCenter.x) {
 				currentCorner1 = topRightCorner;
 				currentCorner2 = bottomRightCorner;
 			} else {
@@ -100,7 +101,7 @@ public class HubPointer : MonoBehaviour {
 
 		float angle = Vector2.Angle (Vector2.up, targPos - (Vector2)pointerPos);
 
-		if (targPos.x > 0) {
+		if (targPos.x > screenCenter.x) {
 			angle = 360 - angle;
 		}
 
