@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4904047403847762}
   - component: {fileID: 212948586281098932}
   - component: {fileID: 60344574226367650}
-  - component: {fileID: 114682109887833958}
+  - component: {fileID: 114939257581666932}
   m_Layer: 0
   m_Name: GreenPlant
   m_TagString: Plant
@@ -69,7 +69,7 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5}
       - {x: -0.4330127, y: -0.25000003}
       - {x: 0.43301272, y: -0.24999996}
---- !u!114 &114682109887833958
+--- !u!114 &114939257581666932
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
