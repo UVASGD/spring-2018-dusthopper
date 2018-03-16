@@ -81,6 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPollen: GreenPollen
+  food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
+  howFarAwayToSpawnFood: 0.15
 --- !u!212 &212948586281098932
 SpriteRenderer:
   m_ObjectHideFlags: 1

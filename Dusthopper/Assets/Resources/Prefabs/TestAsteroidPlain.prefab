@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc091076d3e0b4d8fb4d7264d5c401f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
 --- !u!114 &114855310851036712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -132,8 +133,8 @@ MonoBehaviour:
   maxSpeed: 1.5
   itempool:
   - obj: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
-    spawnChance: 1
-    uniqueSpawn: 0
+    spawnChance: 0.3
+    uniqueSpawn: 1
   - obj: {fileID: 1758696637372082, guid: eb14b6e2337d544d19dd1cfafa41e221, type: 2}
     spawnChance: 0.75
     uniqueSpawn: 0
