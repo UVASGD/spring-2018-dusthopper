@@ -10,10 +10,12 @@ public class Generator : MonoBehaviour {
 
     [SerializeField]
 	public List<GameObjectAndFloat> asteroids; //this list represents the probability distribution of the different asteroid type
+    public List<GameObject> gravityFragmentAsteroids; //contains all the gravity fragment asteroids;
     public GameObject container; // Newly created asteroids will be children of this object. For Hierarchy organization. Potential TODO: Create in script as opposed to using reference
 	public int quantity = 200; //how many general asteroids?
     
 	public float radius = 200; //how far away from the center can they spawn?
+    public float specialAstroidOffsetRadius = 50;
 
 	// Use this for initialization
 	void Awake (){
@@ -59,8 +61,25 @@ public class Generator : MonoBehaviour {
             //			inst.GetComponent<Rigidbody2D> ().angularVelocity = Random.Range (0f, 50f);
 
         }
-
         //Here is where we can spawn special asteroids that might not necessarily be procedural
+        Vector3 initialPos = (Random.insideUnitCircle.normalized * radius) + (Random.insideUnitCircle * specialAstroidOffsetRadius);
+        GameObject specialInst = GameObject.Instantiate(gravityFragmentAsteroids[0], initialPos, Quaternion.identity, container.transform) as GameObject;
+        specialInst.GetComponent<Rigidbody2D>().freezeRotation = true; //asteroids rotating is against the law
+        specialInst.GetComponent<StayInRadius>().center = initialPos; //Fixes the location where the asteroid can move
+        specialInst.name = "Gravity Fragment Asteroid " + 0.ToString();
+
+        //Currently hardcoded to work with three Gravity Fragment Asteroids, but can be generalized to n Gravity
+        //Fragment Asteroids by calculating the angle separating the asteroids as 360/n
+        float currentRotation = 120;
+        for (int x = 1; x < gravityFragmentAsteroids.Capacity; x++)
+        {
+            specialInst = GameObject.Instantiate(gravityFragmentAsteroids[x], initialPos, Quaternion.identity, container.transform) as GameObject;
+            specialInst.GetComponent<Rigidbody2D>().freezeRotation = true; //asteroids rotating is against the law
+            specialInst.transform.RotateAround(Vector3.zero, Vector3.forward, currentRotation);
+            specialInst.name = "Gravity Fragment Asteroid " + x.ToString();
+            specialInst.GetComponent<StayInRadius>().center = specialInst.transform.position;
+            currentRotation += 120;
+        }
     }
 }
 
