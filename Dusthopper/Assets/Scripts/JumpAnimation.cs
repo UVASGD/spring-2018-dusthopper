@@ -10,6 +10,7 @@ public class JumpAnimation : MonoBehaviour {
 	[HideInInspector]
 	public Transform destination;
 	private Transform animationChild;
+	private Vector3 childRelativePos;
 
 	public float animationSpeed = 2;
 	private float smoothing;
@@ -28,14 +29,20 @@ public class JumpAnimation : MonoBehaviour {
 				smoothing = 0.05f;
 
 				if (GameState.player.transform.childCount > 0) {
+					print ("SHOOP");
 					animationChild = GameState.player.transform.GetChild (0);
+					childRelativePos = animationChild.localPosition;
 					animationChild.SetParent (transform);
+					animationChild.localPosition = childRelativePos;
 					animationChild.GetComponent<Collider2D> ().enabled = false;
 				}
 
 				if ((transform.position - origin.position).magnitude < 0.2f) {
-					animationChild.SetParent (GameState.player.transform);
-					animationChild.GetComponent<Collider2D> ().enabled = true;
+					if (animationChild) {
+						animationChild.SetParent (GameState.player.transform);
+						animationChild.GetComponent<Collider2D> ().enabled = true;
+						animationChild.localPosition = childRelativePos;
+					}
 					GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = true;
 					Destroy (gameObject);
 				}
