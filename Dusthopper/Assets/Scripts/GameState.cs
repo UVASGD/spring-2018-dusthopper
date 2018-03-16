@@ -137,6 +137,7 @@ public static class GameState {
 		playerSpeed = Random.Range (0.2f, 0.5f);
 		maxHunger = Random.Range (30f, 120f);
 		hunger = maxHunger;
+		scrap = Random.Range (0, 10);
 
 		//player.transform.position = Vector3.zero;
 		//PrintState();

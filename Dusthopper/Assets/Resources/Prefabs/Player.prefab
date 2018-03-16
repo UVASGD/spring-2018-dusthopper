@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114408134968344080}
   - component: {fileID: 114982525918687968}
   - component: {fileID: 114238825700592304}
+  - component: {fileID: 114964489445946058}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -159,6 +160,17 @@ MonoBehaviour:
   fullHungerBarColor: {r: 0.5882353, g: 0.7411765, b: 0.3019608, a: 1}
   emptyHungerBarColor: {r: 0.8235294, g: 0.30882353, b: 0.30882353, a: 1}
   changeColor: 1
+--- !u!114 &114964489445946058
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700396702069538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df03cb2ce9f1e746b93aa9dc4dbae30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114982525918687968
 MonoBehaviour:
   m_ObjectHideFlags: 1
