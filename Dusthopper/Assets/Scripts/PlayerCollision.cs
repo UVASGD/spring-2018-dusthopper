@@ -32,7 +32,7 @@ public class PlayerCollision : MonoBehaviour {
 		}
 	}
 
-    private void OnTriggerExit2D(Collider other) {
+    private void OnTriggerStay2D(Collider2D other) {
         //Bug: food becomes edible after 1 second.  If you just sit on top of food, it will become edible but you won't re-check if it can be eaten.  This makes it so when you move off food you will atleast eat it.
         if (other.gameObject.tag == "Food") {
             print("EATING FOOD");
