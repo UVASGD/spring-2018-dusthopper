@@ -42,6 +42,10 @@ public class Movement : MonoBehaviour {
 		if (GUI.Button(new Rect(Screen.width - 130, Screen.height - 40, 120, 30), "Return to Hub")) {
 			SwitchAsteroid (GameObject.FindGameObjectWithTag ("Hub").transform);
 		}
+
+		if (GUI.Button(new Rect(Screen.width - 130, Screen.height - 120, 120, 30), "Go To Gravity Fragment")) {
+			SwitchAsteroid (GameObject.Find("Asteroid Container").transform.GetChild(GameObject.Find("Asteroid Container").transform.childCount-1));
+		}
 	}
 	
 	// Update is called once per frame

@@ -276,6 +276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 10
+  center: {x: 0, y: 0, z: 0}
 --- !u!114 &114604221741052928
 MonoBehaviour:
   m_ObjectHideFlags: 1
