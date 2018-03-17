@@ -57,6 +57,8 @@ public class ManualJump : MonoBehaviour {
 		target.transform.position = targPos;
 		GetComponent<Movement> ().SwitchAsteroid (target.transform, false);
 		//print ("WHAT");
-		GetComponent<Death> ().Die ();
+
+		GetComponent<Death> ().delayDie (0.75f);
 	}
+
 }

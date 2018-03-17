@@ -867,6 +867,11 @@ Prefab:
       propertyPath: onlyAsteroids.m_Bits
       value: 256
       objectReference: {fileID: 0}
+    - target: {fileID: 114982525918687968, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: spinSpeed
+      value: 270
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
