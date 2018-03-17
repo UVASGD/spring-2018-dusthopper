@@ -9,7 +9,7 @@ public class Plant : MonoBehaviour {
 	[SerializeField]
 	private float howFarAwayToSpawnFood;
 
-	public void dispenseReward() {
+    public void dispenseReward() {
 		if (myPollen == "GreenPollen") {
 			//Green plant's reward is just 2-3 food spawned in a circle around it
 			Debug.Log ("green plant dispensing reward");
@@ -26,4 +26,6 @@ public class Plant : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 	} 
+
+
 }
