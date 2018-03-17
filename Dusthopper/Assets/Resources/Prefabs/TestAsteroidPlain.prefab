@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0
+  center: {x: 0, y: 0, z: 0}
 --- !u!114 &114855310851036712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,6 +122,11 @@ MonoBehaviour:
   mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
   radius: 0.5
+  massFactor: 1
+  pulledByGrav: 0
+  hasGrav: 0
+  chanceGrav: 0.2
+  chancePulledGrav: 0.2
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
@@ -139,6 +145,21 @@ MonoBehaviour:
     spawnChance: 0.75
     uniqueSpawn: 0
   - obj: {fileID: 1013170403800838, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
+    spawnChance: 0.75
+    uniqueSpawn: 0
+  - obj: {fileID: 1005941028961518, guid: 5a5004a8112eff64d82cc2cff89dd86a, type: 2}
+    spawnChance: 0.5
+    uniqueSpawn: 0
+  - obj: {fileID: 1850682821036328, guid: a42b8ec2866c1ad46b7af621e1cca9a3, type: 2}
+    spawnChance: 0.5
+    uniqueSpawn: 0
+  - obj: {fileID: 1319130985614748, guid: 7a1d134a4f567c54a96d1e026b836dfd, type: 2}
+    spawnChance: 0.25
+    uniqueSpawn: 0
+  - obj: {fileID: 1184090421800076, guid: 672b348c0c7ade24aad1d445ad32fb26, type: 2}
+    spawnChance: 0.25
+    uniqueSpawn: 0
+  - obj: {fileID: 1779060642471318, guid: d4ec1f01b5d77d5458bdf6a1e8080ac7, type: 2}
     spawnChance: 0.75
     uniqueSpawn: 0
   maxItems: 5
