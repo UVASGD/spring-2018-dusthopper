@@ -113,7 +113,7 @@ public static class GameState {
 			asteroid = GameObject.FindWithTag("Hub").transform;
 			player.transform.position = asteroid.position;
 		}
-		PrintState();
+		//PrintState();
 	}
 
 	public static void ResetGame()
