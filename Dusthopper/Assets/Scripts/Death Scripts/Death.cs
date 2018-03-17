@@ -15,8 +15,8 @@ public class Death : MonoBehaviour {
 
     private void Update() {
 
+        //this is used by class ManualJump.  When isFalling is set to true the player object will start spinning and shrinking, to represent dieng by falling into the void
         if (isFalling) {
-            //will cause the player object to spin and decrease in size, making it seem like its falling into distance
             transform.Rotate(0, 0, Time.deltaTime*spinSpeed);
             transform.localScale = new Vector3(0.991f * transform.localScale.x, 0.991f * transform.localScale.y, transform.localScale.z);
 
@@ -25,23 +25,26 @@ public class Death : MonoBehaviour {
     }
 
     /*
-     * This begins the death sequence.  We start fading to black, disable a few actions, and call reloadScene()
+     * Will cause the scene to start fading to black, and then call the helper method reloadScene()
      */
     public void Die(){
 
         if (GameState.isAlive == true) {
-            print("begining death sequence");
-            fade.fadeOut(0.33F);
+            fade.fadeOut(0.33F);    //0.33f = fade over 3 seconds
             GameState.isAlive = false;
 			GameState.manualJumpsDisabled = false;
             StartCoroutine(reloadScene());
         }
 
     }
-
+    
+    /*
+     * Will reload the scene after a slight delay
+     * This is a helper method of Die()
+     */
     public IEnumerator reloadScene() {
 
-        yield return new WaitForSeconds(2.0F);
+        yield return new WaitForSeconds(2.0F);  
 
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
@@ -49,10 +52,13 @@ public class Death : MonoBehaviour {
 
     }
 
+    /*
+     * This method is mainly used by class ManualJump.  It will begin the spin-shrink die method that we want when you fall into the void, and delay the beggining of the fade to black
+     */
     public void delayDie(float time) {
 
-        isFalling = true;
-        Invoke("Die", time);
+        isFalling = true;   //allows actions in update() to run
+        Invoke("Die", time);  //call method Die() after var. time seconds
 
     }
 
