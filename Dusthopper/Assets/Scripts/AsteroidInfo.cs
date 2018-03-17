@@ -17,6 +17,11 @@ public class AsteroidInfo : MonoBehaviour {
 	//asteroid properties
 	public float massFactor = 1f;
 	public bool pulledByGrav = false;
+	public bool hasGrav = false;
+
+	//asteroid probabilities
+	public float chanceGrav = 0.2f;
+	public float chancePulledGrav = 0.2f;
 
     //proc gen sensor stuff
     public Color hasSensorColor;

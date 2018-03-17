@@ -6,6 +6,8 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
     
     public AsteroidInfo info;
 
+
+
     public void InitDefault()
     {
         info.sensorChance = 0.35f;
@@ -42,15 +44,19 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
 
 		info.massFactor = Mathf.Exp (Random.value * 2f) / 2f;
 		gameObject.GetComponent<Rigidbody2D> ().mass = info.massFactor;
-		if (Random.value <= 0.05f) {
+
+		// add property scripts
+		if (Random.value <= info.chancePulledGrav) {
 			gameObject.AddComponent<Gravity> ();
+			info.hasGrav = true;
 			print ("Added gravity to asteroid");
 		}
 
-		if (Random.value <= 0.1f) {
+		if (Random.value <= info.chancePulledGrav) {
 			info.pulledByGrav = true;
 		}
 
+		// spawn items
 		List<ItemPoolItem> itempool = info.itempool;
         int numToSpawn = (int)(Random.value * info.maxItems);
 		int numSpawned = 0;
