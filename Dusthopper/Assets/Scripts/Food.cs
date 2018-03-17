@@ -16,9 +16,9 @@ public class Food : MonoBehaviour {
      */
     public bool canEat() {
 
-        float delayTime = 1.0f;
+        float delayTime = 0.3f; //enough time for player to register that food has been spawned
 
-        if (Time.time - birthTime >= delayTime) {
+		if (GameState.time - birthTime >= delayTime) {
             return true;
         } else {
             return false;

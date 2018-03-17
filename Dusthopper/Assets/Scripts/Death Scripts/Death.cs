@@ -30,7 +30,7 @@ public class Death : MonoBehaviour {
     public void Die(){
 
         if (GameState.isAlive == true) {
-            fade.fadeOut(0.33F);    //0.33f = fade over 3 seconds
+            fade.fadeOut(0.45f);    //slightly slower rate than just fading to black by the time scene is reloaded
             GameState.isAlive = false;
 			GameState.manualJumpsDisabled = false;
             StartCoroutine(reloadScene());
@@ -44,7 +44,7 @@ public class Death : MonoBehaviour {
      */
     public IEnumerator reloadScene() {
 
-        yield return new WaitForSeconds(2.0F);  
+        yield return new WaitForSeconds(2.0f);  
 
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);

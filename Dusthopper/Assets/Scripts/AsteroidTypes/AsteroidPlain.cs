@@ -75,5 +75,25 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
 				}
 			}
 		}
+
+		//spawn decorations
+		itempool = info.decorationItems;
+		numToSpawn = (int)(Random.value * info.maxDecorationItems);
+		numSpawned = 0;
+		randomIndex = 0;
+		while (numSpawned < numToSpawn) {
+			randomIndex = Random.Range (0, itempool.Count);
+			float diceRoll = Random.value;
+			if (diceRoll <= itempool [randomIndex].spawnChance) {
+				numSpawned++;
+				float distFromCenter = Random.Range (GameState.minSpawnDist, info.radius);
+				Vector3 pos = Random.insideUnitCircle.normalized * distFromCenter;
+				GameObject inst = GameObject.Instantiate(itempool[randomIndex].obj, transform.position + pos, Quaternion.identity, this.transform) as GameObject;
+				inst.transform.parent = this.transform;
+				if (itempool [randomIndex].uniqueSpawn) {
+					itempool.Remove (itempool [randomIndex]);
+				}
+			}
+		}
     }
 }
