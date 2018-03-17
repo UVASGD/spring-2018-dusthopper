@@ -78,6 +78,19 @@ public class Movement : MonoBehaviour {
 			Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
 			inst.GetComponent<JumpAnimation> ().origin = transform;
 			inst.GetComponent<JumpAnimation> ().destination = a;
+
+			/* W.I.P
+			if(GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
+				GameObject held = GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().heldObject;
+				Transform inst_held = Instantiate (animPrefab, transform.position, transform.rotation);
+				inst_held.GetComponent<JumpAnimation> ().origin = transform;
+				inst_held.GetComponent<JumpAnimation> ().destination = a;
+				inst_held.GetComponent<SpriteRenderer> ().sprite = held.GetComponent<SpriteRenderer> ().sprite;
+				inst_held.transform.localScale = held.transform.localScale;
+				inst_held.GetComponent<SpriteRenderer> ().color = held.GetComponent<SpriteRenderer> ().color;
+			}
+			*/
+
 			jumpSound.Play ();
 			if (isAsteroid) {
 				transform.position = GameState.asteroid.position;

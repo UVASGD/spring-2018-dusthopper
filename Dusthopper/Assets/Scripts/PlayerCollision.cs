@@ -9,7 +9,7 @@ public class PlayerCollision : MonoBehaviour {
 	private Hunger hunger;
 	public AudioSource nom;
 
-	private bool holding; //Whether or not you are holding something
+	public bool holding; //Whether or not you are holding something
 	public GameObject heldObject; //The object being held.
 	GameObject justDroppedObj;  //The object that was recently held
 	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
