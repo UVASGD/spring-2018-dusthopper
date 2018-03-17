@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class HubPointer : MonoBehaviour {
 
-	private GameObject hub;
+	public GameObject toPointTo;
+    public string toPointToName;
+    public bool needsToBeInMap = false;
 	private Image myImage;
 
 	[SerializeField]
@@ -22,7 +24,12 @@ public class HubPointer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		hub = GameObject.FindGameObjectWithTag ("Hub");
+        toPointTo = GameObject.Find(toPointToName);
+        if (toPointTo == null)
+        {
+            toPointTo = GameObject.FindGameObjectWithTag("Hub");
+            print("Nothing to point to specified, defaulting to Hub");
+        }
 		myImage = GetComponent<Image> ();
 
 		topLeftCorner = new Vector2 (skin + tinyAmount, Screen.height - skin);
@@ -36,14 +43,36 @@ public class HubPointer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 hubScreenPos = Camera.main.WorldToScreenPoint (hub.transform.position);
-		if (hubScreenPos.x < -skin || hubScreenPos.x > Screen.width + skin || hubScreenPos.y < -skin || hubScreenPos.y > Screen.height + skin) {
-			myImage.enabled = true;
-			AimForHub ();
-		} else {
-			myImage.enabled = false;
-		}
+        if (needsToBeInMap)
+        {
+            if (GameState.mapOpen)
+            {
+                StartPointing();
+            }
+            else
+            {
+                myImage.enabled = false;
+            }
+        }
+        else
+        {
+            StartPointing();
+        }
 	}
+
+    void StartPointing()
+    {
+        Vector2 objScreenPos = Camera.main.WorldToScreenPoint(toPointTo.transform.position);
+        if (objScreenPos.x < -skin || objScreenPos.x > Screen.width + skin || objScreenPos.y < -skin || objScreenPos.y > Screen.height + skin)
+        {
+            myImage.enabled = true;
+            AimForObject();
+        }
+        else
+        {
+            myImage.enabled = false;
+        }
+    }
 
 	//I'm sure there is a built in Unity thing which does this same functionality in a less math-intensive way, but I'm lazy
 	//If you can find it and it performs better then you can replace
@@ -69,14 +98,14 @@ public class HubPointer : MonoBehaviour {
 
 	//Move the pointer to (near) the edge of the screen in the direction of the hub
 	//and angle it toward the hub
-	void AimForHub () {
+	void AimForObject () {
 //		float x, y;
-		Vector2 targPos = Camera.main.WorldToScreenPoint (hub.transform.position);
+		Vector2 targPos = Camera.main.WorldToScreenPoint (toPointTo.transform.position);
 		Vector2 screenCenter = new Vector2 (Screen.width / 2, Screen.height / 2);
-		float hubAspect = Mathf.Abs((targPos.y - screenCenter.y) / (targPos.x - screenCenter.x));
+		float objAspect = Mathf.Abs((targPos.y - screenCenter.y) / (targPos.x - screenCenter.x));
 
 //		print ("hubAspect: " + hubAspect);
-		if (hubAspect > screenAspect) {
+		if (objAspect > screenAspect) {
 			if (targPos.y < screenCenter.y ) {
 				currentCorner1 = bottomLeftCorner;
 				currentCorner2 = bottomRightCorner;

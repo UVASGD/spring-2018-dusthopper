@@ -15,6 +15,7 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
         info.sensorTimeRangeRange = 15;
         info.hasSensorColor = Color.yellow;
         info.maxItems = 5;
+		info.massFactor = 1f;
         print("initdefault called");
     }
 
@@ -38,6 +39,17 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
         {
             GetComponent<AsteroidInfo>().hasSensors = false;
         }
+
+		info.massFactor = Mathf.Exp (Random.value * 2f) / 2f;
+		gameObject.GetComponent<Rigidbody2D> ().mass = info.massFactor;
+		if (Random.value <= 0.05f) {
+			gameObject.AddComponent<Gravity> ();
+			print ("Added gravity to asteroid");
+		}
+
+		if (Random.value <= 0.1f) {
+			info.pulledByGrav = true;
+		}
 
 		List<ItemPoolItem> itempool = info.itempool;
         int numToSpawn = (int)(Random.value * info.maxItems);

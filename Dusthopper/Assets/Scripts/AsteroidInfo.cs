@@ -14,6 +14,10 @@ public class AsteroidInfo : MonoBehaviour {
 
     public float radius;
 
+	//asteroid properties
+	public float massFactor = 1f;
+	public bool pulledByGrav = false;
+
     //proc gen sensor stuff
     public Color hasSensorColor;
 	[HideInInspector]
