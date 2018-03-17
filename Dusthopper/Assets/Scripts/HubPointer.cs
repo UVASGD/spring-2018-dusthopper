@@ -28,7 +28,6 @@ public class HubPointer : MonoBehaviour {
         if (toPointTo == null)
         {
             toPointTo = GameObject.FindGameObjectWithTag("Hub");
-            print("Nothing to point to specified, defaulting to Hub");
         }
 		myImage = GetComponent<Image> ();
 

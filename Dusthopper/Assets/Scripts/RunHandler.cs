@@ -33,7 +33,6 @@ public class RunHandler : MonoBehaviour {
 
 	//Call this when starting a run. More or less randomizes asteroid belt
 	public void StartRun () {
-		print ("Starting run!");
 		GameState.hungerEnabled = true;
 	}
 
@@ -42,7 +41,6 @@ public class RunHandler : MonoBehaviour {
 		GameState.hungerEnabled = false;
 		GameState.hunger = GameState.maxHunger;
 		if (successful) {
-			print ("Successfully completed run!");
 			GameState.SaveGame ();
 		} else {
 			print ("Everything obtained during your run has been deleted.");
