@@ -146,6 +146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nom: {fileID: 0}
+  holding: 0
+  heldObject: {fileID: 0}
 --- !u!114 &114408134968344080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bad020ddeea44ad3ba49f5fca23dbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnce: 1
+  spinSpeed: 360
 --- !u!212 &212633577863705494
 SpriteRenderer:
   m_ObjectHideFlags: 1
