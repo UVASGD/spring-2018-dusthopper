@@ -49,7 +49,7 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
 		if (Random.value <= info.chancePulledGrav) {
 			gameObject.AddComponent<Gravity> ();
 			info.hasGrav = true;
-			print ("Added gravity to asteroid");
+			//print ("Added gravity to asteroid");
 		}
 
 		if (Random.value <= info.chancePulledGrav) {

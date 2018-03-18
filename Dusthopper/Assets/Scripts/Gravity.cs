@@ -8,7 +8,7 @@ public class Gravity : MonoBehaviour {
 	private Rigidbody2D rb;
 	Rigidbody2D otherRB;
 	public LayerMask asteroidLayer;
-	[Range(0f, 1000f)] public float multiplier = 30f;
+	private float multiplier = 5f;
 	private int layer;
 
 	// Use this for initialization

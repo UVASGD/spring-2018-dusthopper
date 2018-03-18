@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114855310851036712}
   - component: {fileID: 58236886599823124}
   - component: {fileID: 114615033012177974}
+  - component: {fileID: 114961031301096624}
   m_Layer: 8
   m_Name: TestAsteroidPlain
   m_TagString: Asteroid
@@ -104,6 +105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 0
+  center: {x: 0, y: 0, z: 0}
 --- !u!114 &114855310851036712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,6 +123,11 @@ MonoBehaviour:
   mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
   radius: 0.5
+  massFactor: 1
+  pulledByGrav: 0
+  hasGrav: 0
+  chanceGrav: 0.2
+  chancePulledGrav: 0.2
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
@@ -142,6 +149,18 @@ MonoBehaviour:
     spawnChance: 0.75
     uniqueSpawn: 0
   maxItems: 5
+--- !u!114 &114961031301096624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1276523927128796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3ae89fc05b0404a887d2b85081314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedRange: {x: 0.2, y: 2}
 --- !u!212 &212566673774725310
 SpriteRenderer:
   m_ObjectHideFlags: 1
