@@ -8,11 +8,7 @@ public class Gravity : MonoBehaviour {
 	private Rigidbody2D rb;
 	Rigidbody2D otherRB;
 	public LayerMask asteroidLayer;
-<<<<<<< HEAD
 	private float multiplier = 5f;
-=======
-	[Range(0f, 1000f)] public float multiplier = 5f;
->>>>>>> 7fb7da377e2709e03cbff0525c262a808485de1a
 	private int layer;
 
 	// Use this for initialization
@@ -24,7 +20,7 @@ public class Gravity : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		Collider2D[] closeAsteroids = Physics2D.OverlapCircleAll (transform.position, 20f, layer);
+		Collider2D[] closeAsteroids = Physics2D.OverlapCircleAll (transform.position, 30f, layer);
 
 		foreach (var asteroid in closeAsteroids) {
 			if (asteroid.tag != "Hub" && asteroid != GetComponent<Collider2D>()) {

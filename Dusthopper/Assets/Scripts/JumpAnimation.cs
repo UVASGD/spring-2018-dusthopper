@@ -20,9 +20,6 @@ public class JumpAnimation : MonoBehaviour {
 	void Start () {
 		smoothing = 0.15f;
 		GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = false;
-		if (GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
-			GameObject.FindWithTag ("Player").GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = false;
-		}
 	}
 
 	void Update () {
@@ -31,7 +28,6 @@ public class JumpAnimation : MonoBehaviour {
 			if ((transform.position - origin.position).magnitude < 0.5f) {
 				smoothing = 0.05f;
 
-				/*
 				if (GameState.player.transform.childCount > 0) {
 					print ("SHOOP");
 					animationChild = GameState.player.transform.GetChild (0);
@@ -40,21 +36,14 @@ public class JumpAnimation : MonoBehaviour {
 					animationChild.localPosition = childRelativePos;
 					animationChild.GetComponent<Collider2D> ().enabled = false;
 				}
-				*/
 
 				if ((transform.position - origin.position).magnitude < 0.2f) {
-					/*
 					if (animationChild) {
 						animationChild.SetParent (GameState.player.transform);
 						animationChild.GetComponent<Collider2D> ().enabled = true;
 						animationChild.localPosition = childRelativePos;
-					}*/
-
-					print ("Destination Reached");
-					GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = true;
-					if (GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
-						GameObject.FindWithTag ("Player").GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = true;
 					}
+					GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = true;
 					Destroy (gameObject);
 				}
 			}
