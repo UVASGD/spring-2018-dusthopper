@@ -148,7 +148,24 @@ MonoBehaviour:
   - obj: {fileID: 1013170403800838, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
     spawnChance: 0.75
     uniqueSpawn: 0
+  decorationItems:
+  - obj: {fileID: 1779060642471318, guid: d4ec1f01b5d77d5458bdf6a1e8080ac7, type: 2}
+    spawnChance: 1
+    uniqueSpawn: 1
+  - obj: {fileID: 1005941028961518, guid: 5a5004a8112eff64d82cc2cff89dd86a, type: 2}
+    spawnChance: 1
+    uniqueSpawn: 1
+  - obj: {fileID: 1850682821036328, guid: a42b8ec2866c1ad46b7af621e1cca9a3, type: 2}
+    spawnChance: 1
+    uniqueSpawn: 1
+  - obj: {fileID: 1319130985614748, guid: 7a1d134a4f567c54a96d1e026b836dfd, type: 2}
+    spawnChance: 1
+    uniqueSpawn: 1
+  - obj: {fileID: 1184090421800076, guid: 672b348c0c7ade24aad1d445ad32fb26, type: 2}
+    spawnChance: 1
+    uniqueSpawn: 1
   maxItems: 5
+<<<<<<< HEAD
 --- !u!114 &114961031301096624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,6 +178,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedRange: {x: 0.2, y: 2}
+=======
+  maxDecorationItems: 2
+>>>>>>> 7fb7da377e2709e03cbff0525c262a808485de1a
 --- !u!212 &212566673774725310
 SpriteRenderer:
   m_ObjectHideFlags: 1

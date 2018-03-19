@@ -15,7 +15,7 @@ public class Death : MonoBehaviour {
 
     private void Update() {
 
-        //this is used by class ManualJump.  When isFalling is set to true the player object will start spinning and shrinking, to represent dieng by falling into the void
+        //this is used by class ManualJump.  When isFalling is set to true the player object will start spinning and shrinking, to represent dying by falling into the void
         if (isFalling) {
             transform.Rotate(0, 0, Time.deltaTime*spinSpeed);
             transform.localScale = new Vector3(0.991f * transform.localScale.x, 0.991f * transform.localScale.y, transform.localScale.z);
@@ -30,7 +30,7 @@ public class Death : MonoBehaviour {
     public void Die(){
 
         if (GameState.isAlive == true) {
-            fade.fadeOut(0.33F);    //0.33f = fade over 3 seconds
+            fade.fadeOut(0.45f);    //slightly slower rate than just fading to black by the time scene is reloaded
             GameState.isAlive = false;
 			GameState.manualJumpsDisabled = false;
             StartCoroutine(reloadScene());
@@ -44,7 +44,7 @@ public class Death : MonoBehaviour {
      */
     public IEnumerator reloadScene() {
 
-        yield return new WaitForSeconds(2.0F);  
+        yield return new WaitForSeconds(2.0f);  
 
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
@@ -53,7 +53,7 @@ public class Death : MonoBehaviour {
     }
 
     /*
-     * This method is mainly used by class ManualJump.  It will begin the spin-shrink die method that we want when you fall into the void, and delay the beggining of the fade to black
+     * This method is mainly used by class ManualJump.  It will begin the spin-shrink die system in update() that we want when you fall into the void, and delay the beggining of the fade to black
      */
     public void delayDie(float time) {
 
