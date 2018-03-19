@@ -44,9 +44,7 @@ public class AsteroidInfo : MonoBehaviour {
     //proc gen itempool
     [SerializeField]
     public List<ItemPoolItem> itempool; //struct contained in Generator.cs
-	public List<ItemPoolItem> decorationItems;
     public int maxItems;
-	public int maxDecorationItems;
 
     void Start() {
 		asteroidSprite = GetComponent<SpriteRenderer> ().sprite;

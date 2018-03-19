@@ -4,21 +4,52 @@ using UnityEngine;
 
 public class ObtainFragment : MonoBehaviour {
 
+	public float degreesPerSecond = 20f;
+	private float rotSpeed;
+	private Vector3 velocity;
+
+	public State state;
+
 	// Use this for initialization
 	void Start () {
-		
+		state = State.initial;
+		rotSpeed = degreesPerSecond;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		switch (state) {
+		default:
+			break;
+		case State.initial:
+			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
+			break;
+		case State.transition:
+			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
+			//if (rotSpeed < degreesPerSecond * 10)
+			rotSpeed += 360 * Time.deltaTime;
+			if (transform.parent)
+				transform.SetParent (null);
+			transform.position = Vector3.SmoothDamp (transform.position, GameObject.FindGameObjectWithTag ("Hub").transform.position, ref velocity, 13f);
+
+			if ((transform.position - GameObject.FindGameObjectWithTag ("Hub").transform.position).sqrMagnitude < 0.01f) {
+				state = State.hub;
+			}
+			break;
+		case State.hub:
+			state = State.final;
+			break;
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Player") {
 			GameObject.Find("GM").transform.Find("SFX").Find("ObjectiveSFX").GetComponent<AudioSource>().Play();
 			GameObject.Find("GM").transform.Find("SFX").Find("Music").GetComponent<AudioSource>().PlayDelayed(10f);
-			Destroy (gameObject);
+			state = State.transition;
+			//Destroy (gameObject);
 		}
 	}
+
+	public enum State { initial, transition, hub, final}
 }
