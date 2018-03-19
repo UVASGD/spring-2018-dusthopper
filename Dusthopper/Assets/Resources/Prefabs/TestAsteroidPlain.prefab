@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 114855310851036712}
   - component: {fileID: 58236886599823124}
   - component: {fileID: 114615033012177974}
-  - component: {fileID: 114961031301096624}
   m_Layer: 8
   m_Name: TestAsteroidPlain
   m_TagString: Asteroid
@@ -165,22 +164,7 @@ MonoBehaviour:
     spawnChance: 1
     uniqueSpawn: 1
   maxItems: 5
-<<<<<<< HEAD
---- !u!114 &114961031301096624
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1276523927128796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc3ae89fc05b0404a887d2b85081314d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speedRange: {x: 0.2, y: 2}
-=======
   maxDecorationItems: 2
->>>>>>> 7fb7da377e2709e03cbff0525c262a808485de1a
 --- !u!212 &212566673774725310
 SpriteRenderer:
   m_ObjectHideFlags: 1
