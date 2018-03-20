@@ -20,8 +20,8 @@ public class AsteroidInfo : MonoBehaviour {
 	public bool hasGrav = false;
 
 	//asteroid probabilities
-	public float chanceGrav = 0.2f;
-	public float chancePulledGrav = 0.2f;
+	public float chanceGrav;
+	public float chancePulledGrav;
 
     //proc gen sensor stuff
     public Color hasSensorColor;

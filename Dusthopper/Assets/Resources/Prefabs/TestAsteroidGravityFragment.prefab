@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0494784c6c8c491fa6ac3a6ec5e5ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  degreesPerSecond: 20
+  state: 0
 --- !u!114 &114443370363955194
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,7 +162,7 @@ MonoBehaviour:
   pulledByGrav: 0
   hasGrav: 0
   chanceGrav: 0.2
-  chancePulledGrav: 0.2
+  chancePulledGrav: 0
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
@@ -174,6 +176,7 @@ MonoBehaviour:
   itempool: []
   decorationItems: []
   maxItems: 5
+  maxDecorationItems: 0
 --- !u!114 &114574471551412752
 MonoBehaviour:
   m_ObjectHideFlags: 1

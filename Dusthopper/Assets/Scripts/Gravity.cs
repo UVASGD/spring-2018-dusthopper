@@ -14,6 +14,7 @@ public class Gravity : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody2D> ();
+		multiplier = 5f;
 		layer = 1 << LayerMask.NameToLayer ("Asteroid");
 		asteroidLayer.value = layer;
 	}

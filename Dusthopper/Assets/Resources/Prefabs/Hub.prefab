@@ -294,6 +294,11 @@ MonoBehaviour:
   mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
   radius: 1
+  massFactor: 1
+  pulledByGrav: 0
+  hasGrav: 0
+  chanceGrav: 0
+  chancePulledGrav: 0
   hasSensorColor: {r: 1, g: 1, b: 1, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 1
@@ -305,7 +310,9 @@ MonoBehaviour:
   foodChance: 0
   maxSpeed: 1.5
   itempool: []
+  decorationItems: []
   maxItems: 0
+  maxDecorationItems: 0
 --- !u!114 &114605504197452634
 MonoBehaviour:
   m_ObjectHideFlags: 1
