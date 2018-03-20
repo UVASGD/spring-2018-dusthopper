@@ -7,7 +7,7 @@ public class Food : MonoBehaviour {
     float birthTime;
 
     private void Start() {
-        birthTime = Time.time;
+        birthTime = GameState.time;
     }
 
     /*
