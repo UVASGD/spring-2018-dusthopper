@@ -6,7 +6,7 @@ public class ManualJump : MonoBehaviour {
 	//Allows the player to charge up a jump by holding down left mouse button and then jumps to the first asteroid in the direction of cursor.
 	//TODO: sound effect weirdness
 	private float timeHeld = 0f;
-	public AudioSource asrc;
+	public AudioSource jump;
 
 	void Start(){
 		timeHeld = 0f;
@@ -31,17 +31,17 @@ public class ManualJump : MonoBehaviour {
 						JumpFail(directionOfCursor.normalized * GameState.maxAsteroidDistance + (Vector2)transform.position);
 					}
 					timeHeld = 0;
-					asrc.Stop ();
+					jump.Stop ();
 				} else {
 					timeHeld += Time.deltaTime;
-					if (!asrc.isPlaying) {
-						asrc.Play ();
+					if (!jump.isPlaying) {
+						jump.Play ();
 					}
 				}
 			} else {
 				timeHeld = 0;
-				if (asrc.isPlaying) {
-					asrc.Stop ();
+				if (jump.isPlaying) {
+					jump.Stop ();
 				}
 			}
 		}

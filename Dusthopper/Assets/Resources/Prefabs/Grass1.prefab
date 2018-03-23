@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4079523331063158}
   - component: {fileID: 212362263560261660}
-  - component: {fileID: 60238527845314150}
   m_Layer: 0
   m_Name: Grass1
   m_TagString: Untagged
@@ -36,68 +35,11 @@ Transform:
   m_GameObject: {fileID: 1779060642471318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.016, y: 0.016, z: 0.016}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60238527845314150
-PolygonCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1779060642471318}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.7, y: 0.88}
-    newSize: {x: 0.72, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.21, y: 0.44}
-      - {x: 0.14, y: 0.44}
-      - {x: 0.12, y: 0.29}
-      - {x: 0.049999997, y: 0.02}
-      - {x: 0.089999996, y: 0.25}
-      - {x: 0.06, y: 0.32999998}
-      - {x: 0.02, y: 0.32999998}
-      - {x: -0.049999997, y: 0.19999999}
-      - {x: -0.07, y: 0.099999994}
-      - {x: -0.07, y: 0}
-      - {x: -0.089999996, y: -0.02}
-      - {x: -0.07, y: 0.08}
-      - {x: -0.06, y: 0.32999998}
-      - {x: -0.11, y: 0.44}
-      - {x: -0.16, y: 0.44}
-      - {x: -0.24, y: 0.22}
-      - {x: -0.35, y: 0.19999999}
-      - {x: -0.35, y: -0.01}
-      - {x: -0.34, y: -0.049999997}
-      - {x: -0.35, y: -0.099999994}
-      - {x: -0.35, y: -0.38}
-      - {x: -0.22, y: -0.41}
-      - {x: -0.099999994, y: -0.39}
-      - {x: 0.12, y: -0.32}
-      - {x: 0.17, y: -0.29}
-      - {x: 0.17, y: 0.01}
-      - {x: 0.17, y: -0.37}
-      - {x: 0.19, y: -0.42}
-      - {x: 0.21, y: -0.44}
-      - {x: 0.32, y: -0.44}
-      - {x: 0.35, y: -0.41}
-      - {x: 0.35, y: -0.04}
-      - {x: 0.28, y: 0.25}
 --- !u!212 &212362263560261660
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -132,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: ea8677be4152d49388b2d7af61b27348, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d65c0338875e84abe9046635f75d590b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

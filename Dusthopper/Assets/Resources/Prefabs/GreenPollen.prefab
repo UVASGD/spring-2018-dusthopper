@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4222886069617674}
   - component: {fileID: 212118189189420362}
-  - component: {fileID: 58353878087658218}
   - component: {fileID: 114239575743689426}
+  - component: {fileID: 60852824283486594}
+  - component: {fileID: 70008288360442670}
   m_Layer: 0
   m_Name: GreenPollen
   m_TagString: Pollen
@@ -37,13 +38,13 @@ Transform:
   m_GameObject: {fileID: 1013170403800838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1, y: 0.1, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58353878087658218
-CircleCollider2D:
+--- !u!60 &60852824283486594
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -55,8 +56,67 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.33, y: 4.13}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.165, y: 0.085}
+      - {x: 1.165, y: 0.185}
+      - {x: 1.155, y: 0.21499999}
+      - {x: 0.905, y: 0.445}
+      - {x: 0.195, y: 1.185}
+      - {x: -0.015, y: 1.395}
+      - {x: -0.035, y: 1.395}
+      - {x: -0.105, y: 1.3249999}
+      - {x: -0.965, y: 0.39499998}
+      - {x: -1.165, y: 0.185}
+      - {x: -1.165, y: 0.085}
+      - {x: -0.92499995, y: -0.375}
+      - {x: -0.625, y: -0.955}
+      - {x: -0.315, y: -1.555}
+      - {x: -0.044999998, y: -2.065}
+      - {x: 0.005, y: -2.065}
+      - {x: 0.315, y: -1.505}
+      - {x: 0.745, y: -0.685}
+      - {x: 1.115, y: 0.005}
+    - - {x: 0.715, y: 2.0049999}
+      - {x: 0.715, y: 2.065}
+      - {x: 0.655, y: 2.065}
+      - {x: 0.645, y: 2.055}
+      - {x: 0.555, y: 1.885}
+      - {x: 0.505, y: 1.8149999}
+      - {x: 0.305, y: 1.4549999}
+      - {x: 0.295, y: 1.425}
+      - {x: 0.295, y: 1.405}
+      - {x: 0.36499998, y: 1.345}
+      - {x: 0.445, y: 1.295}
+      - {x: 0.715, y: 1.105}
+      - {x: 0.815, y: 1.035}
+      - {x: 0.84499997, y: 1.045}
+      - {x: 0.84499997, y: 1.285}
+      - {x: 0.78499997, y: 1.615}
+--- !u!70 &70008288360442670
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1013170403800838}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 2.33, y: 4.13}
+  m_Direction: 0
 --- !u!114 &114239575743689426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,8 +163,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
-  m_Color: {r: 0.19342564, g: 0.63235295, b: 0.08369378, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a9729737378a7493e8e51d175f8230ec, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

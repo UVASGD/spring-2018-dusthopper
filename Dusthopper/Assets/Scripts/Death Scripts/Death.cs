@@ -9,6 +9,8 @@ public class Death : MonoBehaviour {
     bool isFalling = false;
     public float spinSpeed = 270.0f;
 
+	public AudioSource fallIntoSpace;
+
     private void Start() {
         fade = GameObject.FindObjectOfType<FadeController>();
     }
@@ -18,7 +20,7 @@ public class Death : MonoBehaviour {
         //this is used by class ManualJump.  When isFalling is set to true the player object will start spinning and shrinking, to represent dying by falling into the void
         if (isFalling) {
             transform.Rotate(0, 0, Time.deltaTime*spinSpeed);
-            transform.localScale = new Vector3(0.991f * transform.localScale.x, 0.991f * transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(0.987f * transform.localScale.x, 0.987f * transform.localScale.y, transform.localScale.z);
 
         }
 
@@ -35,8 +37,11 @@ public class Death : MonoBehaviour {
 			GameState.manualJumpsDisabled = false;
             StartCoroutine(reloadScene());
         }
-
     }
+
+	public void PlayFallingSound(){
+		fallIntoSpace.Play ();
+	}
     
     /*
      * Will reload the scene after a slight delay
@@ -59,7 +64,7 @@ public class Death : MonoBehaviour {
 
         isFalling = true;   //allows actions in update() to run
         Invoke("Die", time);  //call method Die() after var. time seconds
-
+		Invoke("PlayFallingSound", 0.6f);
     }
 
 }
