@@ -54,6 +54,8 @@ public class Movement : MonoBehaviour {
 
 		if (GameState.mapOpen || (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0)) {
 			targVel = Vector3.zero;
+		} else {
+			GetComponent<Rigidbody2D> ().rotation = Mathf.Atan2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")) * Mathf.Rad2Deg + 90;
 		}
 
 		//Stop following asteroid movement if there is none
