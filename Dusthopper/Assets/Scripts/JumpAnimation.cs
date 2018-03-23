@@ -23,9 +23,9 @@ public class JumpAnimation : MonoBehaviour {
 		if (GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
 			GameObject.FindWithTag ("Player").GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = false;
 		}
-		Vector3 heading = (destination.transform.position - origin.transform.position);
-		float angle = Mathf.Atan2 (heading.y, heading.x) * Mathf.Rad2Deg;
-		transform.eulerAngles = Vector3.forward * (angle + 90);
+//		Vector3 heading = (destination.transform.position - origin.transform.position);
+//		float angle = Mathf.Atan2 (heading.y, heading.x) * Mathf.Rad2Deg;
+//		transform.eulerAngles = Vector3.forward * (angle + 90);
 	}
 
 	void Update () {
