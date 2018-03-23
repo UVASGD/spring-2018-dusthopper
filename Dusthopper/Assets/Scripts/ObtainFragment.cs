@@ -7,6 +7,7 @@ public class ObtainFragment : MonoBehaviour {
 	public float degreesPerSecond = 20f;
 	private float rotSpeed;
 	private Vector3 velocity;
+    public GameObject pointer;
 
 	public State state;
 
@@ -14,6 +15,7 @@ public class ObtainFragment : MonoBehaviour {
 	void Start () {
 		state = State.initial;
 		rotSpeed = degreesPerSecond;
+        pointer = GameObject.Find(transform.parent.name.Replace("Asteroid", "Pointer"));
 	}
 	
 	// Update is called once per frame
@@ -47,6 +49,7 @@ public class ObtainFragment : MonoBehaviour {
 			GameObject.Find("GM").transform.Find("SFX").Find("ObjectiveSFX").GetComponent<AudioSource>().Play();
 			GameObject.Find("GM").transform.Find("SFX").Find("Music").GetComponent<AudioSource>().PlayDelayed(10f);
 			state = State.transition;
+            Destroy(pointer);
 			//Destroy (gameObject);
 		}
 	}
