@@ -21,6 +21,8 @@ public class Movement : MonoBehaviour {
 	private int asteroidNum = 0;
 	private UpgradeManager upgradeMgr;
 
+	private float rotVel;
+
 	// Use this for initialization
 	void Start () {
 		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
@@ -51,11 +53,17 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * (speed * upgradeMgr.walkSpeedMod);
+		float targRot = Mathf.Atan2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")) * Mathf.Rad2Deg + 90;
+		if (targRot - rb.rotation > 180) {
+			targRot -= 360f;
+		} else if (rb.rotation - targRot > 180) {
+			targRot += 360f;
+		}
 
 		if (GameState.mapOpen || (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0)) {
 			targVel = Vector3.zero;
 		} else {
-			GetComponent<Rigidbody2D> ().rotation = Mathf.Atan2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")) * Mathf.Rad2Deg + 90;
+			rb.rotation = Mathf.SmoothDamp (rb.rotation, targRot, ref rotVel, 0.1f);
 			if (GetComponent<PlayerCollision> ().holding) {
 				GetComponent<PlayerCollision> ().heldObject.transform.rotation = Quaternion.identity;
 			}
