@@ -23,13 +23,20 @@ public class TimeManipulator : MonoBehaviour {
 	private Rect rect2;
 	private Rect rect3;
 
-
+	public bool autoScroll;
+	private bool autoScrollLF;
+	private float startScrollTime;
 
 	private bool mapOpenLF;
+	private bool timeMoving = false;
 
 	// Use this for initialization
 	void Start () {
+		timeMoving = false;
+		autoScroll = false;
+		autoScrollLF = false;
 		instances = new List<GameObject> ();
+		//AutoScroll ();
 		mapOpenLF = GameState.mapOpen;
 		foreach (Transform child in asteroidContainer.transform) {
 			instances.Add (child.gameObject);
@@ -62,22 +69,45 @@ public class TimeManipulator : MonoBehaviour {
 //		
 //	}
 //
+	public void AutoScroll () {
+		print ("Scrolling!");
+		startScrollTime = timeFromNow;
+		autoScroll = true;
+	}
+
 	void OnGUI() {
 		if (GameState.mapOpen) {
+			if (autoScroll) {
+				StartCoroutine ("StepForward");
+			}
+
+			print ("Time elapsed: " + (Time.time - startScrollTime));
+			if (timeFromNow - startScrollTime > GameState.secondsPerJump) {
+				if (autoScroll) {
+					timeFromNow = startScrollTime + GameState.secondsPerJump;
+				}
+				autoScroll = false;
+			}
+
 			if (GUI.RepeatButton (new Rect (Screen.width / 2 - 40, Screen.height - 70, 30, 30), "<<")) {
+				autoScroll = false;
 				StartCoroutine ("StepBackward");
 			} else {
 				//asteroids [i].initialVelocity = asteroids [i].instance.GetComponent<Rigidbody2D> ().velocity;
-				Time.timeScale = 0;
+				if (!autoScroll) {
+					Time.timeScale = 0;
+				}
 			}
 
 			if (GUI.RepeatButton (new Rect (Screen.width / 2 + 40, Screen.height - 70, 30, 30), ">>")) {
 				if (timeFromNow < GameState.sensorTimeRange) {
+					autoScroll = false;
 					StartCoroutine ("StepForward");
 				}
 			}
 
 			if (timeFromNow > GameState.sensorTimeRange) {
+				autoScroll = false;
 				timeFromNow = GameState.sensorTimeRange;
 			}
 			string zero = "0.00";
@@ -90,13 +120,15 @@ public class TimeManipulator : MonoBehaviour {
 			GUI.Label(rect2, text2, style);
 
 			if (!mapOpenLF) {
+				timeFromNow = 0f;
+				AutoScroll ();
+
 				for (int i = 0; i < asteroids.Length; i++) {
 					asteroids [i].initialPosition = asteroids [i].instance.position;
 					asteroids [i].initialVelocity = asteroids [i].instance.GetComponent<Rigidbody2D>().velocity;
 //					asteroids [i].initialRotation = asteroids [i].instance.rotation;
 //					asteroids [i].initialAngularVelocity = asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity;
 				}
-				timeFromNow = 0f;
 			}
 		} else {
 			if (mapOpenLF) {
@@ -122,10 +154,12 @@ public class TimeManipulator : MonoBehaviour {
 		}
 
 		mapOpenLF = GameState.mapOpen;
+		autoScrollLF = autoScroll;
 	}
 
 
 	IEnumerator StepForward () {
+		timeMoving = true;
 		//print ("Button Pressed!");
 		Time.timeScale = timeScale;
 		for (int i = 0; i < asteroids.Length; i++) {
@@ -137,10 +171,12 @@ public class TimeManipulator : MonoBehaviour {
 		}
 		timeFromNow += Time.deltaTime;
 		frameTimes.Push (timeFromNow);
+		timeMoving = false;
 		yield return null;
 	}
 
 	IEnumerator StepBackward () {
+		timeMoving = true;
 		if (frameTimes.Count != 0) {
 			for (int i = 0; i < asteroids.Length; i++) {
 				if (asteroids [i].positions.Count > 0) {
@@ -152,6 +188,7 @@ public class TimeManipulator : MonoBehaviour {
 			}
 			timeFromNow = frameTimes.Pop ();
 		}
+		timeMoving = false;
 		yield return null;
 	}
 
