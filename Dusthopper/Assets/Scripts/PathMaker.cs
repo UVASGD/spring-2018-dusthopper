@@ -19,11 +19,12 @@ public class PathMaker : MonoBehaviour {
 	public GameObject container;
 	private GameObject player;
 	public AudioSource chargeJump;
+	public AudioSource jumpTooFar;
 	private bool mapOpenLF;
 	private List<GameObject> lines;
 	public float percentIdle;//jumps not currently active should be still dimly lit so the player can see the long term plan. This is the alpha value for those jumps.
 
-
+//	public Animation 
 	[HideInInspector]
 	public float initialTime;
 	private float timeOfJump;
@@ -176,6 +177,7 @@ public class PathMaker : MonoBehaviour {
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);
 				} else {
 					print ("jump cancelled - too far");
+					jumpTooFar.Play ();
 				}
 				path.RemoveAt (0);
 				jumpTimes.RemoveAt (0);

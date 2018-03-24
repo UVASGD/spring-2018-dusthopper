@@ -259,6 +259,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasSensorColor: {r: 0.561896, g: 0.77205884, b: 0.5222751, a: 1}
   sensorChance: 1
+  goalArrowsVisibleChance: 1
   avgSensorRange: 30
   sensorRangeRange: 15
   avgSensorTimeRange: 30
@@ -293,6 +294,8 @@ MonoBehaviour:
   sensorTimeRange: 30
   mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
+  goalArrowsVisible: 1
+  goalArrowsVisibleChance: 1
   radius: 1
   massFactor: 1
   pulledByGrav: 0
