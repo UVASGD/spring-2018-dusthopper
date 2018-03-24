@@ -44,7 +44,7 @@ public class HubPointer : MonoBehaviour {
 	void Update () {
         if (needsToBeInMap)
         {
-            if (GameState.mapOpen)
+			if (GameState.mapOpen && GameState.asteroid.GetComponent<AsteroidInfo>().goalArrowsVisible)
             {
                 StartPointing();
             }

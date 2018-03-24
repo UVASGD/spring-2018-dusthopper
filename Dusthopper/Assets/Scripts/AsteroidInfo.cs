@@ -12,6 +12,10 @@ public class AsteroidInfo : MonoBehaviour {
 	[HideInInspector]
 	public Sprite asteroidSprite;
 
+	// can see goal arrows?
+	public bool goalArrowsVisible;
+	public float goalArrowsVisibleChance;
+
     public float radius;
 
 	//asteroid properties

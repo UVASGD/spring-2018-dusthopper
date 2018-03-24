@@ -33,6 +33,8 @@ public class PathMaker : MonoBehaviour {
 	private float GameStateTimeLF;
 	public float tolerance; //When final jump is made, I want to be a bit lenient with max distance because of various ways the jump may have changed since being scheduled.
 
+	public bool jumpTimeElapsed = false;
+
 	// Use this for initialization
 	void Start () {
 		path = new SortedList<float,Transform> (0);
@@ -93,7 +95,6 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	void EditPath () {
-		//click to toggle adding / removing from path
 		if (Input.GetMouseButtonDown(0))
 		{
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
@@ -141,6 +142,7 @@ public class PathMaker : MonoBehaviour {
 							}
 							if (!overlap) {
 								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
+								GetComponent<TimeManipulator> ().AutoScroll ();
 								path.Add (timeToStartCharging, hit.transform);
 								jumpTimes.Add (timeOfJump, timeOfJump);
 								GameObject newLine = new GameObject ();

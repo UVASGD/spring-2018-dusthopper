@@ -10,6 +10,7 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
 
     public void InitDefault()
     {
+		info.goalArrowsVisibleChance = 0.75f;
         info.sensorChance = 0.35f;
         info.avgSensorRange = 30;
         info.sensorRangeRange = 15;
@@ -36,6 +37,9 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
             GetComponent<AsteroidInfo>().sensorRange = Random.Range(info.avgSensorRange - info.sensorRangeRange, info.avgSensorRange + info.sensorRangeRange);
             GetComponent<AsteroidInfo>().sensorTimeRange = Random.Range(info.avgSensorTimeRange - info.sensorTimeRangeRange, info.avgSensorRange + info.sensorTimeRangeRange);
             GetComponent<SpriteRenderer>().color = info.hasSensorColor;
+			if (Random.value <= info.goalArrowsVisibleChance) {
+				GetComponent<AsteroidInfo> ().goalArrowsVisible = true;
+			}
         }
         else
         {
