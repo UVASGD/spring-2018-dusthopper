@@ -54,10 +54,9 @@ public class Movement : MonoBehaviour {
 	void Update () {
 		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * (speed * upgradeMgr.walkSpeedMod);
 		float targRot = Mathf.Atan2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")) * Mathf.Rad2Deg + 90;
-		if (targRot - rb.rotation > 180) {
+
+		if (Mathf.Abs(targRot - rb.rotation) > 180) {
 			targRot -= 360f;
-		} else if (rb.rotation - targRot > 180) {
-			targRot += 360f;
 		}
 
 		if (GameState.mapOpen || (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0)) {
