@@ -192,6 +192,10 @@ public static class GameState {
 		hungerScript.addToHunger (maxHunger * increasePercentage);
 	}
 
+	public static void RefreshHunger () {
+		hunger = maxHunger;
+	}
+
 }
 [System.Serializable]
 class Stats

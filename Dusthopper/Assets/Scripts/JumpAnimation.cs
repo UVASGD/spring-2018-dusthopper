@@ -18,6 +18,7 @@ public class JumpAnimation : MonoBehaviour {
 	private Vector3 vel;
 
 	void Start () {
+		
 		smoothing = 0.15f;
 		GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = false;
 		if (GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
@@ -30,6 +31,10 @@ public class JumpAnimation : MonoBehaviour {
 
 	void Update () {
 		if (origin) {
+			Vector3 directVect = (origin.position + 2.5f * Time.deltaTime * (Vector3)GameState.asteroid.GetComponent<Rigidbody2D> ().velocity - transform.position).normalized;
+			float angle = Mathf.Atan2 (directVect.y, directVect.x) * Mathf.Rad2Deg;
+			transform.eulerAngles = Vector3.forward * (angle + 90);
+
 			transform.position = Vector3.SmoothDamp (transform.position, origin.position + 2.5f * Time.deltaTime * (Vector3)GameState.asteroid.GetComponent<Rigidbody2D> ().velocity, ref vel, smoothing);
 			if ((transform.position - origin.position).magnitude < 0.5f) {
 				smoothing = 0.05f;

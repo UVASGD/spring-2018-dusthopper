@@ -46,9 +46,11 @@ public class ObtainFragment : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Player") {
+			GameState.RefreshHunger ();
 			GameObject.Find("GM").transform.Find("SFX").Find("ObjectiveSFX").GetComponent<AudioSource>().Play();
 			GameObject.Find("GM").transform.Find("SFX").Find("Music").GetComponent<AudioSource>().PlayDelayed(10f);
 			state = State.transition;
+			GetComponent<Collider2D> ().enabled = false;
             Destroy(pointer);
 			//Destroy (gameObject);
 		}
