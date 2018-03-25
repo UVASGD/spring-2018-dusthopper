@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f627c09b90d4c9458287b548665fc1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasSensorColor: {r: 0.561896, g: 0.77205884, b: 0.5222751, a: 1}
+  hasSensorColor: {r: 0.15686275, g: 0.8470589, b: 0.81568635, a: 1}
   sensorChance: 1
   avgSensorRange: 30
   sensorRangeRange: 15
@@ -317,7 +317,7 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0
   chancePulledGrav: 0
-  hasSensorColor: {r: 1, g: 1, b: 1, a: 1}
+  hasSensorColor: {r: 0.15686275, g: 0.8470589, b: 0.81568635, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 1
   avgSensorRange: 15
