@@ -172,4 +172,12 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 		}
 	}
+
+	public void SwapInvertScroll () {
+		swapScroll = !swapScroll;
+	}
+
+	public void SetScrollSpeed (float val) {
+		scrollSpeed = val;
+	}
 }
