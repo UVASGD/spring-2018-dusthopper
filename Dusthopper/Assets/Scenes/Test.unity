@@ -3165,6 +3165,7 @@ MonoBehaviour:
   timeScale: 5
   asteroidContainer: {fileID: 1120569470}
   timeFromNow: 0
+  autoScroll: 0
 --- !u!114 &1511771305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3207,6 +3208,7 @@ MonoBehaviour:
   percentIdle: 0.2
   initialTime: 0
   tolerance: 1
+  jumpTimeElapsed: 0
 --- !u!114 &1511771308
 MonoBehaviour:
   m_ObjectHideFlags: 0
