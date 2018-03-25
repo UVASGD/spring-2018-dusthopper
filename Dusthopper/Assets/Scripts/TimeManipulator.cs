@@ -65,10 +65,12 @@ public class TimeManipulator : MonoBehaviour {
 	}
 	
 //	// Update is called once per frame
-//	void Update () {
-//		
-//	}
-//
+	void Update () {
+		if (autoScroll) {
+			StartCoroutine ("StepForward");
+		}		
+	}
+
 	public void AutoScroll () {
 		print ("Scrolling!");
 		startScrollTime = timeFromNow;
@@ -77,10 +79,6 @@ public class TimeManipulator : MonoBehaviour {
 
 	void OnGUI() {
 		if (GameState.mapOpen) {
-			if (autoScroll) {
-				StartCoroutine ("StepForward");
-			}
-
 			print ("Time elapsed: " + (Time.time - startScrollTime));
 			if (timeFromNow - startScrollTime > GameState.secondsPerJump) {
 				if (autoScroll) {
