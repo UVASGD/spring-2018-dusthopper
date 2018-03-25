@@ -109,7 +109,7 @@ public class PathMaker : MonoBehaviour {
 					if (jumpTimes.Keys [i] < GetComponent<TimeManipulator> ().timeFromNow + initialTime) {
 						prevAsteroidIndex = i;
 					}
-					if (hit.transform == path.Values[i] && Mathf.Abs(GetComponent<TimeManipulator> ().timeFromNow + initialTime - jumpTimes.Keys[i]) <= GameState.secondsPerJump) {
+					if (hit.transform == path.Values[i] && Mathf.Abs(GetComponent<TimeManipulator> ().timeFromNow + initialTime - jumpTimes.Keys[i]) < GameState.secondsPerJump) {
 						foundIt = true;
 						print ("removing jump to asteroid " + hit.transform.gameObject.name + " at time " + jumpTimes.Keys [i]);
 						path.RemoveAt (i);
