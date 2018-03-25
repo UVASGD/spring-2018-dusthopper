@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PauseController : MonoBehaviour {
 
@@ -8,8 +9,12 @@ public class PauseController : MonoBehaviour {
 
 	public GameObject pauseMenuUI;
 	public GameObject settingsMenuUI;
+	public GameObject debugMenu;
 
 	private bool inSettings;
+
+	Action saveDelegate;
+	Action loadDelegate;
 
 	// Update is called once per frame
 	void Update () {
@@ -20,7 +25,17 @@ public class PauseController : MonoBehaviour {
 				Resume ();
 			}
 		}
+		if (Input.GetKeyDown(KeyCode.F)) {
+			if (GameState.debugMode) debugMenu.SetActive(!debugMenu.activeSelf);
+			else debugMenu.SetActive(false);
+		}
 //		print ("Time.timeScale: " + Time.timeScale);
+	}
+
+	void Start()
+	{
+		if (loadDelegate == null) loadDelegate = () => { GameState.LoadGame(); };
+		if (saveDelegate == null) saveDelegate = () => { GameState.SaveGame(); };
 	}
 
 	public void Resume(){
@@ -45,6 +60,17 @@ public class PauseController : MonoBehaviour {
 		settingsMenuUI.SetActive (true);
 		inSettings = true;
 
+	}
+
+	public void LoadRequest()
+	{
+		Debug.Log("requesting load");
+		if (loadDelegate != null) loadDelegate();
+	}
+
+	public void SaveRequest()
+	{
+		if (saveDelegate != null) saveDelegate();
 	}
 
 	public void LeaveSettings(){

@@ -7,8 +7,8 @@ public class Hunger : MonoBehaviour {
 	//private float hunger;
 	public Color fullHungerBarColor; //TODO: Change display to show a colored rectangle. also make red / yellow for when close to death
 	public Color emptyHungerBarColor;
-	private Color currentHungerBarColor;
-	private bool debugDontLoseHunger;
+	public Color currentHungerBarColor;
+	public bool debugDontLoseHunger;
 	private GUIStyle gstyle;
 	//public float maxHunger;
 	private int hungerBarWidth;
@@ -32,7 +32,7 @@ public class Hunger : MonoBehaviour {
 			gameObject.GetComponent<Death> ().Die ();
 		} else {
 			if (!debugDontLoseHunger && GameState.hungerEnabled) {
-				GameState.hunger -= GameState.deltaTime;
+				GameState.hunger -= (GameState.deltaTime / GameState.hungerLowModifier);
 			}
 			//print ("hunger: " + hunger);
 			if (changeColor) {
@@ -42,17 +42,6 @@ public class Hunger : MonoBehaviour {
 		}
 	}
 
-	void OnGUI () {
-		GUI.Box (new Rect (Screen.width * 4/16, Screen.height * 31/32, hungerBarWidth * (GameState.hunger / GameState.maxHunger), 15), "", gstyle);
-
-		if (!GameState.debugMode)
-			return;
-		
-		//This is just a debug button to toggle hunger loss (in case having to worry about that is annoying for testing)
-		if (GUI.Button(new Rect(10, Screen.height - 80, 120, 30), "No hunger")) {
-			debugDontLoseHunger = !debugDontLoseHunger;
-		}
-	}
 
 	public void setHunger(float newHunger){
 		GameState.hunger = newHunger;

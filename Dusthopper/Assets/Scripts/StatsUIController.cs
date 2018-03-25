@@ -11,7 +11,7 @@ public class StatsUIController : MonoBehaviour {
 	public Text hungerText;
 	public Text maxHungerText;
 	public Text scrapText;
-
+	public Text hungerDrip;
 
 	void Update () {
 		maxDistText.text = GameState.maxAsteroidDistance.ToString ("N1");
@@ -20,5 +20,6 @@ public class StatsUIController : MonoBehaviour {
 		hungerText.text = GameState.player.GetComponent<Hunger>().getHunger().ToString ("N1");
 		maxHungerText.text = GameState.maxHunger.ToString ("N1");
 		scrapText.text = GameState.scrap.ToString ("N1");
+		hungerDrip.text = (Mathf.Floor(Time.deltaTime / GameState.hungerLowModifier * 1000)).ToString("N0");
 	}
 }
