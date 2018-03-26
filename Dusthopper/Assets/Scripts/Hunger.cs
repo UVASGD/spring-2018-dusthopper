@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hunger : MonoBehaviour {
 	//Does a hunger bar incl. GUI and has methods relating to hunger
@@ -14,15 +15,15 @@ public class Hunger : MonoBehaviour {
 	private int hungerBarWidth;
 	private int hungerBarHeight = 25;
 	public bool changeColor = true;
+	public Slider hungerSlider;
+	public Image HungerSliderColor;
 
 	// Use this for initialization
 	void Start () {
 		GameState.hunger = GameState.maxHunger;
 		hungerBarWidth = Screen.width * 4 / 8;
 		debugDontLoseHunger = false;
-		gstyle = new GUIStyle ();
 		currentHungerBarColor = fullHungerBarColor;
-		gstyle.normal.background = MakeTex((int)(hungerBarWidth + 1),hungerBarHeight,currentHungerBarColor);
 	}
 	
 	// Update is called once per frame
@@ -37,11 +38,11 @@ public class Hunger : MonoBehaviour {
 			//print ("hunger: " + hunger);
 			if (changeColor) {
 				currentHungerBarColor = Color.Lerp (emptyHungerBarColor, fullHungerBarColor, GameState.hunger / GameState.maxHunger);
-				gstyle.normal.background = MakeTex ((int)(hungerBarWidth + 1), hungerBarHeight, currentHungerBarColor);
+				HungerSliderColor.color = currentHungerBarColor;
 			}
+			hungerSlider.value = (GameState.hunger / GameState.maxHunger);
 		}
 	}
-
 
 	public void setHunger(float newHunger){
 		GameState.hunger = newHunger;
