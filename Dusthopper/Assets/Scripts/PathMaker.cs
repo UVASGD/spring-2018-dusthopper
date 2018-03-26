@@ -142,7 +142,9 @@ public class PathMaker : MonoBehaviour {
 							}
 							if (!overlap) {
 								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
-								GetComponent<TimeManipulator> ().AutoScroll ();
+								if(GameState.sensorTimeRange - GetComponent<TimeManipulator> ().timeFromNow >= GameState.secondsPerJump){
+									GetComponent<TimeManipulator> ().AutoScroll ();
+								}
 								path.Add (timeToStartCharging, hit.transform);
 								jumpTimes.Add (timeOfJump, timeOfJump);
 								GameObject newLine = new GameObject ();
