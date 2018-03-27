@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.3
+  rotationSpeed: 10
   jumpSound: {fileID: 0}
   animPrefab: {fileID: 4596830954289954, guid: 5729404da8c6d4eada95ab071d42dc63, type: 2}
 --- !u!114 &114238825700592304
@@ -269,7 +270,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullHungerBarColor: {r: 0.5882353, g: 0.7411765, b: 0.3019608, a: 1}
   emptyHungerBarColor: {r: 0.8235294, g: 0.30882353, b: 0.30882353, a: 1}
+  currentHungerBarColor: {r: 0, g: 0, b: 0, a: 0}
+  debugDontLoseHunger: 0
   changeColor: 1
+  hungerSlider: {fileID: 0}
+  HungerSliderColor: {fileID: 0}
 --- !u!114 &114964489445946058
 MonoBehaviour:
   m_ObjectHideFlags: 1

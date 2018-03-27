@@ -11,17 +11,21 @@ public class Movement : MonoBehaviour {
 	// 		SwitchAsteroid, the method which actually switches asteroids to a target and updates some variables to do with that
 	// 		Playing some sound effects
 
-	[SerializeField][Range(0f, 10f)] private float speed = 5;
-	public AudioSource jumpSound;
-	private Rigidbody2D rb;
-	//public Transform asteroid;
-	private Vector3 lastPos;
-	public Transform animPrefab;
-
 	private int asteroidNum = 0;
-	private UpgradeManager upgradeMgr;
 
+	//Movement reference variables
 	private Vector2 targRotDir;
+	private Vector3 lastPos;
+
+	[Header("Movement Options")]
+	[SerializeField][Range(0f, 10f)] private float speed = 5;
+	[SerializeField][Range(1f, 20f)] private float rotationSpeed = 10;
+
+	[Header("Prefabs")]
+	public AudioSource jumpSound;
+	public Transform animPrefab;
+	private UpgradeManager upgradeMgr;
+	private Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start () {
@@ -54,7 +58,7 @@ public class Movement : MonoBehaviour {
 
 		//This section handles rotation lerping
 		//Works by slowing moving point to look at around in unit circle around player. Player looks at the point exactly each frame
-		targRotDir += inputVector * 10 * Time.deltaTime;
+		targRotDir += inputVector * rotationSpeed * Time.deltaTime;
 		targRotDir = Vector2.ClampMagnitude (targRotDir, 1f);
 		float targRot = Mathf.Atan2 (targRotDir.x, -targRotDir.y) * Mathf.Rad2Deg;
 
