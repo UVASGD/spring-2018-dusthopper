@@ -85,7 +85,8 @@ public class CameraScrollOut : MonoBehaviour {
 
 		//normal zooming
 		var d = Input.GetAxis ("Mouse ScrollWheel");
-		if (swapScroll) d = d * -1;
+		if (swapScroll)
+			d = -d;
 		
 		if (d > 0f) {
 			scrollAmount += Time.unscaledDeltaTime * scrollSpeed;
