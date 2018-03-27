@@ -46,17 +46,37 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * (speed * upgradeMgr.walkSpeedMod);
-		float targRot = Mathf.Atan2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")) * Mathf.Rad2Deg + 90;
+		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
+		Vector2 targVel = inputVector * (speed * upgradeMgr.walkSpeedMod);
+		float targRot = Mathf.Atan2 (Input.GetAxis ("Vertical"), Input.GetAxis ("Horizontal")) * Mathf.Rad2Deg + 90;
+//		float currentRot = rb.rotation;
+//
+//		currentRot = (currentRot < 0 ? currentRot + 360 : currentRot);
+//		currentRot = (currentRot > 360 ? currentRot - 360 : currentRot);
+//		print ("Current Rot: " + currentRot + ", Targ Rot: " + targRot);
+//
+//		targRot = (targRot < 0 ? targRot + 360 : targRot);
+//		targRot = (targRot > 360 ? targRot - 360 : targRot);
+//
+//		int direction;
+//		float rotDiff = targRot - currentRot;
+//		if (rotDiff > 0 && rotDiff < 180) {
+//			direction = 1;
+//		} else if (rotDiff > 0 && rotDiff >= 180) {
+//			direction = -1;
+//		} else if (rotDiff < 0 && rotDiff > -180) {
+//			direction = -1;
+//		} else if (rotDiff > 0 && rotDiff < -180) {
+//			direction = 1;
+//		} else {
+//			direction = 0;
+//		}
 
-		if (Mathf.Abs(targRot - rb.rotation) > 180) {
-			targRot -= 360f;
-		}
-
-		if (GameState.mapOpen || (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0)) {
+		if (GameState.mapOpen || inputVector == Vector2.zero) {
 			targVel = Vector3.zero;
 		} else {
-			rb.rotation = Mathf.SmoothDamp (rb.rotation, targRot, ref rotVel, 0.1f);
+			//float angle = Mathf.SmoothDamp (currentRot, currentRot + direction, ref rotVel, 0.1f);
+			rb.MoveRotation(targRot);
 			if (GetComponent<PlayerCollision> ().holding) {
 				GetComponent<PlayerCollision> ().heldObject.transform.rotation = Quaternion.identity;
 			}
