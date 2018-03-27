@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour {
 	private UpgradeManager upgradeMgr;
 
 	private float rotVel;
+	private Vector2 targRotDir;
 
 	// Use this for initialization
 	void Start () {
@@ -48,7 +49,10 @@ public class Movement : MonoBehaviour {
 	void Update () {
 		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
 		Vector2 targVel = inputVector * (speed * upgradeMgr.walkSpeedMod);
-		float targRot = Mathf.Atan2 (Input.GetAxis ("Vertical"), Input.GetAxis ("Horizontal")) * Mathf.Rad2Deg + 90;
+
+		targRotDir += new Vector2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")) * 10 * Time.deltaTime;
+		targRotDir = Vector2.ClampMagnitude (targRotDir, 1f);
+		float targRot = Mathf.Atan2 (targRotDir.x, targRotDir.y) * Mathf.Rad2Deg + 90;
 //		float currentRot = rb.rotation;
 //
 //		currentRot = (currentRot < 0 ? currentRot + 360 : currentRot);
