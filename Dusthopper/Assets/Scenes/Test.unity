@@ -7365,7 +7365,7 @@ MonoBehaviour:
   hungerText: {fileID: 1077757855}
   maxHungerText: {fileID: 665712057}
   scrapText: {fileID: 1017259075}
-  hungerDrip: {fileID: 0}
+  hungerDrip: {fileID: 488727151}
 --- !u!1 &1514298566
 GameObject:
   m_ObjectHideFlags: 0
