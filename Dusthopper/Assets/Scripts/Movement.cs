@@ -21,7 +21,6 @@ public class Movement : MonoBehaviour {
 	private int asteroidNum = 0;
 	private UpgradeManager upgradeMgr;
 
-	private float rotVel;
 	private Vector2 targRotDir;
 
 	// Use this for initialization
@@ -47,40 +46,25 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized;
-		Vector2 targVel = inputVector * (speed * upgradeMgr.walkSpeedMod);
+		//Input direction. Use this variable so you don't call GetAxis multiple times a frame (faster)
+		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized; 
 
-		targRotDir += new Vector2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")) * 10 * Time.deltaTime;
+		//Player translational velocity vector
+		Vector2 targVel = inputVector * (speed * upgradeMgr.walkSpeedMod); 
+
+		//This section handles rotation lerping
+		//Works by slowing moving point to look at around in unit circle around player. Player looks at the point exactly each frame
+		targRotDir += inputVector * 10 * Time.deltaTime;
 		targRotDir = Vector2.ClampMagnitude (targRotDir, 1f);
-		float targRot = Mathf.Atan2 (targRotDir.x, targRotDir.y) * Mathf.Rad2Deg + 90;
-//		float currentRot = rb.rotation;
-//
-//		currentRot = (currentRot < 0 ? currentRot + 360 : currentRot);
-//		currentRot = (currentRot > 360 ? currentRot - 360 : currentRot);
-//		print ("Current Rot: " + currentRot + ", Targ Rot: " + targRot);
-//
-//		targRot = (targRot < 0 ? targRot + 360 : targRot);
-//		targRot = (targRot > 360 ? targRot - 360 : targRot);
-//
-//		int direction;
-//		float rotDiff = targRot - currentRot;
-//		if (rotDiff > 0 && rotDiff < 180) {
-//			direction = 1;
-//		} else if (rotDiff > 0 && rotDiff >= 180) {
-//			direction = -1;
-//		} else if (rotDiff < 0 && rotDiff > -180) {
-//			direction = -1;
-//		} else if (rotDiff > 0 && rotDiff < -180) {
-//			direction = 1;
-//		} else {
-//			direction = 0;
-//		}
+		float targRot = Mathf.Atan2 (targRotDir.x, -targRotDir.y) * Mathf.Rad2Deg;
 
+		//If the player isn't moving or the map is open, stop all movement, otherwise move appropriately
 		if (GameState.mapOpen || inputVector == Vector2.zero) {
 			targVel = Vector3.zero;
 		} else {
-			//float angle = Mathf.SmoothDamp (currentRot, currentRot + direction, ref rotVel, 0.1f);
-			rb.MoveRotation(targRot);
+			rb.MoveRotation(targRot); //Directly set player rotation to the appropriate angle (this is a hard set, the lerping happens in targRot)
+
+			//If the player is holding an object, keep the object oriented upwards
 			if (GetComponent<PlayerCollision> ().holding) {
 				GetComponent<PlayerCollision> ().heldObject.transform.rotation = Quaternion.identity;
 			}
@@ -102,6 +86,8 @@ public class Movement : MonoBehaviour {
 
 	}
 
+	//Called any time the player jumps to a new asteroid. 
+	//If 'isAsteroid' is set to false, then it is implied that the jump failed ,and the player goes to a point in space and dies
 	public void SwitchAsteroid (Transform a, bool isAsteroid = true) {
 		if (a != GameState.asteroid) {//shouldn't be able to jump to yourself
 //		print ("Instantiating!");
