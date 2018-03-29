@@ -9,5 +9,5 @@ EditorBuildSettings:
     path: Assets/Scenes/Logo.unity
     guid: e02b30d6b0e8c40fd83791b4a126d34b
   - enabled: 1
-    path: Assets/Scenes/Test.unity
+    path: Assets/Scenes/MainGame.unity
     guid: e89dd5314ea3c48bf831d48b91cfa08d

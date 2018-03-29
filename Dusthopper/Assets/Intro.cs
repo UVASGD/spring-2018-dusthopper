@@ -2,48 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FadeController), typeof(AudioSource))]
 public class Intro : MonoBehaviour {
 
-	State myState;
 	FadeController fade;
+	private bool buttonPressed;
+	private AudioSource buttonPressedAudio;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		fade = GetComponent<FadeController> ();
+		buttonPressedAudio = GetComponent<AudioSource> ();
 	}
 
 	void Update () {
 		if (Input.anyKeyDown) {
 			fade.fadeOut(0.4f);
-			Invoke ("StartGame", 3f);
+			buttonPressed = true;
+			buttonPressedAudio.Play ();
 		}
 
-//		switch (myState) {
-//		case State.fadeIn:
-//			
-//			break;
-//
-//		default:
-//		case State.full:
-//			if (Input.anyKeyDown) {
-//				fade.fadeOut(1f);
-//				Invoke ("StartGame", 3f);
-//			}
-//			break;
-//
-//		case State.fadeOut:
-//
-//			break;
-//		}
+		if (fade.anim.GetCurrentAnimatorStateInfo(0).IsName("FadedOut") && buttonPressed) {
+			StartGame ();
+		}
 	}
 	
 	void StartGame () {
 		UnityEngine.SceneManagement.SceneManager.LoadScene (1);
 	}
-
-	void SetState () {
-
-	}
-
-	public enum State { fadeIn, full, fadeOut };
 }
