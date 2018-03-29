@@ -34,7 +34,7 @@ public class PlayerCollision : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Food") {
-            print("EATING FOOD");
+//            print("EATING FOOD");
             Eat(other.gameObject);
         }
 
@@ -43,12 +43,12 @@ public class PlayerCollision : MonoBehaviour {
     //Add cases for what to do with certain objects here
     void OnTriggerEnter2D ( Collider2D other){
 		if (other.gameObject.tag == "Food"){
-			print ("EATING FOOD");
+//			print ("EATING FOOD");
 			Eat (other.gameObject);
 		}
 
 		if (other.tag == "Pollen" && !holding && other.gameObject != justDroppedObj) {
-			print ("Picked up pollen");
+//			print ("Picked up pollen");
 			heldObject = other.gameObject;
 			holding = true;
 			other.transform.SetParent(gameObject.transform);

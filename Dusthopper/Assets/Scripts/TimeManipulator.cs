@@ -72,7 +72,7 @@ public class TimeManipulator : MonoBehaviour {
 	}
 
 	public void AutoScroll () {
-		print ("Scrolling!");
+//		print ("Scrolling!");
 		startScrollTime = timeFromNow;
 		autoScroll = true;
 	}

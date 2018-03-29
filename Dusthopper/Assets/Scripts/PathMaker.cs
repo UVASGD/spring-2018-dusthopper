@@ -141,7 +141,7 @@ public class PathMaker : MonoBehaviour {
 								i++;
 							}
 							if (!overlap) {
-								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
+//								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
 								if(GameState.sensorTimeRange - GetComponent<TimeManipulator> ().timeFromNow >= GameState.secondsPerJump){
 									GetComponent<TimeManipulator> ().AutoScroll ();
 								}

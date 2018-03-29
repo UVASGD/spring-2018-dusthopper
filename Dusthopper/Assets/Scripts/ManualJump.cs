@@ -23,7 +23,7 @@ public class ManualJump : MonoBehaviour {
 					RaycastHit2D[] thingsIHit = Physics2D.RaycastAll ((Vector2)transform.position, directionOfCursor, GameState.maxAsteroidDistance, onlyAsteroids);
 					if (thingsIHit.Length > 1) {
 						Transform otherAsteroid = thingsIHit[1].transform; // thingsIHit[0]  is the asteroid we're standing on so we want the next one
-						print(otherAsteroid.gameObject.name);
+//						print(otherAsteroid.gameObject.name);
 						GetComponent<Movement> ().SwitchAsteroid (otherAsteroid);
 					} else {
 						print ("didn't hit anything");

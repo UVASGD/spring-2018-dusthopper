@@ -58,7 +58,7 @@ public class JumpAnimation : MonoBehaviour {
 						animationChild.localPosition = childRelativePos;
 					}*/
 
-					print ("Destination Reached");
+//					print ("Destination Reached");
 					GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = true;
 					if (GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
 						GameObject.FindWithTag ("Player").GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = true;
