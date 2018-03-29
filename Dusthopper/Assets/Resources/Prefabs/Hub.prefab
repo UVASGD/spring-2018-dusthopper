@@ -555,7 +555,7 @@ MonoBehaviour:
   asteroidSprite: {fileID: 0}
   goalArrowsVisible: 1
   goalArrowsVisibleChance: 1
-  radius: 0.9
+  radius: 0.95
   massFactor: 1
   pulledByGrav: 0
   hasGrav: 0

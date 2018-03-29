@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Hunger : MonoBehaviour {
 	//Does a hunger bar incl. GUI and has methods relating to hunger
 	//private float hunger;
-	public Color fullHungerBarColor; //TODO: Change display to show a colored rectangle. also make red / yellow for when close to death
+	public Color fullHungerBarColor;
 	public Color emptyHungerBarColor;
 	public Color currentHungerBarColor;
 	public bool debugDontLoseHunger;
