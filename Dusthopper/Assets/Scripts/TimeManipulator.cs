@@ -79,7 +79,7 @@ public class TimeManipulator : MonoBehaviour {
 
 	void OnGUI() {
 		if (GameState.mapOpen) {
-			print ("Time elapsed: " + (Time.time - startScrollTime));
+//			print ("Time elapsed: " + (Time.time - startScrollTime));
 			if (timeFromNow - startScrollTime >= GameState.secondsPerJump) {
 				if (autoScroll) {
 					timeFromNow = startScrollTime + GameState.secondsPerJump;
