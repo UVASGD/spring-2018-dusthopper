@@ -5,6 +5,7 @@ using UnityEngine;
 //Finished
 public class StayInRadius : MonoBehaviour {
 	//This script bounces an asteroid off the edge of the world (which is a big circle) keeping it from drifting away
+	//Also used by hub and gravity fragment asteroids to keep them in roughly the same world position
 
 	public float radius = 0f;
     public Vector3 center = Vector3.zero;
