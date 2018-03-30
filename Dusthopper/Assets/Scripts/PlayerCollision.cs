@@ -34,7 +34,7 @@ public class PlayerCollision : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Food") {
-//            print("EATING FOOD");
+ //           print("Collided with food (stay)");
             Eat(other.gameObject);
         }
 
@@ -43,7 +43,7 @@ public class PlayerCollision : MonoBehaviour {
     //Add cases for what to do with certain objects here
     void OnTriggerEnter2D ( Collider2D other){
 		if (other.gameObject.tag == "Food"){
-//			print ("EATING FOOD");
+//  			print ("Collided with food (enter)");
 			Eat (other.gameObject);
 		}
 
@@ -67,10 +67,11 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void Eat(GameObject food){
-
+//        print("in eat method");
         Food thisObject = food.GetComponent<Food>();
 
         if (thisObject.canEat()) {
+ //           print("determined can eat");
             hunger.addToHunger (food.GetComponent<Food> ().hungerUp);
 		    nom.Play ();
 		    Destroy (food);
