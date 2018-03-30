@@ -3313,6 +3313,11 @@ Prefab:
       propertyPath: heldObjLoc
       value: 
       objectReference: {fileID: 692071871}
+    - target: {fileID: 114004829312517264, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1511771303}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
