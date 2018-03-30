@@ -16,7 +16,7 @@ public class Intro : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.anyKeyDown) {
+		if (Input.anyKeyDown && fade.anim.GetCurrentAnimatorStateInfo(0).IsName("Faded")) {
 			fade.fadeOut(0.4f);
 			buttonPressed = true;
 			buttonPressedAudio.Play ();
