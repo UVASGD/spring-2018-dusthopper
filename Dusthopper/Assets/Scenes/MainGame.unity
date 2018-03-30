@@ -9272,7 +9272,7 @@ GameObject:
   - component: {fileID: 2087102886}
   - component: {fileID: 2087102885}
   - component: {fileID: 2087102884}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}

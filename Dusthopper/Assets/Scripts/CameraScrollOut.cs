@@ -135,6 +135,7 @@ public class CameraScrollOut : MonoBehaviour {
 
 			foreach (GameObject item in allObjectsArray) {
 				if (item.layer != LayerMask.NameToLayer("Asteroid") && item.layer != LayerMask.NameToLayer("UI") && item.layer != LayerMask.NameToLayer("Control") && item.layer != LayerMask.NameToLayer("Player")) {
+					
 					item.SetActive (false);
 					disabledObjects.Add (item);
 				}
