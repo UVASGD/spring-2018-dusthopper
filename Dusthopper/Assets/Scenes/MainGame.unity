@@ -2948,6 +2948,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2dd5bdcc0aab420cb5fbfa91f209181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &692071871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 692071872}
+  m_Layer: 10
+  m_Name: HeldObjLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &692071872
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 692071871}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3.92, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1151648265}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &732204292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,6 +3127,11 @@ Prefab:
       propertyPath: HungerSliderColor
       value: 
       objectReference: {fileID: 1028028628}
+    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: heldObjLoc
+      value: 
+      objectReference: {fileID: 692071871}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
