@@ -147,6 +147,9 @@ MonoBehaviour:
   - obj: {fileID: 1013170403800838, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
     spawnChance: 0.75
     uniqueSpawn: 0
+  - obj: {fileID: 1921398499240866, guid: 53f81eb1ec7b4004a954b3eb15b3443d, type: 2}
+    spawnChance: 1.5
+    uniqueSpawn: 0
   decorationItems:
   - obj: {fileID: 1779060642471318, guid: d4ec1f01b5d77d5458bdf6a1e8080ac7, type: 2}
     spawnChance: 1

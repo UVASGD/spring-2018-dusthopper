@@ -133,7 +133,8 @@ public static class GameState {
 	public static void RandomizeStats()
 	{
 		maxAsteroidDistance = Random.Range (20f, 30f);
-		secondsPerJump = Random.Range (2f, 10f);
+		//secondsPerJump = Random.Range (2f, 10f);
+		secondsPerJump = 4f;
 		playerSpeed = Random.Range (0.2f, 0.5f);
 		maxHunger = Random.Range (30f, 120f);
 		hunger = maxHunger;
