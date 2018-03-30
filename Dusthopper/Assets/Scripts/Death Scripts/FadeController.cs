@@ -10,7 +10,7 @@ public class FadeController : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
         anim = GetComponent<Animator>();
-		anim.speed = 0.4f;
+		anim.speed = 0.6f;
 		anim.SetTrigger ("FadeIn");
 	}
 	
