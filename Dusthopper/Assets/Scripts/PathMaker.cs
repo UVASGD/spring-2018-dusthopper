@@ -35,8 +35,11 @@ public class PathMaker : MonoBehaviour {
 
 	public bool jumpTimeElapsed = false;
 
-	// Use this for initialization
-	void Start () {
+    //During whether or not the game should fastforward time during jump scheduling
+    public static bool autoScroll = true;
+
+    // Use this for initialization
+    void Start () {
 		path = new SortedList<float,Transform> (0);
 		jumpTimes = new SortedList<float, float> (0);
 		player = GameObject.FindWithTag ("Player");
@@ -142,7 +145,7 @@ public class PathMaker : MonoBehaviour {
 							}
 							if (!overlap) {
 //								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
-								if(GameState.sensorTimeRange - GetComponent<TimeManipulator> ().timeFromNow >= GameState.secondsPerJump){
+								if(GameState.sensorTimeRange - GetComponent<TimeManipulator> ().timeFromNow >= GameState.secondsPerJump && autoScroll){
 									GetComponent<TimeManipulator> ().AutoScroll ();
 								}
 								path.Add (timeToStartCharging, hit.transform);
@@ -197,4 +200,23 @@ public class PathMaker : MonoBehaviour {
 		}
 		GameStateTimeLF = GameState.time;
 	}
+
+    public void RemoveJumps()
+    {
+        //print ("removing lowest jump");
+
+        path.Clear();
+        jumpTimes.Clear();
+        foreach (GameObject line in lines)
+        {
+            Destroy(line);
+        }
+        lines.Clear();
+        print("jump schedule cleared");
+
+    }
+
+    public void ToggleAutoScroll(){
+        autoScroll = !autoScroll;
+    }
 }
