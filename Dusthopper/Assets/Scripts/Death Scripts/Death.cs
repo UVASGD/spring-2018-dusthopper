@@ -54,6 +54,7 @@ public class Death : MonoBehaviour {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
         GameState.isAlive = true;
+        GameState.time = 0;     //fixes a bug where some systems (such as .canEat() in food) relies on game start time = 0
 
     }
 

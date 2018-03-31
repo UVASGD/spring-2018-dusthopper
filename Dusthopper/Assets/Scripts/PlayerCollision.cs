@@ -13,6 +13,7 @@ public class PlayerCollision : MonoBehaviour {
 	public GameObject heldObject; //The object being held.
 	GameObject justDroppedObj;  //The object that was recently held
 	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
+	public GameObject heldObjLoc; //empty gameobject attached to player
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
@@ -34,7 +35,7 @@ public class PlayerCollision : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.tag == "Food") {
-//            print("EATING FOOD");
+ //           print("Collided with food (stay)");
             Eat(other.gameObject);
         }
 
@@ -43,7 +44,7 @@ public class PlayerCollision : MonoBehaviour {
     //Add cases for what to do with certain objects here
     void OnTriggerEnter2D ( Collider2D other){
 		if (other.gameObject.tag == "Food"){
-//			print ("EATING FOOD");
+//  			print ("Collided with food (enter)");
 			Eat (other.gameObject);
 		}
 
@@ -52,6 +53,7 @@ public class PlayerCollision : MonoBehaviour {
 			heldObject = other.gameObject;
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
+			other.transform.position = heldObjLoc.transform.position;
 		}
 
 		if (other.tag == "Plant" && holding) {
@@ -67,10 +69,11 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void Eat(GameObject food){
-
+//        print("in eat method");
         Food thisObject = food.GetComponent<Food>();
 
         if (thisObject.canEat()) {
+ //           print("determined can eat");
             hunger.addToHunger (food.GetComponent<Food> ().hungerUp);
 		    nom.Play ();
 		    Destroy (food);

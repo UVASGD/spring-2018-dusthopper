@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 212138070780120702}
   - component: {fileID: 114936797603751506}
   - component: {fileID: 60740843317618708}
+  - component: {fileID: 114353134823183346}
   m_Layer: 0
   m_Name: Food
   m_TagString: Food
@@ -506,6 +507,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   multiplier: 0.5
+  range: 20
 --- !u!114 &114338330975532192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -524,6 +526,17 @@ MonoBehaviour:
   avgSensorTimeRange: 30
   sensorTimeRangeRange: 15
   maxSpeed: 2
+--- !u!114 &114353134823183346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144123998917694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6804d2926d166f34c9a91884588406d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114441999579174916
 MonoBehaviour:
   m_ObjectHideFlags: 1
