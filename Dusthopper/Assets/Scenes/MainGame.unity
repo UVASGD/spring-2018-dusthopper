@@ -7085,7 +7085,7 @@ MonoBehaviour:
   timeScale: 5
   asteroidContainer: {fileID: 1120569470}
   timeFromNow: 0
-  reallySmall: 0.000002
+  reallySmall: 0.00001
   autoScroll: 0
 --- !u!4 &1511771306
 Transform:
