@@ -231,10 +231,8 @@ public class PathMaker : MonoBehaviour {
         autoScroll = !autoScroll;
     }
 
-    /*
-     * This method will display the passeds text on the screen for a few seconds
-     * 
-     */
+    //this method will display the passed text in the failureText1 text object
+    //this is primarily used for informing the player why they can't jump
     public void displayFailedJump(string text) {
 
         failureText1.text = text;

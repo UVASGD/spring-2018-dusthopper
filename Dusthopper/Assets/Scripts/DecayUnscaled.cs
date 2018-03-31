@@ -11,7 +11,7 @@ public class DecayUnscaled : MonoBehaviour {
     public bool decay = false;
     
     /*
-     * This class will slowly decay a text object that it's attached to.
+     * This class will slowly decay a text object that it's attached to from opaque (visisble) to transparent (invisible)
      */
 
     //record initial colors
