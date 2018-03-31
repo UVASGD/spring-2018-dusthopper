@@ -42,6 +42,9 @@ public class CameraScrollOut : MonoBehaviour {
 	public Color iconWithSensor;
 	public Color iconWithoutSensor;
 
+	// Green Plant Icon
+	public GameObject greenPlantIcon;
+
 	// Use this for initialization
 	void Start () {
 
@@ -161,6 +164,13 @@ public class CameraScrollOut : MonoBehaviour {
 			else {
 				asteroid.GetComponent<SpriteRenderer> ().color = iconWithoutSensor;
 			}
+
+			// draw green plant icon
+			if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0) {
+				GameObject plantIcon = Instantiate(greenPlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
+				plantIcon.transform.parent = asteroid.gameObject.transform;
+				plantIcon.transform.localPosition = new Vector3 (0, 0, 0);
+			}
 		}
 	}
 
@@ -174,6 +184,20 @@ public class CameraScrollOut : MonoBehaviour {
 			} else {
 				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo>().noSensorColor;
 			}
+
+			// destroy item icons
+			if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0) {
+				Transform t = asteroid.transform;
+				for (int i = 0; i < t.childCount; i++)
+				{
+					if(t.GetChild(i).gameObject.tag == "MapIcon")
+					{
+						Destroy(t.GetChild(i).gameObject);
+					}
+
+				}
+			}
+
 		}
 	}
 

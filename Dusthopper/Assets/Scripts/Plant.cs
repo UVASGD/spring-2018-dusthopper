@@ -25,6 +25,7 @@ public class Plant : MonoBehaviour {
 				}
 			}
 		}
+		this.transform.parent.GetComponent<AsteroidInfo> ().greenPlantCount -= 1;
 		Destroy (this.gameObject); //all plants should destroy themselves
 		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
 	} 

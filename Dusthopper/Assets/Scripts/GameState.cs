@@ -124,7 +124,7 @@ public static class GameState {
 		maxAsteroidDistance = 22f;
 		secondsPerJump = 5f;
 		playerSpeed = 0.3f;
-		maxHunger = 60f;
+		maxHunger = 90f;
 		hungerLowModifier = 1f;
 		hunger = maxHunger;
 		scrap = 0;

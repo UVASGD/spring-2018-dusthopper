@@ -41,6 +41,9 @@ public class AsteroidInfo : MonoBehaviour {
     public GameObject food;
     public float foodChance;
 
+	// number of green plants on asteroid
+	public int greenPlantCount;
+
     [SerializeField]
     public float maxSpeed = 1.5f; //how fast can they be going at the start?
                                   // Use this for initialization
