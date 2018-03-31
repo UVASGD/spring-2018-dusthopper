@@ -84,7 +84,7 @@ public class TimeManipulator : MonoBehaviour {
 //			print ("Time elapsed: " + (Time.time - startScrollTime));
 			if (timeFromNow - startScrollTime >= GameState.secondsPerJump) {
 				if (autoScroll) {
-					print ("stopped autoscroll");
+//					print ("stopped autoscroll");
 					timeFromNow = startScrollTime + GameState.secondsPerJump + reallySmall;
 					timeToDisplay = startScrollTime + GameState.secondsPerJump;
 				}
