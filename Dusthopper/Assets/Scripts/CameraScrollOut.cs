@@ -44,6 +44,7 @@ public class CameraScrollOut : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 		List<GameObject> theAsteroidsTemp = new List<GameObject> ();
 		foreach (Transform child in asteroidContainer.transform) {
 			theAsteroidsTemp.Add (child.gameObject);
@@ -103,7 +104,7 @@ public class CameraScrollOut : MonoBehaviour {
 
 			if (scrollAmount < minPlayerModeSize)
 				scrollAmount = minPlayerModeSize;
-		}
+		} 
 		if (scrollAmount <= maxPlayerModeSizeWithMap) {
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		} else {
@@ -125,6 +126,7 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		}
+
 	}
 
 	//Most objects besides asteroids will get disabled by this when the map is opened and enabled
