@@ -134,11 +134,16 @@ public class PathMaker : MonoBehaviour {
 					if (prevAsteroid != hit.transform) {//don't let player add jumps to current asteroid
 						timeOfJump = GetComponent<TimeManipulator> ().timeFromNow + initialTime;
 						timeToStartCharging = timeOfJump - GameState.secondsPerJump;
+						print("new jump adding");
+						print ("timeOfJump: " + timeOfJump);
+						print ("timeToStartCharging: " + timeToStartCharging);
+						print ("initialTime: " + initialTime);
 						//Is it a valid jump?
 						if (timeToStartCharging >= initialTime) {
 							bool overlap = false;
 							i = 0;
 							while (i < path.Keys.Count && !overlap) {
+								print ("check: " + Mathf.Abs (path.Keys [i] - timeToStartCharging));
 								if (Mathf.Abs (path.Keys [i] - timeToStartCharging) < GameState.secondsPerJump) {
 									overlap = true;
                                     displayFailedJump("Jump overlaps with an existing jump");

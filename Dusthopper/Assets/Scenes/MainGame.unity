@@ -2551,7 +2551,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d29884cea7c244f5685a67b8b3745a53, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.562
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4667,7 +4667,7 @@ GameObject:
   - component: {fileID: 1012152576}
   - component: {fileID: 1012152575}
   m_Layer: 5
-  m_Name: failureText1
+  m_Name: FailureText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4719,7 +4719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5514706, g: 0.20680147, b: 0.20680147, a: 1}
+  m_Color: {r: 0.8602941, g: 0.18344508, b: 0.18344508, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4727,7 +4727,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 403376c06787a4402b6b762816fb9296, type: 3}
     m_FontSize: 28
     m_FontStyle: 0
     m_BestFit: 0
@@ -7085,6 +7085,7 @@ MonoBehaviour:
   timeScale: 5
   asteroidContainer: {fileID: 1120569470}
   timeFromNow: 0
+  reallySmall: 0.000002
   autoScroll: 0
 --- !u!4 &1511771306
 Transform:

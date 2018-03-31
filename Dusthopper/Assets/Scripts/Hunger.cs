@@ -20,7 +20,7 @@ public class Hunger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameState.hunger = GameState.maxHunger -15f;
+		GameState.hunger = GameState.maxHunger -10f;
 		hungerBarWidth = Screen.width * 4 / 8;
 		debugDontLoseHunger = false;
 		currentHungerBarColor = fullHungerBarColor;

@@ -14,8 +14,10 @@ public class TimeManipulator : MonoBehaviour {
 	public GameObject asteroidContainer;
 	[HideInInspector]
 	public float timeFromNow;
+//	public float reallySmall; //a really small number which eliminates floating point equality bullshit after autoscrolling to exactly secondsPerJump seconds into the future.
 
 	//Text field for how many seconds in future we are
+//	private float timeToDisplay; //will be timeFromNow unless we just stopped autoscrolling in which case it's timeFromNow - reallySmall (which will be a nice round number)
 	private GUIStyle style;
 	private Rect rect;
 
@@ -82,6 +84,7 @@ public class TimeManipulator : MonoBehaviour {
 //			print ("Time elapsed: " + (Time.time - startScrollTime));
 			if (timeFromNow - startScrollTime >= GameState.secondsPerJump) {
 				if (autoScroll) {
+					print ("stopped autoscroll");
 					timeFromNow = startScrollTime + GameState.secondsPerJump;
 				}
 				autoScroll = false;
@@ -157,6 +160,7 @@ public class TimeManipulator : MonoBehaviour {
 
 
 	IEnumerator StepForward () {
+		print ("calling stepForward - time currently is " + timeFromNow);
 		timeMoving = true;
 		//print ("Button Pressed!");
 		Time.timeScale = timeScale;
@@ -168,6 +172,7 @@ public class TimeManipulator : MonoBehaviour {
 
 		}
 		timeFromNow += Time.deltaTime;
+//		timeToDisplay = timeFromNow;
 		frameTimes.Push (timeFromNow);
 		timeMoving = false;
 		yield return null;
