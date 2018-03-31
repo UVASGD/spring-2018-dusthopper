@@ -191,6 +191,7 @@ public class TimeManipulator : MonoBehaviour {
 				}
 			}
 			timeFromNow = frameTimes.Pop ();
+			timeToDisplay = frameTimes.Pop ();
 		}
 		timeMoving = false;
 		yield return null;
