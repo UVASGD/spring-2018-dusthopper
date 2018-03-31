@@ -111,6 +111,7 @@ public class TimeManipulator : MonoBehaviour {
 			if (timeFromNow > GameState.sensorTimeRange) {
 				autoScroll = false;
 				timeFromNow = GameState.sensorTimeRange;
+				timeToDisplay = timeFromNow;
 			}
 			string zero = "0.00";
 			GUI.Label (rect3, zero, style);
