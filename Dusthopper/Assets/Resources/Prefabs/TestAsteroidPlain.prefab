@@ -122,7 +122,7 @@ MonoBehaviour:
   mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
   asteroidSprite: {fileID: 0}
   goalArrowsVisible: 0
-  goalArrowsVisibleChance: 0.75
+  goalArrowsVisibleChance: 1
   radius: 0.5
   massFactor: 1
   pulledByGrav: 0

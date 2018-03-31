@@ -10,6 +10,7 @@ public class PauseController : MonoBehaviour {
 	public GameObject pauseMenuUI;
 	public GameObject settingsMenuUI;
 	public GameObject debugMenu;
+	public GameObject statsDisplay;
 
 	private bool inSettings;
 
@@ -78,5 +79,9 @@ public class PauseController : MonoBehaviour {
 		inSettings = false;
 		pauseMenuUI.SetActive (true);
 		settingsMenuUI.SetActive (false);
+	}
+
+	public void ToggleStatsDisplay(){
+		statsDisplay.SetActive (!statsDisplay.activeSelf);
 	}
 }
