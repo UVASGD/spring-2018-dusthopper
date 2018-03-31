@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //TODO: figure out situations where the player places a jump but there would not be time to charge it up.
 //Currently the player is blocked from doing this, but possibly let them fail? Possibly alert them to why their jump is not being placed?
@@ -34,6 +35,7 @@ public class PathMaker : MonoBehaviour {
 	public float tolerance; //When final jump is made, I want to be a bit lenient with max distance because of various ways the jump may have changed since being scheduled.
 
 	public bool jumpTimeElapsed = false;
+    public Text failureText1;
 
     //During whether or not the game should fastforward time during jump scheduling
     public static bool autoScroll = true;
@@ -139,6 +141,7 @@ public class PathMaker : MonoBehaviour {
 							while (i < path.Keys.Count && !overlap) {
 								if (Mathf.Abs (path.Keys [i] - timeToStartCharging) < GameState.secondsPerJump) {
 									overlap = true;
+                                    displayFailedJump("Jump overlaps with an existing jump");
 									print ("jump not scheduled because it overlaps with an existing jump");
 								}
 								i++;
@@ -218,5 +221,27 @@ public class PathMaker : MonoBehaviour {
 
     public void ToggleAutoScroll(){
         autoScroll = !autoScroll;
+    }
+
+    /*
+     * This method will display the passeds text on the screen for a few seconds
+     * 
+     */
+    public void displayFailedJump(string text) {
+
+        failureText1.text = text;
+        failureText1.GetComponent<DecayUnscaled>().setOpaque();
+
+    }
+
+    public IEnumerator endDisplayFailedJump() {
+
+        yield return new WaitForSeconds(0.75f);     //display for 0.75 seconds, then end
+        failureText1.enabled = false;
+
+    }
+
+    private void stopDisplayingError() {
+        failureText1.enabled = false;
     }
 }
