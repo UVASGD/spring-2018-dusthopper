@@ -168,9 +168,11 @@ public class PathMaker : MonoBehaviour {
 							}
 						} else {
 							print ("jump not scheduled because you can't charge in time");
+							displayFailedJump ("Not enough time to charge");
 						}
 					} else {
 						print ("jump not scheduled because player tried to jump to the asteroid they'll be on");
+						displayFailedJump ("You'll be on that asteroid already");
 					}
 				}
 			}
@@ -185,6 +187,7 @@ public class PathMaker : MonoBehaviour {
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);
 				} else {
 					print ("jump cancelled - too far");
+					displayFailedJump ("jump too far");
 					jumpTooFar.Play ();
 				}
 				path.RemoveAt (0);
@@ -232,16 +235,5 @@ public class PathMaker : MonoBehaviour {
         failureText1.text = text;
         failureText1.GetComponent<DecayUnscaled>().setOpaque();
 
-    }
-
-    public IEnumerator endDisplayFailedJump() {
-
-        yield return new WaitForSeconds(0.75f);     //display for 0.75 seconds, then end
-        failureText1.enabled = false;
-
-    }
-
-    private void stopDisplayingError() {
-        failureText1.enabled = false;
     }
 }
