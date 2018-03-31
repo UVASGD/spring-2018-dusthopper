@@ -74,6 +74,10 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
 				Vector3 pos = Random.insideUnitCircle.normalized * distFromCenter;
 				GameObject inst = GameObject.Instantiate(itempool[randomIndex].obj, transform.position + pos, Quaternion.identity, this.transform) as GameObject;
 				inst.transform.parent = this.transform;
+				print (inst.name);
+				if (inst.tag == "Plant" && inst.name.ToLower().Contains("green")) {
+					this.GetComponent<AsteroidInfo> ().greenPlantCount += 1;
+				}
 				if (itempool [randomIndex].uniqueSpawn) {
 					itempool.Remove (itempool [randomIndex]);
 				}
