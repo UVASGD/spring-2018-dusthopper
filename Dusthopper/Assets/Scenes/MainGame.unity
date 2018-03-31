@@ -930,7 +930,6 @@ GameObject:
   m_Component:
   - component: {fileID: 270840521}
   - component: {fileID: 270840522}
-  - component: {fileID: 270840523}
   m_Layer: 9
   m_Name: ObjectiveSFX
   m_TagString: Untagged
@@ -1032,17 +1031,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &270840523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 270840520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dd5bdcc0aab420cb5fbfa91f209181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &288746519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,7 +2531,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 606581429}
-  - component: {fileID: 606581430}
   - component: {fileID: 606581428}
   m_Layer: 9
   m_Name: ChargeJumpSFX
@@ -2563,10 +2550,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243072596502899424, guid: 4e65d4d7609194874b9d6853440c5159,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d29884cea7c244f5685a67b8b3745a53, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.4
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2646,17 +2633,6 @@ Transform:
   m_Father: {fileID: 1627101702}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &606581430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 606581427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dd5bdcc0aab420cb5fbfa91f209181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &635508303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,7 +2992,6 @@ GameObject:
   m_Component:
   - component: {fileID: 678218556}
   - component: {fileID: 678218557}
-  - component: {fileID: 678218558}
   m_Layer: 9
   m_Name: JumpTooFarSFX
   m_TagString: Untagged
@@ -3118,17 +3093,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &678218558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 678218555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dd5bdcc0aab420cb5fbfa91f209181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &692071871
 GameObject:
   m_ObjectHideFlags: 0
@@ -3318,6 +3282,10 @@ Prefab:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1511771303}
+    - target: {fileID: 4104043672037222, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
@@ -3330,7 +3298,6 @@ GameObject:
   m_Component:
   - component: {fileID: 771828979}
   - component: {fileID: 771828980}
-  - component: {fileID: 771828981}
   m_Layer: 9
   m_Name: FallIntoSpaceSFX
   m_TagString: Untagged
@@ -3432,17 +3399,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &771828981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 771828978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dd5bdcc0aab420cb5fbfa91f209181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &776452460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3818,7 +3774,6 @@ GameObject:
   m_Component:
   - component: {fileID: 833777997}
   - component: {fileID: 833777998}
-  - component: {fileID: 833777999}
   m_Layer: 9
   m_Name: EatSFX
   m_TagString: Untagged
@@ -3920,17 +3875,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &833777999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 833777996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dd5bdcc0aab420cb5fbfa91f209181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &838891362
 GameObject:
   m_ObjectHideFlags: 0
@@ -6634,6 +6578,7 @@ GameObject:
   - component: {fileID: 1451665549}
   - component: {fileID: 1451665551}
   - component: {fileID: 1451665550}
+  - component: {fileID: 1451665552}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -6699,6 +6644,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1451665548}
+--- !u!114 &1451665552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1451665548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540cfa9f5c6dd486991785a23c8b11eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fXSlider: {fileID: 1255830762}
+  musicSlider: {fileID: 1992144085}
+  audioMixer: {fileID: 24100000, guid: 4e65d4d7609194874b9d6853440c5159, type: 2}
+  scrollSpeedSlider: {fileID: 1820720996}
+  pathMaker: {fileID: 1511771307}
+  cameraScrollOut: {fileID: 48249556}
 --- !u!1 &1458128170
 GameObject:
   m_ObjectHideFlags: 0
@@ -7098,7 +7060,6 @@ GameObject:
   - component: {fileID: 1511771307}
   - component: {fileID: 1511771308}
   - component: {fileID: 1511771310}
-  - component: {fileID: 1511771305}
   - component: {fileID: 1511771309}
   - component: {fileID: 1511771313}
   - component: {fileID: 1511771314}
@@ -7125,17 +7086,6 @@ MonoBehaviour:
   asteroidContainer: {fileID: 1120569470}
   timeFromNow: 0
   autoScroll: 0
---- !u!114 &1511771305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1511771303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 636c486fd823341dda53967b8cd0dafc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1511771306
 Transform:
   m_ObjectHideFlags: 0
@@ -7162,13 +7112,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 1155296980}
-  chargeJump: {fileID: 0}
+  chargeJump: {fileID: 606581428}
   jumpTooFar: {fileID: 678218557}
   percentIdle: 0.2
   initialTime: 0
   tolerance: 1
   jumpTimeElapsed: 0
-  failureText1: {fileID: 1012152576}
+  failureText1: {fileID: 0}
+  autoScroll: 1
 --- !u!114 &1511771308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9675,7 +9626,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2072925252}
   - component: {fileID: 2072925253}
-  - component: {fileID: 2072925254}
   m_Layer: 9
   m_Name: JumpSFX
   m_TagString: Untagged
@@ -9777,17 +9727,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &2072925254
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2072925251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2dd5bdcc0aab420cb5fbfa91f209181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2087102883
 GameObject:
   m_ObjectHideFlags: 0

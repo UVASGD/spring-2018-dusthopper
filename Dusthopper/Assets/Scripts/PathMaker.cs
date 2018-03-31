@@ -38,7 +38,7 @@ public class PathMaker : MonoBehaviour {
     public Text failureText1;
 
     //During whether or not the game should fastforward time during jump scheduling
-    public static bool autoScroll = true;
+    public bool autoScroll = true;
 
     // Use this for initialization
     void Start () {

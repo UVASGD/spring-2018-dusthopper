@@ -12,6 +12,8 @@ public class ManualJump : MonoBehaviour
     public AudioSource jump;
     public GameObject gameManager;
 
+    bool playingSoundFromHere = false;
+
     void Start()
     {
         timeHeld = 0f;
@@ -61,6 +63,7 @@ public class ManualJump : MonoBehaviour
                     timeHeld += Time.deltaTime;
                     if (!jump.isPlaying)
                     {
+                        playingSoundFromHere = true;
                         jump.Play();
                     }
                 }
@@ -69,9 +72,10 @@ public class ManualJump : MonoBehaviour
             {
                 timeHeld = 0;
                 hasCanceled = false;
-                if (jump.isPlaying)
+                if (jump.isPlaying && playingSoundFromHere)
                 {
                     jump.Stop();
+                    playingSoundFromHere = false;
                 }
             }
         }
