@@ -2543,8 +2543,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 606581429}
-  - component: {fileID: 606581428}
   - component: {fileID: 606581430}
+  - component: {fileID: 606581428}
   m_Layer: 9
   m_Name: ChargeJumpSFX
   m_TagString: Untagged
@@ -2563,10 +2563,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 243072596502899424, guid: 4e65d4d7609194874b9d6853440c5159,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: d29884cea7c244f5685a67b8b3745a53, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5568,6 +5568,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1255830761}
   - component: {fileID: 1255830762}
+  - component: {fileID: 1255830763}
   m_Layer: 5
   m_Name: SFXVolumeSlider
   m_TagString: Untagged
@@ -5645,6 +5646,49 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1255830763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1255830760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd5731fd46844e0ba97ef0a20f2287f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: -80
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.11549598
+      value: -8.876381
+      inSlope: 9.612921
+      outSlope: 9.612921
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8962716
+      value: 11.323597
+      inSlope: 4.817652
+      outSlope: 4.817652
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 20
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  masterMix: {fileID: 24100000, guid: 4e65d4d7609194874b9d6853440c5159, type: 2}
+  paramName: FXVol
 --- !u!1 &1259872658
 GameObject:
   m_ObjectHideFlags: 0
@@ -7027,7 +7071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 1155296980}
-  chargeJump: {fileID: 606581428}
+  chargeJump: {fileID: 0}
   jumpTooFar: {fileID: 678218557}
   percentIdle: 0.2
   initialTime: 0
@@ -7413,7 +7457,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1647041932}
   - component: {fileID: 1647041931}
-  - component: {fileID: 1647041933}
   m_Layer: 9
   m_Name: Music
   m_TagString: Untagged
@@ -7515,17 +7558,6 @@ Transform:
   m_Father: {fileID: 1627101702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1647041933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1647041930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fc2783265c494f018f95d43be59d31d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1652197452
 GameObject:
   m_ObjectHideFlags: 0
@@ -9219,6 +9251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1992144084}
   - component: {fileID: 1992144085}
+  - component: {fileID: 1992144086}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -9307,6 +9340,49 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &1992144086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1992144083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd5731fd46844e0ba97ef0a20f2287f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: -80
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.11549598
+      value: -8.876381
+      inSlope: 9.612921
+      outSlope: 9.612921
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 0.8962716
+      value: 11.323597
+      inSlope: 4.817652
+      outSlope: 4.817652
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 20
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  masterMix: {fileID: 24100000, guid: 4e65d4d7609194874b9d6853440c5159, type: 2}
+  paramName: musicVol
 --- !u!1 &2009313497
 GameObject:
   m_ObjectHideFlags: 0
