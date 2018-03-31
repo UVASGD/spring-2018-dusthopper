@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class Movement : MonoBehaviour {
+
 	//This handles player movement, including:
 	//		WASDing around on current asteroid 
 	//		keeping movement restricted to radius away from the center of current asteroid
