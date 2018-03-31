@@ -82,8 +82,10 @@ public class TimeManipulator : MonoBehaviour {
 //			print ("Time elapsed: " + (Time.time - startScrollTime));
 			if (timeFromNow - startScrollTime >= GameState.secondsPerJump) {
 				if (autoScroll) {
-					timeFromNow = startScrollTime + GameState.secondsPerJump;
+					timeFromNow = startScrollTime + GameState.secondsPerJump + 0.0001f;
+
 				}
+
 				autoScroll = false;
 			}
 
@@ -111,7 +113,7 @@ public class TimeManipulator : MonoBehaviour {
 			string zero = "0.00";
 			GUI.Label (rect3, zero, style);
 
-			string text = string.Format("{0:0.00}",timeFromNow);
+			string text = string.Format("{0:0.00}",Mathf.Max(timeFromNow, 0f));
 			GUI.Label(rect, text, style);
 
 			string text2 = string.Format("{0:0.00}",GameState.sensorTimeRange);
