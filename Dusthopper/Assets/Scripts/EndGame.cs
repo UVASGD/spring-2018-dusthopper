@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class EndGame : MonoBehaviour {
 
-	private bool theEnd;
 	private GameObject hub;
 
 	// Use this for initialization
 	void Awake () {
-		theEnd = false;
+		GameState.endGame = false;
 		hub = GameObject.FindGameObjectWithTag ("Hub");
 	}
 	
