@@ -61,6 +61,10 @@ public class CameraScrollOut : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (GameState.endGame) {
+			return;
+		}
+
 
 		//toggle starfields
 		if (GameState.mapOpen) {

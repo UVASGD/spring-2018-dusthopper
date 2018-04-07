@@ -21,7 +21,7 @@ public class ConvergeOnHub : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!slowing) {
-			rb.AddForce ((hub.transform.position - transform.position).normalized * 2);
+			rb.AddForce ((hub.transform.position - transform.position).normalized * 4);
 		} else {
 			if (rb.velocity.sqrMagnitude > 0.01f) {
 				rb.velocity -= rb.velocity * Time.deltaTime;
