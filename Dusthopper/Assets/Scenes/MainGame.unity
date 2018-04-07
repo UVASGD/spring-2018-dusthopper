@@ -7294,7 +7294,8 @@ Prefab:
       propertyPath: tooltip
       value: 
       objectReference: {fileID: 1767850999}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114924296808195874, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1506305107

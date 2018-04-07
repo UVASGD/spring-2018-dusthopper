@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 114269449410968116}
   - component: {fileID: 114605504197452634}
   - component: {fileID: 58310260253609922}
+  - component: {fileID: 114395620542739458}
   m_Layer: 8
   m_Name: Hub
   m_TagString: Hub
@@ -537,6 +538,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6804d2926d166f34c9a91884588406d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114395620542739458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175468082650272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f443193e64842c384cbb6d4dd6b1b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114441999579174916
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -583,6 +595,7 @@ MonoBehaviour:
   sensorTimeRangeRange: 15
   food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
   foodChance: 0
+  greenPlantCount: 0
   maxSpeed: 1.5
   itempool: []
   decorationItems: []
