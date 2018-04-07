@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour {
 
 	public void GoToGravityFragment()
 	{
-		SwitchAsteroid (GameObject.Find("Asteroid Container").transform.GetChild(GameObject.Find("Asteroid Container").transform.childCount-1));
+		SwitchAsteroid (GameObject.Find("Asteroid Container").transform.GetChild(GameObject.Find("Asteroid Container").transform.childCount-Random.Range(1, 4)));
 	}
 	
 	// Update is called once per frame

@@ -35,6 +35,7 @@ public static class GameState {
 	public static float playerSpeed = 0.3f; //Speed at which player travels on asteroids
 	public static float maxHunger = 60f; //Maximum hunger, or how many seconds until death without replenishing
 	public static float hungerLowModifier = 1f; //how much hunger decreases on deltatime
+	public static float gravityFragmentCount = 0; //The number of gravity fragments the player has collected (0 to 3)
 	/*************************************************************************************************/
 
 
