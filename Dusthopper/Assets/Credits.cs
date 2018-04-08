@@ -6,19 +6,23 @@ using UnityEngine.SceneManagement;
 public class Credits : MonoBehaviour {
 
 	public float scrollSpeed = 0.2f;
+	public bool hasEnded;
 
 	// Use this for initialization
 	void Start () {
-		Invoke ("FadeOut", 30f);
-		Invoke ("BackToMainMenu", 35f);
+		hasEnded = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.y < 1350) {
+		if (transform.position.y < Screen.height / 2 + 1400) {
 			transform.position += Vector3.up * Time.deltaTime * scrollSpeed;
 		} else {
-			//transform.position = new Vector3 (transform.position.x, 1350, transform.position.z);
+			if (!hasEnded) {
+				Invoke ("FadeOut", 5f);
+				Invoke ("BackToMainMenu", 10f);
+				hasEnded = true;
+			}
 		}
 	}
 

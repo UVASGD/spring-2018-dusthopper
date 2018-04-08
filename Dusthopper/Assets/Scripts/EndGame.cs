@@ -81,6 +81,8 @@ public class EndGame : MonoBehaviour {
 
 		Invoke ("CallFade", 30f);
 		Invoke ("Credits", 40f);
+
+		GameState.gravityFragmentCount = 0;
 	}
 
 	private void CallFade () {
