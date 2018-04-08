@@ -153,3 +153,18 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 1
+--- !u!244 &244900138571296694
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4a59336651dbe48e2b5a51c00a503226
+  m_EffectName: Distortion
+  m_MixLevel: 031fc460648bd495a8c0fea774fe4e8a
+  m_Parameters:
+  - m_ParameterName: Level
+    m_GUID: bf2bf161f311e4f4faef75459711cbe1
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
