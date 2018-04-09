@@ -19,15 +19,26 @@ public class Credits : MonoBehaviour {
 			transform.position += Vector3.up * Time.deltaTime * scrollSpeed;
 		} else {
 			if (!hasEnded) {
-				Invoke ("FadeOut", 5f);
-				Invoke ("BackToMainMenu", 10f);
-				hasEnded = true;
+				if (Input.anyKeyDown) {
+					Invoke ("FadeOut", 0f);
+					Invoke ("BackToMainMenu", 5f);
+				}
+
+				Invoke ("FadeOut", 125f);
+				Invoke ("BackToMainMenu", 130f);
 			}
+		}
+
+		if (hasEnded) {
+		GameObject.FindWithTag("MainCamera").GetComponent<AudioSource>().volume -= Time.deltaTime * 0.2f;
 		}
 	}
 
 	void FadeOut () {
-		FindObjectOfType<FadeController> ().fadeOut (0.2f);
+		if (!hasEnded) {
+			FindObjectOfType<FadeController> ().fadeOut (0.2f);
+			hasEnded = true;
+		}
 	}
 
 	void BackToMainMenu () {
