@@ -138,6 +138,7 @@ MonoBehaviour:
   sensorTimeRangeRange: 15
   food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
   foodChance: 0.5
+  greenPlantCount: 0
   maxSpeed: 1.5
   itempool:
   - obj: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}

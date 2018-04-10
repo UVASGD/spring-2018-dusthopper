@@ -8,6 +8,7 @@ public class PlayerCollision : MonoBehaviour {
 
 	private Hunger hunger;
 	public AudioSource nom;
+	public AudioSource chaching; //scrap pickup noise
 
 	public bool holding; //Whether or not you are holding something
 	public GameObject heldObject; //The object being held.
@@ -48,6 +49,12 @@ public class PlayerCollision : MonoBehaviour {
 			Eat (other.gameObject);
 		}
 
+		if (other.tag == "Scrap") {
+			print ("collided with scrap");
+			GameState.scrap += other.gameObject.GetComponent<ScrapBehavior> ().scrapValue;
+			chaching.Play ();
+			Destroy (other.gameObject);
+		}
 		if (other.tag == "Pollen" && !holding && other.gameObject != justDroppedObj) {
 //			print ("Picked up pollen");
 			heldObject = other.gameObject;
