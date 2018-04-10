@@ -27,6 +27,7 @@ public class ObtainFragment : MonoBehaviour {
 //		print (state);
 		switch (state) {
 		default:
+			transform.eulerAngles += new Vector3 (0f, 0f, -rotSpeed * Time.deltaTime);
 			break;
 		case State.initial:
 			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);

@@ -39,7 +39,7 @@ public class EndGame : MonoBehaviour {
 
 			if (canRotate) {
 				hub.transform.Find ("GravPoints").Rotate (Vector3.forward * -rotateSpeed * Time.deltaTime);
-				rotateSpeed = Mathf.SmoothDamp (rotateSpeed, 120f, ref refRotate, 10f);
+				rotateSpeed = Mathf.SmoothDamp (rotateSpeed, 240f, ref refRotate, 10f);
 			}
 
 			if (endAudio.volume < 1) {

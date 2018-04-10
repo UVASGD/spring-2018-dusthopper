@@ -17,11 +17,11 @@ public class HubState : MonoBehaviour {
 
 		g2 = new GameObject ("G2").transform;
 		g2.SetParent (gravPoints);
-		g2.position = (Vector3.left + Vector3.down).normalized * 2f;
+		g2.position = (Vector3.left * 2 + Vector3.down).normalized * 2f;
 
 		g3 = new GameObject ("G3").transform;
 		g3.SetParent (gravPoints);
-		g3.position = (Vector3.right + Vector3.down).normalized * 2f;
+		g3.position = (Vector3.right * 2 + Vector3.down).normalized * 2f;
 	}
 	
 	// Update is called once per frame
