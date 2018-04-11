@@ -55,6 +55,10 @@ public class PathMaker : MonoBehaviour {
 		if (GameState.mapOpen) {
 			EditPath ();
 			if (!mapOpenLF) {
+				if (chargeJump.isPlaying) {
+					chargeJump.Pause ();
+				}
+
 				foreach (GameObject line in lines) {
 					line.GetComponent<LineRenderer> ().enabled = true;
 				}
@@ -62,6 +66,10 @@ public class PathMaker : MonoBehaviour {
 		} else {
 			TraversePath ();
 			if (mapOpenLF) {
+				if (chargeJump.time > 0) {
+					chargeJump.UnPause ();
+				}
+
 				foreach (GameObject line in lines) {
 					line.GetComponent<LineRenderer> ().enabled = false;
 				}
