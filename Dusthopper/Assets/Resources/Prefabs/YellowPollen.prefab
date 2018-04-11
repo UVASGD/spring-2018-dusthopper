@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114239575743689426}
   - component: {fileID: 70008288360442670}
   m_Layer: 0
-  m_Name: GreenPollen
+  m_Name: YellowPollen
   m_TagString: Pollen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5026d7e6890a4493393c43e2831d425f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: GreenPollen
+  name: YellowPollen
 --- !u!212 &212118189189420362
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -103,8 +103,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: a9729737378a7493e8e51d175f8230ec, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: c272f74044dd449f3abdcfdf807006fa, type: 3}
+  m_Color: {r: 0.9725491, g: 0.9058824, b: 0.20000002, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

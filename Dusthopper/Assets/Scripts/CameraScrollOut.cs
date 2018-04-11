@@ -14,7 +14,7 @@ public class CameraScrollOut : MonoBehaviour {
 	public float minMapModeSize; //Most the player can zoom in in map mode before exiting map mode
 	private float mapSize = 20f; //zoom amount of map mode (fixed)
 
-	public GameObject tooltip;
+//	public GameObject tooltip;
 
 	//There is a special zoom procedure for jumping from an asteroid without a map to an asteroid with a map to prevent the map from immediately opening when jump is made.
 	//This will be set while that's happening
@@ -122,7 +122,7 @@ public class CameraScrollOut : MonoBehaviour {
 					scrollAmount = mapSize;
 					SetEnabledNonAsteroids (false);
 					GameState.mapOpen = true;
-					tooltip.SetActive (true);
+//					tooltip.SetActive (true);
 					SwapToMapIcons ();
 				}
 			} else {
@@ -131,7 +131,7 @@ public class CameraScrollOut : MonoBehaviour {
 					d = 0f;
 					SetEnabledNonAsteroids (true);
 					GameState.mapOpen = false;
-					tooltip.SetActive (false);
+//					tooltip.SetActive (false);
 					SwapToAsteroidSprites();
 				}
 			}

@@ -17,11 +17,11 @@ public class Scrap : MonoBehaviour {
 
 		if (GameState.asteroid.tag == "Hub") {
 			if (!upgradeShopActivated) {
-//				Rect myRect = new Rect (Screen.width - 130, Screen.height - 80, 120, 30);
-//
-//				if (GUI.Button (myRect, "Buy Upgrades: " + GameState.scrap)) {
-//					ActivateUpgradeShop ();
-//				}
+				Rect myRect = new Rect (Screen.width - 130, Screen.height - 80, 120, 30);
+
+				if (GUI.Button (myRect, "Buy Upgrades: " + GameState.scrap)) {
+					ActivateUpgradeShop ();
+				}
 			} else {
 				if (GUI.Button (new Rect (Screen.width - 130, Screen.height - 200, 120, 30), (int)costMaxHunger + ": Max Hunger")) {
 					if (GameState.scrap >= (int)costMaxHunger) {
