@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrapValue: 1
-  attractionSpeed: 0.5
+  attractionSpeed: 0.04
 --- !u!212 &212070076377340662
 SpriteRenderer:
   m_ObjectHideFlags: 1

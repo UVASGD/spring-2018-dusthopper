@@ -39,7 +39,7 @@ public class Plant : MonoBehaviour {
 				if ((spawnPos - GameState.asteroid.transform.position).magnitude <= GameState.asteroid.GetComponent<AsteroidInfo> ().radius) {
 					GameObject newScrap = GameObject.Instantiate (scrap, spawnPos, Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.forward), this.transform.parent) as GameObject;
 				} else {
-//					print ("attempt unsuccessful");
+					print ("attempt unsuccessful");
 				}
 			}
 		}
