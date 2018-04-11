@@ -132,6 +132,8 @@ public class TimeManipulator : MonoBehaviour {
 			}
 		} else {
 			if (mapOpenLF) {
+				autoScroll = false;
+				StopCoroutine ("StepForward");
 				for (int i = 0; i < asteroids.Length; i++) {
 					asteroids [i].instance.position = asteroids [i].initialPosition;
 					asteroids [i].instance.GetComponent<Rigidbody2D>().velocity = asteroids [i].initialVelocity;

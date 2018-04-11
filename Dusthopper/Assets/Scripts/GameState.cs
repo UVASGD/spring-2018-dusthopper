@@ -178,7 +178,7 @@ public static class GameState {
 
 	/* Upgrade Stats Functions */
 	public static void UpgradeMaxAsteroidDistance(float increasePercentage = 0.05f) {
-		maxHunger *= 1 + increasePercentage;
+		maxAsteroidDistance *= 1 + increasePercentage;
 	}
 
 	public static void UpgradeSecondsPerJump(float decreasePercentage = 0.05f) {
