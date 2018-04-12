@@ -131,8 +131,8 @@ public static class GameState {
 		hunger = maxHunger;
 		scrap = 0;
 		//player.transform.position = Vector3.zero;
-		asteroid = GameObject.FindWithTag("Hub").transform;
-		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
+//		asteroid = GameObject.FindWithTag("Hub").transform;
+//		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
 		//PrintState();
 	}
 
