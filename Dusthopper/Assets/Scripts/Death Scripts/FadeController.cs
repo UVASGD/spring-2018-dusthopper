@@ -5,12 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class FadeController : MonoBehaviour {
 
-    Animator anim;
+    [HideInInspector] public Animator anim;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         anim = GetComponent<Animator>();
-
+		anim.speed = 0.6f;
+		anim.SetTrigger ("FadeIn");
 	}
 	
 	// Update is called once per frame

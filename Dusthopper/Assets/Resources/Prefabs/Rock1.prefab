@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4706034272993262}
   - component: {fileID: 212887834816852638}
-  - component: {fileID: 60508265319252772}
   m_Layer: 0
   m_Name: Rock1
   m_TagString: Untagged
@@ -36,45 +35,11 @@ Transform:
   m_GameObject: {fileID: 1005941028961518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60508265319252772
-PolygonCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1005941028961518}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.72, y: 0.5}
-    newSize: {x: 0.72, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.14, y: 0.25}
-      - {x: -0.22, y: 0.25}
-      - {x: -0.34, y: 0.17}
-      - {x: -0.35999998, y: 0.01}
-      - {x: -0.35999998, y: -0.21}
-      - {x: -0.31, y: -0.25}
-      - {x: 0.28, y: -0.25}
-      - {x: 0.35999998, y: -0.17}
-      - {x: 0.35999998, y: 0.06}
-      - {x: 0.19, y: 0.21}
 --- !u!212 &212887834816852638
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -109,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: b247799a4b29d407aa84753b736e10ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3f5aa14287552f41b27d80ef7bdef19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

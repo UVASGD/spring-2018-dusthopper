@@ -1,0 +1,2 @@
+This is the map. You can open it any time by scrolling out on the hub or a green asteroid. 
+Click on an asteroid to schedule a jump. Time will move forward automatically, but you can move time with the sliders at the bottom of the screen to plan a route.

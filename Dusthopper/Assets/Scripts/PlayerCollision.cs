@@ -8,11 +8,13 @@ public class PlayerCollision : MonoBehaviour {
 
 	private Hunger hunger;
 	public AudioSource nom;
+	public AudioSource chaching; //scrap pickup noise
 
 	public bool holding; //Whether or not you are holding something
 	public GameObject heldObject; //The object being held.
 	GameObject justDroppedObj;  //The object that was recently held
 	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
+	public GameObject heldObjLoc; //empty gameobject attached to player
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
@@ -33,9 +35,8 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
     private void OnTriggerStay2D(Collider2D other) {
-        //Bug: food becomes edible after 1 second.  If you just sit on top of food, it will become edible but you won't re-check if it can be eaten.  This makes it so when you move off food you will atleast eat it.
         if (other.gameObject.tag == "Food") {
-            print("EATING FOOD");
+ //           print("Collided with food (stay)");
             Eat(other.gameObject);
         }
 
@@ -44,15 +45,22 @@ public class PlayerCollision : MonoBehaviour {
     //Add cases for what to do with certain objects here
     void OnTriggerEnter2D ( Collider2D other){
 		if (other.gameObject.tag == "Food"){
-			print ("EATING FOOD");
+//  			print ("Collided with food (enter)");
 			Eat (other.gameObject);
 		}
 
+		if (other.tag == "Scrap") {
+			print ("collided with scrap");
+			GameState.scrap += other.gameObject.GetComponent<ScrapBehavior> ().scrapValue;
+			chaching.Play ();
+			Destroy (other.gameObject);
+		}
 		if (other.tag == "Pollen" && !holding && other.gameObject != justDroppedObj) {
-			print ("Picked up pollen");
+//			print ("Picked up pollen");
 			heldObject = other.gameObject;
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
+			other.transform.position = heldObjLoc.transform.position;
 		}
 
 		if (other.tag == "Plant" && holding) {
@@ -68,10 +76,11 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void Eat(GameObject food){
-
+//        print("in eat method");
         Food thisObject = food.GetComponent<Food>();
 
         if (thisObject.canEat()) {
+ //           print("determined can eat");
             hunger.addToHunger (food.GetComponent<Food> ().hungerUp);
 		    nom.Play ();
 		    Destroy (food);

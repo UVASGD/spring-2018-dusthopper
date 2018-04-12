@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 114032795580790410}
   - component: {fileID: 114644461886171184}
   - component: {fileID: 114698572849470948}
+  - component: {fileID: 114496592598799558}
+  - component: {fileID: 114924296808195874}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -198,7 +200,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 0.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -484,6 +486,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62d4115026ed4d67baec7261ede834b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114496592598799558
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174826790699396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb698c85d5bfc44738eb7d06afe5a8cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114644461886171184
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,7 +511,7 @@ MonoBehaviour:
   scrollSpeed: 20
   swapScroll: 0
   minPlayerModeSize: 0.75
-  maxPlayerModeSizeWithMap: 10
+  maxPlayerModeSizeWithMap: 12
   maxPlayerModeSizeWithoutMap: 12
   minMapModeSize: 16.5
   jumpingToAsteroidWithMap: 0
@@ -540,6 +553,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c62d4115026ed4d67baec7261ede834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114924296808195874
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174826790699396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb698c85d5bfc44738eb7d06afe5a8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!124 &124450682818712334

@@ -12,6 +12,10 @@ public class AsteroidInfo : MonoBehaviour {
 	[HideInInspector]
 	public Sprite asteroidSprite;
 
+	// can see goal arrows?
+	public bool goalArrowsVisible;
+	public float goalArrowsVisibleChance;
+
     public float radius;
 
 	//asteroid properties
@@ -36,6 +40,9 @@ public class AsteroidInfo : MonoBehaviour {
     //proc gen food stuff
     public GameObject food;
     public float foodChance;
+
+	// number of green plants on asteroid
+	public int greenPlantCount;
 
     [SerializeField]
     public float maxSpeed = 1.5f; //how fast can they be going at the start?

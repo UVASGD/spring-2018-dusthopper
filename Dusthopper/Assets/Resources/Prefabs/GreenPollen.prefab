@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4222886069617674}
   - component: {fileID: 212118189189420362}
-  - component: {fileID: 58353878087658218}
   - component: {fileID: 114239575743689426}
+  - component: {fileID: 70008288360442670}
   m_Layer: 0
   m_Name: GreenPollen
   m_TagString: Pollen
@@ -37,13 +37,13 @@ Transform:
   m_GameObject: {fileID: 1013170403800838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1, y: 0.1, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58353878087658218
-CircleCollider2D:
+--- !u!70 &70008288360442670
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -55,8 +55,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 2.33, y: 4.13}
+  m_Direction: 0
 --- !u!114 &114239575743689426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,8 +103,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
-  m_Color: {r: 0.19342564, g: 0.63235295, b: 0.08369378, a: 1}
+  m_Sprite: {fileID: 21300000, guid: a9729737378a7493e8e51d175f8230ec, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

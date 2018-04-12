@@ -5,21 +5,28 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 
 public class Movement : MonoBehaviour {
+
 	//This handles player movement, including:
 	//		WASDing around on current asteroid 
 	//		keeping movement restricted to radius away from the center of current asteroid
 	// 		SwitchAsteroid, the method which actually switches asteroids to a target and updates some variables to do with that
 	// 		Playing some sound effects
 
-	[SerializeField][Range(0f, 10f)] private float speed = 5;
-	public AudioSource jumpSound;
-	private Rigidbody2D rb;
-	//public Transform asteroid;
-	private Vector3 lastPos;
-	public Transform animPrefab;
-
 	private int asteroidNum = 0;
+
+	//Movement reference variables
+	private Vector2 targRotDir;
+	private Vector3 lastPos;
+
+	[Header("Movement Options")]
+	[SerializeField][Range(0f, 10f)] private float speed = 5;
+	[SerializeField][Range(1f, 20f)] private float rotationSpeed = 10;
+
+	[Header("Prefabs")]
+	public AudioSource jumpSound;
+	public Transform animPrefab;
 	private UpgradeManager upgradeMgr;
+	private Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start () {
@@ -31,29 +38,41 @@ public class Movement : MonoBehaviour {
 	}
 
 	//This is just to control the "Switch Asteroid" debug button in the bottom of the screen
-	void OnGUI() {
-		if (!GameState.debugMode)
-			return;
-		
-		if (GUI.Button(new Rect(10, Screen.height - 40, 120, 30), "Switch Asteroid")) {
-			ChangeAsteroid ();
-		}
 
-		if (GUI.Button(new Rect(Screen.width - 130, Screen.height - 40, 120, 30), "Return to Hub")) {
-			SwitchAsteroid (GameObject.FindGameObjectWithTag ("Hub").transform);
-		}
+	public void GoToHUB()
+	{
+		SwitchAsteroid (GameObject.FindGameObjectWithTag ("Hub").transform);
+	}
 
-		if (GUI.Button(new Rect(Screen.width - 130, Screen.height - 120, 120, 30), "Go To Gravity Fragment")) {
-			SwitchAsteroid (GameObject.Find("Asteroid Container").transform.GetChild(GameObject.Find("Asteroid Container").transform.childCount-1));
-		}
+	public void GoToGravityFragment()
+	{
+		SwitchAsteroid (GameObject.Find("Asteroid Container").transform.GetChild(GameObject.Find("Asteroid Container").transform.childCount-Random.Range(1, 4)));
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		Vector2 targVel = new Vector2 (Input.GetAxis ("Horizontal"), Input.GetAxis ("Vertical")).normalized * (speed * upgradeMgr.walkSpeedMod);
+		//Input direction. Use this variable so you don't call GetAxis multiple times a frame (faster)
+		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized; 
 
-		if (GameState.mapOpen || (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0)) {
+		//Player translational velocity vector
+		Vector2 targVel = inputVector * (speed * upgradeMgr.walkSpeedMod); 
+
+		//This section handles rotation lerping
+		//Works by slowing moving point to look at around in unit circle around player. Player looks at the point exactly each frame
+		targRotDir += inputVector * rotationSpeed * Time.deltaTime;
+		targRotDir = Vector2.ClampMagnitude (targRotDir, 1f);
+		float targRot = Mathf.Atan2 (targRotDir.x, -targRotDir.y) * Mathf.Rad2Deg;
+
+		//If the player isn't moving or the map is open, stop all movement, otherwise move appropriately
+		if (GameState.mapOpen || inputVector == Vector2.zero) {
 			targVel = Vector3.zero;
+		} else {
+			rb.MoveRotation(targRot); //Directly set player rotation to the appropriate angle (this is a hard set, the lerping happens in targRot)
+
+			//If the player is holding an object, keep the object oriented upwards
+			if (GetComponent<PlayerCollision> ().holding) {
+				GetComponent<PlayerCollision> ().heldObject.transform.rotation = Quaternion.identity;
+			}
 		}
 
 		//Stop following asteroid movement if there is none
@@ -72,6 +91,8 @@ public class Movement : MonoBehaviour {
 
 	}
 
+	//Called any time the player jumps to a new asteroid. 
+	//If 'isAsteroid' is set to false, then it is implied that the jump failed ,and the player goes to a point in space and dies
 	public void SwitchAsteroid (Transform a, bool isAsteroid = true) {
 		if (a != GameState.asteroid) {//shouldn't be able to jump to yourself
 //		print ("Instantiating!");

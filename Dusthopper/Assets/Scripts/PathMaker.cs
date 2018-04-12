@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //TODO: figure out situations where the player places a jump but there would not be time to charge it up.
 //Currently the player is blocked from doing this, but possibly let them fail? Possibly alert them to why their jump is not being placed?
@@ -19,11 +20,12 @@ public class PathMaker : MonoBehaviour {
 	public GameObject container;
 	private GameObject player;
 	public AudioSource chargeJump;
+	public AudioSource jumpTooFar;
 	private bool mapOpenLF;
 	private List<GameObject> lines;
 	public float percentIdle;//jumps not currently active should be still dimly lit so the player can see the long term plan. This is the alpha value for those jumps.
 
-
+//	public Animation 
 	[HideInInspector]
 	public float initialTime;
 	private float timeOfJump;
@@ -32,8 +34,14 @@ public class PathMaker : MonoBehaviour {
 	private float GameStateTimeLF;
 	public float tolerance; //When final jump is made, I want to be a bit lenient with max distance because of various ways the jump may have changed since being scheduled.
 
-	// Use this for initialization
-	void Start () {
+	public bool jumpTimeElapsed = false;
+    public Text failureText1;
+
+    //During whether or not the game should fastforward time during jump scheduling
+    public bool autoScroll = true;
+
+    // Use this for initialization
+    void Start () {
 		path = new SortedList<float,Transform> (0);
 		jumpTimes = new SortedList<float, float> (0);
 		player = GameObject.FindWithTag ("Player");
@@ -47,6 +55,10 @@ public class PathMaker : MonoBehaviour {
 		if (GameState.mapOpen) {
 			EditPath ();
 			if (!mapOpenLF) {
+				if (chargeJump.isPlaying) {
+					chargeJump.Pause ();
+				}
+
 				foreach (GameObject line in lines) {
 					line.GetComponent<LineRenderer> ().enabled = true;
 				}
@@ -54,6 +66,10 @@ public class PathMaker : MonoBehaviour {
 		} else {
 			TraversePath ();
 			if (mapOpenLF) {
+				if (chargeJump.time > 0) {
+					chargeJump.UnPause ();
+				}
+
 				foreach (GameObject line in lines) {
 					line.GetComponent<LineRenderer> ().enabled = false;
 				}
@@ -92,7 +108,6 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	void EditPath () {
-		//click to toggle adding / removing from path
 		if (Input.GetMouseButtonDown(0))
 		{
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
@@ -107,7 +122,7 @@ public class PathMaker : MonoBehaviour {
 					if (jumpTimes.Keys [i] < GetComponent<TimeManipulator> ().timeFromNow + initialTime) {
 						prevAsteroidIndex = i;
 					}
-					if (hit.transform == path.Values[i] && Mathf.Abs(GetComponent<TimeManipulator> ().timeFromNow + initialTime - jumpTimes.Keys[i]) <= GameState.secondsPerJump) {
+					if (hit.transform == path.Values[i] && Mathf.Abs(GetComponent<TimeManipulator> ().timeFromNow + initialTime - jumpTimes.Keys[i]) < GameState.secondsPerJump) {
 						foundIt = true;
 						print ("removing jump to asteroid " + hit.transform.gameObject.name + " at time " + jumpTimes.Keys [i]);
 						path.RemoveAt (i);
@@ -127,19 +142,28 @@ public class PathMaker : MonoBehaviour {
 					if (prevAsteroid != hit.transform) {//don't let player add jumps to current asteroid
 						timeOfJump = GetComponent<TimeManipulator> ().timeFromNow + initialTime;
 						timeToStartCharging = timeOfJump - GameState.secondsPerJump;
+//						print("new jump adding");
+//						print ("timeOfJump: " + timeOfJump);
+//						print ("timeToStartCharging: " + timeToStartCharging);
+//						print ("initialTime: " + initialTime);
 						//Is it a valid jump?
 						if (timeToStartCharging >= initialTime) {
 							bool overlap = false;
 							i = 0;
 							while (i < path.Keys.Count && !overlap) {
+//								print ("check: " + Mathf.Abs (path.Keys [i] - timeToStartCharging));
 								if (Mathf.Abs (path.Keys [i] - timeToStartCharging) < GameState.secondsPerJump) {
 									overlap = true;
+                                    displayFailedJump("Jump overlaps with an existing jump");
 									print ("jump not scheduled because it overlaps with an existing jump");
 								}
 								i++;
 							}
 							if (!overlap) {
-								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
+//								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
+								if(GameState.sensorTimeRange - GetComponent<TimeManipulator> ().timeFromNow >= GameState.secondsPerJump && autoScroll){
+									GetComponent<TimeManipulator> ().AutoScroll ();
+								}
 								path.Add (timeToStartCharging, hit.transform);
 								jumpTimes.Add (timeOfJump, timeOfJump);
 								GameObject newLine = new GameObject ();
@@ -157,9 +181,11 @@ public class PathMaker : MonoBehaviour {
 							}
 						} else {
 							print ("jump not scheduled because you can't charge in time");
+							displayFailedJump ("Not enough time to charge");
 						}
 					} else {
 						print ("jump not scheduled because player tried to jump to the asteroid they'll be on");
+						displayFailedJump ("You'll be on that asteroid already");
 					}
 				}
 			}
@@ -174,6 +200,8 @@ public class PathMaker : MonoBehaviour {
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);
 				} else {
 					print ("jump cancelled - too far");
+					displayFailedJump ("jump too far");
+					jumpTooFar.Play ();
 				}
 				path.RemoveAt (0);
 				jumpTimes.RemoveAt (0);
@@ -191,4 +219,32 @@ public class PathMaker : MonoBehaviour {
 		}
 		GameStateTimeLF = GameState.time;
 	}
+
+    public void RemoveJumps()
+    {
+        //print ("removing lowest jump");
+
+        path.Clear();
+        jumpTimes.Clear();
+        foreach (GameObject line in lines)
+        {
+            Destroy(line);
+        }
+        lines.Clear();
+        print("jump schedule cleared");
+
+    }
+
+    public void ToggleAutoScroll(){
+        autoScroll = !autoScroll;
+    }
+
+    //this method will display the passed text in the failureText1 text object
+    //this is primarily used for informing the player why they can't jump
+    public void displayFailedJump(string text) {
+
+        failureText1.text = text;
+        failureText1.GetComponent<DecayUnscaled>().setOpaque();
+
+    }
 }

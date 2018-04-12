@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour {
 	//This populates the world with asteroids. 
-	//TODO: Every special asteroid and object generation thing will eventually have to be put here
 
     public GameObject hubPrefab;
 

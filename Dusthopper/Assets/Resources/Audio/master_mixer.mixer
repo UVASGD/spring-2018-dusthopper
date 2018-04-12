@@ -14,7 +14,11 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 42de5d1b780374a8eb30c0b6c92a6f4b
+    name: FXVol
+  - guid: c3c1e2fe632734428b666a62d6757450
+    name: musicVol
   m_AudioMixerGroupViews:
   - guids:
     - 7f1931692404a49939ba60d5befa6b11
@@ -69,7 +73,7 @@ AudioMixerSnapshotController:
     fe362384b35ce4dbeb0bc27b7d52ff88: 4.84
     b9f6cb3551a8646f5b174e6cb10ea054: 21
     2a1cb0ad02eb04f1a999ae0cb60eaf90: 0.147
-    c3c1e2fe632734428b666a62d6757450: -8.841784
+    c3c1e2fe632734428b666a62d6757450: -0.08374829
     bb0f95afc8a964d4ea79a6e6429b8c3e: 939
   m_TransitionOverrides: {}
 --- !u!243 &243072596502899424
@@ -149,3 +153,18 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 1
+--- !u!244 &244900138571296694
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: 
+  m_EffectID: 4a59336651dbe48e2b5a51c00a503226
+  m_EffectName: Distortion
+  m_MixLevel: 031fc460648bd495a8c0fea774fe4e8a
+  m_Parameters:
+  - m_ParameterName: Level
+    m_GUID: bf2bf161f311e4f4faef75459711cbe1
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0

@@ -9,6 +9,8 @@ TagManager:
   - Plant
   - Hub
   - Pollen
+  - MainCanvas
+  - MapIcon
   layers:
   - Default
   - TransparentFX

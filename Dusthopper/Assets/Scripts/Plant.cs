@@ -8,23 +8,43 @@ public class Plant : MonoBehaviour {
 	public GameObject food;
 	[SerializeField]
 	private float howFarAwayToSpawnFood;
+	public GameObject scrap;
+	[SerializeField]
+	private float howFarAwayToSpawnScrap;
 
     public void dispenseReward() {
+		GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
 		if (myPollen == "GreenPollen") {
-			//Green plant's reward is just 2-3 food spawned in a circle around it
-			Debug.Log ("green plant dispensing reward");
-			int howManyFood = Random.Range (2, 4);
+			//Green plant's reward is just 1 or 2 additional food spawned in a circle around it
+//			Debug.Log ("green plant dispensing reward");
+			int howManyFood = Random.Range (1, 3);
 			Vector3 spawnPos = transform.position;
 			for(int i = 0; i < howManyFood; i++){
 				spawnPos += (Vector3)Random.insideUnitCircle.normalized * howFarAwayToSpawnFood;
 				if ((spawnPos - GameState.asteroid.transform.position).magnitude <= GameState.asteroid.GetComponent<AsteroidInfo> ().radius) {
-					GameObject newFood = GameObject.Instantiate (food, spawnPos, Quaternion.identity, this.transform.parent) as GameObject;
+					GameObject newFood = GameObject.Instantiate (food, spawnPos, Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.forward), this.transform.parent) as GameObject;
+				} else {
+//					print ("attempt unsuccessful");
+				}
+			}
+			this.transform.parent.GetComponent<AsteroidInfo> ().greenPlantCount -= 1;
+		}
+		if (myPollen == "YellowPollen") {
+			//Yellow plant's reward is to spawn 3 to 5 scrap 
+			Debug.Log ("yellow plant dispensing reward");
+			int howManyScrap = Random.Range (3, 6);
+			Vector3 spawnPos = transform.position;
+			for(int i = 0; i < howManyScrap; i++){
+				spawnPos += (Vector3)Random.insideUnitCircle.normalized * howFarAwayToSpawnScrap;
+				if ((spawnPos - GameState.asteroid.transform.position).magnitude <= GameState.asteroid.GetComponent<AsteroidInfo> ().radius) {
+					GameObject newScrap = GameObject.Instantiate (scrap, spawnPos, Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), Vector3.forward), this.transform.parent) as GameObject;
 				} else {
 					print ("attempt unsuccessful");
 				}
 			}
-			Destroy (this.gameObject);
 		}
+		Destroy (this.gameObject); //all plants should destroy themselves
+		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
 	} 
 
 

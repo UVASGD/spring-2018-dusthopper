@@ -12,6 +12,7 @@ public static class GameState {
 
 	public static bool mapOpen; //whether or not the map is currently open
 	public static bool gamePaused; //whether or not the pause menu is open
+	public static bool endGame;
 	public static bool runActive; //whether or not the player is currently on a run
 	public static bool debugMode = true; // If enabled, displays debug buttons and text
 
@@ -33,6 +34,8 @@ public static class GameState {
 	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
 	public static float playerSpeed = 0.3f; //Speed at which player travels on asteroids
 	public static float maxHunger = 60f; //Maximum hunger, or how many seconds until death without replenishing
+	public static float hungerLowModifier = 1f; //how much hunger decreases on deltatime
+	public static float gravityFragmentCount = 0; //The number of gravity fragments the player has collected (0 to 3)
 	/*************************************************************************************************/
 
 
@@ -77,6 +80,7 @@ public static class GameState {
 		data.secondsPerJump = secondsPerJump;
 		data.playerSpeed = playerSpeed;
 		data.maxHunger = maxHunger;
+		data.hungerLowModifier = hungerLowModifier;
 		data.scrap = scrap;
 
 		data.playerPos = SerialVec3.convTo(player.transform.localPosition);
@@ -103,6 +107,7 @@ public static class GameState {
 			secondsPerJump = data.secondsPerJump;
 			playerSpeed = data.playerSpeed;
 			maxHunger = data.maxHunger;
+			hungerLowModifier = data.hungerLowModifier;
 			hasSensors = true;
 			sensorTimeRange = 30f;
 			sensorRange = 30f;
@@ -121,12 +126,13 @@ public static class GameState {
 		maxAsteroidDistance = 22f;
 		secondsPerJump = 5f;
 		playerSpeed = 0.3f;
-		maxHunger = 60f;
+		maxHunger = 90f;
+		hungerLowModifier = 1f;
 		hunger = maxHunger;
 		scrap = 0;
 		//player.transform.position = Vector3.zero;
-		asteroid = GameObject.FindWithTag("Hub").transform;
-		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
+//		asteroid = GameObject.FindWithTag("Hub").transform;
+//		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
 		//PrintState();
 	}
 
@@ -173,7 +179,7 @@ public static class GameState {
 
 	/* Upgrade Stats Functions */
 	public static void UpgradeMaxAsteroidDistance(float increasePercentage = 0.05f) {
-		maxHunger *= 1 + increasePercentage;
+		maxAsteroidDistance *= 1 + increasePercentage;
 	}
 
 	public static void UpgradeSecondsPerJump(float decreasePercentage = 0.05f) {
@@ -193,6 +199,10 @@ public static class GameState {
 		hungerScript.addToHunger (maxHunger * increasePercentage);
 	}
 
+	public static void RefreshHunger () {
+		hunger = maxHunger;
+	}
+
 }
 [System.Serializable]
 class Stats
@@ -203,6 +213,7 @@ class Stats
 	public float secondsPerJump;
 	public float playerSpeed;
 	public float maxHunger;
+	public float hungerLowModifier;
 
 	public SerialVec3 playerPos;
 }
