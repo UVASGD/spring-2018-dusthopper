@@ -30,6 +30,7 @@ public class PersistSettings : MonoBehaviour {
 			audioMixer.SetFloat("musicVol", PlayerPrefs.GetFloat("Musicmix"));
 
 			scrollSpeedSlider.value = PlayerPrefs.GetFloat("SCROLL");
+
 			cameraScrollOut.scrollSpeed = PlayerPrefs.GetFloat("PM_scrollSpeed");
 			cameraScrollOut.swapScroll = PlayerPrefs.GetInt("PM_swapScroll") ==  1 ? true : false;
 			pathMaker.autoScroll = PlayerPrefs.GetInt("PM_autoScroll") ==  1 ? true : false;
