@@ -21,15 +21,10 @@ public class PersistSettings : MonoBehaviour {
 
 		if (set)
 		{
-			fXSlider.value = PlayerPrefs.GetFloat("FX");
 
 			audioMixer.SetFloat("FXVol", PlayerPrefs.GetFloat("FXmix"));
 
-			musicSlider.value = PlayerPrefs.GetFloat("MUSIC");
-
 			audioMixer.SetFloat("musicVol", PlayerPrefs.GetFloat("Musicmix"));
-
-			scrollSpeedSlider.value = PlayerPrefs.GetFloat("SCROLL");
 
 			cameraScrollOut.scrollSpeed = PlayerPrefs.GetFloat("PM_scrollSpeed");
 			cameraScrollOut.swapScroll = PlayerPrefs.GetInt("PM_swapScroll") ==  1 ? true : false;
