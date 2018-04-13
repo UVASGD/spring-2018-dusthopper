@@ -43,6 +43,12 @@ public class Plant : MonoBehaviour {
 				}
 			}
 		}
+		if (myPollen == "GrayPollen") {
+			Debug.Log ("gray plant dispensing reward");
+			// Give player a super jump, then open map
+			GameState.maxAsteroidDistance = 3*GameState.maxAsteroidDistance;
+			Camera.main.GetComponent<CameraScrollOut>().openMap ();
+		}
 		Destroy (this.gameObject); //all plants should destroy themselves
 		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
 	} 
