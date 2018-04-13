@@ -80,7 +80,7 @@ public class Movement : MonoBehaviour {
 			return;
 		
 		//Keep constrained on current asteroidj
-		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)GameState.asteroid.position + GameState.asteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < GameState.asteroid.GetComponent<AsteroidInfo>().radius) {
+		if (IsWithinAsteroid(transform, targVel, GameState.asteroid)) {
 			rb.velocity = targVel;
 		} else {
 			rb.velocity = Vector2.zero;
@@ -89,6 +89,14 @@ public class Movement : MonoBehaviour {
 		transform.position += GameState.asteroid.position - lastPos;
 		lastPos = GameState.asteroid.position;
 
+	}
+
+	public static bool IsWithinAsteroid(Transform thisMover, Vector2 targVel, Transform asteroid) {
+		Vector2 futureTarget = ((Vector2)thisMover.position + targVel * Time.deltaTime);
+		Vector2 futureAsteroidPosition = (Vector2)asteroid.position + asteroid.GetComponent<Rigidbody2D> ().velocity * Time.deltaTime;
+		float asteroidRadius = asteroid.GetComponent<AsteroidInfo> ().radius;
+
+		return (futureTarget - futureAsteroidPosition).magnitude < asteroidRadius;
 	}
 
 	//Called any time the player jumps to a new asteroid. 

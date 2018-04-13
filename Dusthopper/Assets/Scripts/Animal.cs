@@ -6,8 +6,10 @@ public class Animal : MonoBehaviour {
 
 	private Rigidbody2D rb;
 	private Vector3 lastPos;
-	private float speed = 5;
+	private float speed = 0.5f;
 	private Transform myAsteroid;
+	private bool wandering = false;
+	Vector3 targetPosition = Vector3.zero;
 
 	// Use this for initialization
 	void Start () {
@@ -18,34 +20,50 @@ public class Animal : MonoBehaviour {
 		// change transform.position to be parent asteroid?
 		transform.position = myAsteroid.position;
 		lastPos = transform.position;
+
+		Wander ();
 	}
 	
 	// Update is called once per frame
 	protected virtual void Update () {
-		// pick a point to randomly move to
-		//Vector2 targVel = new Vector2 (lastPos.x + 2, lastPos.y + 2);
 
-		// TODO: make some random movement here
-		//Vector2 targVel = RandomVelocity;
+		if (!wandering) {
 
-		if (GameState.mapOpen || (Input.GetAxisRaw ("Horizontal") == 0 && Input.GetAxisRaw ("Vertical") == 0)) {
-			targVel = Vector3.zero;
+			//Wander ();
+		}
+			
+
+		float step = speed * Time.deltaTime;
+		transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
+
+		Vector3 positionChange = myAsteroid.position - lastPos;
+
+		transform.position += positionChange;
+		lastPos = myAsteroid.position;
+
+		Debug.Log (myAsteroid.GetInstanceID() + ": " + positionChange + ", " + myAsteroid.position.ToString() + ", " + transform.position.ToString() + ", " + targetPosition.ToString());
+	}
+
+	private void Wander() {
+		targetPosition = new Vector2 (Random.Range (-1.0f, 1.0f), Random.Range (-1.0f, 1.0f));
+
+		if (GameState.mapOpen) {
+			targetPosition = Vector2.zero;
 		}
 
 		//Stop following asteroid movement if there is none
 		if (!myAsteroid)
 			return;
 
-		//Keep constrained on current asteroidj
-		if ((((Vector2)transform.position + targVel * Time.deltaTime) - (Vector2)myAsteroid.position + myAsteroid.GetComponent<Rigidbody2D>().velocity * Time.deltaTime).magnitude < myAsteroid.GetComponent<AsteroidInfo>().radius) {
-			rb.velocity = targVel;
-		} else {
-			rb.velocity = Vector2.zero;
+		//Keep constrained on current asteroid
+		if (!Movement.IsWithinAsteroid(transform, targetPosition, myAsteroid)) {
+			
+			targetPosition = Vector2.zero;
 		}
 
-		// TODO fix that
-		transform.position += myAsteroid.position - lastPos;
-		lastPos = myAsteroid.position;
+
+
+
 	}
 
 
