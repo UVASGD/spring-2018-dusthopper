@@ -8,8 +8,8 @@ public class SetSliderPositions : MonoBehaviour {
 	public Slider fXSlider;
 	public Slider musicSlider;
 	public Slider scrollSpeedSlider;
-	public Toggle autoScrollToggle;
-	public Toggle swapScrollToggle;
+//	public Toggle autoScrollToggle;
+//	public Toggle swapScrollToggle;
 
 	void Start(){
 		fXSlider.value = PlayerPrefs.GetFloat ("FX");
