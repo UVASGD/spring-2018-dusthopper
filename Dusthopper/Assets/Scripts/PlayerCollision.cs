@@ -16,6 +16,8 @@ public class PlayerCollision : MonoBehaviour {
 	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
 	public GameObject heldObjLoc; //empty gameobject attached to player
 
+	private float previousMaxAsteroidDist;
+
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
 		holding = false;
@@ -61,12 +63,25 @@ public class PlayerCollision : MonoBehaviour {
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
 			other.transform.position = heldObjLoc.transform.position;
+			if (other.name.ToLower().Contains("gray")) {
+				// Limit jump distance
+				previousMaxAsteroidDist = GameState.maxAsteroidDistance;
+				GameState.maxAsteroidDistance = 0.50f*GameState.maxAsteroidDistance;
+
+			}
 		}
 
 		if (other.tag == "Plant" && holding) {
 			if (heldObject.GetComponent<Pollen> () != null) {
 				if (heldObject.GetComponent<Pollen> ().name == other.GetComponent<Plant> ().myPollen) {
 					Debug.Log ("you gave the plant some pollen!");
+					if (heldObject.name.ToLower().Contains("gray")) {
+						// TODO: Give player a super jump, then open map
+						// GameState.maxAsteroidDistance = 3*previousMaxAsteroidDist;
+
+						// for now just give them back normal jump distance
+						resetJumpDistance();
+					}
 					other.GetComponent<Plant> ().dispenseReward ();
 					Destroy (heldObject);
 					holding = false;
@@ -94,8 +109,15 @@ public class PlayerCollision : MonoBehaviour {
 		holding = false;
 		heldObject.transform.parent = GameState.asteroid;
 		justDroppedObj = heldObject;
+		if (heldObject.name.ToLower().Contains("gray")) {
+			resetJumpDistance();
+		}
 		heldObject = null;
 		timeSinceDrop = 0.5f;
+	}
+
+	void resetJumpDistance() {
+		GameState.maxAsteroidDistance = previousMaxAsteroidDist;
 	}
 
 }
