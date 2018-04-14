@@ -161,7 +161,13 @@ public class CameraScrollOut : MonoBehaviour {
 			foreach (GameObject item in disabledObjects) {
 				if (item) {
 					item.SetActive (true);
-				}
+
+                    //if this item is a ScrapInCloud prefab assign it a new, random velocity
+                    if (item.layer == LayerMask.NameToLayer("SpaceScrap")) {
+                        float maxSpeed = 1f;
+                        item.GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * maxSpeed;
+                    }
+                }
 			}
 			disabledObjects.Clear ();
 		}

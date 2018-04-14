@@ -32,6 +32,8 @@ public static class GameState {
 	public static int scrap = 0; // Monies that player possesses
 	public static float maxAsteroidDistance = 22f; //The distance the player can jump
 	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
+	public static float savedMaxAsteroidDistance = 22f; //saved amount
+	public static float savedSecondsPerJump = 5f; //saved amount
 	public static float playerSpeed = 0.3f; //Speed at which player travels on asteroids
 	public static float maxHunger = 60f; //Maximum hunger, or how many seconds until death without replenishing
 	public static float hungerLowModifier = 1f; //how much hunger decreases on deltatime
@@ -78,8 +80,8 @@ public static class GameState {
 		FileStream fileStream = File.Open(GetPath(), FileMode.Open);
 
 		Stats data = new Stats();
-		data.maxAsteroidDistance = maxAsteroidDistance;
-		data.secondsPerJump = secondsPerJump;
+		data.maxAsteroidDistance = savedMaxAsteroidDistance;
+		data.secondsPerJump = savedSecondsPerJump;
 		data.playerSpeed = playerSpeed;
 		data.maxHunger = maxHunger;
 		data.hungerLowModifier = hungerLowModifier;
@@ -111,6 +113,8 @@ public static class GameState {
 			
 			maxAsteroidDistance = data.maxAsteroidDistance;
 			secondsPerJump = data.secondsPerJump;
+			savedMaxAsteroidDistance = data.maxAsteroidDistance;
+			savedSecondsPerJump = data.secondsPerJump;
 			playerSpeed = data.playerSpeed;
 			maxHunger = data.maxHunger;
 			hungerLowModifier = data.hungerLowModifier;
@@ -210,10 +214,12 @@ public static class GameState {
 	/* Upgrade Stats Functions */
 	public static void UpgradeMaxAsteroidDistance(float increasePercentage = 0.05f) {
 		maxAsteroidDistance *= 1 + increasePercentage;
+		savedMaxAsteroidDistance *= 1 + increasePercentage;
 	}
 
 	public static void UpgradeSecondsPerJump(float decreasePercentage = 0.05f) {
 		secondsPerJump *= 1 - decreasePercentage;
+		savedSecondsPerJump *= 1 - decreasePercentage;
 	}
 
 	public static void UpgradePlayerSpeed(float increasePercentage = 0.05f) {

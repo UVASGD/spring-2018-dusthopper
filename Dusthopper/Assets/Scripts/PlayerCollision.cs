@@ -16,7 +16,11 @@ public class PlayerCollision : MonoBehaviour {
 	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
 	public GameObject heldObjLoc; //empty gameobject attached to player
 
-	private float previousMaxAsteroidDist;
+	public float grayPollenFactor = 0.5f;
+
+	public float bluePlantFactor = 0.5f;
+	public float bluePlantTimer = 0f;
+	public bool onBluePlant = false;
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
@@ -33,6 +37,21 @@ public class PlayerCollision : MonoBehaviour {
 				timeSinceDrop = 0.0f;
 				justDroppedObj = null;
 			}
+		}
+
+		if (bluePlantTimer > 0f) {
+			bluePlantTimer -= GameState.deltaTime;
+			Debug.Log (bluePlantTimer);
+			if (!onBluePlant) {
+				Debug.Log ("blue on");
+
+				onBluePlant = true;
+				GameState.secondsPerJump = GameState.secondsPerJump * bluePlantFactor;
+			}
+		} else if (onBluePlant) {
+			Debug.Log ("blue off");
+			onBluePlant = false;
+			GameState.secondsPerJump = GameState.secondsPerJump / bluePlantFactor;
 		}
 	}
 
@@ -65,8 +84,7 @@ public class PlayerCollision : MonoBehaviour {
 			other.transform.position = heldObjLoc.transform.position;
 			if (other.name.ToLower().Contains("gray")) {
 				// Limit jump distance
-				previousMaxAsteroidDist = GameState.maxAsteroidDistance;
-				GameState.maxAsteroidDistance = 0.50f*GameState.maxAsteroidDistance;
+				GameState.maxAsteroidDistance = grayPollenFactor*GameState.maxAsteroidDistance;
 
 			}
 		}
@@ -113,7 +131,11 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void resetJumpDistance() {
-		GameState.maxAsteroidDistance = previousMaxAsteroidDist;
+		GameState.maxAsteroidDistance = GameState.maxAsteroidDistance / grayPollenFactor;
+	}
+
+	public void setBlueTimer(float myTime) {
+		bluePlantTimer = myTime;		
 	}
 
 }
