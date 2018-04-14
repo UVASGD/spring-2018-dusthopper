@@ -10,8 +10,10 @@ public class Generator : MonoBehaviour {
     [SerializeField]
 	public List<GameObjectAndFloat> asteroids; //this list represents the probability distribution of the different asteroid type
     public List<GameObject> gravityFragmentAsteroids; //contains all the gravity fragment asteroids;
+    public List<GameObject> scrapClouds; //contains all generated scrap clouds
     public GameObject container; // Newly created asteroids will be children of this object. For Hierarchy organization. Potential TODO: Create in script as opposed to using reference
-	public int quantity = 200; //how many general asteroids?
+    public GameObject scrapCloudContainer;  // Newly created ScapCloudCores will be children of this object
+    public int quantity = 200; //how many general asteroids?
     
 	public float radius = 200; //how far away from the center can they spawn?
     public float specialAstroidOffsetRadius = 50;
@@ -79,6 +81,27 @@ public class Generator : MonoBehaviour {
             specialInst.GetComponent<StayInRadius>().center = specialInst.transform.position;
             currentRotation += 120;
         }
+
+        //Generating scrap clouds
+        for (int i = 0; i < scrapClouds.Capacity; i++) {
+
+            print("Generating scrapCloud #" + (i+1));
+            Vector3 pos = Random.insideUnitCircle * radius;
+
+            /*
+            if (i == 1) {
+                pos = Vector3.zero;
+            }
+            */
+
+            //i am only half sure how this initialization works.
+            GameObject cloudInst = GameObject.Instantiate(scrapClouds[i], pos, Quaternion.identity, scrapCloudContainer.transform) as GameObject;
+
+            //Generating surouding scrap cloud
+            cloudInst.GetComponent<GenerateScrapClouds>().generate(pos);
+            
+        }
+
     }
 }
 
