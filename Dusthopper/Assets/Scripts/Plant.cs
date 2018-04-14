@@ -49,6 +49,11 @@ public class Plant : MonoBehaviour {
 			GameState.maxAsteroidDistance = 3*GameState.maxAsteroidDistance;
 			Camera.main.GetComponent<CameraScrollOut>().openMap ();
 		}
+		if (myPollen == "BluePollen") {
+			Debug.Log ("blue plant dispensing reward");
+			// Give player less charging time
+			GameState.secondsPerJump = GameState.secondsPerJump * 0.5f;
+		}
 		Destroy (this.gameObject); //all plants should destroy themselves
 		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
 	} 

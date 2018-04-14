@@ -16,7 +16,7 @@ public class PlayerCollision : MonoBehaviour {
 	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
 	public GameObject heldObjLoc; //empty gameobject attached to player
 
-	private float previousMaxAsteroidDist;
+	public float grayPollenFactor = 0.5f;
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
@@ -65,8 +65,7 @@ public class PlayerCollision : MonoBehaviour {
 			other.transform.position = heldObjLoc.transform.position;
 			if (other.name.ToLower().Contains("gray")) {
 				// Limit jump distance
-				previousMaxAsteroidDist = GameState.maxAsteroidDistance;
-				GameState.maxAsteroidDistance = 0.50f*GameState.maxAsteroidDistance;
+				GameState.maxAsteroidDistance = grayPollenFactor*GameState.maxAsteroidDistance;
 
 			}
 		}
@@ -113,7 +112,7 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void resetJumpDistance() {
-		GameState.maxAsteroidDistance = previousMaxAsteroidDist;
+		GameState.maxAsteroidDistance = GameState.maxAsteroidDistance / grayPollenFactor;
 	}
 
 }
