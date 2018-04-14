@@ -12,6 +12,8 @@ public class Plant : MonoBehaviour {
 	[SerializeField]
 	private float howFarAwayToSpawnScrap;
 
+	public float blueTime = 5f;
+
     public void dispenseReward() {
 		GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
 		if (myPollen == "GreenPollen") {
@@ -52,7 +54,7 @@ public class Plant : MonoBehaviour {
 		if (myPollen == "BluePollen") {
 			Debug.Log ("blue plant dispensing reward");
 			// Give player less charging time
-			GameState.secondsPerJump = GameState.secondsPerJump * 0.5f;
+			GameState.player.GetComponent<PlayerCollision>().setBlueTimer(blueTime);
 		}
 		Destroy (this.gameObject); //all plants should destroy themselves
 		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
