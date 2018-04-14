@@ -62,6 +62,12 @@ public static class GameState {
 	//During a scheduled jump, this will be set so that you can't screw around with manual jumps while a scheduled jump is taking place
 	public static bool manualJumpsDisabled = false;
 
+    // Time just prior to last map opening
+    public static float lastGameTime = 0.0f;
+    // Current iteration of the wind simulation
+    public static int currentWindSimStep = 0;
+    // Whether the wind simulation is in the existence phase or dissappearance phase
+    public static bool windExist;
 
 	//Functions
 	/*************************************************************************************************/

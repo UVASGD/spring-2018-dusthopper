@@ -127,8 +127,9 @@ public class CameraScrollOut : MonoBehaviour {
 					d = 0f;
 					SetEnabledNonAsteroids (true);
 					GameState.mapOpen = false;
+                    GameState.time = GameState.lastGameTime;
 //					tooltip.SetActive (false);
-					SwapToAsteroidSprites();
+                    SwapToAsteroidSprites();
 				}
 			}
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
@@ -140,8 +141,9 @@ public class CameraScrollOut : MonoBehaviour {
 		scrollAmount = mapSize;
 		SetEnabledNonAsteroids (false);
 		GameState.mapOpen = true;
-		//					tooltip.SetActive (true);
-		SwapToMapIcons ();
+        GameState.lastGameTime = GameState.time;
+        //					tooltip.SetActive (true);
+        SwapToMapIcons ();
 	}
 
 	//Most objects besides asteroids will get disabled by this when the map is opened and enabled
