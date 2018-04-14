@@ -99,7 +99,10 @@ public class JumpAnimation : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.tag == "ScrapInCloud") {
-            //implement this eventually
+            print("jump collided with scrap");
+            GameState.scrap += collision.gameObject.GetComponent<ScrapBehavior>().scrapValue;
+            collision.gameObject.GetComponent<ScrapBehavior>().chaching.Play(); //play sound effect
+            Destroy(collision.gameObject);
         }
     }
 }

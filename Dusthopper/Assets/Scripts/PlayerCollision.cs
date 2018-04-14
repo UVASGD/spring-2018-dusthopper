@@ -54,7 +54,7 @@ public class PlayerCollision : MonoBehaviour {
 		if (other.tag == "Scrap") {
 			print ("collided with scrap");
 			GameState.scrap += other.gameObject.GetComponent<ScrapBehavior> ().scrapValue;
-			chaching.Play ();
+            other.gameObject.GetComponent<ScrapBehavior>().chaching.Play(); //play sound effect
 			Destroy (other.gameObject);
 		}
 		if (other.tag == "Pollen" && !holding && other.gameObject != justDroppedObj) {

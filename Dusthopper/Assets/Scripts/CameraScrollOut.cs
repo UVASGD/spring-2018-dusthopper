@@ -168,7 +168,7 @@ public class CameraScrollOut : MonoBehaviour {
                         item.GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * maxSpeed;
                     }
                 }
-			}
+            }
 			disabledObjects.Clear ();
 		}
 	}
