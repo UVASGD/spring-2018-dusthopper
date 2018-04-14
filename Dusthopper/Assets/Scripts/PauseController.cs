@@ -19,7 +19,7 @@ public class PauseController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		print (GameState.gamePaused);
+//		print (GameState.gamePaused);
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			if (!GameState.gamePaused) {
 				Pause ();

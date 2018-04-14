@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ObtainFragment : MonoBehaviour {
 
+	public static int fragmentCount = 0;
+
+	public int fragmentID;
+
 	public float degreesPerSecond = 20f;
 	private float rotSpeed;
 	private Vector3 velocity;
@@ -20,6 +24,19 @@ public class ObtainFragment : MonoBehaviour {
 		rotSpeed = degreesPerSecond;
         pointer = GameObject.Find(transform.parent.name.Replace("Asteroid", "Pointer"));
 		hub = GameObject.FindWithTag ("Hub").transform;
+
+		fragmentID = fragmentCount++;
+
+		if (GameState.obtainedFragment [fragmentID] == true) {
+			print ("YARRRR Gravity Fragment " + fragmentID + " obtained: true");
+			hub.GetComponent<HubState> ().AssignPoint (transform);
+			state = State.hehexd;
+		}
+		print ("FragmentID: " + fragmentID);
+
+		if (fragmentCount > 2) {
+			fragmentCount = 0;
+		}
 	}
 	
 	// Update is called once per frame
@@ -49,6 +66,7 @@ public class ObtainFragment : MonoBehaviour {
 			hub.GetComponent<HubState> ().AssignPoint (transform);
 			break;
 		case State.final:
+			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
 			transform.localPosition = Vector3.SmoothDamp (transform.localPosition, Vector3.zero, ref vel2, 1f);
 
 			if (transform.localPosition.magnitude < 0.01f) {
@@ -56,12 +74,20 @@ public class ObtainFragment : MonoBehaviour {
 				state = State.hehexd;
 			}
 			break;
+		case State.hehexd:
+			//print ("HEHEXD");
+			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
+			transform.localPosition = Vector3.zero;
+			GetComponent<Collider2D> ().enabled = false;
+			break;
 		}
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Player") {
 			GameState.RefreshHunger ();
+			GameState.obtainedFragment [fragmentID] = true;
+			GameState.SaveGame ();
 			GameObject.Find("GM").transform.Find("SFX").Find("ObjectiveSFX").GetComponent<AudioSource>().Play();
 			GameObject.Find("GM").transform.Find("SFX").Find("Music").GetComponent<AudioSource>().PlayDelayed(10f);
 			state = State.transition;

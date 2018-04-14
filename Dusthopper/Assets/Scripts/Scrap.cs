@@ -66,6 +66,7 @@ public class Scrap : MonoBehaviour {
 
 	private void CompletePurchase(float cost) {
 		GameState.scrap -= (int)cost;
+		GameState.SaveGame ();
 		upgradeShopActivated = false;
 	}
 }
