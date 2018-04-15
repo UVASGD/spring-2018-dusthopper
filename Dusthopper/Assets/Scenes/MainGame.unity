@@ -9045,6 +9045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScale: 5
   asteroidContainer: {fileID: 1120569470}
+  windContainer: {fileID: 1546438131}
   timeFromNow: 0
   autoScroll: 0
 --- !u!4 &1511771306
@@ -9359,6 +9360,55 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1546438131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1546438133}
+  - component: {fileID: 1546438132}
+  m_Layer: 10
+  m_Name: Wind Waker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1546438132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1546438131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8574488bd4929324fa7dea407870930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateWind: 1
+  windContainer: {fileID: 1546438131}
+  windMaker: {fileID: 1461216191190568, guid: b7632d6f88b85f64baa46766d5baa311, type: 2}
+  numPoints: 20
+  windMakerRadius: 10
+  delayBeforeGeneration: 15
+  minExistenceTime: 15
+  maxExistenceTime: 30
+  pregeneratedSteps: 400
+--- !u!4 &1546438133
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1546438131}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1552148725
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ public static class GameState {
     // Time just prior to last map opening
     public static float lastGameTime = 0.0f;
     // Current iteration of the wind simulation
-    public static int currentWindSimStep = 0;
+    public static int currentWindSimStep = -1;
     // Whether the wind simulation is in the existence phase or dissappearance phase
     public static bool windExist;
 

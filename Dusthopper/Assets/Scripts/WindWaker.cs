@@ -13,30 +13,28 @@ public class WindWaker : MonoBehaviour {
     public float delayBeforeGeneration;
     public float minExistenceTime;
     public float maxExistenceTime;
-    public int pregeneratedSteps = 100;
+    public int pregeneratedSteps = 400;
 
-    private static float[] existenceTimes;
-    private static float[] timeBetweenGenerations;
+    private static float[] timers;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
         // Generate the pool of WindMakers we will be using for the simulation
         for (int x = 0; x <= numPoints; x++)
         {
             GameObject inst = Instantiate(windMaker, Vector3.zero, Quaternion.identity, windContainer.transform);
             inst.SetActive(false);
         }
-        // Generate the initial batch of times for wind generation and downtime
+        // Generate the initial batch of times for wind generation and wind downtime
         float time = 0;
-        existenceTimes = new float[pregeneratedSteps];
-        timeBetweenGenerations = new float[pregeneratedSteps];
-        for (int x = 0; x < 100; x++)
+        timers = new float[pregeneratedSteps];
+        for (int x = 0; x < pregeneratedSteps; x+=2)
         {
             float existenceTime = Random.Range(minExistenceTime, maxExistenceTime);
-            existenceTimes[x] = time + existenceTime;
+            timers[x] = time + existenceTime;
             time += existenceTime;
             float timeBetweenGeneration = Random.Range(0, delayBeforeGeneration);
-            timeBetweenGenerations[x] = time + timeBetweenGeneration;
+            timers[x+1] = time + timeBetweenGeneration;
             time += timeBetweenGeneration;
         }
         StartCoroutine(BalladOfGales());
@@ -46,7 +44,7 @@ public class WindWaker : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Checks to see if current cache of steps is running out
-        if (GameState.currentWindSimStep > pregeneratedSteps - 10)
+        if (GameState.currentWindSimStep == pregeneratedSteps)
         {
             // If so then just restart from the beginning
             GameState.currentWindSimStep = 0;
@@ -60,11 +58,10 @@ public class WindWaker : MonoBehaviour {
         {
             GameState.windExist = true;
             yield return StartCoroutine(generate());
+            GameState.windExist = false;
             foreach (Transform child in windContainer.transform)
                 child.gameObject.SetActive(false);
-            GameState.windExist = false;
-            yield return StartCoroutine(MyWaitForSecondsDelay());
-            GameState.currentWindSimStep++;
+            yield return StartCoroutine(MyWaitForSeconds());
         }
     }
 
@@ -113,21 +110,13 @@ public class WindWaker : MonoBehaviour {
             currChild.GetComponent<CircleCollider2D>().radius = windMakerRadius;
         }
 
-        yield return StartCoroutine(MyWaitForSecondsExistence());
+        yield return StartCoroutine(MyWaitForSeconds());
     }
 
-    public static IEnumerator MyWaitForSecondsExistence()
+    public static IEnumerator MyWaitForSeconds()
     {
-        while (GameState.time < existenceTimes[GameState.currentWindSimStep])
-        {
-            yield return null;
-        }
-    }
-
-
-    public static IEnumerator MyWaitForSecondsDelay()
-    {
-        while (GameState.time < timeBetweenGenerations[GameState.currentWindSimStep])
+        GameState.currentWindSimStep++;
+        while (GameState.time < timers[GameState.currentWindSimStep])
         {
             yield return null;
         }

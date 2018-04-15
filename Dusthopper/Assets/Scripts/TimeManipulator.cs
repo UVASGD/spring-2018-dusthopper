@@ -63,11 +63,11 @@ public class TimeManipulator : MonoBehaviour {
         {
             windMakers[i].positions = new Stack<Vector3>(0);
             windMakers[i].windDirection = new Stack<Vector3>(0);
-            windMakers[i].activation = new Stack<bool>(0);
         }
         windSimulation = new WindSimulationStruct();
         windSimulation.randomStates = new Stack<Random.State>(0);
         windSimulation.simStep = new Stack<int>(0);
+        windSimulation.windExist = new Stack<bool>(0);
 
 		frameTimes = new Stack<float> (0);
 		Time.timeScale = 0;
@@ -151,9 +151,8 @@ public class TimeManipulator : MonoBehaviour {
                 {
                     windMakers[i].initialPosition = windInstances[i].transform.position;
                     windMakers[i].initialWindDirection = windInstances[i].GetComponent<WindMaker>().windDirection;
-                    windMakers[i].initialActive = windInstances[i].activeSelf;
                 }
-                windSimulation.initialWindStep = GameState.currentWindSimStep;
+                windSimulation.initialSimStep = GameState.currentWindSimStep;
                 windSimulation.initialRandomState = Random.state;
                 windSimulation.initialWindExist = GameState.windExist;
 			}
@@ -175,26 +174,16 @@ public class TimeManipulator : MonoBehaviour {
                 {
                     windInstances[i].transform.position = windMakers[i].initialPosition;
                     windInstances[i].GetComponent<WindMaker>().windDirection = windMakers[i].initialWindDirection;
-                    windInstances[i].SetActive(windMakers[i].initialActive);
+                    windInstances[i].SetActive(windSimulation.initialWindExist);
                     windMakers[i].positions.Clear();
                     windMakers[i].windDirection.Clear();
-                    windMakers[i].activation.Clear();
                 }
-                GameState.currentWindSimStep = windSimulation.initialWindStep;
+                GameState.currentWindSimStep = windSimulation.initialSimStep;
                 Random.state = windSimulation.initialRandomState;
-                if (windSimulation.initialWindExist)
-                {
-                    StopCoroutine(WindWaker.MyWaitForSecondsDelay());
-                    StartCoroutine(WindWaker.MyWaitForSecondsExistence());
-                }
-                else
-                {
-                    StopCoroutine(WindWaker.MyWaitForSecondsExistence());
-                    StartCoroutine(WindWaker.MyWaitForSecondsDelay());
-                }
                 GameState.windExist = windSimulation.initialWindExist;
                 windSimulation.randomStates.Clear();
                 windSimulation.simStep.Clear();
+                windSimulation.windExist.Clear();
 				frameTimes.Clear ();
 			}
 			//print (Time.timeScale);
@@ -225,10 +214,10 @@ public class TimeManipulator : MonoBehaviour {
         {
             windMakers[i].positions.Push(windInstances[i].transform.position);
             windMakers[i].windDirection.Push(windInstances[i].GetComponent<WindMaker>().windDirection);
-            windMakers[i].activation.Push(windInstances[i].activeSelf);
         }
         windSimulation.randomStates.Push(Random.state);
         windSimulation.simStep.Push(GameState.currentWindSimStep);
+        windSimulation.windExist.Push(GameState.windExist);
 		timeFromNow += Time.deltaTime;
 		frameTimes.Push (timeFromNow);
         GameState.time = GameState.lastGameTime + timeFromNow;
@@ -253,11 +242,12 @@ public class TimeManipulator : MonoBehaviour {
                 {
                     windInstances[i].transform.position = windMakers[i].positions.Pop();
                     windInstances[i].GetComponent<WindMaker>().windDirection = windMakers[i].windDirection.Pop();
-                    windInstances[i].SetActive(windMakers[i].activation.Pop());
+                    windInstances[i].SetActive(windSimulation.windExist.Peek());
                 }
             }
             Random.state = windSimulation.randomStates.Pop();
             GameState.currentWindSimStep = windSimulation.simStep.Pop();
+            GameState.windExist = windSimulation.windExist.Pop();
             timeFromNow = frameTimes.Pop ();
             GameState.time = GameState.lastGameTime + timeFromNow;
         }
@@ -281,19 +271,17 @@ public class TimeManipulator : MonoBehaviour {
     {
         public Vector3 initialPosition;
         public Vector3 initialWindDirection;
-        public bool initialActive;
-        public Random.State initialRandomState;
         public Stack<Vector3> positions;
         public Stack<Vector3> windDirection;
-        public Stack<bool> activation;
     }
 
     public struct WindSimulationStruct
     {
-        public int initialWindStep;
+        public int initialSimStep;
         public Random.State initialRandomState;
         public bool initialWindExist;
         public Stack<Random.State> randomStates;
         public Stack<int> simStep;
+        public Stack<bool> windExist;
     }
 }
