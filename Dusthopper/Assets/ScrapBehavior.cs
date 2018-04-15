@@ -5,7 +5,6 @@ public class ScrapBehavior : MonoBehaviour {
 	public int scrapValue; //1
 	private GameObject player;
 	public float attractionSpeed;//speed at which scrap is attracted to the player
-    public AudioSource chaching; //sound to play when user picks up scrap, storing here as all scrap hold this class
 
     void Start(){
 		//find player

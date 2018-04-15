@@ -9393,8 +9393,8 @@ MonoBehaviour:
   numPoints: 20
   windMakerRadius: 10
   delayBeforeGeneration: 15
-  minExistenceTime: 15
-  maxExistenceTime: 30
+  minExistenceTime: 40
+  maxExistenceTime: 120
   pregeneratedSteps: 400
 --- !u!4 &1546438133
 Transform:

@@ -101,8 +101,8 @@ public class Movement : MonoBehaviour {
 			inst.GetComponent<JumpAnimation> ().destination = a;
 
 			/* W.I.P
-			if(GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
-				GameObject held = GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().heldObject;
+			if(GameState.player.GetComponent<PlayerCollision> ().holding) {
+				GameObject held = GameState.player.GetComponent<PlayerCollision> ().heldObject;
 				Transform inst_held = Instantiate (animPrefab, transform.position, transform.rotation);
 				inst_held.GetComponent<JumpAnimation> ().origin = transform;
 				inst_held.GetComponent<JumpAnimation> ().destination = a;
