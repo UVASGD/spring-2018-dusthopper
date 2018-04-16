@@ -253,9 +253,9 @@ public class PathMaker : MonoBehaviour {
         }
         lines.Clear();
         print("jump schedule cleared");
-		if (chargeJump.isPlaying) {
-			chargeJump.Stop ();
-		}
+//		if (chargeJump.isPlaying) {
+//			chargeJump.Stop ();
+//		}
     }
 
     public void ToggleAutoScroll(){
