@@ -215,6 +215,9 @@ public class PathMaker : MonoBehaviour {
 				} else {
 					print ("jump cancelled - too far");
 					displayFailedJump ("jump too far");
+					if (chargeJump.isPlaying && !FindObjectOfType<ManualJump>().manuallyJumping) {
+						chargeJump.Stop ();
+					}
 					jumpTooFar.Play ();
 				}
 				path.RemoveAt (0);
@@ -231,7 +234,7 @@ public class PathMaker : MonoBehaviour {
 				}
 			}
 		} else if (path.Count == 0) {
-			if (chargeJump.isPlaying) {
+			if (chargeJump.isPlaying && !FindObjectOfType<ManualJump>().manuallyJumping) {
 				chargeJump.Stop ();
 			}
 		}
@@ -250,7 +253,9 @@ public class PathMaker : MonoBehaviour {
         }
         lines.Clear();
         print("jump schedule cleared");
-
+		if (chargeJump.isPlaying) {
+			chargeJump.Stop ();
+		}
     }
 
     public void ToggleAutoScroll(){
