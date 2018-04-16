@@ -68,5 +68,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windDirection: {x: 0, y: 0}
-  windPower: 10
-  maxSpeed: 10
+  windPower: 1
+  maxSpeed: 4

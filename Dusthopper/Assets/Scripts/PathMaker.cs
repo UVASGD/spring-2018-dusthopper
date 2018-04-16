@@ -45,7 +45,7 @@ public class PathMaker : MonoBehaviour {
     void Start () {
 		path = new SortedList<float,Transform> (0);
 		jumpTimes = new SortedList<float, float> (0);
-		player = GameObject.FindWithTag ("Player");
+		player = GameState.player;
 		lines = new List<GameObject> ();
 		GameStateTimeLF = 0f;
 		timeSinceChargingStarted = 0f;

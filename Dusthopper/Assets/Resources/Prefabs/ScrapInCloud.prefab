@@ -101,8 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrapValue: 1
-  attractionSpeed: 0
-  chaching: {fileID: 0}
+  attractionSpeed: 0.04
 --- !u!114 &114266893996214054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: d0f7b66aff1b542c49532e1e7cb61f7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
