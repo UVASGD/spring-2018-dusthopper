@@ -18,6 +18,9 @@ public class ObtainFragment : MonoBehaviour {
 
 	public State state;
 
+	private Transform gravFragAsteroid;
+	private Vector3 randomOffset;
+
 	// Use this for initialization
 	void Start () {
 		state = State.initial;
@@ -27,16 +30,26 @@ public class ObtainFragment : MonoBehaviour {
 
 		fragmentID = fragmentCount++;
 
-		if (GameState.obtainedFragment [fragmentID] == true) {
-			print ("YARRRR Gravity Fragment " + fragmentID + " obtained: true");
-			hub.GetComponent<HubState> ().AssignPoint (transform);
-			state = State.hehexd;
-		}
-		print ("FragmentID: " + fragmentID);
+//		if (GameState.obtainedFragment [fragmentID] == true) {
+//			print ("YARRRR Gravity Fragment " + fragmentID + " obtained: true");
+//			hub.GetComponent<HubState> ().AssignPoint (transform);
+//			state = State.hehexd;
+//		}
+//		print ("FragmentID: " + fragmentID);
 
 		if (fragmentCount > 2) {
 			fragmentCount = 0;
 		}
+
+		if (GameState.obtainedFragment [fragmentID]) {
+			hub.GetComponent<HubState> ().AssignPoint (transform);
+			state = State.hehexd;
+			Destroy(pointer);
+		}
+
+		randomOffset = (Vector3)(Random.insideUnitCircle.normalized) * 2;
+		Transform asteroidContainer = GameObject.Find ("Asteroid Container").transform;
+		gravFragAsteroid = asteroidContainer.GetChild (asteroidContainer.childCount - 1 - fragmentID);
 	}
 	
 	// Update is called once per frame
@@ -48,6 +61,7 @@ public class ObtainFragment : MonoBehaviour {
 			break;
 		case State.initial:
 			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
+			transform.position = gravFragAsteroid.position + randomOffset;
 			break;
 		case State.transition:
 			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
@@ -92,7 +106,7 @@ public class ObtainFragment : MonoBehaviour {
 			GameObject.Find("GM").transform.Find("SFX").Find("Music").GetComponent<AudioSource>().PlayDelayed(10f);
 			state = State.transition;
 			GetComponent<Collider2D> ().enabled = false;
-			GameState.gravityFragmentCount += 1;
+			GameState.gravityFragmentCount++;
 			GameObject.Find ("GM").GetComponent<EndGame> ().EndIfAble ();
             Destroy(pointer);
 			//Destroy (gameObject);

@@ -25,6 +25,7 @@ public class EndGame : MonoBehaviour {
 		rotateSpeed = 0f;
 		canRotate = false;
 		endAudio = transform.Find ("SFX").Find ("GravitySFX").GetComponent<AudioSource>();
+		EndIfAble ();
 	}
 	
 	// Update is called once per frame
@@ -71,6 +72,11 @@ public class EndGame : MonoBehaviour {
 			//asteroid.GetComponent<Collider2D> ().enabled = false;
 		}
 		GameState.endGame = true;
+		GameState.hungerEnabled = false;
+		GameObject.Find ("HungerSlider").SetActive (false);
+		GameObject.Find ("HubPointer").SetActive (false);
+		GameObject.Find ("Wind Waker").SetActive (false);
+		GameState.player.GetComponent<Movement> ().enabled = false;
 		cam.transform.SetParent (null);
 		cam.GetComponent<SmoothCamera2D> ().target = null;
 		hub.transform.position = Vector3.zero;
@@ -83,6 +89,7 @@ public class EndGame : MonoBehaviour {
 		Invoke ("Credits", 40f);
 
 		GameState.gravityFragmentCount = 0;
+		GameState.ResetGame ();
 	}
 
 	private void CallFade () {

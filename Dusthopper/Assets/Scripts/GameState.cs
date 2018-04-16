@@ -127,16 +127,21 @@ public static class GameState {
 			hasSensors = true;
 			sensorTimeRange = 30f;
 			sensorRange = 30f;
-			UpdateGravityFragmentCount ();
 			obtainedFragment [0] = data.obtainedFragment1;
 			obtainedFragment [1] = data.obtainedFragment2;
 			obtainedFragment [2] = data.obtainedFragment3;
+			UpdateGravityFragmentCount ();
 
 			hunger = maxHunger;
 			scrap = data.scrap;
 
 			asteroid = GameObject.FindWithTag("Hub").transform;
 			player.transform.position = asteroid.position;
+
+//			Debug.Log (obtainedFragment [0]);
+//			Debug.Log (obtainedFragment [1]);
+//			Debug.Log (obtainedFragment [2]);
+//			Debug.Log ("Frag Count: " + gravityFragmentCount);
 		}
 		//PrintState();
 	}
@@ -150,10 +155,12 @@ public static class GameState {
 		hungerLowModifier = 1f;
 		hunger = maxHunger;
 		scrap = 0;
-		gravityFragmentCount = 0;
 		obtainedFragment [0] = false;
 		obtainedFragment [1] = false;
 		obtainedFragment [2] = false;
+		UpdateGravityFragmentCount ();
+		SaveGame ();
+		LoadGame ();
 		//player.transform.position = Vector3.zero;
 //		asteroid = GameObject.FindWithTag("Hub").transform;
 //		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
@@ -199,7 +206,7 @@ public static class GameState {
 		{
 			Debug.LogError("No GameObject with Tag Player; Saving and Loading Borked.");
 		}
-		PrintState ();
+		//PrintState ();
 
 		UpdateGravityFragmentCount ();
 
@@ -210,8 +217,8 @@ public static class GameState {
 	public static void UpdateGravityFragmentCount () {
 		gravityFragmentCount = 0;
 
-		foreach (var fragment in obtainedFragment) {
-			if (fragment) {
+		for (int i = 0; i < 3; i++) {
+			if (obtainedFragment [i] == true) {
 				gravityFragmentCount++;
 			}
 		}
