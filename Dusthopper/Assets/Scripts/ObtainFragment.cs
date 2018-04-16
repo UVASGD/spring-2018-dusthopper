@@ -25,6 +25,7 @@ public class ObtainFragment : MonoBehaviour {
 	void Start () {
 		state = State.initial;
 		rotSpeed = degreesPerSecond;
+		gravFragAsteroid = transform.parent;
         pointer = GameObject.Find(transform.parent.name.Replace("Asteroid", "Pointer"));
 		hub = GameObject.FindWithTag ("Hub").transform;
 
@@ -48,8 +49,8 @@ public class ObtainFragment : MonoBehaviour {
 		}
 
 		randomOffset = (Vector3)(Random.insideUnitCircle.normalized) * 2;
-		Transform asteroidContainer = GameObject.Find ("Asteroid Container").transform;
-		gravFragAsteroid = asteroidContainer.GetChild (asteroidContainer.childCount - 1 - fragmentID);
+//		Transform asteroidContainer = GameObject.Find ("Asteroid Container").transform;
+//		gravFragAsteroid = asteroidContainer.GetChild (asteroidContainer.childCount - 1 - fragmentID);
 	}
 	
 	// Update is called once per frame
