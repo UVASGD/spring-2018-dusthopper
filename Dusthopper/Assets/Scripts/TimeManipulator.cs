@@ -9,9 +9,13 @@ public class TimeManipulator : MonoBehaviour {
 	[SerializeField] [Range(0, 10)] private float timeScale = 10f;
 
 	private Asteroid[] asteroids;
+    private WindMakerStruct[] windMakers;
 	private List<GameObject> instances;
+    private List<GameObject> windInstances;
+    private WindSimulationStruct windSimulation;
 	private Stack<float> frameTimes;
 	public GameObject asteroidContainer;
+    public GameObject windContainer;
 	[HideInInspector]
 	public float timeFromNow;
 
@@ -36,11 +40,15 @@ public class TimeManipulator : MonoBehaviour {
 		autoScroll = false;
 		autoScrollLF = false;
 		instances = new List<GameObject> ();
+        windInstances = new List<GameObject>();
 		//AutoScroll ();
 		mapOpenLF = GameState.mapOpen;
 		foreach (Transform child in asteroidContainer.transform) {
 			instances.Add (child.gameObject);
 		}
+        foreach (Transform child in windContainer.transform){
+            windInstances.Add(child.gameObject);   
+        }
 		asteroids = new Asteroid[instances.Count];
 		for (int i = 0; i < asteroids.Length; i++) {
 			asteroids [i].instance = instances [i].transform;
@@ -50,6 +58,17 @@ public class TimeManipulator : MonoBehaviour {
 //			asteroids [i].rotations = new Stack<Quaternion> (0);
 //			asteroids [i].angularVelocities = new Stack<float> (0);
 		}
+        windMakers = new WindMakerStruct[windInstances.Count];
+        for (int i = 0; i < windMakers.Length; i++)
+        {
+            windMakers[i].positions = new Stack<Vector3>(0);
+            windMakers[i].windDirection = new Stack<Vector3>(0);
+        }
+        windSimulation = new WindSimulationStruct();
+        windSimulation.randomStates = new Stack<Random.State>(0);
+        windSimulation.simStep = new Stack<int>(0);
+        windSimulation.windExist = new Stack<bool>(0);
+
 		frameTimes = new Stack<float> (0);
 		Time.timeScale = 0;
 
@@ -83,7 +102,6 @@ public class TimeManipulator : MonoBehaviour {
 			if (timeFromNow - startScrollTime >= GameState.secondsPerJump) {
 				if (autoScroll) {
 					timeFromNow = startScrollTime + GameState.secondsPerJump + 0.0001f;
-
 				}
 
 				autoScroll = false;
@@ -129,6 +147,14 @@ public class TimeManipulator : MonoBehaviour {
 //					asteroids [i].initialRotation = asteroids [i].instance.rotation;
 //					asteroids [i].initialAngularVelocity = asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity;
 				}
+                for (int i = 0; i < windMakers.Length; i++)
+                {
+                    windMakers[i].initialPosition = windInstances[i].transform.position;
+                    windMakers[i].initialWindDirection = windInstances[i].GetComponent<WindMaker>().windDirection;
+                }
+                windSimulation.initialSimStep = GameState.currentWindSimStep;
+                windSimulation.initialRandomState = Random.state;
+                windSimulation.initialWindExist = GameState.windExist;
 			}
 		} else {
 			if (mapOpenLF) {
@@ -144,6 +170,20 @@ public class TimeManipulator : MonoBehaviour {
 //					asteroids [i].rotations.Clear ();
 //					asteroids [i].angularVelocities.Clear ();
 				}
+                for (int i = 0; i < windMakers.Length; i++)
+                {
+                    windInstances[i].transform.position = windMakers[i].initialPosition;
+                    windInstances[i].GetComponent<WindMaker>().windDirection = windMakers[i].initialWindDirection;
+                    windInstances[i].SetActive(windSimulation.initialWindExist);
+                    windMakers[i].positions.Clear();
+                    windMakers[i].windDirection.Clear();
+                }
+                GameState.currentWindSimStep = windSimulation.initialSimStep;
+                Random.state = windSimulation.initialRandomState;
+                GameState.windExist = windSimulation.initialWindExist;
+                windSimulation.randomStates.Clear();
+                windSimulation.simStep.Clear();
+                windSimulation.windExist.Clear();
 				frameTimes.Clear ();
 			}
 			//print (Time.timeScale);
@@ -169,10 +209,18 @@ public class TimeManipulator : MonoBehaviour {
 			asteroids [i].velocities.Push (asteroids [i].instance.GetComponent<Rigidbody2D>().velocity);
 //			asteroids [i].rotations.Push (asteroids [i].instance.rotation);
 //			asteroids [i].angularVelocities.Push (asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity);
-
 		}
+        for (int i = 0; i < windMakers.Length; i++)
+        {
+            windMakers[i].positions.Push(windInstances[i].transform.position);
+            windMakers[i].windDirection.Push(windInstances[i].GetComponent<WindMaker>().windDirection);
+        }
+        windSimulation.randomStates.Push(Random.state);
+        windSimulation.simStep.Push(GameState.currentWindSimStep);
+        windSimulation.windExist.Push(GameState.windExist);
 		timeFromNow += Time.deltaTime;
 		frameTimes.Push (timeFromNow);
+        GameState.time = GameState.lastGameTime + timeFromNow;
 		timeMoving = false;
 		yield return null;
 	}
@@ -188,9 +236,22 @@ public class TimeManipulator : MonoBehaviour {
 //					asteroids [i].instance.GetComponent<Rigidbody2D> ().angularVelocity = asteroids [i].angularVelocities.Pop ();
 				}
 			}
-			timeFromNow = frameTimes.Pop ();
-		}
-		timeMoving = false;
+            for (int i = 0; i < windMakers.Length; i++)
+            {
+                if (windMakers[i].positions.Count > 0)
+                {
+                    windInstances[i].transform.position = windMakers[i].positions.Pop();
+                    windInstances[i].GetComponent<WindMaker>().windDirection = windMakers[i].windDirection.Pop();
+                    windInstances[i].SetActive(windSimulation.windExist.Peek());
+                }
+            }
+            Random.state = windSimulation.randomStates.Pop();
+            GameState.currentWindSimStep = windSimulation.simStep.Pop();
+            GameState.windExist = windSimulation.windExist.Pop();
+            timeFromNow = frameTimes.Pop ();
+            GameState.time = GameState.lastGameTime + timeFromNow;
+        }
+        timeMoving = false;
 		yield return null;
 	}
 
@@ -205,4 +266,22 @@ public class TimeManipulator : MonoBehaviour {
 //		public Stack<Quaternion> rotations;
 //		public Stack<float> angularVelocities;
 	}
+
+    public struct WindMakerStruct
+    {
+        public Vector3 initialPosition;
+        public Vector3 initialWindDirection;
+        public Stack<Vector3> positions;
+        public Stack<Vector3> windDirection;
+    }
+
+    public struct WindSimulationStruct
+    {
+        public int initialSimStep;
+        public Random.State initialRandomState;
+        public bool initialWindExist;
+        public Stack<Random.State> randomStates;
+        public Stack<int> simStep;
+        public Stack<bool> windExist;
+    }
 }

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ObtainFragment : MonoBehaviour {
 
+	public static int fragmentCount = 0;
+
+	public int fragmentID;
+
 	public float degreesPerSecond = 20f;
 	private float rotSpeed;
 	private Vector3 velocity;
@@ -14,12 +18,39 @@ public class ObtainFragment : MonoBehaviour {
 
 	public State state;
 
+	private Transform gravFragAsteroid;
+	private Vector3 randomOffset;
+
 	// Use this for initialization
 	void Start () {
 		state = State.initial;
 		rotSpeed = degreesPerSecond;
+		gravFragAsteroid = transform.parent;
         pointer = GameObject.Find(transform.parent.name.Replace("Asteroid", "Pointer"));
 		hub = GameObject.FindWithTag ("Hub").transform;
+
+		fragmentID = fragmentCount++;
+
+//		if (GameState.obtainedFragment [fragmentID] == true) {
+//			print ("YARRRR Gravity Fragment " + fragmentID + " obtained: true");
+//			hub.GetComponent<HubState> ().AssignPoint (transform);
+//			state = State.hehexd;
+//		}
+//		print ("FragmentID: " + fragmentID);
+
+		if (fragmentCount > 2) {
+			fragmentCount = 0;
+		}
+
+		if (GameState.obtainedFragment [fragmentID]) {
+			hub.GetComponent<HubState> ().AssignPoint (transform);
+			state = State.hehexd;
+			Destroy(pointer);
+		}
+
+		randomOffset = (Vector3)(Random.insideUnitCircle.normalized) * 2;
+//		Transform asteroidContainer = GameObject.Find ("Asteroid Container").transform;
+//		gravFragAsteroid = asteroidContainer.GetChild (asteroidContainer.childCount - 1 - fragmentID);
 	}
 	
 	// Update is called once per frame
@@ -31,6 +62,7 @@ public class ObtainFragment : MonoBehaviour {
 			break;
 		case State.initial:
 			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
+			transform.position = gravFragAsteroid.position + randomOffset;
 			break;
 		case State.transition:
 			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
@@ -49,6 +81,7 @@ public class ObtainFragment : MonoBehaviour {
 			hub.GetComponent<HubState> ().AssignPoint (transform);
 			break;
 		case State.final:
+			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
 			transform.localPosition = Vector3.SmoothDamp (transform.localPosition, Vector3.zero, ref vel2, 1f);
 
 			if (transform.localPosition.magnitude < 0.01f) {
@@ -56,17 +89,25 @@ public class ObtainFragment : MonoBehaviour {
 				state = State.hehexd;
 			}
 			break;
+		case State.hehexd:
+			//print ("HEHEXD");
+			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
+			transform.localPosition = Vector3.zero;
+			GetComponent<Collider2D> ().enabled = false;
+			break;
 		}
 	}
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.tag == "Player") {
 			GameState.RefreshHunger ();
+			GameState.obtainedFragment [fragmentID] = true;
+			GameState.SaveGame ();
 			GameObject.Find("GM").transform.Find("SFX").Find("ObjectiveSFX").GetComponent<AudioSource>().Play();
 			GameObject.Find("GM").transform.Find("SFX").Find("Music").GetComponent<AudioSource>().PlayDelayed(10f);
 			state = State.transition;
 			GetComponent<Collider2D> ().enabled = false;
-			GameState.gravityFragmentCount += 1;
+			GameState.gravityFragmentCount++;
 			GameObject.Find ("GM").GetComponent<EndGame> ().EndIfAble ();
             Destroy(pointer);
 			//Destroy (gameObject);

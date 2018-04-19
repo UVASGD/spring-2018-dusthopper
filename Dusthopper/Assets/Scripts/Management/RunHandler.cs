@@ -43,7 +43,7 @@ public class RunHandler : MonoBehaviour {
 		if (successful) {
 			GameState.SaveGame ();
 		} else {
-			print ("Everything obtained during your run has been deleted.");
+//			print ("Everything obtained during your run has been deleted.");
 			GameState.LoadGame ();
 		}
 	}

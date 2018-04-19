@@ -11,6 +11,7 @@ TagManager:
   - Pollen
   - MainCanvas
   - MapIcon
+  - ScrapInCloud
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Asteroid
   - Control
   - Player
-  - 
-  - 
+  - SpaceScrap
+  - JumpAnimation
   - 
   - 
   - 

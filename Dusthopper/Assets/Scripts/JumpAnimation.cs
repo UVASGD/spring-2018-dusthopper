@@ -12,6 +12,7 @@ public class JumpAnimation : MonoBehaviour {
 	private Transform animationChild;
 	private Vector3 childRelativePos;
 
+	private AudioSource chaching;
 	public float animationSpeed = 2;
 	private float smoothing;
 
@@ -20,9 +21,10 @@ public class JumpAnimation : MonoBehaviour {
 	void Start () {
 		
 		smoothing = 0.15f;
-		GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = false;
-		if (GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
-			GameObject.FindWithTag ("Player").GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = false;
+		GameState.player.GetComponent<SpriteRenderer> ().enabled = false;
+		chaching = GameState.player.GetComponent<PlayerCollision> ().chaching;
+		if (GameState.player.GetComponent<PlayerCollision> ().holding) {
+			GameState.player.GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = false;
 		}
 //		Vector3 heading = (destination.transform.position - origin.transform.position);
 //		float angle = Mathf.Atan2 (heading.y, heading.x) * Mathf.Rad2Deg;
@@ -59,9 +61,9 @@ public class JumpAnimation : MonoBehaviour {
 					}*/
 
 //					print ("Destination Reached");
-					GameObject.FindWithTag ("Player").GetComponent<SpriteRenderer> ().enabled = true;
-					if (GameObject.FindWithTag ("Player").GetComponent<PlayerCollision> ().holding) {
-						GameObject.FindWithTag ("Player").GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = true;
+					GameState.player.GetComponent<SpriteRenderer> ().enabled = true;
+					if (GameState.player.GetComponent<PlayerCollision> ().holding) {
+						GameState.player.GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = true;
 					}
 					Destroy (gameObject);
 				}
@@ -96,4 +98,13 @@ public class JumpAnimation : MonoBehaviour {
 			}
 		}
 	}
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.tag == "ScrapInCloud") {
+            print("jump collided with scrap");
+            GameState.scrap += collision.gameObject.GetComponent<ScrapBehavior>().scrapValue;
+            chaching.Play(); //play sound effect
+            Destroy(collision.gameObject);
+        }
+    }
 }

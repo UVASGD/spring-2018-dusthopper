@@ -6,7 +6,7 @@ public class ScrapBehavior : MonoBehaviour {
 	private GameObject player;
 	public float attractionSpeed;//speed at which scrap is attracted to the player
 
-	void Start(){
+    void Start(){
 		//find player
 		player = GameState.player;
 	}

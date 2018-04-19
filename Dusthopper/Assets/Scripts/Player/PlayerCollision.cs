@@ -16,6 +16,12 @@ public class PlayerCollision : MonoBehaviour {
 	private float timeSinceDrop = 0.0f; //Used to prevent immediately picking up the same object you dropped.
 	public GameObject heldObjLoc; //empty gameobject attached to player
 
+	public float grayPollenFactor = 0.5f;
+
+	public float bluePlantFactor = 0.5f;
+	public float bluePlantTimer = 0f;
+	public bool onBluePlant = false;
+
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
 		holding = false;
@@ -31,6 +37,21 @@ public class PlayerCollision : MonoBehaviour {
 				timeSinceDrop = 0.0f;
 				justDroppedObj = null;
 			}
+		}
+
+		if (bluePlantTimer > 0f) {
+			bluePlantTimer -= GameState.deltaTime;
+			Debug.Log (bluePlantTimer);
+			if (!onBluePlant) {
+				Debug.Log ("blue on");
+
+				onBluePlant = true;
+				GameState.secondsPerJump = GameState.secondsPerJump * bluePlantFactor;
+			}
+		} else if (onBluePlant) {
+			Debug.Log ("blue off");
+			onBluePlant = false;
+			GameState.secondsPerJump = GameState.secondsPerJump / bluePlantFactor;
 		}
 	}
 
@@ -52,7 +73,7 @@ public class PlayerCollision : MonoBehaviour {
 		if (other.tag == "Scrap") {
 			print ("collided with scrap");
 			GameState.scrap += other.gameObject.GetComponent<ScrapBehavior> ().scrapValue;
-			chaching.Play ();
+            chaching.Play(); //play sound effect
 			Destroy (other.gameObject);
 		}
 		if (other.tag == "Pollen" && !holding && other.gameObject != justDroppedObj) {
@@ -61,12 +82,20 @@ public class PlayerCollision : MonoBehaviour {
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
 			other.transform.position = heldObjLoc.transform.position;
+			if (other.name.ToLower().Contains("gray")) {
+				// Limit jump distance
+				GameState.maxAsteroidDistance = grayPollenFactor*GameState.maxAsteroidDistance;
+
+			}
 		}
 
 		if (other.tag == "Plant" && holding) {
 			if (heldObject.GetComponent<Pollen> () != null) {
 				if (heldObject.GetComponent<Pollen> ().name == other.GetComponent<Plant> ().myPollen) {
 					Debug.Log ("you gave the plant some pollen!");
+					if (heldObject.name.ToLower().Contains("gray")) {
+						resetJumpDistance();
+					}
 					other.GetComponent<Plant> ().dispenseReward ();
 					Destroy (heldObject);
 					holding = false;
@@ -94,8 +123,19 @@ public class PlayerCollision : MonoBehaviour {
 		holding = false;
 		heldObject.transform.parent = GameState.asteroid;
 		justDroppedObj = heldObject;
+		if (heldObject.name.ToLower().Contains("gray")) {
+			resetJumpDistance();
+		}
 		heldObject = null;
 		timeSinceDrop = 0.5f;
+	}
+
+	void resetJumpDistance() {
+		GameState.maxAsteroidDistance = GameState.maxAsteroidDistance / grayPollenFactor;
+	}
+
+	public void setBlueTimer(float myTime) {
+		bluePlantTimer = myTime;		
 	}
 
 }

@@ -11,12 +11,14 @@ public class ManualJump : MonoBehaviour
     private bool hasCanceled = false;
     public AudioSource jump;
     public GameObject gameManager;
+	public bool manuallyJumping;
 
     bool playingSoundFromHere = false;
 
     void Start()
     {
         timeHeld = 0f;
+		manuallyJumping = false;
     }
     // Update is called once per frame
     void Update()
@@ -46,6 +48,7 @@ public class ManualJump : MonoBehaviour
                     }
                     timeHeld = 0;
                     hasCanceled = false;
+					manuallyJumping = false;
                     jump.Stop();
                 }
                 else
@@ -61,6 +64,7 @@ public class ManualJump : MonoBehaviour
                         }
                     }
                     timeHeld += Time.deltaTime;
+					manuallyJumping = true;
                     if (!jump.isPlaying)
                     {
                         playingSoundFromHere = true;
@@ -74,6 +78,7 @@ public class ManualJump : MonoBehaviour
                 hasCanceled = false;
                 if (jump.isPlaying && playingSoundFromHere)
                 {
+					manuallyJumping = false;
                     jump.Stop();
                     playingSoundFromHere = false;
                 }

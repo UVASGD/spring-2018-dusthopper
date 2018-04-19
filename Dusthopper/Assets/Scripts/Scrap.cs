@@ -14,7 +14,6 @@ public class Scrap : MonoBehaviour {
 
 	// Update is called once per frame
 	void OnGUI() {
-
 		if (GameState.asteroid.tag == "Hub") {
 			if (!upgradeShopActivated) {
 				Rect myRect = new Rect (Screen.width - 130, Screen.height - 80, 120, 30);
@@ -66,6 +65,7 @@ public class Scrap : MonoBehaviour {
 
 	private void CompletePurchase(float cost) {
 		GameState.scrap -= (int)cost;
+		GameState.SaveGame ();
 		upgradeShopActivated = false;
 	}
 }

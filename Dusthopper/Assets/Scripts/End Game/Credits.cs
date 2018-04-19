@@ -7,15 +7,17 @@ public class Credits : MonoBehaviour {
 
 	public float scrollSpeed = 0.2f;
 	public bool hasEnded;
+	private float offset;
 
 	// Use this for initialization
 	void Start () {
 		hasEnded = false;
+		offset = transform.Find ("Thanks").localPosition.y;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (transform.position.y < Screen.height / 2 + 1400) {
+		if (transform.position.y < Screen.height / 2 - offset) {
 			transform.position += Vector3.up * Time.deltaTime * scrollSpeed;
 		} else {
 			if (!hasEnded) {

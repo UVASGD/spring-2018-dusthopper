@@ -32,6 +32,7 @@ public class PathMaker : MonoBehaviour {
 	private float timeToStartCharging;
 	private float timeSinceChargingStarted;
 	private float GameStateTimeLF;
+	private bool gamePausedLF;
 	public float tolerance; //When final jump is made, I want to be a bit lenient with max distance because of various ways the jump may have changed since being scheduled.
 
 	public bool jumpTimeElapsed = false;
@@ -44,7 +45,7 @@ public class PathMaker : MonoBehaviour {
     void Start () {
 		path = new SortedList<float,Transform> (0);
 		jumpTimes = new SortedList<float, float> (0);
-		player = GameObject.FindWithTag ("Player");
+		player = GameState.player;
 		lines = new List<GameObject> ();
 		GameStateTimeLF = 0f;
 		timeSinceChargingStarted = 0f;
@@ -65,6 +66,17 @@ public class PathMaker : MonoBehaviour {
 			}
 		} else {
 			TraversePath ();
+
+			if (GameState.gamePaused && !gamePausedLF) {
+				if (chargeJump.isPlaying) {
+					chargeJump.Pause ();
+				}
+			} else if (!GameState.gamePaused && gamePausedLF) {
+				if (!chargeJump.isPlaying) {
+					chargeJump.UnPause ();
+				}
+			}
+
 			if (mapOpenLF) {
 				if (chargeJump.time > 0) {
 					chargeJump.UnPause ();
@@ -93,6 +105,7 @@ public class PathMaker : MonoBehaviour {
 			
 		}
 		mapOpenLF = GameState.mapOpen;
+		gamePausedLF = GameState.gamePaused;
 	}
 
 	float getAlpha(float time, int pathIndex){
@@ -193,14 +206,18 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	void TraversePath(){
-		if (path.Count > 0 && GameState.time >= path.Keys [0] && path.Values[0] != GameState.asteroid) {
+		if (path.Count > 0 && GameState.time >= path.Keys [0] && path.Values [0] != GameState.asteroid) {
 			if (timeSinceChargingStarted >= GameState.secondsPerJump) {
 				if ((path.Values [0].position - player.transform.position).sqrMagnitude < (GameState.maxAsteroidDistance * GameState.maxAsteroidDistance + tolerance)) {
 					print ("jumping to asteroid " + path.Values [0].gameObject.name + " at time " + GameState.time);
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);
+					chargeJump.time = 0f;
 				} else {
 					print ("jump cancelled - too far");
 					displayFailedJump ("jump too far");
+					if (chargeJump.isPlaying && !FindObjectOfType<ManualJump>().manuallyJumping) {
+						chargeJump.Stop ();
+					}
 					jumpTooFar.Play ();
 				}
 				path.RemoveAt (0);
@@ -215,6 +232,10 @@ public class PathMaker : MonoBehaviour {
 				if (!chargeJump.isPlaying) {
 					chargeJump.Play ();
 				}
+			}
+		} else if (path.Count == 0) {
+			if (chargeJump.isPlaying && !FindObjectOfType<ManualJump>().manuallyJumping) {
+				chargeJump.Stop ();
 			}
 		}
 		GameStateTimeLF = GameState.time;
@@ -232,7 +253,9 @@ public class PathMaker : MonoBehaviour {
         }
         lines.Clear();
         print("jump schedule cleared");
-
+//		if (chargeJump.isPlaying) {
+//			chargeJump.Stop ();
+//		}
     }
 
     public void ToggleAutoScroll(){

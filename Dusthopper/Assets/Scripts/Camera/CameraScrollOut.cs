@@ -119,11 +119,7 @@ public class CameraScrollOut : MonoBehaviour {
 		} else {
 			if (!GameState.mapOpen) {
 				if (GameState.hasSensors) {
-					scrollAmount = mapSize;
-					SetEnabledNonAsteroids (false);
-					GameState.mapOpen = true;
-//					tooltip.SetActive (true);
-					SwapToMapIcons ();
+					openMap ();
 				}
 			} else {
 				if (scrollAmount < minMapModeSize) {
@@ -131,13 +127,23 @@ public class CameraScrollOut : MonoBehaviour {
 					d = 0f;
 					SetEnabledNonAsteroids (true);
 					GameState.mapOpen = false;
+                    GameState.time = GameState.lastGameTime;
 //					tooltip.SetActive (false);
-					SwapToAsteroidSprites();
+                    SwapToAsteroidSprites();
 				}
 			}
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
 		}
 
+	}
+
+	public void openMap() {
+		scrollAmount = mapSize;
+		SetEnabledNonAsteroids (false);
+		GameState.mapOpen = true;
+        GameState.lastGameTime = GameState.time;
+        //					tooltip.SetActive (true);
+        SwapToMapIcons ();
 	}
 
 	//Most objects besides asteroids will get disabled by this when the map is opened and enabled
@@ -155,8 +161,16 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 		} else {
 			foreach (GameObject item in disabledObjects) {
-				item.SetActive (true);
-			}
+				if (item) {
+					item.SetActive (true);
+
+                    //if this item is a ScrapInCloud prefab assign it a new, random velocity
+                    if (item.layer == LayerMask.NameToLayer("SpaceScrap")) {
+                        float maxSpeed = 1f;
+                        item.GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * maxSpeed;
+                    }
+                }
+            }
 			disabledObjects.Clear ();
 		}
 	}

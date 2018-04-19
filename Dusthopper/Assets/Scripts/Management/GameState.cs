@@ -32,10 +32,14 @@ public static class GameState {
 	public static int scrap = 0; // Monies that player possesses
 	public static float maxAsteroidDistance = 22f; //The distance the player can jump
 	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
+	public static float savedMaxAsteroidDistance = 22f; //saved amount
+	public static float savedSecondsPerJump = 5f; //saved amount
 	public static float playerSpeed = 0.3f; //Speed at which player travels on asteroids
 	public static float maxHunger = 60f; //Maximum hunger, or how many seconds until death without replenishing
 	public static float hungerLowModifier = 1f; //how much hunger decreases on deltatime
-	public static float gravityFragmentCount = 0; //The number of gravity fragments the player has collected (0 to 3)
+	public static int gravityFragmentCount = 0; //The number of gravity fragments the player has collected (0 to 3)
+
+	public static bool[] obtainedFragment = {false, false, false};
 	/*************************************************************************************************/
 
 
@@ -58,6 +62,12 @@ public static class GameState {
 	//During a scheduled jump, this will be set so that you can't screw around with manual jumps while a scheduled jump is taking place
 	public static bool manualJumpsDisabled = false;
 
+    // Time just prior to last map opening
+    public static float lastGameTime = 0.0f;
+    // Current iteration of the wind simulation
+    public static int currentWindSimStep = -1;
+    // Whether the wind simulation is in the existence phase or dissappearance phase
+    public static bool windExist;
 
 	//Functions
 	/*************************************************************************************************/
@@ -76,12 +86,16 @@ public static class GameState {
 		FileStream fileStream = File.Open(GetPath(), FileMode.Open);
 
 		Stats data = new Stats();
-		data.maxAsteroidDistance = maxAsteroidDistance;
-		data.secondsPerJump = secondsPerJump;
+		data.maxAsteroidDistance = savedMaxAsteroidDistance;
+		data.secondsPerJump = savedSecondsPerJump;
 		data.playerSpeed = playerSpeed;
 		data.maxHunger = maxHunger;
 		data.hungerLowModifier = hungerLowModifier;
 		data.scrap = scrap;
+		data.gravityFragmentCount = gravityFragmentCount;
+		data.obtainedFragment1 = obtainedFragment[0];
+		data.obtainedFragment2 = obtainedFragment[1];
+		data.obtainedFragment3 = obtainedFragment[2];
 
 		data.playerPos = SerialVec3.convTo(player.transform.localPosition);
 
@@ -105,18 +119,29 @@ public static class GameState {
 			
 			maxAsteroidDistance = data.maxAsteroidDistance;
 			secondsPerJump = data.secondsPerJump;
+			savedMaxAsteroidDistance = data.maxAsteroidDistance;
+			savedSecondsPerJump = data.secondsPerJump;
 			playerSpeed = data.playerSpeed;
 			maxHunger = data.maxHunger;
 			hungerLowModifier = data.hungerLowModifier;
 			hasSensors = true;
 			sensorTimeRange = 30f;
 			sensorRange = 30f;
+			obtainedFragment [0] = data.obtainedFragment1;
+			obtainedFragment [1] = data.obtainedFragment2;
+			obtainedFragment [2] = data.obtainedFragment3;
+			UpdateGravityFragmentCount ();
 
 			hunger = maxHunger;
 			scrap = data.scrap;
 
 			asteroid = GameObject.FindWithTag("Hub").transform;
 			player.transform.position = asteroid.position;
+
+//			Debug.Log (obtainedFragment [0]);
+//			Debug.Log (obtainedFragment [1]);
+//			Debug.Log (obtainedFragment [2]);
+//			Debug.Log ("Frag Count: " + gravityFragmentCount);
 		}
 		//PrintState();
 	}
@@ -130,6 +155,12 @@ public static class GameState {
 		hungerLowModifier = 1f;
 		hunger = maxHunger;
 		scrap = 0;
+		obtainedFragment [0] = false;
+		obtainedFragment [1] = false;
+		obtainedFragment [2] = false;
+		UpdateGravityFragmentCount ();
+		SaveGame ();
+		LoadGame ();
 		//player.transform.position = Vector3.zero;
 //		asteroid = GameObject.FindWithTag("Hub").transform;
 //		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
@@ -158,6 +189,9 @@ public static class GameState {
 		Debug.Log ("Max hunger: " + maxHunger);
 		Debug.Log ("Scrap: " + scrap);
 		Debug.Log ("----------------------------------");
+		Debug.Log ("Gravity Fragment 1 Obtained: " + obtainedFragment [0]);
+		Debug.Log ("Gravity Fragment 2 Obtained: " + obtainedFragment [1]);
+		Debug.Log ("Gravity Fragment 3 Obtained: " + obtainedFragment [2]);
 		//Debug.Log ("Player Position: " + player.transform.position);
 	}
 		
@@ -173,17 +207,33 @@ public static class GameState {
 		{
 			Debug.LogError("No GameObject with Tag Player; Saving and Loading Borked.");
 		}
+		//PrintState ();
+
+		UpdateGravityFragmentCount ();
+
 		inited = true;
 	}
 	/*************************************************************************************************/
 
+	public static void UpdateGravityFragmentCount () {
+		gravityFragmentCount = 0;
+
+		for (int i = 0; i < 3; i++) {
+			if (obtainedFragment [i] == true) {
+				gravityFragmentCount++;
+			}
+		}
+	}
+
 	/* Upgrade Stats Functions */
 	public static void UpgradeMaxAsteroidDistance(float increasePercentage = 0.05f) {
 		maxAsteroidDistance *= 1 + increasePercentage;
+		savedMaxAsteroidDistance *= 1 + increasePercentage;
 	}
 
 	public static void UpgradeSecondsPerJump(float decreasePercentage = 0.05f) {
 		secondsPerJump *= 1 - decreasePercentage;
+		savedSecondsPerJump *= 1 - decreasePercentage;
 	}
 
 	public static void UpgradePlayerSpeed(float increasePercentage = 0.05f) {
@@ -214,6 +264,8 @@ class Stats
 	public float playerSpeed;
 	public float maxHunger;
 	public float hungerLowModifier;
+	public int gravityFragmentCount;
+	public bool obtainedFragment1, obtainedFragment2, obtainedFragment3;
 
 	public SerialVec3 playerPos;
 }

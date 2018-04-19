@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4159274484109848}
   - component: {fileID: 58458070658866036}
   - component: {fileID: 114573382614147008}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Wind Maker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1461216191190568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3422165, y: 1.255189, z: -0.25239}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,5 +68,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windDirection: {x: 0, y: 0}
-  windPower: 10
-  maxSpeed: 10
+  windPower: 1
+  maxSpeed: 4

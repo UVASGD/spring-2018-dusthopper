@@ -13,29 +13,57 @@ public class WindWaker : MonoBehaviour {
     public float delayBeforeGeneration;
     public float minExistenceTime;
     public float maxExistenceTime;
+    public int pregeneratedSteps = 400;
+
+    private static float[] timers;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        // Generate the pool of WindMakers we will be using for the simulation
+        for (int x = 0; x <= numPoints; x++)
+        {
+            GameObject inst = Instantiate(windMaker, Vector3.zero, Quaternion.identity, windContainer.transform);
+            inst.SetActive(false);
+        }
+        // Generate the initial batch of times for wind generation and wind downtime
+        float time = 0;
+        timers = new float[pregeneratedSteps];
+        for (int x = 0; x < pregeneratedSteps; x+=2)
+        {
+            float existenceTime = Random.Range(minExistenceTime, maxExistenceTime);
+            timers[x] = time + existenceTime;
+            time += existenceTime;
+            float timeBetweenGeneration = Random.Range(0, delayBeforeGeneration);
+            timers[x+1] = time + timeBetweenGeneration;
+            time += timeBetweenGeneration;
+        }
         StartCoroutine(BalladOfGales());
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        // Checks to see if current cache of steps is running out
+        if (GameState.currentWindSimStep == pregeneratedSteps)
+        {
+            // If so then just restart from the beginning
+            GameState.currentWindSimStep = 0;
+        }
+
+    }
 
     IEnumerator BalladOfGales()
     {
         while (generateWind)
         {
+            GameState.windExist = true;
             yield return StartCoroutine(generate());
+            GameState.windExist = false;
             foreach (Transform child in windContainer.transform)
-                Destroy(child.gameObject);
-            float timeBetweenGeneration = Random.Range(0, delayBeforeGeneration);
-            yield return new WaitForSeconds(timeBetweenGeneration);
+                child.gameObject.SetActive(false);
+            yield return StartCoroutine(MyWaitForSeconds());
         }
     }
-    
 
     public IEnumerator generate()
     {
@@ -59,11 +87,15 @@ public class WindWaker : MonoBehaviour {
         midpoint1 += (unitPerp * offset1);
         midpoint2 += (unitPerp * offset2);
 
+        // Place each WindMaker in the pool at the right point along the curve
         float timeInterval = 1.0f / numPoints;
         Vector2 point;
         Vector2 direction;
+        GameObject currChild;
         for (int x = 0; x <= numPoints; x++)
         {
+            currChild = transform.GetChild(x).gameObject;
+            currChild.SetActive(true);
             float currInterval = x * timeInterval;
             point = (1 - currInterval) * (1 - currInterval) * (1 - currInterval) * endpoint1 +
                         3 * (1 - currInterval) * (1 - currInterval) * currInterval * midpoint1 +
@@ -73,14 +105,20 @@ public class WindWaker : MonoBehaviour {
                         6 * (1 - currInterval) * currInterval * (midpoint2 - midpoint1) +
                         3 * currInterval * currInterval * (endpoint2 - midpoint2)).normalized;
 
-            GameObject inst = Instantiate(windMaker, point, Quaternion.identity, windContainer.transform);
-            inst.GetComponent<WindMaker>().windDirection = direction;
-            inst.GetComponent<CircleCollider2D>().radius = windMakerRadius;
+            currChild.GetComponent<Transform>().position = point;
+            currChild.GetComponent<WindMaker>().windDirection = direction;
+            currChild.GetComponent<CircleCollider2D>().radius = windMakerRadius;
         }
 
-        float existenceTime = Random.Range(minExistenceTime, maxExistenceTime);
-        yield return new WaitForSeconds(existenceTime);
+        yield return StartCoroutine(MyWaitForSeconds());
     }
 
-
+    public static IEnumerator MyWaitForSeconds()
+    {
+        GameState.currentWindSimStep++;
+        while (GameState.time < timers[GameState.currentWindSimStep])
+        {
+            yield return null;
+        }
+    }
 }
