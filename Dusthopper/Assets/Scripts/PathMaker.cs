@@ -41,6 +41,7 @@ public class PathMaker : MonoBehaviour {
     //During whether or not the game should fastforward time during jump scheduling
     public bool autoScroll = true;
 
+	public bool specialGrayPollenJump = false;
     // Use this for initialization
     void Start () {
 		path = new SortedList<float,Transform> (0);
@@ -174,6 +175,12 @@ public class PathMaker : MonoBehaviour {
 							}
 							if (!overlap) {
 //								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
+								if (specialGrayPollenJump) {
+									player.GetComponent<Movement> ().SwitchAsteroid (hit.gameObject.transform);
+									specialGrayPollenJump = false;
+									Camera.main.GetComponent<CameraScrollOut> ().closeMap ();
+									return;
+								}
 								if(GameState.sensorTimeRange - GetComponent<TimeManipulator> ().timeFromNow >= GameState.secondsPerJump && autoScroll){
 									GetComponent<TimeManipulator> ().AutoScroll ();
 								}
