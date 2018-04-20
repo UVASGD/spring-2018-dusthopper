@@ -9076,7 +9076,7 @@ MonoBehaviour:
   container: {fileID: 1155296980}
   chargeJump: {fileID: 606581428}
   jumpTooFar: {fileID: 678218557}
-  percentIdle: 0.2
+  percentIdle: 0.5
   initialTime: 0
   tolerance: 1
   jumpTimeElapsed: 0
