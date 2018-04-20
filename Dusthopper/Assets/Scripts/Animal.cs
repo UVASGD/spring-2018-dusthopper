@@ -6,9 +6,9 @@ public class Animal : MonoBehaviour {
 
 	private Rigidbody2D rb;
 	private Vector3 lastPos;
-	private float speed = 0.5f;
+	private float speed = 5f;
 	private Transform myAsteroid;
-	private bool wandering = false;
+	private bool chasing = false;
 	Vector3 targetPosition = Vector3.zero;
 
 	// Use this for initialization
@@ -18,8 +18,8 @@ public class Animal : MonoBehaviour {
 		//GameState.asteroid = GameObject.FindWithTag ("Hub").transform;
 		//transform.position = GameState.asteroid.position;
 		// change transform.position to be parent asteroid?
-		transform.position = myAsteroid.position;
-		lastPos = transform.position;
+		//transform.position = myAsteroid.position;
+		lastPos = transform.localPosition;
 
 		Wander ();
 	}
@@ -27,21 +27,32 @@ public class Animal : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () {
 
-		if (!wandering) {
-
-			//Wander ();
-		}
-			
-
 		float step = speed * Time.deltaTime;
-		transform.position = Vector3.MoveTowards(transform.position, targetPosition, step);
 
-		Vector3 positionChange = myAsteroid.position - lastPos;
+		Debug.Log (Vector2.Distance (transform.localPosition, targetPosition));
 
-		transform.position += positionChange;
-		lastPos = myAsteroid.position;
 
-		Debug.Log (myAsteroid.GetInstanceID() + ": " + positionChange + ", " + myAsteroid.position.ToString() + ", " + transform.position.ToString() + ", " + targetPosition.ToString());
+		if (!chasing) {
+			if (Vector2.Distance (transform.localPosition, targetPosition) > 0.1) {
+				transform.localPosition = Vector2.Lerp (transform.localPosition, targetPosition, step);
+			} else {
+				Wander ();
+				Debug.Log ("wandering");
+			}
+
+			//Debug.Log ("local = " + transform.localPosition);
+			//Debug.Log ("absolute = " + transform.position);
+
+			//Vector3 positionChange = myAsteroid.position - lastPos;
+
+			//transform.localPosition += positionChange;
+			//lastPos = myAsteroid.position;
+
+
+		}
+
+
+		//Debug.Log (myAsteroid.GetInstanceID() + ": " + positionChange + ", " + myAsteroid.position.ToString() + ", " + transform.localPosition.ToString() + ", " + targetPosition.ToString());
 	}
 
 	private void Wander() {
@@ -51,15 +62,17 @@ public class Animal : MonoBehaviour {
 			targetPosition = Vector2.zero;
 		}
 
-		//Stop following asteroid movement if there is none
-		if (!myAsteroid)
+		//Stop following asteroidmovement if there is none
+		if (!myAsteroid) {
+			Debug.Log ("no asteroid");
 			return;
+		}
 
 		//Keep constrained on current asteroid
-		if (!Movement.IsWithinAsteroid(transform, targetPosition, myAsteroid)) {
-			
-			targetPosition = Vector2.zero;
-		}
+//		if (!Movement.IsWithinAsteroid(transform, targetPosition, myAsteroid)) {
+//			
+//			targetPosition = Vector2.zero;
+//		}
 
 
 
