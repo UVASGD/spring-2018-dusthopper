@@ -4337,6 +4337,11 @@ Prefab:
       propertyPath: chaching
       value: 
       objectReference: {fileID: 49913999}
+    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: GetPlant
+      value: 
+      objectReference: {fileID: 2075377170}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0

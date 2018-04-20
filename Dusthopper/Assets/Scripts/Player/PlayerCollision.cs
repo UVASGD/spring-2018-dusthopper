@@ -9,6 +9,7 @@ public class PlayerCollision : MonoBehaviour {
 	private Hunger hunger;
 	public AudioSource nom;
 	public AudioSource chaching; //scrap pickup noise
+	public AudioSource GetPlant; //getting plant reward noise
 
 	public bool holding; //Whether or not you are holding something
 	public GameObject heldObject; //The object being held.
@@ -97,6 +98,7 @@ public class PlayerCollision : MonoBehaviour {
 						resetJumpDistance();
 					}
 					other.GetComponent<Plant> ().dispenseReward ();
+					GetPlant.Play ();
 					Destroy (heldObject);
 					holding = false;
 				}
