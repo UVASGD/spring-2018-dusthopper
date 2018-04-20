@@ -8610,6 +8610,8 @@ MonoBehaviour:
   fXSlider: {fileID: 1255830762}
   musicSlider: {fileID: 1992144085}
   scrollSpeedSlider: {fileID: 1820720996}
+  autoScrollToggle: {fileID: 370197101}
+  swapScrollToggle: {fileID: 838891364}
 --- !u!1 &1458128170
 GameObject:
   m_ObjectHideFlags: 0

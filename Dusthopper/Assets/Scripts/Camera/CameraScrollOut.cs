@@ -98,7 +98,6 @@ public class CameraScrollOut : MonoBehaviour {
 
 		//normal zooming
 		d = Input.GetAxis ("Mouse ScrollWheel");
-		print ("GameState.maxAsteroidDistance: " + GameState.maxAsteroidDistance);
 		if (swapScroll)
 			d = -d;
 		
