@@ -28,8 +28,11 @@ public class Movement : MonoBehaviour {
 	private UpgradeManager upgradeMgr;
 	private Rigidbody2D rb;
 
+	[HideInInspector] public bool canMove;
+
 	// Use this for initialization
 	void Start () {
+		canMove = true;
 		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
 		rb = GetComponent<Rigidbody2D> ();
 		GameState.asteroid = GameObject.FindWithTag ("Hub").transform;
@@ -52,7 +55,7 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Input direction. Use this variable so you don't call GetAxis multiple times a frame (faster)
-		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized; 
+		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized * (canMove ? 1 : 0); 
 
 		//Player translational velocity vector
 		Vector2 targVel = inputVector * (speed * upgradeMgr.walkSpeedMod); 
