@@ -9391,6 +9391,8 @@ MonoBehaviour:
   fXSlider: {fileID: 1255830762}
   musicSlider: {fileID: 1992144085}
   scrollSpeedSlider: {fileID: 1820720996}
+  autoScrollToggle: {fileID: 0}
+  swapScrollToggle: {fileID: 0}
 --- !u!1 &1458128170
 GameObject:
   m_ObjectHideFlags: 0
@@ -9760,6 +9762,11 @@ Prefab:
       propertyPath: orthographic size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114644461886171184, guid: 8f9cc746676414d5a83ca0e11fa81af6,
+        type: 2}
+      propertyPath: scrapCloudsContainer
+      value: 
+      objectReference: {fileID: 833406267}
     m_RemovedComponents:
     - {fileID: 114924296808195874, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 8f9cc746676414d5a83ca0e11fa81af6, type: 2}
@@ -9872,6 +9879,7 @@ MonoBehaviour:
   jumpTimeElapsed: 0
   failureText1: {fileID: 1012152576}
   autoScroll: 1
+  specialGrayPollenJump: 0
 --- !u!114 &1511771308
 MonoBehaviour:
   m_ObjectHideFlags: 0
