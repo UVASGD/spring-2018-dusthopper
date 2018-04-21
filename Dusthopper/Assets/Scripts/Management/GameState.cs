@@ -23,10 +23,10 @@ public static class GameState {
 	public static float time = 0f; //A copy of Time.time which is only incremented when not in a map (for scripts with timing)
 	public static float deltaTime = 0f; //A copy of Time.deltaTime which is set to 0 when in a map (for scripts with timing)
 	public static float fieldRadius = 250f; //The radius of the circle the game is restricted to
-	public static float minSpawnDist = 0.2f; //The radius of the circle in which no items are allowed to spawn.
+	public static float minSpawnDist = 0.3f; //The radius of the circle in which no items are allowed to spawn.
+	public static float grayDistFactor = 3f;
 	public static GameObject player;
 	/*************************************************************************************************/
-
 
 	//Player Stats
 	/*************************************************************************************************/

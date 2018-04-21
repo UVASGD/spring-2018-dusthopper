@@ -20,10 +20,13 @@ public class CameraScrollOut : MonoBehaviour {
 	//This will be set while that's happening
 	[HideInInspector]
 	public bool jumpingToAsteroidWithMap = false;
+	public bool justGotGrayPollen = false;
 
 
 	//The target size which the camera will zoom towards
 	private float scrollAmount;
+
+	private float d;
 
 	//When entering the map, we want to disable most non-asteroid objects so that they don't do stuff when fast-forwarding in the map.
 	//When exiting the map, we want to reenable whatever we disabled.
@@ -94,7 +97,7 @@ public class CameraScrollOut : MonoBehaviour {
 		}
 
 		//normal zooming
-		var d = Input.GetAxis ("Mouse ScrollWheel");
+		d = Input.GetAxis ("Mouse ScrollWheel");
 		if (swapScroll)
 			d = -d;
 		
@@ -123,13 +126,7 @@ public class CameraScrollOut : MonoBehaviour {
 				}
 			} else {
 				if (scrollAmount < minMapModeSize) {
-					scrollAmount = maxPlayerModeSizeWithMap;
-					d = 0f;
-					SetEnabledNonAsteroids (true);
-					GameState.mapOpen = false;
-                    GameState.time = GameState.lastGameTime;
-//					tooltip.SetActive (false);
-                    SwapToAsteroidSprites();
+					closeMap ();
 				}
 			}
 			GetComponent<Camera> ().orthographicSize = Mathf.Lerp (GetComponent<Camera> ().orthographicSize, scrollAmount, 10 * Time.unscaledDeltaTime);
@@ -144,6 +141,20 @@ public class CameraScrollOut : MonoBehaviour {
         GameState.lastGameTime = GameState.time;
         //					tooltip.SetActive (true);
         SwapToMapIcons ();
+	}
+
+	public void closeMap(){
+		scrollAmount = maxPlayerModeSizeWithMap;
+		d = 0f;
+		SetEnabledNonAsteroids (true);
+		GameState.mapOpen = false;
+		GameState.time = GameState.lastGameTime;
+		//					tooltip.SetActive (false);
+		if (justGotGrayPollen) {
+			justGotGrayPollen = false;
+			GameState.maxAsteroidDistance = GameState.maxAsteroidDistance / GameState.grayDistFactor;
+		}
+		SwapToAsteroidSprites();
 	}
 
 	//Most objects besides asteroids will get disabled by this when the map is opened and enabled
