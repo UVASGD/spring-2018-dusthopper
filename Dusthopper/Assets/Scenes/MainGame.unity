@@ -8615,8 +8615,8 @@ MonoBehaviour:
   fXSlider: {fileID: 1255830762}
   musicSlider: {fileID: 1992144085}
   scrollSpeedSlider: {fileID: 1820720996}
-  autoScrollToggle: {fileID: 370197101}
-  swapScrollToggle: {fileID: 838891364}
+  autoScrollToggle: {fileID: 0}
+  swapScrollToggle: {fileID: 0}
 --- !u!1 &1458128170
 GameObject:
   m_ObjectHideFlags: 0
@@ -9052,7 +9052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScale: 5
   asteroidContainer: {fileID: 1120569470}
-  windContainer: {fileID: 1546438131}
+  windContainer: {fileID: 0}
   timeFromNow: 0
   autoScroll: 0
 --- !u!4 &1511771306
