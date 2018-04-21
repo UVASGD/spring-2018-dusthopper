@@ -83,7 +83,7 @@ MonoBehaviour:
   howFarAwayToSpawnFood: 0.15
   scrap: {fileID: 1236648520706834, guid: 292e961e5a070485792401f2784f6c5c, type: 2}
   howFarAwayToSpawnScrap: 0.15
-  blueTime: 5
+  blueTime: 20
 --- !u!212 &212948586281098932
 SpriteRenderer:
   m_ObjectHideFlags: 1

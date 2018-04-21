@@ -9052,7 +9052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeScale: 5
   asteroidContainer: {fileID: 1120569470}
-  windContainer: {fileID: 0}
+  windContainer: {fileID: 1546438131}
   timeFromNow: 0
   autoScroll: 0
 --- !u!4 &1511771306
