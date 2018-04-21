@@ -85,12 +85,7 @@ public class Generator : MonoBehaviour {
         //Generating scrap clouds
         for (int i = 0; i < scrapClouds.Capacity; i++) {
 
-//            print("Generating scrapCloud #" + (i+1));
             Vector3 pos = Random.insideUnitCircle * radius;
-
-            if (i == 0) {
-                pos = Vector3.zero;
-            }
 
             //i am only half sure how this initialization works.
             GameObject cloudInst = GameObject.Instantiate(scrapClouds[i], pos, Quaternion.identity, scrapCloudContainer.transform) as GameObject;

@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc091076d3e0b4d8fb4d7264d5c401f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpaceScrap: 1
   radius: 0
   center: {x: 0, y: 0, z: 0}
 --- !u!212 &212547188638520376

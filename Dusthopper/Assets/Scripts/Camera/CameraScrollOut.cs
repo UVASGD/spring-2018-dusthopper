@@ -214,8 +214,6 @@ public class CameraScrollOut : MonoBehaviour {
 		}
 
         //also swap to mapIcons for ScapCloudCores
-        print("about to change ScrapCloudCores to map icons");
-        print("theScrapClouds.Length: " + theScrapClouds.Length);
         foreach (GameObject cloud in theScrapClouds) {
             cloud.GetComponent<SpriteRenderer>().sprite = cloud.GetComponent<AsteroidInfo>().mapIcon;
         }
