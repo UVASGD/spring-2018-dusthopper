@@ -33,19 +33,17 @@ public class CameraScrollOut : MonoBehaviour {
 	//This list caches whatever we disabled last time we entered the map.
 	private List<GameObject> disabledObjects;
 
-	//When entering the map, we want to switch asteroid sprites to map icons.
+	//When entering the map, we want to switch asteroid and ScapCloudCore sprites to map icons.
 	//When exiting the map, we want switch the sprites back.
-	//All the asteroids are children of asteroidContainer
+	//All the asteroids are children of asteroidContainer, and ALL ScrapClouds are children of scrapCloudContainer
 	public GameObject asteroidContainer;
 	private GameObject[] theAsteroids;
+    public GameObject scrapCloudsContainer;
+    private GameObject[] theScrapClouds;
 
-	// We might need to change this when we have more kinds of asteroids
-	public Sprite mapIconWithSensors;
+    // We might need to change this when we have more kinds of asteroids
+    public Sprite mapIconWithSensors;
 	public Sprite mapIconWithoutSensors;
-
-	// Need these until we get map icon art
-	public Color iconWithSensor;
-	public Color iconWithoutSensor;
 
 	// Green Plant Icon
 	public GameObject greenPlantIcon;
@@ -57,7 +55,12 @@ public class CameraScrollOut : MonoBehaviour {
 		foreach (Transform child in asteroidContainer.transform) {
 			theAsteroidsTemp.Add (child.gameObject);
 		}
+        List<GameObject> theScrapCloudsTemp = new List<GameObject>();
+        foreach (Transform child in scrapCloudsContainer.transform) {
+            theScrapCloudsTemp.Add (child.gameObject);
+        }
 		theAsteroids = theAsteroidsTemp.ToArray ();
+        theScrapClouds = theScrapCloudsTemp.ToArray ();
 		scrollAmount = GetComponent<Camera> ().orthographicSize;
 		disabledObjects = new List<GameObject> (0);
 	}
@@ -192,10 +195,16 @@ public class CameraScrollOut : MonoBehaviour {
 			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().mapIcon;
 			// We can remove this if/else when we have art
 			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
-				asteroid.GetComponent<SpriteRenderer> ().color = iconWithSensor;
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithSensor;
 			} 
 			else {
-				asteroid.GetComponent<SpriteRenderer> ().color = iconWithoutSensor;
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithoutSensor;
+			}
+
+			// highlight them if they are in current path
+			PathMaker pm = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ();
+			if (pm.path.ContainsValue (asteroid.transform)) {
+				asteroid.GetComponent<SpriteRenderer> ().color = new Color (asteroid.GetComponent<SpriteRenderer> ().color.r + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.g + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.b + pm.highlightAmount, 1);
 			}
 
 			// draw green plant icon
@@ -205,6 +214,12 @@ public class CameraScrollOut : MonoBehaviour {
 				plantIcon.transform.localPosition = new Vector3 (0, 0, 0);
 			}
 		}
+
+        //also swap to mapIcons for ScapCloudCores
+        foreach (GameObject cloud in theScrapClouds) {
+            cloud.GetComponent<SpriteRenderer>().sprite = cloud.GetComponent<AsteroidInfo>().mapIcon;
+        }
+
 	}
 
 	private void SwapToAsteroidSprites ()
@@ -232,7 +247,12 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 
 		}
-	}
+
+        //remove sprites on ScrapCloudCores
+        foreach (GameObject cloud in theScrapClouds) {
+            cloud.GetComponent<SpriteRenderer>().sprite = null;
+        }
+    }
 
 	public void SwapInvertScroll () {
 		swapScroll = !swapScroll;

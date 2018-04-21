@@ -83,6 +83,7 @@ MonoBehaviour:
   howFarAwayToSpawnFood: 0.15
   scrap: {fileID: 1236648520706834, guid: 292e961e5a070485792401f2784f6c5c, type: 2}
   howFarAwayToSpawnScrap: 0.15
+  blueTime: 5
 --- !u!212 &212948586281098932
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -117,8 +118,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 3e7759cc8aac142499b8737f34b002f0, type: 3}
-  m_Color: {r: 0.9725491, g: 0.9058824, b: 0.20000002, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5bad21932cc5b419ab3938f631a7b89c, type: 3}
+  m_Color: {r: 1, g: 0.7294118, b: 0.14705884, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

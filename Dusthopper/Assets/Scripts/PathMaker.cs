@@ -41,6 +41,8 @@ public class PathMaker : MonoBehaviour {
     //During whether or not the game should fastforward time during jump scheduling
     public bool autoScroll = true;
 
+	public float highlightAmount = 0.5f;
+
 	public bool specialGrayPollenJump = false;
     // Use this for initialization
     void Start () {
@@ -136,13 +138,21 @@ public class PathMaker : MonoBehaviour {
 					if (jumpTimes.Keys [i] < GetComponent<TimeManipulator> ().timeFromNow + initialTime) {
 						prevAsteroidIndex = i;
 					}
-					if (hit.transform == path.Values[i] && Mathf.Abs(GetComponent<TimeManipulator> ().timeFromNow + initialTime - jumpTimes.Keys[i]) < GameState.secondsPerJump) {
+					if (hit.transform == path.Values[i]) {
 						foundIt = true;
 						print ("removing jump to asteroid " + hit.transform.gameObject.name + " at time " + jumpTimes.Keys [i]);
-						path.RemoveAt (i);
-						jumpTimes.RemoveAt (i);
-						Destroy (lines [i]);
-						lines.RemoveAt (i);
+						for (int j = path.Count - 1; j >= i; j--) {
+							// remove highlights
+							if (path.Values[j].gameObject.GetComponent<AsteroidInfo> ().hasSensors) {
+								path.Values[j].gameObject.GetComponent<SpriteRenderer> ().color = path.Values[j].gameObject.GetComponent<AsteroidInfo> ().iconWithSensor;
+							} else {
+								path.Values[j].gameObject.GetComponent<SpriteRenderer> ().color = path.Values[j].gameObject.GetComponent<AsteroidInfo> ().iconWithoutSensor;
+							}
+							path.RemoveAt (j);
+							jumpTimes.RemoveAt (j);
+							Destroy (lines [j]);
+							lines.RemoveAt (j);
+						}
 					}
 					i++;
 				}
@@ -198,6 +208,7 @@ public class PathMaker : MonoBehaviour {
 								newLine.GetComponent<LineRenderer> ().endWidth = 0.3f;
 								newLine.GetComponent<LineRenderer> ().positionCount = 2;
 								lines.Add (newLine);
+								hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r + highlightAmount, hit.GetComponent<SpriteRenderer> ().color.g + highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b + highlightAmount, 1);
 							}
 						} else {
 							print ("jump not scheduled because you can't charge in time");

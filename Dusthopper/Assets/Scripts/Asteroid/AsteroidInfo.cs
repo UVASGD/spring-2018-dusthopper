@@ -27,6 +27,10 @@ public class AsteroidInfo : MonoBehaviour {
 	public float chanceGrav;
 	public float chancePulledGrav;
 
+	//map icon colors
+	public Color iconWithSensor;
+	public Color iconWithoutSensor;
+
     //proc gen sensor stuff
     public Color hasSensorColor;
 	[HideInInspector]
@@ -54,6 +58,7 @@ public class AsteroidInfo : MonoBehaviour {
 	public List<ItemPoolItem> decorationItems;
     public int maxItems;
 	public int maxDecorationItems;
+
 
     void Start() {
 		asteroidSprite = GetComponent<SpriteRenderer> ().sprite;

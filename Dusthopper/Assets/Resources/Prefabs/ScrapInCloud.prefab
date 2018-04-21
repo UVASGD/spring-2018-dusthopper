@@ -73,7 +73,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrapValue: 1
-  attractionSpeed: 0.04
+  attractionSpeed: 0
 --- !u!114 &114266893996214054
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc091076d3e0b4d8fb4d7264d5c401f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpaceScrap: 1
   radius: 0
   center: {x: 0, y: 0, z: 0}
 --- !u!212 &212547188638520376
