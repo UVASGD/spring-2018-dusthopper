@@ -217,8 +217,7 @@ Prefab:
     - target: {fileID: 114242057149476082, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_Text
-      value: Scrap can be collected while on a run, floating in space, or from a yellow
-        plant.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 114242057149476082, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -229,6 +228,12 @@ Prefab:
         type: 2}
       propertyPath: m_FontData.m_MinSize
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: text
+      value: Scrap can be collected while on a run, floating in space, or from a yellow
+        plant.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
@@ -7825,8 +7830,7 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: text
-      value: You can purchase upgrades at the shop while on the Hub if you have enough
-        Scrap.
+      value: Nice!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
@@ -10479,6 +10483,11 @@ Prefab:
         type: 2}
       propertyPath: text
       value: Go ahead and use WASD or the arrow keys to move.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: requirement
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
