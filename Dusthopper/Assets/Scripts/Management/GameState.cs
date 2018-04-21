@@ -15,6 +15,7 @@ public static class GameState {
 	public static bool endGame;
 	public static bool runActive; //whether or not the player is currently on a run
 	public static bool debugMode = true; // If enabled, displays debug buttons and text
+	public static bool tutorialCompleted = false;
 
 	//Game Constants (AKA they shouldn't really be fiddled with)
 	/*************************************************************************************************/
@@ -96,6 +97,7 @@ public static class GameState {
 		data.obtainedFragment1 = obtainedFragment[0];
 		data.obtainedFragment2 = obtainedFragment[1];
 		data.obtainedFragment3 = obtainedFragment[2];
+		data.tutorialCompleted = tutorialCompleted;
 
 		data.playerPos = SerialVec3.convTo(player.transform.localPosition);
 
@@ -132,6 +134,8 @@ public static class GameState {
 			obtainedFragment [2] = data.obtainedFragment3;
 			UpdateGravityFragmentCount ();
 
+			tutorialCompleted = data.tutorialCompleted;
+
 			hunger = maxHunger;
 			scrap = data.scrap;
 
@@ -161,6 +165,7 @@ public static class GameState {
 		UpdateGravityFragmentCount ();
 		SaveGame ();
 		LoadGame ();
+		tutorialCompleted = false;
 		//player.transform.position = Vector3.zero;
 //		asteroid = GameObject.FindWithTag("Hub").transform;
 //		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
@@ -265,6 +270,7 @@ class Stats
 	public float hungerLowModifier;
 	public int gravityFragmentCount;
 	public bool obtainedFragment1, obtainedFragment2, obtainedFragment3;
+	public bool tutorialCompleted;
 
 	public SerialVec3 playerPos;
 }

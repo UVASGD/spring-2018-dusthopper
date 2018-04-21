@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(FadeController), typeof(AudioSource))]
 public class Intro : MonoBehaviour {
@@ -28,6 +29,10 @@ public class Intro : MonoBehaviour {
 	}
 	
 	void StartGame () {
-		UnityEngine.SceneManagement.SceneManager.LoadScene (1);
+		if (GameState.tutorialCompleted) {
+			SceneManager.LoadScene ("MainGame");
+		} else { 
+			SceneManager.LoadScene ("Tutorial");
+		}
 	}
 }
