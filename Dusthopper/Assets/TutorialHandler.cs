@@ -20,6 +20,7 @@ public class TutorialHandler : MonoBehaviour {
 		timeSinceLastStage = 0f;
 		timeSpentMoving = 0f;
 		canMove = false;
+		GameState.hunger *= 0.9f;
 
 		currentRequirement = Requirement.none;
 
@@ -35,8 +36,8 @@ public class TutorialHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print ("Requirement: " + currentRequirement);
-		canMove = false;
+		//print ("Requirement: " + currentRequirement);
+		//canMove = 
 		conditionMet = false;
 		switch (currentRequirement) {
 		default:
@@ -46,7 +47,7 @@ public class TutorialHandler : MonoBehaviour {
 			conditionMet = Input.GetKeyDown (KeyCode.N);
 			break;
 		case Requirement.move:
-			canMove = true;
+		//	canMove = true;
 			if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
 				timeSpentMoving += Time.unscaledDeltaTime;
 			}
@@ -68,7 +69,9 @@ public class TutorialHandler : MonoBehaviour {
 
 			break;
 		case Requirement.eatFood:
-
+			if (GameState.hunger == GameState.maxHunger && timeSinceLastStage >= 1f) {
+				conditionMet = true;
+			}
 			break;
 		case Requirement.collectScrap:
 
@@ -94,17 +97,28 @@ public class TutorialHandler : MonoBehaviour {
 	}
 
 	public void NextStage () {
-		Transform currentChild = transform.GetChild (tutorialStage++);
-		Transform nextChild = transform.GetChild (tutorialStage);
-		if (currentChild) {
-			currentChild.gameObject.SetActive (false);
-		}
-		if (nextChild) {
-			nextChild.gameObject.SetActive (true);
-			currentRequirement = nextChild.GetComponent<TutorialTextBox> ().requirement;
+		Transform currentChild;
+		Transform nextChild;
+
+		if (tutorialStage < transform.childCount) {
+			currentChild = transform.GetChild (tutorialStage++);
 		} else {
 			EndTutorial ();
+			return;
 		}
+
+		if (tutorialStage < transform.childCount) {
+			nextChild = transform.GetChild (tutorialStage);
+		} else {
+			EndTutorial ();
+			return;
+		}
+			
+		currentChild.gameObject.SetActive (false);
+
+		nextChild.gameObject.SetActive (true);
+		currentRequirement = nextChild.GetComponent<TutorialTextBox> ().requirement;
+		canMove = nextChild.GetComponent<TutorialTextBox> ().canMove;
 
 		timeSinceLastStage = 0f;
 	}
@@ -123,6 +137,6 @@ public class TutorialHandler : MonoBehaviour {
 	}
 
 	void StartGame () {
-		SceneManager.LoadScene ("MainMenu");
+		SceneManager.LoadScene ("MainGame");
 	}
 }

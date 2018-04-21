@@ -7,6 +7,7 @@ public class TutorialTextBox : MonoBehaviour {
 
 	[TextArea(1, 2)] public string text = "";
 	public Requirement requirement;
+	public bool canMove;
 
 	// Use this for initialization
 	void Awake () {

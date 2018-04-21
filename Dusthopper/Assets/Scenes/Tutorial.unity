@@ -113,131 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &9527521
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 485333283}
-    m_Modifications:
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1217764202603316, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
-      propertyPath: m_Name
-      value: TutorialTextBox (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114242057149476082, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_Text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114242057149476082, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_FontData.m_FontSize
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 114242057149476082, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
-        type: 2}
-      propertyPath: text
-      value: Scrap can be collected while on a run, floating in space, or from a yellow
-        plant.
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &28652083
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,7 +3230,6 @@ RectTransform:
   - {fileID: 1870181132}
   - {fileID: 1900209082}
   - {fileID: 1469747042}
-  - {fileID: 1939298799}
   m_Father: {fileID: 1818636997}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7830,7 +7704,17 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: text
-      value: Nice!
+      value: Nice! Now you can move to the food to restore some of your hunger.
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: canMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: requirement
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
@@ -9391,6 +9275,8 @@ MonoBehaviour:
   fXSlider: {fileID: 1255830762}
   musicSlider: {fileID: 1992144085}
   scrollSpeedSlider: {fileID: 1820720996}
+  autoScrollToggle: {fileID: 0}
+  swapScrollToggle: {fileID: 0}
 --- !u!1 &1458128170
 GameObject:
   m_ObjectHideFlags: 0
@@ -9872,6 +9758,7 @@ MonoBehaviour:
   jumpTimeElapsed: 0
   failureText1: {fileID: 1012152576}
   autoScroll: 1
+  specialGrayPollenJump: 0
 --- !u!114 &1511771308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10487,6 +10374,11 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: requirement
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: canMove
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12330,11 +12222,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1932246104}
---- !u!224 &1939298799 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
-    type: 2}
-  m_PrefabInternal: {fileID: 9527521}
 --- !u!1 &1948334028
 GameObject:
   m_ObjectHideFlags: 0
