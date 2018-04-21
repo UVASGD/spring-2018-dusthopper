@@ -43,10 +43,6 @@ public class CameraScrollOut : MonoBehaviour {
 	public Sprite mapIconWithSensors;
 	public Sprite mapIconWithoutSensors;
 
-	// Need these until we get map icon art
-	public Color iconWithSensor;
-	public Color iconWithoutSensor;
-
 	// Green Plant Icon
 	public GameObject greenPlantIcon;
 
@@ -192,10 +188,16 @@ public class CameraScrollOut : MonoBehaviour {
 			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().mapIcon;
 			// We can remove this if/else when we have art
 			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
-				asteroid.GetComponent<SpriteRenderer> ().color = iconWithSensor;
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithSensor;
 			} 
 			else {
-				asteroid.GetComponent<SpriteRenderer> ().color = iconWithoutSensor;
+				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithoutSensor;
+			}
+
+			// highlight them if they are in current path
+			PathMaker pm = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ();
+			if (pm.path.ContainsValue (asteroid.transform)) {
+				asteroid.GetComponent<SpriteRenderer> ().color = new Color (asteroid.GetComponent<SpriteRenderer> ().color.r + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.g + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.b + pm.highlightAmount, 1);
 			}
 
 			// draw green plant icon

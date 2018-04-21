@@ -129,6 +129,8 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0.07
   chancePulledGrav: 0.12
+  iconWithSensor: {r: 0.16470589, g: 0.4862745, b: 0.08627451, a: 1}
+  iconWithoutSensor: {r: 0.20392157, g: 0.4745098, b: 0.69803923, a: 1}
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
