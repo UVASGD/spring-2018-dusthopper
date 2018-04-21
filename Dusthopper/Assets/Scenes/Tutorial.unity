@@ -9891,7 +9891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02c1a2adc7a394053a801d7b47026cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hubPrefab: {fileID: 1175468082650272, guid: 83777795c01d54c5aa4f72759418d75d, type: 2}
+  hubPrefab: {fileID: 1175468082650272, guid: 4c0e166d1b76946268ba198347302760, type: 2}
   asteroids:
   - goObj: {fileID: 1276523927128796, guid: f6644f386bc52b64494349558f06c5cb, type: 2}
     num: 0
