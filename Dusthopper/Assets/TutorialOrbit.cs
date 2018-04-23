@@ -10,6 +10,7 @@ public class TutorialOrbit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag ("Hub").transform;
+		transform.SetParent (target);
 	}
 	
 	// Update is called once per frame
