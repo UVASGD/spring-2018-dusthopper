@@ -6,25 +6,42 @@ using UnityEngine.SceneManagement;
 public class TutorialHandler : MonoBehaviour {
 	int tutorialStage = 0;
 	bool conditionMet = false;
-	bool canMove = false;
 	Requirement currentRequirement;
 	float timeSinceLastStage = 0f;
 	float timeSpentMoving = 0f;
 
+	bool nextStage;
+
+	bool canMove;
+	bool canZoom;
+	bool canJump;
+
 	private Movement playerMove;
+	private CameraScrollOut camScroll;
+	private ManualJump playerJump;
+
+	//private Transform hub;
 
 	// Use this for initialization
 	void Start () {
 		tutorialStage = 0;
+		GameState.tutorialCompleted = false;
 		conditionMet = false;
 		timeSinceLastStage = 0f;
 		timeSpentMoving = 0f;
+		nextStage = false;
 		canMove = false;
+		canZoom = false;
+		canJump = false;
 		GameState.hunger *= 0.9f;
 
 		currentRequirement = Requirement.none;
 
 		playerMove = GameState.player.GetComponent<Movement> ();
+		camScroll = Camera.main.GetComponent<CameraScrollOut> ();
+		playerJump = GameState.player.GetComponent<ManualJump> ();
+
+		//hub = GameObject.FindWithTag ("Hub");
 
 		int index = 0;
 		foreach (Transform child in transform) {
@@ -33,18 +50,26 @@ public class TutorialHandler : MonoBehaviour {
 			}
 		}
 	}
+
+	public void ButtonRequirement () {
+		nextStage = true;
+	}
 	
 	// Update is called once per frame
 	void Update () {
-		//print ("Requirement: " + currentRequirement);
-		//canMove = 
+
+		if (GameState.asteroid.tag != "Hub" && GameState.asteroid.tag != "Asteroid") {
+			print ("RESET");
+			GameState.ResetGame ();
+		}
+
 		conditionMet = false;
 		switch (currentRequirement) {
 		default:
 			Debug.LogError ("Requirement Not Valid!");
 			break;
 		case Requirement.none:
-			conditionMet = Input.GetKeyDown (KeyCode.N);
+			conditionMet = nextStage;
 			break;
 		case Requirement.move:
 		//	canMove = true;
@@ -57,7 +82,9 @@ public class TutorialHandler : MonoBehaviour {
 			}
 			break;
 		case Requirement.manualJump:
-
+			if (GameState.asteroid.tag != "Hub") {
+				conditionMet = true;
+			}
 			break;
 		case Requirement.openMap:
 
@@ -90,13 +117,15 @@ public class TutorialHandler : MonoBehaviour {
 		timeSinceLastStage += Time.unscaledDeltaTime;
 
 		playerMove.canMove = canMove;
+		camScroll.enabled = canZoom;
+		playerJump.enabled = canJump;
 
 		if (conditionMet) {
 			NextStage ();
 		}
 	}
 
-	public void NextStage () {
+	void NextStage () {
 		Transform currentChild;
 		Transform nextChild;
 
@@ -116,9 +145,16 @@ public class TutorialHandler : MonoBehaviour {
 			
 		currentChild.gameObject.SetActive (false);
 
+		TutorialTextBox next = nextChild.GetComponent<TutorialTextBox> ();
+
 		nextChild.gameObject.SetActive (true);
-		currentRequirement = nextChild.GetComponent<TutorialTextBox> ().requirement;
-		canMove = nextChild.GetComponent<TutorialTextBox> ().canMove;
+		currentRequirement = next.requirement;
+
+		nextStage = false;
+
+		canMove = next.canMove;
+		canZoom = next.canZoom;
+		canJump = next.canJump;
 
 		timeSinceLastStage = 0f;
 	}

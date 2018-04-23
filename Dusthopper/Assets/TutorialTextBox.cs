@@ -8,6 +8,8 @@ public class TutorialTextBox : MonoBehaviour {
 	[TextArea(1, 2)] public string text = "";
 	public Requirement requirement;
 	public bool canMove;
+	public bool canZoom;
+	public bool canJump;
 
 	// Use this for initialization
 	void Awake () {
