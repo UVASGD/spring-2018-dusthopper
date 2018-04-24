@@ -87,7 +87,9 @@ public class TutorialHandler : MonoBehaviour {
 			}
 			break;
 		case Requirement.openMap:
-
+			if (GameState.mapOpen) {
+				conditionMet = true;
+			}
 			break;
 		case Requirement.planJump:
 
@@ -110,7 +112,9 @@ public class TutorialHandler : MonoBehaviour {
 
 			break;
 		case Requirement.returnToHub:
-
+			if (GameState.asteroid.tag == "Hub") {
+				conditionMet = true;
+			}
 			break;
 		}
 

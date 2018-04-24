@@ -270,7 +270,7 @@ public class PathMaker : MonoBehaviour {
             Destroy(line);
         }
         lines.Clear();
-        print("jump schedule cleared");
+//        print("jump schedule cleared");
 //		if (chargeJump.isPlaying) {
 //			chargeJump.Stop ();
 //		}
