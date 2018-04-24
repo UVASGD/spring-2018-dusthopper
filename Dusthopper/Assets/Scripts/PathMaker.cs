@@ -44,6 +44,9 @@ public class PathMaker : MonoBehaviour {
 	public float highlightAmount = 0.5f;
 
 	public bool specialGrayPollenJump = false;
+
+	public bool tutorialAllows;
+
     // Use this for initialization
     void Start () {
 		path = new SortedList<float,Transform> (0);
@@ -52,6 +55,7 @@ public class PathMaker : MonoBehaviour {
 		lines = new List<GameObject> ();
 		GameStateTimeLF = 0f;
 		timeSinceChargingStarted = 0f;
+		tutorialAllows = true;
 	}
 	
 	// Update is called once per frame
@@ -124,7 +128,7 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	void EditPath () {
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && tutorialAllows)
 		{
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			Collider2D hit = Physics2D.OverlapPoint (mousePos);

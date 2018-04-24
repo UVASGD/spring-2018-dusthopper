@@ -6,6 +6,7 @@ public class Generator : MonoBehaviour {
 	//This populates the world with asteroids. 
 
     public GameObject hubPrefab;
+	public bool tutorialMode = false;
 
     [SerializeField]
 	public List<GameObjectAndFloat> asteroids; //this list represents the probability distribution of the different asteroid type
@@ -35,7 +36,10 @@ public class Generator : MonoBehaviour {
 
     public void Generate(){
         //Generate Asteroids
-        
+		//if (tutorialMode) {
+
+		//}
+
         for (int i = 0; i < quantity; i++)
         {
             float toGenerate = Random.value;

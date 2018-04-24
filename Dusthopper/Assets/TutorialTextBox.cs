@@ -10,6 +10,7 @@ public class TutorialTextBox : MonoBehaviour {
 	public bool canMove;
 	public bool canZoom;
 	public bool canJump;
+	public bool canPlanJump;
 
 	// Use this for initialization
 	void Awake () {

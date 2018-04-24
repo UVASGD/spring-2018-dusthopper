@@ -10,11 +10,12 @@ public class TutorialOrbit : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag ("Hub").transform;
-		transform.SetParent (target);
+		//transform.SetParent (target);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		transform.position += Vector3.Cross ((target.position - transform.position).normalized, Vector3.forward) * speed * Time.deltaTime;
+		transform.position += (Vector3)target.GetComponent<Rigidbody2D> ().velocity * Time.deltaTime;
 	}
 }

@@ -166,7 +166,8 @@ public static class GameState {
 		SaveGame ();
 		LoadGame ();
 		tutorialCompleted = false;
-		//player.transform.position = Vector3.zero;
+		asteroid = GameObject.FindWithTag("Hub").transform;
+		player.transform.position = asteroid.position;
 //		asteroid = GameObject.FindWithTag("Hub").transform;
 //		player.transform.position = GameObject.FindWithTag("Hub").transform.position;
 		//PrintState();

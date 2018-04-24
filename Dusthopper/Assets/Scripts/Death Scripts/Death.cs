@@ -40,6 +40,7 @@ public class Death : MonoBehaviour {
 		} else {
 			GameState.ResetGame ();
 			isFalling = false;
+			//GameState.player.transform.position = GameObject.FindWithTag ("Hub").transform.position;
 			GameState.player.transform.localScale = Vector3.one * 0.04f;
 		}
     }

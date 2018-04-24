@@ -15,10 +15,12 @@ public class TutorialHandler : MonoBehaviour {
 	bool canMove;
 	bool canZoom;
 	bool canJump;
+	bool canPlanJump;
 
 	private Movement playerMove;
 	private CameraScrollOut camScroll;
 	private ManualJump playerJump;
+	private PathMaker pathMaker;
 
 	//private Transform hub;
 
@@ -33,6 +35,7 @@ public class TutorialHandler : MonoBehaviour {
 		canMove = false;
 		canZoom = false;
 		canJump = false;
+		canPlanJump = false;
 		GameState.hunger *= 0.9f;
 
 		currentRequirement = Requirement.none;
@@ -40,6 +43,7 @@ public class TutorialHandler : MonoBehaviour {
 		playerMove = GameState.player.GetComponent<Movement> ();
 		camScroll = Camera.main.GetComponent<CameraScrollOut> ();
 		playerJump = GameState.player.GetComponent<ManualJump> ();
+		pathMaker = FindObjectOfType<PathMaker> ();
 
 		//hub = GameObject.FindWithTag ("Hub");
 
@@ -92,10 +96,14 @@ public class TutorialHandler : MonoBehaviour {
 			}
 			break;
 		case Requirement.planJump:
-
+			if (pathMaker.path.Count > 0) {
+				conditionMet = true;
+			}
 			break;
 		case Requirement.closeMap:
-
+			if (!GameState.mapOpen) {
+				conditionMet = true;
+			}
 			break;
 		case Requirement.eatFood:
 			if (GameState.hunger == GameState.maxHunger && timeSinceLastStage >= 1f) {
@@ -106,10 +114,14 @@ public class TutorialHandler : MonoBehaviour {
 
 			break;
 		case Requirement.pickupSeed:
-
+			if (GameState.player.transform.childCount > 0) {
+				conditionMet = true;
+			}
 			break;
 		case Requirement.depositSeed:
-
+			if (GameState.player.transform.childCount == 0) {
+				conditionMet = true;
+			}
 			break;
 		case Requirement.returnToHub:
 			if (GameState.asteroid.tag == "Hub") {
@@ -123,6 +135,8 @@ public class TutorialHandler : MonoBehaviour {
 		playerMove.canMove = canMove;
 		camScroll.enabled = canZoom;
 		playerJump.enabled = canJump;
+		pathMaker.tutorialAllows = canPlanJump;
+
 
 		if (conditionMet) {
 			NextStage ();
@@ -159,6 +173,7 @@ public class TutorialHandler : MonoBehaviour {
 		canMove = next.canMove;
 		canZoom = next.canZoom;
 		canJump = next.canJump;
+		canPlanJump = next.canPlanJump;
 
 		timeSinceLastStage = 0f;
 	}
