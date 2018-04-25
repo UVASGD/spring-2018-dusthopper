@@ -21,6 +21,7 @@ public class TutorialHandler : MonoBehaviour {
 	private CameraScrollOut camScroll;
 	private ManualJump playerJump;
 	private PathMaker pathMaker;
+	private GameObject plant;
 
 	//private Transform hub;
 
@@ -44,6 +45,7 @@ public class TutorialHandler : MonoBehaviour {
 		camScroll = Camera.main.GetComponent<CameraScrollOut> ();
 		playerJump = GameState.player.GetComponent<ManualJump> ();
 		pathMaker = FindObjectOfType<PathMaker> ();
+		plant = FindObjectOfType<Plant> ().gameObject;
 
 		//hub = GameObject.FindWithTag ("Hub");
 
@@ -114,12 +116,12 @@ public class TutorialHandler : MonoBehaviour {
 
 			break;
 		case Requirement.pickupSeed:
-			if (GameState.player.transform.childCount > 0) {
+			if (GameState.player.transform.childCount > 1) {
 				conditionMet = true;
 			}
 			break;
 		case Requirement.depositSeed:
-			if (GameState.player.transform.childCount == 0) {
+			if (plant == null) {
 				conditionMet = true;
 			}
 			break;

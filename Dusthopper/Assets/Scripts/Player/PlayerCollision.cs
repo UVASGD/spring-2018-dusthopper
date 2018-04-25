@@ -98,7 +98,9 @@ public class PlayerCollision : MonoBehaviour {
 						resetJumpDistance();
 					}
 					other.GetComponent<Plant> ().dispenseReward ();
-					GetPlant.Play ();
+					if (GetPlant) {
+						GetPlant.Play ();
+					}
 					Destroy (heldObject);
 					holding = false;
 				}
