@@ -76,7 +76,7 @@ public class Animal : MonoBehaviour {
 
 		float step = speed * Time.deltaTime;
 
-		Debug.Log (Vector2.Distance (transform.localPosition, targetPosition));
+		//Debug.Log (Vector2.Distance (transform.localPosition, targetPosition));
 
 
 		/*if (!chasing) {
@@ -103,10 +103,11 @@ public class Animal : MonoBehaviour {
 	}
 
 	private void Wander() {
-		targetPosition = new Vector2 (Random.Range (-1.0f, 1.0f), Random.Range (-1.0f, 1.0f));
+		targetPosition = new Vector2 (Random.Range (-0.25f, 0.25f), Random.Range (-0.25f, 0.25f));
 
 		if (GameState.mapOpen) {
-			targetPosition = Vector2.zero;
+			Debug.Log ("map is open");
+			targetPosition = transform.localPosition;
 		}
 
 		//Stop following asteroidmovement if there is none
@@ -116,10 +117,10 @@ public class Animal : MonoBehaviour {
 		}
 
 		//Keep constrained on current asteroid
-//		if (!Movement.IsWithinAsteroid(transform, targetPosition, myAsteroid)) {
-//			
-//			targetPosition = Vector2.zero;
-//		}
+		if (!Movement.IsWithinAsteroid(transform, targetPosition, myAsteroid)) {
+			Debug.Log ("correcting");
+			targetPosition = transform.localPosition;
+		}
 
 
 
