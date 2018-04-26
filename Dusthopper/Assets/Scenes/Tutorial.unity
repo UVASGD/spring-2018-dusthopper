@@ -765,7 +765,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -929,7 +929,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -1004,7 +1004,7 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: text
-      value: Your goal is to travel between asteroids, collecting resources, and piecing
+      value: Your goal is to travel between asteroids, collecting resources and piecing
         gravity back together.
       objectReference: {fileID: 0}
     - target: {fileID: 1217764202603316, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
@@ -1227,7 +1227,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -1596,7 +1596,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -1839,7 +1839,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -2173,6 +2173,116 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 221223210}
+--- !u!1 &234620741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 234620742}
+  - component: {fileID: 234620743}
+  m_Layer: 9
+  m_Name: GetPlantSFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &234620742
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234620741}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.487803, y: 7.449765, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1627101702}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &234620743
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234620741}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243072596502899424, guid: 4e65d4d7609194874b9d6853440c5159,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7237126c7f7f14716a9d9c7326e32f25, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1001 &235214494
 Prefab:
   m_ObjectHideFlags: 0
@@ -3010,7 +3120,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -3085,7 +3195,8 @@ Prefab:
         type: 2}
       propertyPath: text
       value: In addition, you can fast forward or rewind time with this time slider
-        to check asteroid trajectories, and create a gap between jumps.
+        to check asteroid trajectories, and remove jumps from your path by clicking
+        them again.
       objectReference: {fileID: 0}
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -3517,7 +3628,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -3591,8 +3702,7 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: text
-      value: That's about all for the tutorial! Remember to find all of the gravity
-        fragments. The hub, and certain asteroids will point to where they are.
+      value: That's about all for the tutorial! Remember - look for the gravity fragments!
       objectReference: {fileID: 0}
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -3760,7 +3870,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 21
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -3834,8 +3944,8 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: text
-      value: The color of the pollen corresponds the color plant to deposit it in.
-        Go ahead and deposit this pollen into the green plant.
+      value: The color of the pollen corresponds to the color of the plant to deposit
+        it in. Go ahead and deposit this pollen into the green plant.
       objectReference: {fileID: 0}
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -4043,7 +4153,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -4571,7 +4681,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -5113,7 +5223,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -6134,6 +6244,126 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 292e961e5a070485792401f2784f6c5c, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &658049431
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1158757141}
+    m_Modifications:
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -80
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114300190069042428, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1158757145}
+    - target: {fileID: 1217764202603316, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
+      propertyPath: m_Name
+      value: TutorialTextBox (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
+        type: 2}
+      propertyPath: text
+      value: The core of the world was shattered into 3 pieces. Each piece contains
+        a fragment of the world's gravity.
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 93700b11dbd744f6c9b59360fc62cb52, type: 2}
+  m_IsPrefabParent: 0
+--- !u!224 &658049432 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
+    type: 2}
+  m_PrefabInternal: {fileID: 658049431}
 --- !u!1 &658589911
 GameObject:
   m_ObjectHideFlags: 0
@@ -6369,7 +6599,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -6701,7 +6931,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -6865,7 +7095,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -7165,6 +7395,11 @@ Prefab:
       propertyPath: chaching
       value: 
       objectReference: {fileID: 49913999}
+    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: GetPlant
+      value: 
+      objectReference: {fileID: 234620743}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
@@ -7942,7 +8177,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -8885,7 +9120,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -10103,6 +10338,7 @@ RectTransform:
   m_Children:
   - {fileID: 1306332716}
   - {fileID: 294884890}
+  - {fileID: 658049432}
   - {fileID: 1870181132}
   - {fileID: 1900209082}
   - {fileID: 1469747042}
@@ -10481,7 +10717,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -10556,7 +10792,7 @@ Prefab:
         type: 2}
       propertyPath: text
       value: Yum! Your hunger won't go down on the hub, but as soon as you start a
-        run by switching asteroids, it will depleat quickly.
+        run by switching asteroids, it will deplete quickly.
       objectReference: {fileID: 0}
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -10674,7 +10910,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -11310,7 +11546,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 26
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -12086,7 +12322,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 18
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -13761,6 +13997,7 @@ Transform:
   - {fileID: 678218556}
   - {fileID: 250370994}
   - {fileID: 49913998}
+  - {fileID: 234620742}
   m_Father: {fileID: 1511771306}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13809,7 +14046,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -14649,7 +14886,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 22
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -15029,7 +15266,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 25
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -15794,7 +16031,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -15868,8 +16105,8 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: text
-      value: Great! Pollen comes in many colors, and is scattered randomly on different
-        asteroids. You can drop it by right clicking.
+      value: Great! Pollen comes in many colors, and is scattered on different asteroids.
+        You can drop it by right clicking.
       objectReference: {fileID: 0}
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -16396,7 +16633,7 @@ Prefab:
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: m_RootOrder
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 224585103783213138, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
@@ -16470,7 +16707,7 @@ Prefab:
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
         type: 2}
       propertyPath: text
-      value: Yellow plants, for example, can give you scrap, which can be used to
+      value: Yellow plants, for example, can give you scrap, which you can use to
         buy upgrades in the shop on the Hub.
       objectReference: {fileID: 0}
     - target: {fileID: 114676911891598786, guid: 93700b11dbd744f6c9b59360fc62cb52,
