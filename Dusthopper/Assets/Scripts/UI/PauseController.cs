@@ -49,7 +49,7 @@ public class PauseController : MonoBehaviour {
 	}
 
 	public void Pause(){
-		print ("pause called");
+//		print ("pause called");
 		GameState.gamePaused = true;
 		pauseMenuUI.SetActive (true);
 		prevTimeScale = Time.timeScale;
@@ -57,7 +57,7 @@ public class PauseController : MonoBehaviour {
 	}
 
 	public void GoToSettings(){
-		print ("going to settings");
+//		print ("going to settings");
 		pauseMenuUI.SetActive (false);
 		settingsMenuUI.SetActive (true);
 		inSettings = true;
@@ -66,7 +66,7 @@ public class PauseController : MonoBehaviour {
 
 	public void LoadRequest()
 	{
-		Debug.Log("requesting load");
+//		Debug.Log("requesting load");
 		if (loadDelegate != null) loadDelegate();
 	}
 
@@ -76,7 +76,7 @@ public class PauseController : MonoBehaviour {
 	}
 
 	public void LeaveSettings(){
-		print ("leaving settings");
+//		print ("leaving settings");
 		inSettings = false;
 		pauseMenuUI.SetActive (true);
 		settingsMenuUI.SetActive (false);

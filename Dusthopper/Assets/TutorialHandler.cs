@@ -121,7 +121,7 @@ public class TutorialHandler : MonoBehaviour {
 			}
 			break;
 		case Requirement.depositSeed:
-			if (plant == null) {
+			if (plant == null	) {
 				conditionMet = true;
 			}
 			break;

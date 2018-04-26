@@ -29,6 +29,7 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void Update () {
+		print ("Tutorial Completed: " + GameState.tutorialCompleted);
 		if (Input.GetMouseButtonDown (1) && holding) {
 			drop ();
 		}
@@ -72,7 +73,7 @@ public class PlayerCollision : MonoBehaviour {
 		}
 
 		if (other.tag == "Scrap") {
-			print ("collided with scrap");
+			//print ("collided with scrap");
 			GameState.scrap += other.gameObject.GetComponent<ScrapBehavior> ().scrapValue;
             chaching.Play(); //play sound effect
 			Destroy (other.gameObject);
@@ -123,7 +124,7 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void drop() {
-		print ("Dropped pollen");
+		//print ("Dropped pollen");
 		holding = false;
 		heldObject.transform.parent = GameState.asteroid;
 		justDroppedObj = heldObject;
