@@ -22,7 +22,7 @@ public class Intro : MonoBehaviour {
 	}
 
 	void Update () {
-		print ("Tutorial Completed: " + GameState.tutorialCompleted);
+//		print ("Tutorial Completed: " + GameState.tutorialCompleted);
 		if (Input.anyKeyDown && fade.anim.GetCurrentAnimatorStateInfo(0).IsName("Faded") && ! buttonPressed) {
 			fade.fadeOut(0.4f);
 			buttonPressed = true;

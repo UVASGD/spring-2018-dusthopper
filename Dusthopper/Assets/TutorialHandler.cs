@@ -65,7 +65,7 @@ public class TutorialHandler : MonoBehaviour {
 	void Update () {
 
 		if (GameState.asteroid.tag != "Hub" && GameState.asteroid.tag != "Asteroid") {
-			print ("RESET");
+			//print ("RESET");
 			GameState.ResetGame ();
 		}
 

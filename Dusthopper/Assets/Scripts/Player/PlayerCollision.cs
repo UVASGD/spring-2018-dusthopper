@@ -29,7 +29,7 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void Update () {
-		print ("Tutorial Completed: " + GameState.tutorialCompleted);
+//		print ("Tutorial Completed: " + GameState.tutorialCompleted);
 		if (Input.GetMouseButtonDown (1) && holding) {
 			drop ();
 		}
