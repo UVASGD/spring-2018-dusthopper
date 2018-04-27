@@ -55,7 +55,6 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		//Input direction. Use this variable so you don't call GetAxis multiple times a frame (faster)
 		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized * (canMove ? 1 : 0); 
 
@@ -90,13 +89,12 @@ public class Movement : MonoBehaviour {
 		} else {
 			rb.velocity = Vector2.zero;
 		}
-
-		transform.position += GameState.asteroid.position - lastPos;
+		transform.position += GameState.asteroid.position - lastPos;//troublemaker line of code when GameState.asteroid changes between frames but leave it because everything works
 		lastPos = GameState.asteroid.position;
 
 	}
 
-	public void WhatTheFuck(){
+	public void HardResetPosition(){
 		transform.position = GameState.asteroid.position;
 	}
 	//Called any time the player jumps to a new asteroid. 
@@ -122,9 +120,8 @@ public class Movement : MonoBehaviour {
 
 			jumpSound.Play ();
 			if (isAsteroid) {
-				transform.position = GameState.asteroid.position;//why does this do what it does what the fuck
+				transform.position = GameState.asteroid.position;//this only works because of another line of code in update
 			} else {
-				print ("who freakin knows");
 				transform.position = a.position;
 			}
 

@@ -39,7 +39,7 @@ public class Death : MonoBehaviour {
 			}
 		} else {
 			isFalling = false;
-			GameState.player.GetComponent<Movement> ().WhatTheFuck ();
+			GameState.player.GetComponent<Movement> ().HardResetPosition ();
 			GameState.player.transform.localScale = Vector3.one * 0.04f;
 		}
     }
