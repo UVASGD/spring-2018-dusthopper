@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour {
 	private UpgradeManager upgradeMgr;
 	private Rigidbody2D rb;
 
+
 	[HideInInspector] public bool canMove;
 
 	// Use this for initialization
@@ -54,6 +55,9 @@ public class Movement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.L)) {
+			WhatTheFuck ();
+		}
 		//Input direction. Use this variable so you don't call GetAxis multiple times a frame (faster)
 		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized * (canMove ? 1 : 0); 
 
@@ -94,9 +98,12 @@ public class Movement : MonoBehaviour {
 
 	}
 
+	public void WhatTheFuck(){
+		transform.position = GameState.asteroid.position;
+	}
 	//Called any time the player jumps to a new asteroid. 
 	//If 'isAsteroid' is set to false, then it is implied that the jump failed ,and the player goes to a point in space and dies
-	public void SwitchAsteroid (Transform a, bool isAsteroid = true) {
+	public void SwitchAsteroid (Transform a, bool isAsteroid = true, bool playSound = true) {
 		if (a != GameState.asteroid) {//shouldn't be able to jump to yourself
 //		print ("Instantiating!");
 			Transform inst = Instantiate (animPrefab, transform.position, transform.rotation);
@@ -115,10 +122,12 @@ public class Movement : MonoBehaviour {
 			}
 			*/
 
-			jumpSound.Play ();
+			if(playSound)
+				jumpSound.Play ();
 			if (isAsteroid) {
-				transform.position = GameState.asteroid.position;
+				transform.position = GameState.asteroid.position;//why does this do what it does what the fuck
 			} else {
+				print ("who freakin knows");
 				transform.position = a.position;
 			}
 

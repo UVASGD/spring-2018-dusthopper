@@ -38,9 +38,8 @@ public class Death : MonoBehaviour {
 				StartCoroutine (reloadScene ());
 			}
 		} else {
-			GameState.ResetGame ();
 			isFalling = false;
-			//GameState.player.transform.position = GameObject.FindWithTag ("Hub").transform.position;
+			GameState.player.GetComponent<Movement> ().WhatTheFuck ();
 			GameState.player.transform.localScale = Vector3.one * 0.04f;
 		}
     }
