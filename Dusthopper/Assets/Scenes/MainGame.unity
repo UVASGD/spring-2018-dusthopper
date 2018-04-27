@@ -9407,7 +9407,7 @@ MonoBehaviour:
   windContainer: {fileID: 1546438131}
   windMaker: {fileID: 1461216191190568, guid: b7632d6f88b85f64baa46766d5baa311, type: 2}
   numPoints: 20
-  windMakerRadius: 10
+  windMakerRadius: 5
   delayBeforeGeneration: 15
   minExistenceTime: 40
   maxExistenceTime: 120
