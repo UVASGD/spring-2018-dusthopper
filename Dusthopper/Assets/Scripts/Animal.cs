@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Animal : MonoBehaviour {
 
-	//private Rigidbody2D rb;
 	private Vector3 lastPos;
-	private float speed = 0.5f;
+	private float speed = 1f;
 	private float rotationSpeed = 0.1f;
 	private Transform myAsteroid;
 	private bool chasing = false;
@@ -15,7 +14,6 @@ public class Animal : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//rb = GetComponent<Rigidbody2D> ();
 		myAsteroid = this.transform.parent;
 		//GameState.asteroid = GameObject.FindWithTag ("Hub").transform;
 		//transform.position = GameState.asteroid.position;
@@ -37,8 +35,6 @@ public class Animal : MonoBehaviour {
 	// Update is called once per frame
 	protected virtual void Update () {
 
-		Wander ();
-
 
 		//animal translational velocity vector
 		Vector2 targVel = targetPosition * speed; 
@@ -57,29 +53,27 @@ public class Animal : MonoBehaviour {
 			transform.rotation = Quaternion.AngleAxis(targRot,Vector3.forward);
 		}
 
-		//Stop following asteroidmovement if there is none
+		//Stop following asteroid movement if there is none
 		if (!myAsteroid) {
-			Debug.Log ("no asteroid");
 			return;
 		}
 
-		//Keep constrained on current asteroidj
-		if (IsWithinAsteroid(transform, targVel, myAsteroid)) {
-			//rb.velocity = targVel;
-			transform.localPosition += new Vector3(targVel.x*Time.deltaTime,targVel.y*Time.deltaTime,0f);
+		//Keep constrained on current asteroid
+		if (Vector2.Distance (transform.localPosition, targetPosition) > 0.1) {
+			if (IsWithinAsteroid(transform, targVel, myAsteroid)) {
+				transform.localPosition += new Vector3(targVel.x*Time.deltaTime,targVel.y*Time.deltaTime,0f);
+			} else {
+				Wander ();
+			}
 		} else {
-			//rb.velocity = Vector2.zero;
+			Wander ();
 		}
 
-		/*transform.position += myAsteroid.position - lastPos;
-		lastPos = myAsteroid.position;*/
 
 		float step = speed * Time.deltaTime;
+		/*
 
-		//Debug.Log (Vector2.Distance (transform.localPosition, targetPosition));
-
-
-		/*if (!chasing) {
+		if (!chasing) {
 			if (Vector2.Distance (transform.localPosition, targetPosition) > 0.1) {
 				transform.localPosition = Vector2.Lerp (transform.localPosition, targetPosition, step);
 			} else {
@@ -106,19 +100,16 @@ public class Animal : MonoBehaviour {
 		targetPosition = new Vector2 (Random.Range (-0.25f, 0.25f), Random.Range (-0.25f, 0.25f));
 
 		if (GameState.mapOpen) {
-			Debug.Log ("map is open");
 			targetPosition = transform.localPosition;
 		}
 
 		//Stop following asteroidmovement if there is none
 		if (!myAsteroid) {
-			Debug.Log ("no asteroid");
 			return;
 		}
 
 		//Keep constrained on current asteroid
-		if (!Movement.IsWithinAsteroid(transform, targetPosition, myAsteroid)) {
-			Debug.Log ("correcting");
+		if (!Movement.IsWithinAsteroid(myAsteroid, targetPosition, myAsteroid)) {
 			targetPosition = transform.localPosition;
 		}
 
