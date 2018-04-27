@@ -96,8 +96,6 @@ public class Movement : MonoBehaviour {
 		Vector2 futureAsteroidPosition = (Vector2)asteroid.position + asteroid.GetComponent<Rigidbody2D> ().velocity * Time.deltaTime;
 		float asteroidRadius = asteroid.GetComponent<AsteroidInfo> ().radius;
 
-		//Debug.Log(Vector2.Distance(futureTarget, futureAsteroidPosition) + " " + (futureTarget - futureAsteroidPosition).magnitude + " " + asteroidRadius);
-		Debug.Log(futureTarget + " " + futureAsteroidPosition + " " + " dis: " + (futureTarget - futureAsteroidPosition).magnitude);
 		return (futureTarget - futureAsteroidPosition).magnitude < asteroidRadius;
 	}
 
