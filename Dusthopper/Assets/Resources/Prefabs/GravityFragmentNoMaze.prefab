@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc091076d3e0b4d8fb4d7264d5c401f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpaceScrap: 0
   radius: 10
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &114588411578203458
@@ -177,6 +178,8 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0.2
   chancePulledGrav: 0
+  iconWithSensor: {r: 0.16470589, g: 0.4862745, b: 0.08627451, a: 1}
+  iconWithoutSensor: {r: 0.20392157, g: 0.4745098, b: 0.69803923, a: 1}
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
@@ -186,6 +189,7 @@ MonoBehaviour:
   sensorTimeRangeRange: 15
   food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
   foodChance: 0.5
+  greenPlantCount: 0
   maxSpeed: 1.5
   itempool: []
   decorationItems: []
@@ -214,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0494784c6c8c491fa6ac3a6ec5e5ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fragmentID: 0
   degreesPerSecond: 20
   pointer: {fileID: 0}
   state: 0
