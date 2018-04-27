@@ -235,12 +235,13 @@ public class PathMaker : MonoBehaviour {
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);
 					chargeJump.time = 0f;
 				} else {
-					print ("jump cancelled - too far");
+					print ("jump cancelled - too far. clearing jumps");
 					displayFailedJump ("jump too far");
 					if (chargeJump.isPlaying && !FindObjectOfType<ManualJump>().manuallyJumping) {
 						chargeJump.Stop ();
 					}
 					jumpTooFar.Play ();
+					RemoveJumps ();
 				}
 				path.RemoveAt (0);
 				jumpTimes.RemoveAt (0);

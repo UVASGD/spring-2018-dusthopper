@@ -12,7 +12,7 @@ public class Plant : MonoBehaviour {
 	[SerializeField]
 	private float howFarAwayToSpawnScrap;
 
-	public float blueTime = 5f;
+	public float blueTime;
 
     public void dispenseReward() {
 		GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
