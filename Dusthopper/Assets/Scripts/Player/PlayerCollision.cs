@@ -43,7 +43,7 @@ public class PlayerCollision : MonoBehaviour {
 
 		if (bluePlantTimer > 0f) {
 			bluePlantTimer -= GameState.deltaTime;
-			Debug.Log (bluePlantTimer);
+//			Debug.Log (bluePlantTimer);
 			if (!onBluePlant) {
 				Debug.Log ("blue on");
 
@@ -52,6 +52,7 @@ public class PlayerCollision : MonoBehaviour {
 			}
 		} else if (onBluePlant) {
 			Debug.Log ("blue off");
+//			Debug.Log (bluePlantTimer);
 			onBluePlant = false;
 			GameState.secondsPerJump = GameState.secondsPerJump / bluePlantFactor;
 		}

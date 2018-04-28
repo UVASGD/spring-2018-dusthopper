@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour {
 	private UpgradeManager upgradeMgr;
 	private Rigidbody2D rb;
 
+
 	[HideInInspector] public bool canMove;
 
 	// Use this for initialization
@@ -88,12 +89,14 @@ public class Movement : MonoBehaviour {
 		} else {
 			rb.velocity = Vector2.zero;
 		}
-
-		transform.position += GameState.asteroid.position - lastPos;
+		transform.position += GameState.asteroid.position - lastPos;//troublemaker line of code when GameState.asteroid changes between frames but leave it because everything works
 		lastPos = GameState.asteroid.position;
 
 	}
 
+	public void HardResetPosition(){
+		transform.position = GameState.asteroid.position;
+	}
 	//Called any time the player jumps to a new asteroid. 
 	//If 'isAsteroid' is set to false, then it is implied that the jump failed ,and the player goes to a point in space and dies
 	public void SwitchAsteroid (Transform a, bool isAsteroid = true) {
@@ -117,7 +120,7 @@ public class Movement : MonoBehaviour {
 
 			jumpSound.Play ();
 			if (isAsteroid) {
-				transform.position = GameState.asteroid.position;
+				transform.position = GameState.asteroid.position;//this only works because of another line of code in update
 			} else {
 				transform.position = a.position;
 			}

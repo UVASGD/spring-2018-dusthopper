@@ -4991,7 +4991,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 833406267}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.47083113, y: -0.075683296, z: 0.08430847}
+  m_LocalPosition: {x: 0, y: 0, z: 0.08430847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6776,7 +6776,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1120569470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.487803, y: 7.449765, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -9094,7 +9094,9 @@ MonoBehaviour:
   jumpTimeElapsed: 0
   failureText1: {fileID: 1012152576}
   autoScroll: 1
+  highlightAmount: 0.5
   specialGrayPollenJump: 0
+  tutorialAllows: 0
 --- !u!114 &1511771308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9107,6 +9109,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hubPrefab: {fileID: 1175468082650272, guid: 83777795c01d54c5aa4f72759418d75d, type: 2}
+  tutorialMode: 0
   asteroids:
   - goObj: {fileID: 1276523927128796, guid: f6644f386bc52b64494349558f06c5cb, type: 2}
     num: 200
@@ -9404,7 +9407,7 @@ MonoBehaviour:
   windContainer: {fileID: 1546438131}
   windMaker: {fileID: 1461216191190568, guid: b7632d6f88b85f64baa46766d5baa311, type: 2}
   numPoints: 20
-  windMakerRadius: 10
+  windMakerRadius: 5
   delayBeforeGeneration: 15
   minExistenceTime: 40
   maxExistenceTime: 120
@@ -9444,7 +9447,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1552148725}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.487803, y: 7.449765, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 74261323}

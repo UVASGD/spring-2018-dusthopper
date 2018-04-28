@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114855310851036712}
   - component: {fileID: 58236886599823124}
   - component: {fileID: 114615033012177974}
+  - component: {fileID: 114537262285080236}
   m_Layer: 8
   m_Name: TestAsteroidPlain
   m_TagString: Asteroid
@@ -80,6 +81,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.6009091
+--- !u!114 &114537262285080236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1276523927128796}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3ae89fc05b0404a887d2b85081314d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedRange: {x: 0.2, y: 2}
 --- !u!114 &114615033012177974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -103,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc091076d3e0b4d8fb4d7264d5c401f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSpaceScrap: 0
   radius: 0
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &114855310851036712
@@ -147,10 +161,10 @@ MonoBehaviour:
     spawnChance: 0.3
     uniqueSpawn: 1
   - obj: {fileID: 1758696637372082, guid: eb14b6e2337d544d19dd1cfafa41e221, type: 2}
-    spawnChance: 0.75
+    spawnChance: 1
     uniqueSpawn: 0
   - obj: {fileID: 1013170403800838, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
-    spawnChance: 0.75
+    spawnChance: 1
     uniqueSpawn: 0
   - obj: {fileID: 1758696637372082, guid: fd87d84ad8c9f4db9bff6cf6b591fca6, type: 2}
     spawnChance: 0.75
@@ -159,10 +173,10 @@ MonoBehaviour:
     spawnChance: 0.75
     uniqueSpawn: 0
   - obj: {fileID: 1013170403800838, guid: 46973c16ae203455c91ec0eb6021d16b, type: 2}
-    spawnChance: 0.75
+    spawnChance: 0.25
     uniqueSpawn: 0
   - obj: {fileID: 1758696637372082, guid: 061b66ab36060469cb4a5ff952734436, type: 2}
-    spawnChance: 0.75
+    spawnChance: 0.25
     uniqueSpawn: 0
   - obj: {fileID: 1758696637372082, guid: 2b6b895e01ee84d4abc9e4800663b589, type: 2}
     spawnChance: 0.75
