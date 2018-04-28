@@ -41,7 +41,7 @@ public class PathMaker : MonoBehaviour {
     //During whether or not the game should fastforward time during jump scheduling
     public bool autoScroll = true;
 
-	public float highlightAmount = 0.5f;
+	public float highlightAmount = 0.25f;
 
 	public bool specialGrayPollenJump = false;
 
@@ -142,21 +142,18 @@ public class PathMaker : MonoBehaviour {
 					if (jumpTimes.Keys [i] < GetComponent<TimeManipulator> ().timeFromNow + initialTime) {
 						prevAsteroidIndex = i;
 					}
-					if (hit.transform == path.Values[i]) {
+					if (hit.transform == path.Values[i] && i == path.Values.Count - 1) {
 						foundIt = true;
 						print ("removing jump to asteroid " + hit.transform.gameObject.name + " at time " + jumpTimes.Keys [i]);
-						for (int j = path.Count - 1; j >= i; j--) {
-							// remove highlights
-							if (path.Values[j].gameObject.GetComponent<AsteroidInfo> ().hasSensors) {
-								path.Values[j].gameObject.GetComponent<SpriteRenderer> ().color = path.Values[j].gameObject.GetComponent<AsteroidInfo> ().iconWithSensor;
-							} else {
-								path.Values[j].gameObject.GetComponent<SpriteRenderer> ().color = path.Values[j].gameObject.GetComponent<AsteroidInfo> ().iconWithoutSensor;
-							}
-							path.RemoveAt (j);
-							jumpTimes.RemoveAt (j);
-							Destroy (lines [j]);
-							lines.RemoveAt (j);
-						}
+
+						path.RemoveAt (i);
+						jumpTimes.RemoveAt (i);
+						Destroy (lines [i]);
+						lines.RemoveAt (i);
+
+						// remove highlights
+						hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r - highlightAmount, hit.GetComponent<SpriteRenderer> ().color.g - highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b - highlightAmount, 1);
+
 					}
 					i++;
 				}
@@ -219,8 +216,7 @@ public class PathMaker : MonoBehaviour {
 							displayFailedJump ("Not enough time to charge");
 						}
 					} else {
-						print ("jump not scheduled because player tried to jump to the asteroid they'll be on");
-						displayFailedJump ("You'll be on that asteroid already");
+						displayFailedJump ("Remove the last asteroid in your path first");
 					}
 				}
 			}
