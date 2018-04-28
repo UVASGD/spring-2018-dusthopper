@@ -7,6 +7,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(FadeController), typeof(AudioSource))]
 public class Intro : MonoBehaviour {
 
+	//For End of Semester Expo. If true, will always load tutorial regardless of whether or not it is completed
+	public bool forceTutorial = false;
+
 	FadeController fade;
 	private bool buttonPressed;
 	private AudioSource buttonPressedAudio;
@@ -14,6 +17,7 @@ public class Intro : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		buttonPressed = false;
 		fade = GetComponent<FadeController> ();
 		buttonPressedAudio = GetComponent<AudioSource> ();
 		continueText.color = new Color (continueText.color.r, continueText.color.g, continueText.color.b, 0f);
@@ -35,7 +39,8 @@ public class Intro : MonoBehaviour {
 	}
 	
 	void StartGame () {
-		if (GameState.tutorialCompleted) {
+		
+		if (GameState.tutorialCompleted && !forceTutorial) {
 			SceneManager.LoadScene ("MainGame");
 		} else { 
 			SceneManager.LoadScene ("Tutorial");
