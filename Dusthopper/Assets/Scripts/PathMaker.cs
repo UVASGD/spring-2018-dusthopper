@@ -230,6 +230,10 @@ public class PathMaker : MonoBehaviour {
 					print ("jumping to asteroid " + path.Values [0].gameObject.name + " at time " + GameState.time);
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);
 					chargeJump.time = 0f;
+					path.RemoveAt (0);
+					jumpTimes.RemoveAt (0);
+					Destroy (lines [0]);
+					lines.RemoveAt (0);
 				} else {
 					print ("jump cancelled - too far. clearing jumps");
 					displayFailedJump ("jump too far");
@@ -239,10 +243,6 @@ public class PathMaker : MonoBehaviour {
 					jumpTooFar.Play ();
 					RemoveJumps ();
 				}
-				path.RemoveAt (0);
-				jumpTimes.RemoveAt (0);
-				Destroy (lines [0]);
-				lines.RemoveAt (0);
 				timeSinceChargingStarted = 0f;
 				GameState.manualJumpsDisabled = false;
 			} else if (GameState.time != GameStateTimeLF) {
