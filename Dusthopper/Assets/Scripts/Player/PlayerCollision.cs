@@ -96,7 +96,7 @@ public class PlayerCollision : MonoBehaviour {
 			if (heldObject.GetComponent<Pollen> () != null) {
 				if (heldObject.GetComponent<Pollen> ().name == other.GetComponent<Plant> ().myPollen) {
 					Debug.Log ("you gave the plant some pollen!");
-					if (heldObject.name.ToLower().Contains("gray")) {
+					if (heldObject.name.ToLower().Contains("red")) {
 						resetJumpDistance();
 					}
 					other.GetComponent<Plant> ().dispenseReward ();

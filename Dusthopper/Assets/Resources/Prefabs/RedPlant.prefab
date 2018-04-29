@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114939257581666932}
   - component: {fileID: 61283849533788212}
   m_Layer: 0
-  m_Name: YellowPlant
+  m_Name: RedPlant
   m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c71fd53713c8417f8574b7d2ec801b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPollen: YellowPollen
+  myPollen: RedPollen
   food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
   howFarAwayToSpawnFood: 0.15
   scrap: {fileID: 1236648520706834, guid: 292e961e5a070485792401f2784f6c5c, type: 2}
@@ -118,7 +118,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 516f3baefe5724669a72f801a9fc3e3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e29b9b86764ce4a9bb3a8c8ffc3487c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4830715624562660}
   - component: {fileID: 212481264988419920}
   m_Layer: 0
-  m_Name: PlayerMapIcon
+  m_Name: Player_Icon
   m_TagString: MapIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

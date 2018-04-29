@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5026d7e6890a4493393c43e2831d425f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: GrayPollen
+  name: RedPollen
 --- !u!212 &212118189189420362
 SpriteRenderer:
   m_ObjectHideFlags: 1

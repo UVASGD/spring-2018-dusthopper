@@ -173,10 +173,10 @@ MonoBehaviour:
     spawnChance: 0.75
     uniqueSpawn: 0
   - obj: {fileID: 1013170403800838, guid: 46973c16ae203455c91ec0eb6021d16b, type: 2}
-    spawnChance: 0.25
+    spawnChance: 0.35
     uniqueSpawn: 0
   - obj: {fileID: 1758696637372082, guid: 061b66ab36060469cb4a5ff952734436, type: 2}
-    spawnChance: 0.25
+    spawnChance: 0.35
     uniqueSpawn: 0
   - obj: {fileID: 1758696637372082, guid: 2b6b895e01ee84d4abc9e4800663b589, type: 2}
     spawnChance: 0.75

@@ -45,8 +45,8 @@ public class Plant : MonoBehaviour {
 				}
 			}
 		}
-		if (myPollen == "GrayPollen") {
-			Debug.Log ("gray plant dispensing reward");
+		if (myPollen == "RedPollen") {
+			Debug.Log ("red plant dispensing reward");
 			// Give player a super jump, then open map
 			GameState.maxAsteroidDistance = GameState.grayDistFactor*GameState.maxAsteroidDistance;
 			GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ().RemoveJumps ();
