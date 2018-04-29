@@ -89,6 +89,7 @@ public class TutorialHandler : MonoBehaviour {
 
                 if (timeSpentMoving >= 2f) {
                     conditionMet = true;
+					timeSpentMoving = 0f;
                     if(KeysButton!=null) KeysButton.GetComponent<Animator>().SetTrigger("Kill");
                 }
                 break;
@@ -125,7 +126,7 @@ public class TutorialHandler : MonoBehaviour {
 
                 break;
             case Requirement.pickupSeed:
-                if (GameState.player.transform.childCount > 1) {
+			if (GameState.player.transform.Find("GreenPollen") != null) {
                     conditionMet = true;
                 }
                 break;

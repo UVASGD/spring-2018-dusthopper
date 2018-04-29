@@ -31,7 +31,7 @@ public class MoveCameraInMap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void OnGUI () {
-		print (jumpDifference);
+//		print (jumpDifference);
 		if (GameState.mapOpen) {
 			if (!mapOpenLF) {
 				startJumpDistance = GameState.defaultMaxAsteroidDistance;
