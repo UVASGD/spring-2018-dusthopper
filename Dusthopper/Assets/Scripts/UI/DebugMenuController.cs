@@ -11,10 +11,12 @@ public class DebugMenuController : MonoBehaviour {
 	private Action RandReq;
 
 	private Action HungerToggleReq;
+	private Action AddScrapReq;
 
 	private Action ChangeAsteriodReq;
 	private Action GoToHubReq;
 	private Action GoToGravFragReq;
+
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +24,7 @@ public class DebugMenuController : MonoBehaviour {
 		if (LoadReq == null) LoadReq = () => { GameState.LoadGame(); };
 		if (ResetReq == null) ResetReq = () => { GameState.ResetGame(); };
 		if (RandReq == null) RandReq = () => { GameState.RandomizeStats(); };
+		if (AddScrapReq == null) AddScrapReq = () => { GameState.AddScrap(); };
 
 		if (HungerToggleReq == null) HungerToggleReq = () => {
 			GameObject GO = GameObject.FindWithTag("Player");
@@ -68,6 +71,11 @@ public class DebugMenuController : MonoBehaviour {
 	public void HungerToggleButton()
 	{
 		if(HungerToggleReq != null) HungerToggleReq();
+	}
+
+	public void AddScrapButton()
+	{
+		if(AddScrapReq != null) AddScrapReq();
 	}
 
 	public void SwitchButton()

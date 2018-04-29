@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe8f12a7966854a9cb55f9d012797597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  forceTutorial: 0
+  skipTutorial: 1
   continueText: {fileID: 705022461}
 --- !u!82 &209880043
 AudioSource:
