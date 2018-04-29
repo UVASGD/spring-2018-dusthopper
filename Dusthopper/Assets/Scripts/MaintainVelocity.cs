@@ -15,10 +15,13 @@ public class MaintainVelocity : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameState.asteroid == transform) {
-			print ("Velocity: " + rb.velocity + "\tSpeed: " + rb.velocity.magnitude);
-		}
+//		if (GameState.asteroid == transform) {
+//			print ("Velocity: " + rb.velocity + "\tSpeed: " + rb.velocity.magnitude);
+//		}
 		if (rb.velocity.sqrMagnitude < speedRange.x * speedRange.x) {
+			if (rb.velocity.magnitude == 0) {
+				rb.AddForce (Random.insideUnitCircle * Time.deltaTime);
+			}
 			rb.AddForce (rb.velocity.normalized * 1f);
 		} else if (rb.velocity.sqrMagnitude > speedRange.y * speedRange.y) {
 			rb.AddForce (rb.velocity.normalized * -1f);
