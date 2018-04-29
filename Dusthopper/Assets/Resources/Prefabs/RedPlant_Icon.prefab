@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4830715624562660}
   - component: {fileID: 212481264988419920}
   m_Layer: 0
-  m_Name: GreenPlantIcon
+  m_Name: RedPlant_Icon
   m_TagString: MapIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 2acf3c3e720e8334b93adea5feffa5d1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65428ff3c639b7f45bfeaf023591f0d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
