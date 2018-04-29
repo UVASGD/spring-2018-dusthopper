@@ -18,9 +18,9 @@ public class Movement : MonoBehaviour {
 	private Vector2 targRotDir;
 	private Vector3 lastPos;
 
-	[Header("Movement Options")]
-	[SerializeField][Range(0f, 10f)] private float speed = 5;
-	[SerializeField][Range(1f, 20f)] private float rotationSpeed = 10;
+	//[Header("Movement Options")]
+	[HideInInspector] public float speed = 5;
+	[HideInInspector][Range(1f, 20f)] public float rotationSpeed = 10;
 
 	[Header("Prefabs")]
 	public AudioSource jumpSound;
@@ -34,6 +34,8 @@ public class Movement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		canMove = true;
+		speed = GameState.playerSpeed;
+		rotationSpeed = speed * 33;
 		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
 		rb = GetComponent<Rigidbody2D> ();
 		GameState.asteroid = GameObject.FindWithTag ("Hub").transform;

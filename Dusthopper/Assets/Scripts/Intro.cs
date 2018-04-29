@@ -9,6 +9,7 @@ public class Intro : MonoBehaviour {
 
 	//For End of Semester Expo. If true, will always load tutorial regardless of whether or not it is completed
 	public bool forceTutorial = false;
+	public bool skipTutorial = false;
 
 	FadeController fade;
 	private bool buttonPressed;
@@ -17,6 +18,9 @@ public class Intro : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		if (skipTutorial) {
+			forceTutorial = false;
+		}
 		buttonPressed = false;
 		fade = GetComponent<FadeController> ();
 		buttonPressedAudio = GetComponent<AudioSource> ();
@@ -40,7 +44,7 @@ public class Intro : MonoBehaviour {
 	
 	void StartGame () {
 		
-		if (GameState.tutorialCompleted && !forceTutorial) {
+		if ((GameState.tutorialCompleted && !forceTutorial) || skipTutorial) {
 			SceneManager.LoadScene ("MainGame");
 		} else { 
 			SceneManager.LoadScene ("Tutorial");

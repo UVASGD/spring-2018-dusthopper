@@ -31,12 +31,21 @@ public static class GameState {
 	//Player Stats
 	/*************************************************************************************************/
 	public static int scrap = 0; // Monies that player possesses
-	public static float maxAsteroidDistance = 22f; //The distance the player can jump
-	public static float secondsPerJump = 5f; //The time it takes to charge up a jump
-	public static float savedMaxAsteroidDistance = 22f; //saved amount
-	public static float savedSecondsPerJump = 5f; //saved amount
-	public static float playerSpeed = 0.3f; //Speed at which player travels on asteroids
-	public static float maxHunger = 60f; //Maximum hunger, or how many seconds until death without replenishing
+
+	public static float maxAsteroidDistance; //The distance the player can jump
+	public static float savedMaxAsteroidDistance = 22f;
+	public static float defaultMaxAsteroidDistance = 22f; //Value to reset to
+
+	public static float secondsPerJump; //The time it takes to charge up a jump
+	public static float savedSecondsPerJump = 5f;
+	public static float defaultSecondsPerJump = 5f; //Value to reset to
+
+	public static float playerSpeed; //Speed at which player travels on asteroids
+	public static float defaultPlayerSpeed = 0.3f; //Value to reset to
+
+	public static float maxHunger; //Maximum hunger, or how many seconds until death without replenishing
+	public static float defaultMaxHunger = 90f; //Value to reset to
+
 	public static float hungerLowModifier = 1f; //how much hunger decreases on deltatime
 	public static int gravityFragmentCount = 0; //The number of gravity fragments the player has collected (0 to 3)
 
@@ -152,10 +161,14 @@ public static class GameState {
 
 	public static void ResetGame()
 	{
-		maxAsteroidDistance = 22f;
-		secondsPerJump = 5f;
-		playerSpeed = 0.3f;
-		maxHunger = 90f;
+		maxAsteroidDistance = defaultMaxAsteroidDistance;
+		savedMaxAsteroidDistance = defaultMaxAsteroidDistance;
+		secondsPerJump = defaultSecondsPerJump;
+		savedSecondsPerJump = defaultSecondsPerJump;
+		playerSpeed = defaultPlayerSpeed;
+		player.GetComponent<Movement> ().speed = playerSpeed;
+		player.GetComponent<Movement> ().rotationSpeed = playerSpeed * 33;
+		maxHunger = defaultMaxHunger;
 		hungerLowModifier = 1f;
 		hunger = maxHunger;
 		scrap = 0;
@@ -164,22 +177,26 @@ public static class GameState {
 		obtainedFragment [2] = false;
 		UpdateGravityFragmentCount ();
 		SaveGame ();
-		LoadGame ();
 		tutorialCompleted = false;
 		//PrintState();
 	}
 
+	//Debug purposes only. Balance testing.
 	public static void RandomizeStats()
 	{
-		maxAsteroidDistance = Random.Range (20f, 30f);
-		secondsPerJump = Random.Range (2f, 10f);
-		playerSpeed = Random.Range (0.2f, 0.5f);
-		maxHunger = Random.Range (30f, 120f);
+		maxAsteroidDistance = Random.Range (defaultMaxAsteroidDistance, 30f);
+		secondsPerJump = Random.Range (defaultSecondsPerJump, 10f);
+		playerSpeed = Random.Range (defaultPlayerSpeed, 0.5f);
+		maxHunger = Random.Range (defaultMaxHunger, 120f);
 		hunger = maxHunger;
-		scrap = Random.Range (0, 10);
 
 		//player.transform.position = Vector3.zero;
 		//PrintState();
+	}
+
+	//Debug purposes only. Add scrap to test upgrades.
+	public static void AddScrap () {
+		scrap += 1000000000;
 	}
 
 	private static void PrintState()
@@ -227,18 +244,23 @@ public static class GameState {
 	}
 
 	/* Upgrade Stats Functions */
-	public static void UpgradeMaxAsteroidDistance(float increasePercentage = 0.05f) {
+	public static void UpgradeMaxAsteroidDistance(float increasePercentage = 0.10f) {
 		maxAsteroidDistance *= 1 + increasePercentage;
 		savedMaxAsteroidDistance *= 1 + increasePercentage;
+		SaveGame ();
 	}
 
 	public static void UpgradeSecondsPerJump(float decreasePercentage = 0.05f) {
 		secondsPerJump *= 1 - decreasePercentage;
 		savedSecondsPerJump *= 1 - decreasePercentage;
+		SaveGame ();
 	}
 
-	public static void UpgradePlayerSpeed(float increasePercentage = 0.05f) {
+	public static void UpgradePlayerSpeed(float increasePercentage = 0.10f) {
 		playerSpeed *= 1 + increasePercentage;
+		player.GetComponent<Movement>().speed = playerSpeed;
+		player.GetComponent<Movement> ().rotationSpeed = playerSpeed * 33;
+		SaveGame ();
 	}
 
 	public static void UpgradeMaxHunger(float increasePercentage = 0.05f) {
@@ -248,6 +270,7 @@ public static class GameState {
 		}
 		Hunger hungerScript = player.GetComponent<Hunger>();
 		hungerScript.addToHunger (maxHunger * increasePercentage);
+		SaveGame ();
 	}
 
 	public static void RefreshHunger () {
