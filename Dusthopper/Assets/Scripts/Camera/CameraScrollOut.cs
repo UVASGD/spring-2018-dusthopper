@@ -13,6 +13,7 @@ public class CameraScrollOut : MonoBehaviour {
 	public float maxPlayerModeSizeWithoutMap; //most player can zoom out if on an asteroid without map access
 	public float minMapModeSize; //Most the player can zoom in in map mode before exiting map mode
 	private float mapSize = 20f; //zoom amount of map mode (fixed)
+	private const float plantIconOffset = 0.75f;
 
 //	public GameObject tooltip;
 
@@ -45,8 +46,12 @@ public class CameraScrollOut : MonoBehaviour {
     public Sprite mapIconWithSensors;
 	public Sprite mapIconWithoutSensors;
 
-	// Green Plant Icon
+	// Plant Icons
 	public GameObject greenPlantIcon;
+	public GameObject bluePlantIcon;
+	public GameObject yellowPlantIcon;
+	public GameObject redPlantIcon;
+	private int numIcons;
 
 	// Use this for initialization
 	void Start () {
@@ -207,11 +212,26 @@ public class CameraScrollOut : MonoBehaviour {
 				asteroid.GetComponent<SpriteRenderer> ().color = new Color (asteroid.GetComponent<SpriteRenderer> ().color.r + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.g + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.b + pm.highlightAmount, 1);
 			}
 
-			// draw green plant icon
+			// draw plant icons
 			if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0) {
 				GameObject plantIcon = Instantiate(greenPlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
 				plantIcon.transform.parent = asteroid.gameObject.transform;
-				plantIcon.transform.localPosition = new Vector3 (0, 0, 0);
+				plantIcon.transform.localPosition = new Vector3 (0,plantIconOffset, 0);
+			}
+			if (asteroid.GetComponent<AsteroidInfo>().bluePlantCount > 0) {
+				GameObject plantIcon = Instantiate(bluePlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
+				plantIcon.transform.parent = asteroid.gameObject.transform;
+				plantIcon.transform.localPosition = new Vector3 (0, -plantIconOffset, 0);
+			}
+			if (asteroid.GetComponent<AsteroidInfo>().yellowPlantCount > 0) {
+				GameObject plantIcon = Instantiate(yellowPlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
+				plantIcon.transform.parent = asteroid.gameObject.transform;
+				plantIcon.transform.localPosition = new Vector3 (plantIconOffset, 0, 0);
+			}
+			if (asteroid.GetComponent<AsteroidInfo>().redPlantCount > 0) {
+				GameObject plantIcon = Instantiate(redPlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
+				plantIcon.transform.parent = asteroid.gameObject.transform;
+				plantIcon.transform.localPosition = new Vector3 (-plantIconOffset, 0, 0);
 			}
 		}
 
@@ -234,7 +254,8 @@ public class CameraScrollOut : MonoBehaviour {
 			}
 
 			// destroy item icons
-			if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0) {
+			if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0 || asteroid.GetComponent<AsteroidInfo>().bluePlantCount > 0 
+				|| asteroid.GetComponent<AsteroidInfo>().yellowPlantCount > 0 || asteroid.GetComponent<AsteroidInfo>().redPlantCount > 0) {
 				Transform t = asteroid.transform;
 				for (int i = 0; i < t.childCount; i++)
 				{
