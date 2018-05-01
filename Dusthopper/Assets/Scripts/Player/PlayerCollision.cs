@@ -22,10 +22,13 @@ public class PlayerCollision : MonoBehaviour {
 	public float bluePlantFactor = 0.5f;
 	public float bluePlantTimer = 0f;
 	public bool onBluePlant = false;
+	public bool blueTimerStarted = false;
+	public PathMaker myPM;
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
 		holding = false;
+		myPM = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ();
 	}
 
 	void Update () {
@@ -42,18 +45,25 @@ public class PlayerCollision : MonoBehaviour {
 		}
 
 		if (bluePlantTimer > 0f) {
-			bluePlantTimer -= GameState.deltaTime;
-//			Debug.Log (bluePlantTimer);
-			if (!onBluePlant) {
-				Debug.Log ("blue on");
+			if (myPM.path.Count == 0 || blueTimerStarted) {
+				
+				bluePlantTimer -= GameState.deltaTime;
+				if (!blueTimerStarted) {
+					blueTimerStarted = true;
+				}
+//				Debug.Log (bluePlantTimer);
+				if (!onBluePlant) {
+					Debug.Log ("blue on");
 
-				onBluePlant = true;
-				GameState.secondsPerJump = GameState.secondsPerJump * bluePlantFactor;
+					onBluePlant = true;
+					GameState.secondsPerJump = GameState.secondsPerJump * bluePlantFactor;
+				}
 			}
 		} else if (onBluePlant) {
 			Debug.Log ("blue off");
 //			Debug.Log (bluePlantTimer);
 			onBluePlant = false;
+			blueTimerStarted = false;
 			GameState.secondsPerJump = GameState.secondsPerJump / bluePlantFactor;
 		}
 	}
