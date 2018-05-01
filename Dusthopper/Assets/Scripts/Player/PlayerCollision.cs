@@ -9,6 +9,7 @@ public class PlayerCollision : MonoBehaviour {
 	private Hunger hunger;
 	public AudioSource nom;
 	public AudioSource chaching; //scrap pickup noise
+	public AudioSource GetPlant; //getting plant reward noise
 
 	public bool holding; //Whether or not you are holding something
 	public GameObject heldObject; //The object being held.
@@ -21,13 +22,17 @@ public class PlayerCollision : MonoBehaviour {
 	public float bluePlantFactor = 0.5f;
 	public float bluePlantTimer = 0f;
 	public bool onBluePlant = false;
+	public bool blueTimerStarted = false;
+	public PathMaker myPM;
 
 	void Start(){
 		hunger = gameObject.GetComponent<Hunger> ();
 		holding = false;
+		myPM = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ();
 	}
 
 	void Update () {
+//		print ("Tutorial Completed: " + GameState.tutorialCompleted);
 		if (Input.GetMouseButtonDown (1) && holding) {
 			drop ();
 		}
@@ -40,17 +45,25 @@ public class PlayerCollision : MonoBehaviour {
 		}
 
 		if (bluePlantTimer > 0f) {
-			bluePlantTimer -= GameState.deltaTime;
-			Debug.Log (bluePlantTimer);
-			if (!onBluePlant) {
-				Debug.Log ("blue on");
+			if (myPM.path.Count == 0 || blueTimerStarted) {
+				
+				bluePlantTimer -= GameState.deltaTime;
+				if (!blueTimerStarted) {
+					blueTimerStarted = true;
+				}
+//				Debug.Log (bluePlantTimer);
+				if (!onBluePlant) {
+					Debug.Log ("blue on");
 
-				onBluePlant = true;
-				GameState.secondsPerJump = GameState.secondsPerJump * bluePlantFactor;
+					onBluePlant = true;
+					GameState.secondsPerJump = GameState.secondsPerJump * bluePlantFactor;
+				}
 			}
 		} else if (onBluePlant) {
 			Debug.Log ("blue off");
+//			Debug.Log (bluePlantTimer);
 			onBluePlant = false;
+			blueTimerStarted = false;
 			GameState.secondsPerJump = GameState.secondsPerJump / bluePlantFactor;
 		}
 	}
@@ -71,7 +84,7 @@ public class PlayerCollision : MonoBehaviour {
 		}
 
 		if (other.tag == "Scrap") {
-			print ("collided with scrap");
+			//print ("collided with scrap");
 			GameState.scrap += other.gameObject.GetComponent<ScrapBehavior> ().scrapValue;
             chaching.Play(); //play sound effect
 			Destroy (other.gameObject);
@@ -93,10 +106,13 @@ public class PlayerCollision : MonoBehaviour {
 			if (heldObject.GetComponent<Pollen> () != null) {
 				if (heldObject.GetComponent<Pollen> ().name == other.GetComponent<Plant> ().myPollen) {
 					Debug.Log ("you gave the plant some pollen!");
-					if (heldObject.name.ToLower().Contains("gray")) {
+					if (heldObject.name.ToLower().Contains("red")) {
 						resetJumpDistance();
 					}
 					other.GetComponent<Plant> ().dispenseReward ();
+					if (GetPlant) {
+						GetPlant.Play ();
+					}
 					Destroy (heldObject);
 					holding = false;
 				}
@@ -119,7 +135,7 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void drop() {
-		print ("Dropped pollen");
+		//print ("Dropped pollen");
 		holding = false;
 		heldObject.transform.parent = GameState.asteroid;
 		justDroppedObj = heldObject;

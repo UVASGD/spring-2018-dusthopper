@@ -30,13 +30,18 @@ public class Death : MonoBehaviour {
      * Will cause the scene to start fading to black, and then call the helper method reloadScene()
      */
     public void Die(){
-
-        if (GameState.isAlive == true) {
-            fade.fadeOut(0.45f);    //slightly slower rate than just fading to black by the time scene is reloaded
-            GameState.isAlive = false;
-			GameState.manualJumpsDisabled = false;
-            StartCoroutine(reloadScene());
-        }
+		if (GameState.tutorialCompleted) {
+			if (GameState.isAlive == true) {
+				fade.fadeOut (0.45f);    //slightly slower rate than just fading to black by the time scene is reloaded
+				GameState.isAlive = false;
+				GameState.manualJumpsDisabled = false;
+				StartCoroutine (reloadScene ());
+			}
+		} else {
+			isFalling = false;
+			GameState.player.GetComponent<Movement> ().HardResetPosition ();
+			GameState.player.transform.localScale = Vector3.one * 0.04f;
+		}
     }
 
 	public void PlayFallingSound(){

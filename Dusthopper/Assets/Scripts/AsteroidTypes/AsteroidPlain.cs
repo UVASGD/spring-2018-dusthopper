@@ -44,6 +44,7 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
         else
         {
             GetComponent<AsteroidInfo>().hasSensors = false;
+
         }
 
 		info.massFactor = Mathf.Exp (Random.value * 2f) / 2f;

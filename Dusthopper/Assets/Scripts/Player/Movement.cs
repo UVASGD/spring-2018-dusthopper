@@ -18,9 +18,9 @@ public class Movement : MonoBehaviour {
 	private Vector2 targRotDir;
 	private Vector3 lastPos;
 
-	[Header("Movement Options")]
-	[SerializeField][Range(0f, 10f)] private float speed = 5;
-	[SerializeField][Range(1f, 20f)] private float rotationSpeed = 10;
+	//[Header("Movement Options")]
+	[HideInInspector] public float speed = 5;
+	[HideInInspector][Range(1f, 20f)] public float rotationSpeed = 10;
 
 	[Header("Prefabs")]
 	public AudioSource jumpSound;
@@ -28,8 +28,14 @@ public class Movement : MonoBehaviour {
 	private UpgradeManager upgradeMgr;
 	private Rigidbody2D rb;
 
+
+	[HideInInspector] public bool canMove;
+
 	// Use this for initialization
 	void Start () {
+		canMove = true;
+		speed = GameState.playerSpeed;
+		rotationSpeed = speed * 33;
 		upgradeMgr = this.gameObject.GetComponent<UpgradeManager>();
 		rb = GetComponent<Rigidbody2D> ();
 		GameState.asteroid = GameObject.FindWithTag ("Hub").transform;
@@ -52,7 +58,7 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		//Input direction. Use this variable so you don't call GetAxis multiple times a frame (faster)
-		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized; 
+		Vector2 inputVector = new Vector2 (Input.GetAxisRaw ("Horizontal"), Input.GetAxisRaw ("Vertical")).normalized * (canMove ? 1 : 0); 
 
 		//Player translational velocity vector
 		Vector2 targVel = inputVector * (speed * upgradeMgr.walkSpeedMod); 
@@ -85,8 +91,7 @@ public class Movement : MonoBehaviour {
 		} else {
 			rb.velocity = Vector2.zero;
 		}
-
-		transform.position += GameState.asteroid.position - lastPos;
+		transform.position += GameState.asteroid.position - lastPos;//troublemaker line of code when GameState.asteroid changes between frames but leave it because everything works
 		lastPos = GameState.asteroid.position;
 
 	}
@@ -97,6 +102,10 @@ public class Movement : MonoBehaviour {
 		float asteroidRadius = asteroid.GetComponent<AsteroidInfo> ().radius;
 
 		return (futureTarget - futureAsteroidPosition).magnitude < asteroidRadius;
+	}
+
+	public void HardResetPosition(){
+		transform.position = GameState.asteroid.position;
 	}
 
 	//Called any time the player jumps to a new asteroid. 
@@ -122,7 +131,7 @@ public class Movement : MonoBehaviour {
 
 			jumpSound.Play ();
 			if (isAsteroid) {
-				transform.position = GameState.asteroid.position;
+				transform.position = GameState.asteroid.position;//this only works because of another line of code in update
 			} else {
 				transform.position = a.position;
 			}

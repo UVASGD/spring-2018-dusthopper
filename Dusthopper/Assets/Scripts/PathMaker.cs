@@ -41,6 +41,12 @@ public class PathMaker : MonoBehaviour {
     //During whether or not the game should fastforward time during jump scheduling
     public bool autoScroll = true;
 
+	public float highlightAmount = 0.25f;
+
+	public bool specialGrayPollenJump = false;
+
+	public bool tutorialAllows;
+
     // Use this for initialization
     void Start () {
 		path = new SortedList<float,Transform> (0);
@@ -49,6 +55,7 @@ public class PathMaker : MonoBehaviour {
 		lines = new List<GameObject> ();
 		GameStateTimeLF = 0f;
 		timeSinceChargingStarted = 0f;
+		tutorialAllows = true;
 	}
 	
 	// Update is called once per frame
@@ -93,13 +100,13 @@ public class PathMaker : MonoBehaviour {
 			lines[0].GetComponent<LineRenderer> ().SetPosition (0, new Vector3 (GameState.asteroid.position.x, GameState.asteroid.position.y, 5f));
 			lines[0].GetComponent<LineRenderer> ().SetPosition (1, new Vector3 (path.Values[0].position.x, path.Values[0].position.y, 5f));
 			float a = getAlpha (GetComponent<TimeManipulator> ().timeFromNow + initialTime, 0);
-			lines[0].GetComponent<LineRenderer> ().startColor = new Color(0.5f*a,0f,0f,a);
+			lines[0].GetComponent<LineRenderer> ().startColor = new Color(0.5f*a,0f,0.5f*a,a);
 			lines[0].GetComponent<LineRenderer> ().endColor = new Color(1f,0.69f,0f,a);
 			for(int i = 1; i < path.Count; i++){
 				lines[i].GetComponent<LineRenderer> ().SetPosition (0, new Vector3 (path.Values[i-1].position.x, path.Values[i-1].position.y, 5f));
 				lines[i].GetComponent<LineRenderer> ().SetPosition (1, new Vector3 (path.Values[i].position.x, path.Values[i].position.y, 5f));
 				a = getAlpha (GetComponent<TimeManipulator> ().timeFromNow + initialTime, i);
-				lines[i].GetComponent<LineRenderer> ().startColor = new Color(0.5f*a,0f,0f,a);
+				lines[i].GetComponent<LineRenderer> ().startColor = new Color(0.5f*a,0f,0.5f*a,a);
 				lines[i].GetComponent<LineRenderer> ().endColor = new Color(1f,0.69f,0f,a);
 			}
 			
@@ -121,7 +128,7 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	void EditPath () {
-		if (Input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0) && tutorialAllows)
 		{
 			Vector2 mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			Collider2D hit = Physics2D.OverlapPoint (mousePos);
@@ -135,13 +142,18 @@ public class PathMaker : MonoBehaviour {
 					if (jumpTimes.Keys [i] < GetComponent<TimeManipulator> ().timeFromNow + initialTime) {
 						prevAsteroidIndex = i;
 					}
-					if (hit.transform == path.Values[i] && Mathf.Abs(GetComponent<TimeManipulator> ().timeFromNow + initialTime - jumpTimes.Keys[i]) < GameState.secondsPerJump) {
+					if (hit.transform == path.Values[i] && i == path.Values.Count - 1) {
 						foundIt = true;
 						print ("removing jump to asteroid " + hit.transform.gameObject.name + " at time " + jumpTimes.Keys [i]);
+
 						path.RemoveAt (i);
 						jumpTimes.RemoveAt (i);
 						Destroy (lines [i]);
 						lines.RemoveAt (i);
+
+						// remove highlights
+						hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r - highlightAmount, hit.GetComponent<SpriteRenderer> ().color.g - highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b - highlightAmount, 1);
+
 					}
 					i++;
 				}
@@ -174,6 +186,12 @@ public class PathMaker : MonoBehaviour {
 							}
 							if (!overlap) {
 //								print ("scheduled jump to asteroid " + hit.transform.gameObject.name + " at time " + timeOfJump);
+								if (specialGrayPollenJump) {
+									player.GetComponent<Movement> ().SwitchAsteroid (hit.gameObject.transform);
+									specialGrayPollenJump = false;
+									Camera.main.GetComponent<CameraScrollOut> ().closeMap ();
+									return;
+								}
 								if(GameState.sensorTimeRange - GetComponent<TimeManipulator> ().timeFromNow >= GameState.secondsPerJump && autoScroll){
 									GetComponent<TimeManipulator> ().AutoScroll ();
 								}
@@ -191,14 +209,14 @@ public class PathMaker : MonoBehaviour {
 								newLine.GetComponent<LineRenderer> ().endWidth = 0.3f;
 								newLine.GetComponent<LineRenderer> ().positionCount = 2;
 								lines.Add (newLine);
+								hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r + highlightAmount, hit.GetComponent<SpriteRenderer> ().color.g + highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b + highlightAmount, 1);
 							}
 						} else {
 							print ("jump not scheduled because you can't charge in time");
 							displayFailedJump ("Not enough time to charge");
 						}
 					} else {
-						print ("jump not scheduled because player tried to jump to the asteroid they'll be on");
-						displayFailedJump ("You'll be on that asteroid already");
+						displayFailedJump ("Remove the last asteroid in your path first");
 					}
 				}
 			}
@@ -212,18 +230,19 @@ public class PathMaker : MonoBehaviour {
 					print ("jumping to asteroid " + path.Values [0].gameObject.name + " at time " + GameState.time);
 					player.GetComponent<Movement> ().SwitchAsteroid (path.Values [0]);
 					chargeJump.time = 0f;
+					path.RemoveAt (0);
+					jumpTimes.RemoveAt (0);
+					Destroy (lines [0]);
+					lines.RemoveAt (0);
 				} else {
-					print ("jump cancelled - too far");
+					print ("jump cancelled - too far. clearing jumps");
 					displayFailedJump ("jump too far");
 					if (chargeJump.isPlaying && !FindObjectOfType<ManualJump>().manuallyJumping) {
 						chargeJump.Stop ();
 					}
 					jumpTooFar.Play ();
+					RemoveJumps ();
 				}
-				path.RemoveAt (0);
-				jumpTimes.RemoveAt (0);
-				Destroy (lines [0]);
-				lines.RemoveAt (0);
 				timeSinceChargingStarted = 0f;
 				GameState.manualJumpsDisabled = false;
 			} else if (GameState.time != GameStateTimeLF) {
@@ -252,7 +271,7 @@ public class PathMaker : MonoBehaviour {
             Destroy(line);
         }
         lines.Clear();
-        print("jump schedule cleared");
+//        print("jump schedule cleared");
 //		if (chargeJump.isPlaying) {
 //			chargeJump.Stop ();
 //		}

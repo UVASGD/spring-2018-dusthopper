@@ -9,7 +9,7 @@ public class GenerateScrapClouds : MonoBehaviour {
 	public void generate(Vector3 center) {
 
         int scrapToGenerate = 30;
-        float radius = 5;
+        float radius = 2;
         float maxSpeed = 1f;    //this value is re-used in CameraScrollOut, if change here change there as well
         
         for (int i = 0; i < scrapToGenerate; i++) {

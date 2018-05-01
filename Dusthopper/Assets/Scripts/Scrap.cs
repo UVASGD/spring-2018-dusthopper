@@ -12,8 +12,24 @@ public class Scrap : MonoBehaviour {
 	float costJumpTime = 1f;
 	float costSpeed = 1f;
 
+	float percentIncreaseMaxHunger = 0.05f;
+	float percentIncreaseJumpDistance = 0.10f;
+	float percentIncreaseJumpTime = 0.05f;
+	float percentIncreaseSpeed = 0.10f;
+
+	void Start () {
+		costMaxHunger = Mathf.Max(1, Mathf.Log (GameState.maxHunger / GameState.defaultMaxHunger, 1 + percentIncreaseMaxHunger));
+		costJumpDistance = Mathf.Max(1, Mathf.Log (GameState.savedMaxAsteroidDistance / GameState.defaultMaxAsteroidDistance, 1 + percentIncreaseJumpDistance));
+		costJumpTime = Mathf.Max(1, Mathf.Log (GameState.defaultSecondsPerJump / GameState.savedSecondsPerJump, 1 + percentIncreaseJumpTime));
+		costSpeed = Mathf.Max(1, Mathf.Log (GameState.playerSpeed / GameState.defaultPlayerSpeed, 1 + percentIncreaseSpeed));
+	}
+
 	// Update is called once per frame
 	void OnGUI() {
+		if (GameState.asteroid == null) {
+			return;
+		}
+
 		if (GameState.asteroid.tag == "Hub") {
 			if (!upgradeShopActivated) {
 				Rect myRect = new Rect (Screen.width - 130, Screen.height - 80, 120, 30);

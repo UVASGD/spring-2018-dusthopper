@@ -15,18 +15,29 @@ public class MoveCameraInMap : MonoBehaviour {
 
 	private bool mapOpenLF;
 
+	private float startJumpDistance;
+	private float currentJumpDistance;
+	private float jumpDifference;
+
 	// Use this for initialization
 	void Start () {
 		camTarg = GetComponent<SmoothCamera2D> ().target;
 		camParent = transform.parent;
 		mapCenter = GameObject.Find ("MapCenter").transform;
+		startJumpDistance = GameState.defaultMaxAsteroidDistance;
+		currentJumpDistance = GameState.maxAsteroidDistance;
+		jumpDifference = currentJumpDistance/startJumpDistance * 2 / 3;
 	}
 	
 	// Update is called once per frame
 	void OnGUI () {
-		
+//		print (jumpDifference);
 		if (GameState.mapOpen) {
 			if (!mapOpenLF) {
+				startJumpDistance = GameState.defaultMaxAsteroidDistance;
+				currentJumpDistance = GameState.maxAsteroidDistance;
+				jumpDifference = currentJumpDistance/startJumpDistance * 2 / 3;
+
 				camTarg = GetComponent<SmoothCamera2D> ().target;
 				GetComponent<SmoothCamera2D> ().target = mapCenter;
 				camParent = transform.parent;
@@ -55,7 +66,7 @@ public class MoveCameraInMap : MonoBehaviour {
 				}
 
 				targVel = targVel.normalized * camSpeed;
-				if ((mapCenter.position + targVel - camTarg.position).sqrMagnitude > GameState.sensorRange * GameState.sensorRange) {
+				if ((mapCenter.position + targVel - camTarg.position).magnitude > GameState.sensorRange * jumpDifference) {
 					//shunt back toward player
 					mapCenter.position += (Vector3)(camParent.position - mapCenter.position).normalized * camSpeed * Time.unscaledDeltaTime;
 				} else {

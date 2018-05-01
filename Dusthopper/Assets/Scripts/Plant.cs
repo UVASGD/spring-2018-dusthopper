@@ -12,7 +12,7 @@ public class Plant : MonoBehaviour {
 	[SerializeField]
 	private float howFarAwayToSpawnScrap;
 
-	public float blueTime = 5f;
+	public float blueTime;
 
     public void dispenseReward() {
 		GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
@@ -45,10 +45,13 @@ public class Plant : MonoBehaviour {
 				}
 			}
 		}
-		if (myPollen == "GrayPollen") {
-			Debug.Log ("gray plant dispensing reward");
+		if (myPollen == "RedPollen") {
+			Debug.Log ("red plant dispensing reward");
 			// Give player a super jump, then open map
-			GameState.maxAsteroidDistance = 3*GameState.maxAsteroidDistance;
+			GameState.maxAsteroidDistance = GameState.grayDistFactor*GameState.maxAsteroidDistance;
+			GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ().RemoveJumps ();
+			Camera.main.GetComponent<CameraScrollOut> ().justGotGrayPollen = true;
+			GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ().specialGrayPollenJump = true;
 			Camera.main.GetComponent<CameraScrollOut>().openMap ();
 		}
 		if (myPollen == "BluePollen") {
