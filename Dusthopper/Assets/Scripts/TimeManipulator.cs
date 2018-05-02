@@ -62,6 +62,7 @@ public class TimeManipulator : MonoBehaviour {
         for (int i = 0; i < windMakers.Length; i++)
         {
             windMakers[i].positions = new Stack<Vector3>(0);
+            windMakers[i].rotations = new Stack<Quaternion>(0);
             windMakers[i].windDirection = new Stack<Vector3>(0);
         }
         windSimulation = new WindSimulationStruct();
@@ -150,6 +151,7 @@ public class TimeManipulator : MonoBehaviour {
                 for (int i = 0; i < windMakers.Length; i++)
                 {
                     windMakers[i].initialPosition = windInstances[i].transform.position;
+                    windMakers[i].initialRotation = windInstances[i].transform.rotation;
                     windMakers[i].initialWindDirection = windInstances[i].GetComponent<WindMaker>().windDirection;
                 }
                 windSimulation.initialSimStep = GameState.currentWindSimStep;
@@ -173,6 +175,7 @@ public class TimeManipulator : MonoBehaviour {
                 for (int i = 0; i < windMakers.Length; i++)
                 {
                     windInstances[i].transform.position = windMakers[i].initialPosition;
+                    windInstances[i].transform.rotation = windMakers[i].initialRotation;
                     windInstances[i].GetComponent<WindMaker>().windDirection = windMakers[i].initialWindDirection;
                     windInstances[i].SetActive(windSimulation.initialWindExist);
                     windMakers[i].positions.Clear();
@@ -213,6 +216,7 @@ public class TimeManipulator : MonoBehaviour {
         for (int i = 0; i < windMakers.Length; i++)
         {
             windMakers[i].positions.Push(windInstances[i].transform.position);
+            windMakers[i].rotations.Push(windInstances[i].transform.rotation);
             windMakers[i].windDirection.Push(windInstances[i].GetComponent<WindMaker>().windDirection);
         }
         windSimulation.randomStates.Push(Random.state);
@@ -241,6 +245,7 @@ public class TimeManipulator : MonoBehaviour {
                 if (windMakers[i].positions.Count > 0)
                 {
                     windInstances[i].transform.position = windMakers[i].positions.Pop();
+                    windInstances[i].transform.rotation = windMakers[i].rotations.Pop();
                     windInstances[i].GetComponent<WindMaker>().windDirection = windMakers[i].windDirection.Pop();
                     windInstances[i].SetActive(windSimulation.windExist.Peek());
                 }
@@ -270,8 +275,10 @@ public class TimeManipulator : MonoBehaviour {
     public struct WindMakerStruct
     {
         public Vector3 initialPosition;
+        public Quaternion initialRotation;
         public Vector3 initialWindDirection;
         public Stack<Vector3> positions;
+        public Stack<Quaternion> rotations;
         public Stack<Vector3> windDirection;
     }
 
