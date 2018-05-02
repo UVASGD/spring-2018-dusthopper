@@ -14,7 +14,7 @@ public class Plant : MonoBehaviour {
 
 	public float blueTime;
 
-    public void DispenseReward() {
+    public void dispenseReward() {
 		GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
 		if (myPollen == "GreenPollen") {
 			//Green plant's reward is just 1 or 2 additional food spawned in a circle around it

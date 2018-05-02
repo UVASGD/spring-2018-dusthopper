@@ -198,7 +198,7 @@ public static class GameState {
 
 	//Debug purposes only. Add scrap to test upgrades.
 	public static void AddScrap () {
-		scrap += 1000000000;
+		scrap += 1000;
 	}
 
 	private static void PrintState()

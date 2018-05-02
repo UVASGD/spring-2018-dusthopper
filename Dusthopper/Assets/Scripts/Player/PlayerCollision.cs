@@ -32,9 +32,6 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void Update () {
-		if (GameState.asteroid) {
-			print ("Asteroid Speed: " + GameState.asteroid.GetComponent<Rigidbody2D> ().velocity);
-		}
 //		print ("Tutorial Completed: " + GameState.tutorialCompleted);
 		if (Input.GetMouseButtonDown (1) && holding) {
 			drop ();
@@ -99,7 +96,7 @@ public class PlayerCollision : MonoBehaviour {
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
 			other.transform.position = heldObjLoc.transform.position;
-			if (other.name.ToLower().Contains("red")) {
+			if (other.name.ToLower().Contains("gray")) {
 				// Limit jump distance
 				GameState.maxAsteroidDistance = grayPollenFactor*GameState.maxAsteroidDistance;
 
@@ -113,13 +110,10 @@ public class PlayerCollision : MonoBehaviour {
 					if (heldObject.name.ToLower().Contains("red")) {
 						resetJumpDistance();
 					}
-					other.GetComponent<Plant> ().DispenseReward ();
+					other.GetComponent<Plant> ().dispenseReward ();
 					if (GetPlant) {
 						GetPlant.Play ();
 					}
-
-                    PlantAnimDo(other.gameObject, heldObject);
-
 					Destroy (heldObject);
 					holding = false;
 				}
@@ -127,13 +121,7 @@ public class PlayerCollision : MonoBehaviour {
 		}
 	}
 
-    
-    private void PlantAnimDo(GameObject plant, GameObject pollen) {
-        plant.transform.Find("Pollen").transform.position = pollen.transform.position;
-        plant.GetComponent<Animator>().SetTrigger("Open");
-    }
-
-    void Eat(GameObject food){
+	void Eat(GameObject food){
 //        print("in eat method");
         Food thisObject = food.GetComponent<Food>();
 

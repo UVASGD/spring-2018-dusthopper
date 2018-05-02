@@ -24,7 +24,7 @@ public class JumpAnimation : MonoBehaviour {
 		GameState.player.GetComponent<SpriteRenderer> ().enabled = false;
 		chaching = GameState.player.GetComponent<PlayerCollision> ().chaching;
 		if (GameState.player.GetComponent<PlayerCollision> ().holding) {
-			GameState.player.GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = false;
+			GameState.player.GetComponent<PlayerCollision>().heldObject.SetActive(false);
 		}
 //		Vector3 heading = (destination.transform.position - origin.transform.position);
 //		float angle = Mathf.Atan2 (heading.y, heading.x) * Mathf.Rad2Deg;
@@ -63,7 +63,7 @@ public class JumpAnimation : MonoBehaviour {
 //					print ("Destination Reached");
 					GameState.player.GetComponent<SpriteRenderer> ().enabled = true;
 					if (GameState.player.GetComponent<PlayerCollision> ().holding) {
-						GameState.player.GetComponent<PlayerCollision>().heldObject.GetComponent<SpriteRenderer> ().enabled = true;
+						GameState.player.GetComponent<PlayerCollision> ().heldObject.SetActive (true);
 					}
 					Destroy (gameObject);
 				}
