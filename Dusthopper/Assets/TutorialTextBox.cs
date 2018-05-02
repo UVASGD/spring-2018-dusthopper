@@ -14,6 +14,7 @@ public class TutorialTextBox : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		transform.GetChild (0).GetChild (0).GetComponent<Text> ().fontSize = 17;
 		if (text != "") {
 			transform.GetChild(0).GetChild(0).GetComponent<Text> ().text = text;
 		}
