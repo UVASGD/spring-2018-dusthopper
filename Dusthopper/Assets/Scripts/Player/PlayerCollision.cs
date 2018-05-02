@@ -32,6 +32,9 @@ public class PlayerCollision : MonoBehaviour {
 	}
 
 	void Update () {
+		if (GameState.asteroid) {
+			print ("Asteroid Speed: " + GameState.asteroid.GetComponent<Rigidbody2D> ().velocity);
+		}
 //		print ("Tutorial Completed: " + GameState.tutorialCompleted);
 		if (Input.GetMouseButtonDown (1) && holding) {
 			drop ();

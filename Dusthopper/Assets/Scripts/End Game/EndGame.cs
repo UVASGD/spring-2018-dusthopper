@@ -32,7 +32,7 @@ public class EndGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print (GameState.tutorialCompleted);
+//		print (GameState.tutorialCompleted);
 		if (Input.GetKeyDown(KeyCode.O) && !GameState.endGame) {
 			End ();
 		}
