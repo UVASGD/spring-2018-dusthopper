@@ -49,6 +49,7 @@ public class PlayerCollision : MonoBehaviour {
 				
 				bluePlantTimer -= GameState.deltaTime;
 				if (!blueTimerStarted) {
+					GameObject.Find ("GetPlantSFX").GetComponent<AudioSource> ().Play ();
 					blueTimerStarted = true;
 				}
 //				Debug.Log (bluePlantTimer);
