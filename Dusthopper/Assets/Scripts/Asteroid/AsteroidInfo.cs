@@ -47,6 +47,9 @@ public class AsteroidInfo : MonoBehaviour {
 
 	// number of green plants on asteroid
 	public int greenPlantCount;
+	public int bluePlantCount;
+	public int yellowPlantCount;
+	public int redPlantCount;
 
     [SerializeField]
     public float maxSpeed = 1.5f; //how fast can they be going at the start?
