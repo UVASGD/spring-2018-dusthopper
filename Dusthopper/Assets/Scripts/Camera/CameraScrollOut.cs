@@ -79,10 +79,12 @@ public class CameraScrollOut : MonoBehaviour {
 
 		//toggle starfields
 		if (GameState.mapOpen) {
+			//Turn off Starfields
 			for (int i = 0; i < transform.childCount; i++) {
 				transform.GetChild (i).gameObject.SetActive (false);
 			}
 		} else {
+			//Turn on Starfields
 			for (int i = 0; i < transform.childCount; i++) {
 				transform.GetChild (i).gameObject.SetActive (true);
 			}
@@ -201,6 +203,7 @@ public class CameraScrollOut : MonoBehaviour {
 			// We can remove this if/else when we have art
 			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
 				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithSensor;
+				//asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().iconWithSensor;
 			} 
 			else {
 				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithoutSensor;

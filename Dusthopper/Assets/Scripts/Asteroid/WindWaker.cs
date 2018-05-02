@@ -108,7 +108,7 @@ public class WindWaker : MonoBehaviour {
             currChild.GetComponent<Transform>().position = point;
             currChild.GetComponent<WindMaker>().windDirection = direction;
             currChild.GetComponent<CircleCollider2D>().radius = windMakerRadius;
-            currChild.GetComponentInChildren<ParticleSystem>().transform.rotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.left, direction), Vector3.forward);
+            currChild.transform.rotation = Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.left, direction), Vector3.forward);
         }
 
         yield return StartCoroutine(MyWaitForSeconds());
