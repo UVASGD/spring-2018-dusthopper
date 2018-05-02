@@ -11,6 +11,7 @@ public class AsteroidInfo : MonoBehaviour {
 	public Sprite mapIcon;
 	[HideInInspector]
 	public Sprite asteroidSprite;
+    public Sprite otherSprite;
 
 	// can see goal arrows?
 	public bool goalArrowsVisible;

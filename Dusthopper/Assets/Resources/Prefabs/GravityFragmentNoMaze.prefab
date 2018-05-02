@@ -168,8 +168,9 @@ MonoBehaviour:
   hasSensors: 0
   sensorRange: 30
   sensorTimeRange: 30
-  mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
+  mapIcon: {fileID: 21300000, guid: d006b32694c4e2044b1171e361c8a813, type: 3}
   asteroidSprite: {fileID: 0}
+  otherSprite: {fileID: 21300000, guid: d006b32694c4e2044b1171e361c8a813, type: 3}
   goalArrowsVisible: 0
   goalArrowsVisibleChance: 0
   radius: 2
@@ -178,7 +179,7 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0.2
   chancePulledGrav: 0
-  iconWithSensor: {r: 0.16470589, g: 0.4862745, b: 0.08627451, a: 1}
+  iconWithSensor: {r: 1, g: 1, b: 1, a: 1}
   iconWithoutSensor: {r: 0.20392157, g: 0.4745098, b: 0.69803923, a: 1}
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
@@ -190,6 +191,9 @@ MonoBehaviour:
   food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
   foodChance: 0.5
   greenPlantCount: 0
+  bluePlantCount: 0
+  yellowPlantCount: 0
+  redPlantCount: 0
   maxSpeed: 1.5
   itempool: []
   decorationItems: []
