@@ -50,10 +50,12 @@ public class PauseController : MonoBehaviour {
 
 	public void Pause(){
 //		print ("pause called");
-		GameState.gamePaused = true;
-		pauseMenuUI.SetActive (true);
-		prevTimeScale = Time.timeScale;
-		Time.timeScale = 0f;
+		if (FindObjectOfType<FadeController> ().anim.GetCurrentAnimatorStateInfo (0).IsName ("Faded")) {
+			GameState.gamePaused = true;
+			pauseMenuUI.SetActive (true);
+			prevTimeScale = Time.timeScale;
+			Time.timeScale = 0f;
+		}
 	}
 
 	public void GoToSettings(){

@@ -149,7 +149,9 @@ public static class GameState {
 			scrap = data.scrap;
 
 			asteroid = GameObject.FindWithTag("Hub").transform;
-			player.transform.position = asteroid.position;
+			if (player) {
+				player.transform.position = asteroid.position;
+			}
 
 //			Debug.Log (obtainedFragment [0]);
 //			Debug.Log (obtainedFragment [1]);
