@@ -20,6 +20,7 @@ public class EndGame : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 		GameState.endGame = false;
+		GameState.tutorialCompleted = true;
 		hub = GameObject.FindGameObjectWithTag ("Hub");
 		cam = Camera.main;
 		rotateSpeed = 0f;
