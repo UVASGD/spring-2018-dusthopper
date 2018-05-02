@@ -110,7 +110,7 @@ public class PlayerCollision : MonoBehaviour {
 					if (heldObject.name.ToLower().Contains("red")) {
 						resetJumpDistance();
 					}
-					other.GetComponent<Plant> ().dispenseReward ();
+					other.GetComponent<Plant> ().DispenseReward ();
 					if (GetPlant) {
 						GetPlant.Play ();
 					}
