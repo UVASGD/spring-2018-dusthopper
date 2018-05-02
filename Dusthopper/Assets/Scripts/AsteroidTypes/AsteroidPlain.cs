@@ -73,6 +73,7 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
 				numSpawned++;
 				float distFromCenter = Random.Range (GameState.minSpawnDist, info.radius);
 				Vector3 pos = Random.insideUnitCircle.normalized * distFromCenter;
+                print(itempool[randomIndex].obj);
 				GameObject inst = GameObject.Instantiate(itempool[randomIndex].obj, transform.position + pos, Quaternion.identity, this.transform) as GameObject;
 				inst.transform.parent = this.transform;
 //				print (inst.name);

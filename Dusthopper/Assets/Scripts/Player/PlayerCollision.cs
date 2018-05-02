@@ -99,7 +99,7 @@ public class PlayerCollision : MonoBehaviour {
 			holding = true;
 			other.transform.SetParent(gameObject.transform);
 			other.transform.position = heldObjLoc.transform.position;
-			if (other.name.ToLower().Contains("gray")) {
+			if (other.name.ToLower().Contains("red")) {
 				// Limit jump distance
 				GameState.maxAsteroidDistance = grayPollenFactor*GameState.maxAsteroidDistance;
 
@@ -117,6 +117,9 @@ public class PlayerCollision : MonoBehaviour {
 					if (GetPlant) {
 						GetPlant.Play ();
 					}
+
+                    PlantAnimDo(other.gameObject, heldObject);
+
 					Destroy (heldObject);
 					holding = false;
 				}
@@ -124,7 +127,13 @@ public class PlayerCollision : MonoBehaviour {
 		}
 	}
 
-	void Eat(GameObject food){
+    
+    private void PlantAnimDo(GameObject plant, GameObject pollen) {
+        plant.transform.Find("Pollen").transform.position = pollen.transform.position;
+        plant.GetComponent<Animator>().SetTrigger("Open");
+    }
+
+    void Eat(GameObject food){
 //        print("in eat method");
         Food thisObject = food.GetComponent<Food>();
 
