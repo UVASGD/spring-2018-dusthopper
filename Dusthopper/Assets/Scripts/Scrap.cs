@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Scrap : MonoBehaviour {
 
-	private bool upgradeShopActivated = false;
+	[SerializeField] private bool upgradeShopActivated = false;
 
 	// Number of times upgraded (for calculating cost)
 	float costMaxHunger;
@@ -42,22 +42,21 @@ public class Scrap : MonoBehaviour {
 		openShop = false;
 	}
 
-	void Update() {
-		//costMaxHunger += Time.deltaTime;
-		//print ("in Scrap cost = " + GameState.player.GetComponent<Scrap> ().costJumpTime);
-
-		//Pressing "i" will toggle shop if your in the hub
-		if (GameState.asteroid.tag == "Hub" && Input.GetKeyDown (KeyCode.I)) {
-			openShop = !openShop;
-			if (openShop) {
-				shop.SetActive (true);
-			} else {
-				shop.SetActive (false);
-			}
-		}
-	}
-
-	/*
+//	void Update() {
+//		//costMaxHunger += Time.deltaTime;
+//		//print ("in Scrap cost = " + GameState.player.GetComponent<Scrap> ().costJumpTime);
+//
+//		//Pressing "i" will toggle shop if your in the hub
+//		if (GameState.asteroid.tag == "Hub" && Input.GetKeyDown (KeyCode.I)) {
+//			openShop = !openShop;
+//			if (openShop) {
+//				shop.SetActive (true);
+//			} else {
+//				shop.SetActive (false);
+//			}
+//		}
+//	}
+		
 	// Update is called once per frame
 	void OnGUI() {
 		if (GameState.asteroid == null) {
@@ -110,7 +109,6 @@ public class Scrap : MonoBehaviour {
 
 		}
 	}
-	*/
 
 	private void ActivateUpgradeShop() {
 		if (GameState.scrap > 0) {
