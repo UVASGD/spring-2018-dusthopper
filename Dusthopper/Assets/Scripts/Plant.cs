@@ -44,20 +44,23 @@ public class Plant : MonoBehaviour {
 					print ("attempt unsuccessful");
 				}
 			}
+			this.transform.parent.GetComponent<AsteroidInfo> ().yellowPlantCount -= 1;
 		}
 		if (myPollen == "RedPollen") {
 			Debug.Log ("red plant dispensing reward");
-			// Give player a super jump, then open map
-			GameState.maxAsteroidDistance = GameState.grayDistFactor*GameState.maxAsteroidDistance;
+            // Give player a super jump, then open map
+            GameState.maxAsteroidDistance = GameState.grayDistFactor*GameState.maxAsteroidDistance;
 			GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ().RemoveJumps ();
 			Camera.main.GetComponent<CameraScrollOut> ().justGotGrayPollen = true;
 			GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ().specialGrayPollenJump = true;
 			Camera.main.GetComponent<CameraScrollOut>().openMap ();
+			this.transform.parent.GetComponent<AsteroidInfo> ().redPlantCount -= 1;
 		}
 		if (myPollen == "BluePollen") {
 			Debug.Log ("blue plant dispensing reward");
 			// Give player less charging time
 			GameState.player.GetComponent<PlayerCollision>().setBlueTimer(blueTime);
+			this.transform.parent.GetComponent<AsteroidInfo> ().bluePlantCount -= 1;
 		}
 		Destroy (this.gameObject); //all plants should destroy themselves
 		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
