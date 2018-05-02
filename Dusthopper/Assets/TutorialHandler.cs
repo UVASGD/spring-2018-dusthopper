@@ -74,73 +74,104 @@ public class TutorialHandler : MonoBehaviour {
 
         conditionMet = false;
         switch (currentRequirement) {
-            default:
-                Debug.LogError("Requirement Not Valid!");
-                break;
-            case Requirement.none:
-                conditionMet = nextStage;
-                break;
-            case Requirement.move:
-                if (KeysButton != null) KeysButton.SetActive(true);
-                //	canMove = true;
-                if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) {
-                    timeSpentMoving += Time.unscaledDeltaTime;
-                }
+        default:
+            Debug.LogError("Requirement Not Valid!");
+        	break;
+        case Requirement.none:
+        	conditionMet = nextStage;
+        	break;
+		case Requirement.move:
+			if (KeysButton != null) {
+				KeysButton.SetActive (true);
 
-                if (timeSpentMoving >= 2f) {
-                    conditionMet = true;
-					timeSpentMoving = 0f;
-                    if(KeysButton!=null) KeysButton.GetComponent<Animator>().SetTrigger("Kill");
-                }
-                break;
-            case Requirement.manualJump:
-                if (LeftMouseButton != null) LeftMouseButton.SetActive(true);
-                if (GameState.asteroid.tag != "Hub") {
-                    conditionMet = true;
-                    if (LeftMouseButton != null) LeftMouseButton.GetComponent<Animator>().SetTrigger("Kill");
-                }
-                break;
-            case Requirement.openMap:
-                if (GameState.mapOpen) {
-                    if (ScrollButton != null) ScrollButton.SetActive(true);
-                    conditionMet = true;
-                    if (ScrollButton != null) ScrollButton.GetComponent<Animator>().SetTrigger("Kill");
-                }
-                break;
-            case Requirement.planJump:
-                if (pathMaker.path.Count > 0) {
-                    conditionMet = true;
-                }
-                break;
-            case Requirement.closeMap:
-                if (!GameState.mapOpen) {
-                    conditionMet = true;
-                }
-                break;
-            case Requirement.eatFood:
-                if (GameState.hunger == GameState.maxHunger && timeSinceLastStage >= 1f) {
-                    conditionMet = true;
-                }
-                break;
-            case Requirement.collectScrap:
+				KeysButton.transform.eulerAngles = Vector3.zero;
+				KeysButton.transform.position = KeysButton.transform.parent.position + new Vector3 (1.4f, 0.8f);
+			}
+            //	canMove = true;
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) {
+                timeSpentMoving += Time.unscaledDeltaTime;
+            }
 
-                break;
-            case Requirement.pickupSeed:
-			if (GameState.player.transform.Find("GreenPollen") != null) {
-                    conditionMet = true;
-                }
-                break;
-            case Requirement.depositSeed:
-                if (plant == null) {
-                    conditionMet = true;
-                }
-                break;
-            case Requirement.returnToHub:
-                if (GameState.asteroid.tag == "Hub") {
-                    conditionMet = true;
-                }
-                break;
-        }
+            if (timeSpentMoving >= 2f) {
+                conditionMet = true;
+				KeysButton.SetActive (false);
+				timeSpentMoving = 0f;
+                if(KeysButton!=null) KeysButton.GetComponent<Animator>().SetTrigger("Kill");
+            }
+            break;
+		case Requirement.manualJump:
+			if (LeftMouseButton != null) {
+				LeftMouseButton.SetActive (true);
+				LeftMouseButton.transform.eulerAngles = Vector3.zero;
+				LeftMouseButton.transform.position = LeftMouseButton.transform.parent.position + new Vector3 (1.4f, 0.8f);
+			}
+            if (GameState.asteroid.tag != "Hub") {
+                conditionMet = true;
+				LeftMouseButton.SetActive (false);
+                if (LeftMouseButton != null) LeftMouseButton.GetComponent<Animator>().SetTrigger("Kill");
+            }
+            break;
+        case Requirement.openMap:
+			if (LeftMouseButton != null) {
+				LeftMouseButton.SetActive (true);
+				LeftMouseButton.transform.eulerAngles = Vector3.zero;
+				LeftMouseButton.transform.position = LeftMouseButton.transform.parent.position + new Vector3 (1.4f, 0.8f);
+			}
+
+            if (GameState.mapOpen) {
+				if (LeftMouseButton != null) LeftMouseButton.SetActive(false);
+                conditionMet = true;
+				if (LeftMouseButton != null) LeftMouseButton.GetComponent<Animator>().SetTrigger("Kill");
+            }
+            break;
+        case Requirement.planJump:
+			if (LeftMouseButton != null) {
+				LeftMouseButton.SetActive (true);
+				LeftMouseButton.transform.eulerAngles = Vector3.zero;
+				LeftMouseButton.transform.position = LeftMouseButton.transform.parent.position + new Vector3 (1.4f, 0.8f);
+			}
+
+            if (pathMaker.path.Count > 0) {
+                conditionMet = true;
+				if (LeftMouseButton != null) LeftMouseButton.SetActive(false);
+            }
+            break;
+        case Requirement.closeMap:
+			if (LeftMouseButton != null) {
+				LeftMouseButton.SetActive (true);
+				LeftMouseButton.transform.eulerAngles = Vector3.zero;
+				LeftMouseButton.transform.position = LeftMouseButton.transform.parent.position + new Vector3 (1.4f, 0.8f);
+			}
+
+            if (!GameState.mapOpen) {
+                conditionMet = true;
+				if (LeftMouseButton != null) LeftMouseButton.SetActive(false);
+            }
+            break;
+        case Requirement.eatFood:
+            if (GameState.hunger == GameState.maxHunger && timeSinceLastStage >= 1f) {
+                conditionMet = true;
+            }
+            break;
+        case Requirement.collectScrap:
+
+            break;
+        case Requirement.pickupSeed:
+		if (GameState.player.transform.Find("GreenPollen") != null) {
+                conditionMet = true;
+            }
+            break;
+        case Requirement.depositSeed:
+            if (plant == null) {
+                conditionMet = true;
+            }
+            break;
+        case Requirement.returnToHub:
+            if (GameState.asteroid.tag == "Hub") {
+                conditionMet = true;
+            }
+            break;
+    	}
 
         timeSinceLastStage += Time.unscaledDeltaTime;
 
@@ -191,6 +222,7 @@ public class TutorialHandler : MonoBehaviour {
     }
 
     public void EndTutorial() {
+		FindObjectOfType<PauseController> ().Resume ();
         GameState.ResetGame();
         GameState.tutorialCompleted = true;
         GameState.SaveGame();
