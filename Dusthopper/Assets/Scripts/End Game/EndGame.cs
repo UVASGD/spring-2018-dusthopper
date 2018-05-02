@@ -19,6 +19,7 @@ public class EndGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		GameState.tutorialCompleted = true;
 		GameState.endGame = false;
 		hub = GameObject.FindGameObjectWithTag ("Hub");
 		cam = Camera.main;
@@ -30,6 +31,7 @@ public class EndGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		print (GameState.tutorialCompleted);
 		if (Input.GetKeyDown(KeyCode.O) && !GameState.endGame) {
 			End ();
 		}

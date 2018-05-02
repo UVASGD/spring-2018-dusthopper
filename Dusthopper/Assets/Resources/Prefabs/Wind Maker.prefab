@@ -99,9 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windDirection: {x: 0, y: 0}
-  turningForce: 4
+  windPower: 1
   maxSpeed: 4
-  damp: 0.75
 --- !u!198 &198930001316022586
 ParticleSystem:
   m_ObjectHideFlags: 1
