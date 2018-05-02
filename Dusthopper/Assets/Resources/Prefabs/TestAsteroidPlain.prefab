@@ -155,6 +155,9 @@ MonoBehaviour:
   food: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
   foodChance: 0.5
   greenPlantCount: 0
+  bluePlantCount: 0
+  yellowPlantCount: 0
+  redPlantCount: 0
   maxSpeed: 1.5
   itempool:
   - obj: {fileID: 1921398499240866, guid: 7e6d0de95d42f4b269806b38ea11665b, type: 2}
@@ -163,7 +166,7 @@ MonoBehaviour:
   - obj: {fileID: 1758696637372082, guid: eb14b6e2337d544d19dd1cfafa41e221, type: 2}
     spawnChance: 1
     uniqueSpawn: 0
-  - obj: {fileID: 1013170403800838, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
+  - obj: {fileID: 1022306273708162, guid: 7f09b7128f2c649f0b74644c6c01fcb3, type: 2}
     spawnChance: 1
     uniqueSpawn: 0
   - obj: {fileID: 1758696637372082, guid: fd87d84ad8c9f4db9bff6cf6b591fca6, type: 2}
@@ -172,7 +175,7 @@ MonoBehaviour:
   - obj: {fileID: 1013170403800838, guid: bb33d7cd4221b46e285639d6adf03382, type: 2}
     spawnChance: 0.75
     uniqueSpawn: 0
-  - obj: {fileID: 1013170403800838, guid: 46973c16ae203455c91ec0eb6021d16b, type: 2}
+  - obj: {fileID: 1733932524132540, guid: 46973c16ae203455c91ec0eb6021d16b, type: 2}
     spawnChance: 0.35
     uniqueSpawn: 0
   - obj: {fileID: 1758696637372082, guid: 061b66ab36060469cb4a5ff952734436, type: 2}
