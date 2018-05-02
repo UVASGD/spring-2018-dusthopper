@@ -19,7 +19,6 @@ public class EndGame : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		GameState.tutorialCompleted = true;
 		GameState.endGame = false;
 		GameState.tutorialCompleted = true;
 		hub = GameObject.FindGameObjectWithTag ("Hub");
@@ -32,10 +31,9 @@ public class EndGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		print (GameState.tutorialCompleted);
-		if (Input.GetKeyDown(KeyCode.O) && !GameState.endGame) {
-			End ();
-		}
+//		if (Input.GetKeyDown(KeyCode.O) && !GameState.endGame) {
+//			End ();
+//		}
 
 		if (GameState.endGame) {
 			cam.transform.position = Vector3.SmoothDamp (cam.transform.position, Vector3.back * 10, ref camVel, 5f);

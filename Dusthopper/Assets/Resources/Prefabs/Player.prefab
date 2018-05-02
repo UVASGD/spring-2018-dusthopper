@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 114408134968344080}
   - component: {fileID: 114982525918687968}
   - component: {fileID: 114238825700592304}
-  - component: {fileID: 114964489445946058}
+  - component: {fileID: 114849431170674528}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -247,6 +247,7 @@ MonoBehaviour:
   timeCancelSchedule: 0.75
   jump: {fileID: 0}
   gameManager: {fileID: 0}
+  manuallyJumping: 0
 --- !u!114 &114042274269727972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,6 +275,7 @@ MonoBehaviour:
   rotationSpeed: 10
   jumpSound: {fileID: 0}
   animPrefab: {fileID: 4596830954289954, guid: 5729404da8c6d4eada95ab071d42dc63, type: 2}
+  canMove: 0
 --- !u!114 &114238825700592304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,9 +288,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nom: {fileID: 0}
+  chaching: {fileID: 0}
+  GetPlant: {fileID: 0}
   holding: 0
   heldObject: {fileID: 0}
   heldObjLoc: {fileID: 1431641940370946}
+  grayPollenFactor: 0.5
+  bluePlantFactor: 0.5
+  bluePlantTimer: 0
+  onBluePlant: 0
+  blueTimerStarted: 0
+  myPM: {fileID: 0}
 --- !u!114 &114408134968344080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -307,7 +317,7 @@ MonoBehaviour:
   changeColor: 1
   hungerSlider: {fileID: 0}
   HungerSliderColor: {fileID: 0}
---- !u!114 &114964489445946058
+--- !u!114 &114849431170674528
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -318,6 +328,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df03cb2ce9f1e746b93aa9dc4dbae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  costMaxHunger: 0
+  costJumpDistance: 0
+  costJumpTime: 0
+  costSpeed: 0
+  shop: {fileID: 0}
 --- !u!114 &114982525918687968
 MonoBehaviour:
   m_ObjectHideFlags: 1
