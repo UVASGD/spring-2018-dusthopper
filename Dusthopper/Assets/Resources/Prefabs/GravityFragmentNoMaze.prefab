@@ -730,7 +730,7 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0.2
   chancePulledGrav: 0
-  hasSensorColor: {r: 0, g: 0, b: 0, a: 0}
+  hasSensorColor: {r: 1, g: 1, b: 1, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
   avgSensorRange: 30

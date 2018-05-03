@@ -249,13 +249,13 @@ MonoBehaviour:
   NonSenseMapIcon: {fileID: 21300000, guid: b7856854bca3f5e45a44ba1822b1e399, type: 3}
   goalArrowsVisible: 0
   goalArrowsVisibleChance: 1
-  radius: 0.5
+  radius: 250
   massFactor: 1
   pulledByGrav: 0
   hasGrav: 0
   chanceGrav: 0.07
   chancePulledGrav: 0.12
-  hasSensorColor: {r: 0, g: 0, b: 0, a: 0}
+  hasSensorColor: {r: 0.27735728, g: 0.83823526, b: 0.3740604, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
   avgSensorRange: 30
