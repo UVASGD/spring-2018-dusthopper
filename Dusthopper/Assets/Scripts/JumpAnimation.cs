@@ -65,6 +65,9 @@ public class JumpAnimation : MonoBehaviour {
 					if (GameState.player.GetComponent<PlayerCollision> ().holding) {
 						GameState.player.GetComponent<PlayerCollision> ().heldObject.SetActive (true);
 					}
+
+                    AsteroidInfo aI = destination.GetComponent<AsteroidInfo>();
+                    if (aI != null) aI.TriggerPulse();
 					Destroy (gameObject);
 				}
 			}

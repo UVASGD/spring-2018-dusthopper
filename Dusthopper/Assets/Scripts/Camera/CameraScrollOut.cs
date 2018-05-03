@@ -110,6 +110,10 @@ public class CameraScrollOut : MonoBehaviour {
 
 		//normal zooming
 		d = Input.GetAxis ("Mouse ScrollWheel");
+
+        if (Input.GetButton("Zoom In")) d = scrollSpeed;
+        if (Input.GetButton("Zoom Out")) d = -scrollSpeed;
+
 		if (swapScroll)
 			d = -d;
 		
@@ -176,7 +180,10 @@ public class CameraScrollOut : MonoBehaviour {
 			GameObject[] allObjectsArray = FindObjectsOfType <GameObject> ();
 
 			foreach (GameObject item in allObjectsArray) {
-				if (item.layer != LayerMask.NameToLayer("Asteroid") && item.layer != LayerMask.NameToLayer("UI") && item.layer != LayerMask.NameToLayer("Control") && item.layer != LayerMask.NameToLayer("Player")) {
+				if (item.layer != LayerMask.NameToLayer("Asteroid") && item.layer != 
+                    LayerMask.NameToLayer("UI") && item.layer != 
+                    LayerMask.NameToLayer("Control") && item.layer != 
+                    LayerMask.NameToLayer("Player")) {
 					
 					item.SetActive (false);
 					disabledObjects.Add (item);
@@ -200,43 +207,46 @@ public class CameraScrollOut : MonoBehaviour {
 
 	private void SwapToMapIcons () {
         foreach (GameObject asteroid in theAsteroids) {
-            asteroid.GetComponent<SpriteRenderer>().sprite = asteroid.GetComponent<AsteroidInfo>().mapIcon;
-            // We can remove this if/else when we have art
-            if (GameState.asteroid == asteroid) {
-                asteroid.GetComponent<SpriteRenderer>().sprite = PLAYERICO;
-                Debug.Log("MEMES ARE A HEALTHY DOSAGE OF MEDICINE REQUIRED TO DO THE THING YOU NEED TO LIVE YOUR LIVER");
+            AsteroidInfo aI = asteroid.GetComponent<AsteroidInfo>();
+            SpriteRenderer sR = asteroid.GetComponent<SpriteRenderer>();
+            asteroid.GetComponent<SpriteRenderer>().sprite = aI.SensorMapIcon;
+            if (GameState.asteroid.gameObject == asteroid.gameObject) {
+                sR.sprite = PLAYERICO;
+                sR.color = Color.white;
+                //Debug.Log("MEMES ARE A HEALTHY DOSAGE OF MEDICINE REQUIRED TO DO THE THING YOU NEED TO LIVE YOUR LIVER");
             } else {
-
-                if (asteroid.GetComponent<AsteroidInfo>().hasSensors) {
-                    asteroid.GetComponent<SpriteRenderer>().color = asteroid.GetComponent<AsteroidInfo>().iconWithSensor;
+                Debug.Log(aI.gameObject.name + ": " + sR.color);
+                if (aI.hasSensors) {
+                    sR.sprite = aI.SensorMapIcon;
                 } else {
-                    asteroid.GetComponent<SpriteRenderer>().sprite = asteroid.GetComponent<AsteroidInfo>().otherSprite;
+                    sR.sprite = aI.NonSenseMapIcon;
                 }
             }
 
             // highlight them if they are in current path
             PathMaker pm = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ();
-			if (pm.path.ContainsValue (asteroid.transform)) {
-				asteroid.GetComponent<SpriteRenderer> ().color = new Color (asteroid.GetComponent<SpriteRenderer> ().color.r + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.g + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.b + pm.highlightAmount, 1);
-			}
+			//if (pm.path.ContainsValue (asteroid.transform)) {
+			//	asteroid.GetComponent<SpriteRenderer> ().color = new Color (sR.color.r + pm.highlightAmount, 
+   //                 sR.color.g + pm.highlightAmount, sR.color.b + pm.highlightAmount, 1);
+			//}
 
 			// draw plant icons
-			if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0) {
+			if (aI.greenPlantCount > 0) {
 				GameObject plantIcon = Instantiate(greenPlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
 				plantIcon.transform.parent = asteroid.gameObject.transform;
 				plantIcon.transform.localPosition = new Vector3 (0,plantIconOffset, 0);
 			}
-			if (asteroid.GetComponent<AsteroidInfo>().bluePlantCount > 0) {
+			if (aI.bluePlantCount > 0) {
 				GameObject plantIcon = Instantiate(bluePlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
 				plantIcon.transform.parent = asteroid.gameObject.transform;
 				plantIcon.transform.localPosition = new Vector3 (0, -plantIconOffset, 0);
 			}
-			if (asteroid.GetComponent<AsteroidInfo>().yellowPlantCount > 0) {
+			if (aI.yellowPlantCount > 0) {
 				GameObject plantIcon = Instantiate(yellowPlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
 				plantIcon.transform.parent = asteroid.gameObject.transform;
 				plantIcon.transform.localPosition = new Vector3 (plantIconOffset, 0, 0);
 			}
-			if (asteroid.GetComponent<AsteroidInfo>().redPlantCount > 0) {
+			if (aI.redPlantCount > 0) {
 				GameObject plantIcon = Instantiate(redPlantIcon, new Vector3 (0,0,0), Quaternion.identity) as GameObject;
 				plantIcon.transform.parent = asteroid.gameObject.transform;
 				plantIcon.transform.localPosition = new Vector3 (-plantIconOffset, 0, 0);
@@ -245,7 +255,7 @@ public class CameraScrollOut : MonoBehaviour {
 
         //also swap to mapIcons for ScapCloudCores
         foreach (GameObject cloud in theScrapClouds) {
-            cloud.GetComponent<SpriteRenderer>().sprite = cloud.GetComponent<AsteroidInfo>().mapIcon;
+            cloud.GetComponent<SpriteRenderer>().sprite = cloud.GetComponent<AsteroidInfo>().SensorMapIcon;
         }
 
 	}
@@ -254,15 +264,15 @@ public class CameraScrollOut : MonoBehaviour {
 	{
 		foreach (GameObject asteroid in theAsteroids) {
 			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo>().asteroidSprite;
-			// We can remove this if/else when we have art
-			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
-				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo>().hasSensorColor;
-			} else {
-				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo>().noSensorColor;
-			}
+            // We can remove this if/else when we have art
+            if (asteroid.GetComponent<AsteroidInfo>().hasSensors) {
+                asteroid.GetComponent<SpriteRenderer>().color = asteroid.GetComponent<AsteroidInfo>().hasSensorColor;
+            } else {
+                asteroid.GetComponent<SpriteRenderer>().color = asteroid.GetComponent<AsteroidInfo>().noSensorColor;
+            }
 
-			// destroy item icons
-			if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0 || asteroid.GetComponent<AsteroidInfo>().bluePlantCount > 0 
+            // destroy item icons
+            if (asteroid.GetComponent<AsteroidInfo>().greenPlantCount > 0 || asteroid.GetComponent<AsteroidInfo>().bluePlantCount > 0 
 				|| asteroid.GetComponent<AsteroidInfo>().yellowPlantCount > 0 || asteroid.GetComponent<AsteroidInfo>().redPlantCount > 0) {
 				Transform t = asteroid.transform;
 				for (int i = 0; i < t.childCount; i++)

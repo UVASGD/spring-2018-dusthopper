@@ -321,9 +321,9 @@ MonoBehaviour:
   hasSensors: 1
   sensorRange: 30
   sensorTimeRange: 30
-  mapIcon: {fileID: 21300000, guid: 69afd337d570b124ea6035de9d475158, type: 3}
+  SensorMapIcon: {fileID: 21300000, guid: 69afd337d570b124ea6035de9d475158, type: 3}
   asteroidSprite: {fileID: 0}
-  otherSprite: {fileID: 21300000, guid: 69afd337d570b124ea6035de9d475158, type: 3}
+  NonSenseMapIcon: {fileID: 21300000, guid: 69afd337d570b124ea6035de9d475158, type: 3}
   goalArrowsVisible: 1
   goalArrowsVisibleChance: 1
   radius: 0.95
@@ -332,9 +332,7 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0
   chancePulledGrav: 0
-  iconWithSensor: {r: 1, g: 1, b: 1, a: 1}
-  iconWithoutSensor: {r: 0.20392157, g: 0.4745098, b: 0.69803923, a: 1}
-  hasSensorColor: {r: 0.15686275, g: 0.8470589, b: 0.81568635, a: 1}
+  hasSensorColor: {r: 0, g: 0, b: 0, a: 0}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 1
   avgSensorRange: 15

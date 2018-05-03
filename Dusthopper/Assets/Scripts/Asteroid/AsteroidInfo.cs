@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
 public class AsteroidInfo : MonoBehaviour {
 	//Contained by every asteroid instance
 	//Holds some important things about this asteroid and how it appears in the map
 	public bool hasSensors;
 	public float sensorRange = 30f;
 	public float sensorTimeRange = 30f;
-	public Sprite mapIcon;
+	public Sprite SensorMapIcon;
 	[HideInInspector]
 	public Sprite asteroidSprite;
-    public Sprite otherSprite;
+    public Sprite NonSenseMapIcon;
 
 	// can see goal arrows?
 	public bool goalArrowsVisible;
@@ -27,10 +28,6 @@ public class AsteroidInfo : MonoBehaviour {
 	//asteroid probabilities
 	public float chanceGrav;
 	public float chancePulledGrav;
-
-	//map icon colors
-	public Color iconWithSensor;
-	public Color iconWithoutSensor;
 
     //proc gen sensor stuff
     public Color hasSensorColor;
@@ -63,9 +60,15 @@ public class AsteroidInfo : MonoBehaviour {
     public int maxItems;
 	public int maxDecorationItems;
 
+    private Animator Anim;
 
     void Start() {
 		asteroidSprite = GetComponent<SpriteRenderer> ().sprite;
 		noSensorColor = GetComponent<SpriteRenderer> ().color;
+        Anim = GetComponent<Animator>();
 	}
+
+    public void TriggerPulse() {
+        Anim.SetTrigger("Pulse");
+    }
 }
