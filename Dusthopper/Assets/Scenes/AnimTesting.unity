@@ -4679,6 +4679,21 @@ Prefab:
       propertyPath: jumpSound
       value: 
       objectReference: {fileID: 606581428}
+    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: nom
+      value: 
+      objectReference: {fileID: 833777998}
+    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: chaching
+      value: 
+      objectReference: {fileID: 49913999}
+    - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: GetPlant
+      value: 
+      objectReference: {fileID: 2075377170}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
@@ -7932,6 +7947,16 @@ Prefab:
     - target: {fileID: 1461216191190568, guid: b7632d6f88b85f64baa46766d5baa311, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198930001316022586, guid: b7632d6f88b85f64baa46766d5baa311,
+        type: 2}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 198930001316022586, guid: b7632d6f88b85f64baa46766d5baa311,
+        type: 2}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.5000
       objectReference: {fileID: 0}
     - target: {fileID: 198930001316022586, guid: b7632d6f88b85f64baa46766d5baa311,
         type: 2}

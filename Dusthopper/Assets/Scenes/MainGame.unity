@@ -12856,11 +12856,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114849431170674528, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: shop
-      value: 
-      objectReference: {fileID: 2130261707}
     - target: {fileID: 114238825700592304, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
       propertyPath: nom
@@ -12876,11 +12871,11 @@ Prefab:
       propertyPath: GetPlant
       value: 
       objectReference: {fileID: 2075377170}
-    - target: {fileID: 114982525918687968, guid: 4a22abeeec077469fb2510ed590d0168,
+    - target: {fileID: 114063645533586838, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
-      propertyPath: fallIntoSpace
+      propertyPath: jumpSound
       value: 
-      objectReference: {fileID: 771828980}
+      objectReference: {fileID: 2072925253}
     - target: {fileID: 114004829312517264, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
       propertyPath: jump
@@ -12891,11 +12886,6 @@ Prefab:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1511771303}
-    - target: {fileID: 114063645533586838, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 2072925253}
     - target: {fileID: 114408134968344080, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
       propertyPath: hungerSlider
@@ -12906,26 +12896,16 @@ Prefab:
       propertyPath: HungerSliderColor
       value: 
       objectReference: {fileID: 1028028628}
+    - target: {fileID: 114982525918687968, guid: 4a22abeeec077469fb2510ed590d0168,
+        type: 2}
+      propertyPath: fallIntoSpace
+      value: 
+      objectReference: {fileID: 771828980}
     - target: {fileID: 114849431170674528, guid: 4a22abeeec077469fb2510ed590d0168,
         type: 2}
-      propertyPath: costMaxHunger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849431170674528, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: costJumpDistance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849431170674528, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: costJumpTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114849431170674528, guid: 4a22abeeec077469fb2510ed590d0168,
-        type: 2}
-      propertyPath: costSpeed
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: shop
+      value: 
+      objectReference: {fileID: 2130261707}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a22abeeec077469fb2510ed590d0168, type: 2}
   m_IsPrefabParent: 0
