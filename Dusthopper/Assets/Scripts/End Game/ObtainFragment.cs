@@ -79,11 +79,12 @@ public class ObtainFragment : MonoBehaviour {
 		case State.hub:
 			state = State.final;
 			hub.GetComponent<HubState> ().AssignPoint (transform);
+			transform.GetChild (0).gameObject.SetActive (false);
 			break;
 		case State.final:
 			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
 			transform.localPosition = Vector3.SmoothDamp (transform.localPosition, Vector3.zero, ref vel2, 1f);
-
+			transform.GetChild (0).gameObject.SetActive (false);
 			if (transform.localPosition.magnitude < 0.01f) {
 				transform.localPosition = Vector3.zero;
 				state = State.hehexd;
@@ -93,6 +94,7 @@ public class ObtainFragment : MonoBehaviour {
 			//print ("HEHEXD");
 			transform.eulerAngles += new Vector3 (0f, 0f, rotSpeed * Time.deltaTime);
 			transform.localPosition = Vector3.zero;
+			transform.GetChild (0).gameObject.SetActive (false);
 			GetComponent<Collider2D> ().enabled = false;
 			break;
 		}
