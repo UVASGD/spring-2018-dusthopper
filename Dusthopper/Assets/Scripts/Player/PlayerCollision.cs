@@ -115,16 +115,13 @@ public class PlayerCollision : MonoBehaviour {
 		}
 
 		if (other.tag == "Plant" && holding) {
-#if UNITY_EDITOR
-            
-#endif
-            if (heldObject.GetComponent<Pollen> () != null) {
+            if (heldObject.GetComponent<Pollen> () != null && !other.GetComponent<Plant>().bloomed) {
 				if (heldObject.GetComponent<Pollen> ().name == other.GetComponent<Plant> ().myPollen) {
 					Debug.Log ("you gave the plant some pollen!");
 					if (heldObject.name.ToLower().Contains("red")) {
 						resetJumpDistance();
 					}
-					other.GetComponent<Plant> ().dispenseReward ();
+					other.GetComponent<Plant> ().DispenseReward ();
 					if (GetPlant) {
 						GetPlant.Play ();
 					}

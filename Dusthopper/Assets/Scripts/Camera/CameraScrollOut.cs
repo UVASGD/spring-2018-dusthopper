@@ -215,7 +215,6 @@ public class CameraScrollOut : MonoBehaviour {
                 sR.color = Color.white;
                 //Debug.Log("MEMES ARE A HEALTHY DOSAGE OF MEDICINE REQUIRED TO DO THE THING YOU NEED TO LIVE YOUR LIVER");
             } else {
-                Debug.Log(aI.gameObject.name + ": " + sR.color);
                 if (aI.hasSensors) {
                     sR.sprite = aI.SensorMapIcon;
                 } else {

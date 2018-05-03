@@ -10617,12 +10617,12 @@ MonoBehaviour:
   hubPrefab: {fileID: 1175468082650272, guid: 83777795c01d54c5aa4f72759418d75d, type: 2}
   tutorialMode: 0
   asteroids:
-  - goObj: {fileID: 1276523927128796, guid: f6644f386bc52b64494349558f06c5cb, type: 2}
+  - goObj: {fileID: 1085255228249702, guid: f6644f386bc52b64494349558f06c5cb, type: 2}
     num: 250
   gravityFragmentAsteroids:
-  - {fileID: 1463453833136982, guid: 9c07bd6103cc749fa8eebd5ed9139a08, type: 2}
-  - {fileID: 1463453833136982, guid: 9c07bd6103cc749fa8eebd5ed9139a08, type: 2}
-  - {fileID: 1463453833136982, guid: 9c07bd6103cc749fa8eebd5ed9139a08, type: 2}
+  - {fileID: 1945412752381814, guid: 9c07bd6103cc749fa8eebd5ed9139a08, type: 2}
+  - {fileID: 1945412752381814, guid: 9c07bd6103cc749fa8eebd5ed9139a08, type: 2}
+  - {fileID: 1945412752381814, guid: 9c07bd6103cc749fa8eebd5ed9139a08, type: 2}
   scrapClouds:
   - {fileID: 1453401554702908, guid: 36942406e34d7da498832ec9fe1a03f0, type: 2}
   - {fileID: 1453401554702908, guid: 36942406e34d7da498832ec9fe1a03f0, type: 2}

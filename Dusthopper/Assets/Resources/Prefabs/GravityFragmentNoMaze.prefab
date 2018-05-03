@@ -730,7 +730,7 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0.2
   chancePulledGrav: 0
-  hasSensorColor: {r: 1, g: 1, b: 1, a: 1}
+  hasSensorColor: {r: 0.3372549, g: 0.8235295, b: 0.4039216, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}
   sensorChance: 0.35
   avgSensorRange: 30
@@ -1364,7 +1364,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1e50b6b06d31a44349cb80406de4ca51, type: 3}
-  m_Color: {r: 1, g: 0.9724138, b: 0, a: 1}
+  m_Color: {r: 0.9870182, g: 1, b: 0.058823526, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -16,13 +16,13 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: Min
     m_Type: 1
-    m_DefaultFloat: 1
+    m_DefaultFloat: 0.25
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: Max
     m_Type: 1
-    m_DefaultFloat: 3
+    m_DefaultFloat: 1.5
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
