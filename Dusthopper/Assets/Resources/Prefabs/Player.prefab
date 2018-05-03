@@ -328,10 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df03cb2ce9f1e746b93aa9dc4dbae30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costMaxHunger: 0
-  costJumpDistance: 0
-  costJumpTime: 0
-  costSpeed: 0
+  upgradeShopActivated: 0
   shop: {fileID: 0}
 --- !u!114 &114982525918687968
 MonoBehaviour:

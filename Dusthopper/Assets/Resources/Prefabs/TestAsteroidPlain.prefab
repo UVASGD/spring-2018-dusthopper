@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1276523927128796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5887, y: 4.4034, z: 0}
+  m_LocalPosition: {x: -4.23, y: -2.48, z: 0}
   m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 662e0f9aa0640a14f8dd77bf29624a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 0}
+  info: {fileID: 114855310851036712}
 --- !u!114 &114785418626624326
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSpaceScrap: 0
-  radius: 0
+  radius: 250
   center: {x: 0, y: 0, z: 0}
 --- !u!114 &114855310851036712
 MonoBehaviour:
@@ -133,8 +133,9 @@ MonoBehaviour:
   hasSensors: 0
   sensorRange: 30
   sensorTimeRange: 30
-  mapIcon: {fileID: 21300000, guid: dc0f7c6e588dd4bd78da9af180dac8ec, type: 3}
+  mapIcon: {fileID: 21300000, guid: b7856854bca3f5e45a44ba1822b1e399, type: 3}
   asteroidSprite: {fileID: 0}
+  otherSprite: {fileID: 21300000, guid: 0b5dfafee0918854b946a25b2a59165a, type: 3}
   goalArrowsVisible: 0
   goalArrowsVisibleChance: 1
   radius: 0.5
@@ -143,7 +144,7 @@ MonoBehaviour:
   hasGrav: 0
   chanceGrav: 0.07
   chancePulledGrav: 0.12
-  iconWithSensor: {r: 0.16470589, g: 0.4862745, b: 0.08627451, a: 1}
+  iconWithSensor: {r: 1, g: 1, b: 1, a: 1}
   iconWithoutSensor: {r: 0.20392157, g: 0.4745098, b: 0.69803923, a: 1}
   hasSensorColor: {r: 0.33910033, g: 0.8235294, b: 0.4025773, a: 1}
   noSensorColor: {r: 0, g: 0, b: 0, a: 0}

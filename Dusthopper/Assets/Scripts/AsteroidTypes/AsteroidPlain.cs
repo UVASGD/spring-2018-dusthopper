@@ -22,7 +22,7 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
         print("initdefault called");
     }
 
-    public void Awake()
+    public void OnEnable()
     {
         info = GetComponent<AsteroidInfo>();
     }
@@ -30,6 +30,8 @@ public class AsteroidPlain : MonoBehaviour , AsteroidInterface {
 
     public void Generate()
     {
+        //Debug.Log(info);
+        //Debug.Log(GetComponent<Rigidbody2D>());
         GetComponent<Rigidbody2D>().velocity = Random.insideUnitCircle * info.maxSpeed;
         if (Random.value <= info.sensorChance)
         {

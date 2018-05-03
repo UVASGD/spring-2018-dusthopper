@@ -5,6 +5,8 @@ using UnityEngine;
 //Finished for now
 public class CameraScrollOut : MonoBehaviour {
 
+    public Sprite PLAYERICO;
+
 	public float scrollSpeed; //How sensitive the scroll wheel is ingame.
 	[HideInInspector]
 	public bool swapScroll = false; //A player might choose to invert the scroll wheel from settings.
@@ -196,21 +198,24 @@ public class CameraScrollOut : MonoBehaviour {
 		}
 	}
 
-	private void SwapToMapIcons ()
-	{
-		foreach (GameObject asteroid in theAsteroids) {
-			asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().mapIcon;
-			// We can remove this if/else when we have art
-			if (asteroid.GetComponent<AsteroidInfo> ().hasSensors) {
-				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithSensor;
-				//asteroid.GetComponent<SpriteRenderer> ().sprite = asteroid.GetComponent<AsteroidInfo> ().iconWithSensor;
-			} 
-			else {
-				asteroid.GetComponent<SpriteRenderer> ().color = asteroid.GetComponent<AsteroidInfo> ().iconWithoutSensor;
-			}
+	private void SwapToMapIcons () {
+        foreach (GameObject asteroid in theAsteroids) {
+            asteroid.GetComponent<SpriteRenderer>().sprite = asteroid.GetComponent<AsteroidInfo>().mapIcon;
+            // We can remove this if/else when we have art
+            if (GameState.asteroid == asteroid) {
+                asteroid.GetComponent<SpriteRenderer>().sprite = PLAYERICO;
+                Debug.Log("MEMES ARE A HEALTHY DOSAGE OF MEDICINE REQUIRED TO DO THE THING YOU NEED TO LIVE YOUR LIVER");
+            } else {
 
-			// highlight them if they are in current path
-			PathMaker pm = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ();
+                if (asteroid.GetComponent<AsteroidInfo>().hasSensors) {
+                    asteroid.GetComponent<SpriteRenderer>().color = asteroid.GetComponent<AsteroidInfo>().iconWithSensor;
+                } else {
+                    asteroid.GetComponent<SpriteRenderer>().sprite = asteroid.GetComponent<AsteroidInfo>().otherSprite;
+                }
+            }
+
+            // highlight them if they are in current path
+            PathMaker pm = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PathMaker> ();
 			if (pm.path.ContainsValue (asteroid.transform)) {
 				asteroid.GetComponent<SpriteRenderer> ().color = new Color (asteroid.GetComponent<SpriteRenderer> ().color.r + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.g + pm.highlightAmount, asteroid.GetComponent<SpriteRenderer> ().color.b + pm.highlightAmount, 1);
 			}
