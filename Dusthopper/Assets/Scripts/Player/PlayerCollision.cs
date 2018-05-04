@@ -121,10 +121,13 @@ public class PlayerCollision : MonoBehaviour {
 					if (heldObject.name.ToLower().Contains("red")) {
 						resetJumpDistance();
 					}
-					other.GetComponent<Plant> ().DispenseReward ();
+
+
+					other.GetComponent<Plant> ().Bloom (heldObject);
 					if (GetPlant) {
 						GetPlant.Play ();
 					}
+
 					Destroy (heldObject);
 					holding = false;
 				}

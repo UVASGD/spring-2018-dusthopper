@@ -17,15 +17,22 @@ public class Plant : MonoBehaviour {
 	public float blueTime;
 
 
-    void Bloom() {
+    public void Bloom(GameObject pollen) {
+        Transform mo = transform.GetChild(0);
+        mo.position = pollen.transform.position;
+
         GetComponent<Animator>().SetTrigger("Open");
         bloomed = true;
     }
 
-    public void DispenseReward() {
-        Bloom();
-        
-		GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
+    void KillPollen() {
+        Destroy(transform.Find("Pollen").gameObject);
+    }
+
+    void DispenseReward() {
+        KillPollen();
+
+        GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
 		if (myPollen == "GreenPollen") {
 			//Green plant's reward is just 1 or 2 additional food spawned in a circle around it
 //			Debug.Log ("green plant dispensing reward");
@@ -72,8 +79,6 @@ public class Plant : MonoBehaviour {
 			GameState.player.GetComponent<PlayerCollision>().setBlueTimer(blueTime);
 			this.transform.parent.GetComponent<AsteroidInfo> ().bluePlantCount -= 1;
 		}
-		//Destroy (this.gameObject);
-		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
 	} 
 
 
