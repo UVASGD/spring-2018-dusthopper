@@ -180,7 +180,9 @@ public class CameraScrollOut : MonoBehaviour {
 			GameObject[] allObjectsArray = FindObjectsOfType <GameObject> ();
 
 			foreach (GameObject item in allObjectsArray) {
-				if (item.layer != LayerMask.NameToLayer("Asteroid") && item.layer != 
+                if (item.name.ToLower().Contains("selectionindicator"))
+                    Destroy(item);
+				else if (item.layer != LayerMask.NameToLayer("Asteroid") && item.layer != 
                     LayerMask.NameToLayer("UI") && item.layer != 
                     LayerMask.NameToLayer("Control") && item.layer != 
                     LayerMask.NameToLayer("Player")) {

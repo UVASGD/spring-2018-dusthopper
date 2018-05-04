@@ -47,9 +47,13 @@ public class PathMaker : MonoBehaviour {
 
 	public bool tutorialAllows;
 
+    public GameObject SelectionIndicator;
+    private GameObject lastIndicator;
+
     // Use this for initialization
     void Start () {
-		path = new SortedList<float,Transform> (0);
+        //SelectionIndicator = GameObject.Find("SelectionIndicator");
+        path = new SortedList<float,Transform> (0);
 		jumpTimes = new SortedList<float, float> (0);
 		player = GameState.player;
 		lines = new List<GameObject> ();
@@ -152,8 +156,10 @@ public class PathMaker : MonoBehaviour {
 						lines.RemoveAt (i);
 
 						// remove highlights
-						hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r - highlightAmount, hit.GetComponent<SpriteRenderer> ().color.g - highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b - highlightAmount, 1);
-
+						hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r - highlightAmount, 
+                            hit.GetComponent<SpriteRenderer> ().color.g - highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b - highlightAmount, 1);
+                        if (lastIndicator != null)
+                            lastIndicator.GetComponent<Animator>().SetTrigger("Kill");
 					}
 					i++;
 				}
@@ -209,10 +215,20 @@ public class PathMaker : MonoBehaviour {
 								newLine.GetComponent<LineRenderer> ().endWidth = 0.3f;
 								newLine.GetComponent<LineRenderer> ().positionCount = 2;
 								lines.Add (newLine);
-								hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r + highlightAmount, hit.GetComponent<SpriteRenderer> ().color.g + highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b + highlightAmount, 1);
-							}
+								hit.GetComponent<SpriteRenderer> ().color = new Color (hit.GetComponent<SpriteRenderer> ().color.r + highlightAmount, 
+                                    hit.GetComponent<SpriteRenderer> ().color.g + highlightAmount, hit.GetComponent<SpriteRenderer> ().color.b + highlightAmount, 1);
+
+                                GameObject indicator = Instantiate(SelectionIndicator, hit.transform);
+                                indicator.transform.localScale = 14 * Vector3.one;
+
+                                if (lastIndicator != null)
+                                    lastIndicator.GetComponent<Animator>().SetTrigger("Kill");
+
+                                lastIndicator = indicator;
+                                Debug.LogError(lastIndicator);
+                            }
 						} else {
-							print ("jump not scheduled because you can't charge in time");
+                            print ("jump not scheduled because you can't charge in time");
 							displayFailedJump ("Not enough time to charge");
 						}
 					} else {
