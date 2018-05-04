@@ -6,6 +6,7 @@ using UnityEngine;
 public class CameraScrollOut : MonoBehaviour {
 
     public Sprite PLAYERICO;
+    public float scaleFactor = 7;
 
 	public float scrollSpeed; //How sensitive the scroll wheel is ingame.
 	[HideInInspector]
@@ -110,6 +111,11 @@ public class CameraScrollOut : MonoBehaviour {
 
 		//normal zooming
 		d = Input.GetAxis ("Mouse ScrollWheel");
+        GameObject jumpIndicator = GameObject.Find("JumpIndicator");
+        if (jumpIndicator != null) {
+            jumpIndicator.transform.localScale = (scaleFactor + .5f*scrollAmount) * Vector3.one;
+        }
+
 
         if (Input.GetButton("Zoom In")) d = scrollSpeed;
         if (Input.GetButton("Zoom Out")) d = -scrollSpeed;
@@ -212,9 +218,9 @@ public class CameraScrollOut : MonoBehaviour {
             AsteroidInfo aI = asteroid.GetComponent<AsteroidInfo>();
             SpriteRenderer sR = asteroid.GetComponent<SpriteRenderer>();
             asteroid.GetComponent<SpriteRenderer>().sprite = aI.SensorMapIcon;
+            sR.color = Color.white;
             if (GameState.asteroid.gameObject == asteroid.gameObject) {
                 sR.sprite = PLAYERICO;
-                sR.color = Color.white;
                 //Debug.Log("MEMES ARE A HEALTHY DOSAGE OF MEDICINE REQUIRED TO DO THE THING YOU NEED TO LIVE YOUR LIVER");
             } else {
                 if (aI.hasSensors) {

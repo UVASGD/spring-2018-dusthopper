@@ -11,7 +11,8 @@ public class KIdor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        print("ARKINsassy");
         this.GetComponent<Animator>();
+
+        // enforce an animation to continue playing even if time has slowed down
 	}
 }

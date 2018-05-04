@@ -225,7 +225,6 @@ public class PathMaker : MonoBehaviour {
                                     lastIndicator.GetComponent<Animator>().SetTrigger("Kill");
 
                                 lastIndicator = indicator;
-                                Debug.LogError(lastIndicator);
                             }
 						} else {
                             print ("jump not scheduled because you can't charge in time");
@@ -240,7 +239,13 @@ public class PathMaker : MonoBehaviour {
 	}
 
 	void TraversePath(){
-		if (path.Count > 0 && GameState.time >= path.Keys [0] && path.Values [0] != GameState.asteroid) {
+        if (path.Count == 1 && lastIndicator != null) {
+            lastIndicator.GetComponent<Animator>().SetTrigger("Kill");
+            lastIndicator = null;
+        }
+
+
+        if (path.Count > 0 && GameState.time >= path.Keys [0] && path.Values [0] != GameState.asteroid) {
 			if (timeSinceChargingStarted >= GameState.secondsPerJump) {
 				if ((path.Values [0].position - player.transform.position).sqrMagnitude < (GameState.maxAsteroidDistance * GameState.maxAsteroidDistance + tolerance)) {
 					print ("jumping to asteroid " + path.Values [0].gameObject.name + " at time " + GameState.time);

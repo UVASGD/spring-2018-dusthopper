@@ -61,6 +61,11 @@ public class EndGame : MonoBehaviour {
 	public void EndIfAble () {
 		Invoke ("CanRotate", 10f);
 		if (GameState.gravityFragmentCount >= 3) {
+            // enable Hub Pulse
+            GameObject hubPulse = FindObjectOfType<HubState>().transform.GetChild(0).gameObject;
+            hubPulse.SetActive(true);
+            hubPulse.GetComponent<Animator>().SetFloat("Speed", 0.5f);
+            
 			End ();
 		}
 	}

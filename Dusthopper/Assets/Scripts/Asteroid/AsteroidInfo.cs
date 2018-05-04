@@ -60,15 +60,28 @@ public class AsteroidInfo : MonoBehaviour {
     public int maxItems;
 	public int maxDecorationItems;
 
-    private Animator Anim;
+    private SpriteRenderer sr;
+    private Animator anim;
 
     void Start() {
-		asteroidSprite = GetComponent<SpriteRenderer> ().sprite;
-		noSensorColor = GetComponent<SpriteRenderer> ().color;
-        Anim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
+		asteroidSprite = sr.sprite;
+		noSensorColor = sr.color;
+        anim = GetComponent<Animator>();
 	}
 
     public void TriggerPulse() {
-        Anim.SetTrigger("Pulse");
+        anim.SetTrigger("Pulse");
     }
+
+    //void Update() {
+    //    if (GameState.mapOpen) {
+    //        float cStart = 10, cEnd = 17, aStart = 0, aEnd = 0;
+    //        float c = ((FindObjectOfType<Camera>().orthographicSize - cStart) *
+    //            (cEnd - cStart)) / (aEnd - aStart) + aStart;
+    //        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, c);
+    //    } else if(sr.color.a <1) {
+    //        sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, 1);
+    //    }
+    //}
 }
