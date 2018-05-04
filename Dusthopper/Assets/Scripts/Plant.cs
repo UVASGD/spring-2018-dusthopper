@@ -11,10 +11,20 @@ public class Plant : MonoBehaviour {
 	public GameObject scrap;
 	[SerializeField]
 	private float howFarAwayToSpawnScrap;
+    [HideInInspector]
+    public bool bloomed;
 
 	public float blueTime;
 
-    public void dispenseReward() {
+
+    void Bloom() {
+        GetComponent<Animator>().SetTrigger("Open");
+        bloomed = true;
+    }
+
+    public void DispenseReward() {
+        Bloom();
+        
 		GameObject firstFood = GameObject.Instantiate (food, this.transform.position, Quaternion.identity, this.transform.parent) as GameObject; //all plants should spawn 1 food
 		if (myPollen == "GreenPollen") {
 			//Green plant's reward is just 1 or 2 additional food spawned in a circle around it
@@ -62,7 +72,7 @@ public class Plant : MonoBehaviour {
 			GameState.player.GetComponent<PlayerCollision>().setBlueTimer(blueTime);
 			this.transform.parent.GetComponent<AsteroidInfo> ().bluePlantCount -= 1;
 		}
-		Destroy (this.gameObject); //all plants should destroy themselves
+		//Destroy (this.gameObject);
 		//TODO: instead of destroying self, set Physics2D.ignoreCollision or whatever it is and start "bloom" animation
 	} 
 

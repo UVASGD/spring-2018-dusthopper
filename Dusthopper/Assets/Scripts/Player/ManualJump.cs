@@ -11,6 +11,7 @@ public class ManualJump : MonoBehaviour
     private bool hasCanceled = false;
     public AudioSource jump;
     public GameObject gameManager;
+    private Animator jumpIndicator;
 	public bool manuallyJumping;
 
     bool playingSoundFromHere = false;
@@ -19,6 +20,9 @@ public class ManualJump : MonoBehaviour
     {
         timeHeld = 0f;
 		manuallyJumping = false;
+        GameObject go = GameObject.Find("JumpIndicator");
+        if (go != null) 
+            jumpIndicator = go.GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -28,12 +32,17 @@ public class ManualJump : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                if (timeHeld >= GameState.secondsPerJump)
-                {
                     Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     Vector2 directionOfCursor = (Vector2)(cursorPosition - transform.position);
+                    
+                    float angle = Mathf.Atan2(directionOfCursor.y, directionOfCursor.x) * Mathf.Rad2Deg;
+                    jumpIndicator.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                if (timeHeld >= GameState.secondsPerJump)
+                {
+
                     int onlyAsteroids = (1 << LayerMask.NameToLayer("Asteroid"));
-                    RaycastHit2D[] thingsIHit = Physics2D.RaycastAll((Vector2)transform.position, directionOfCursor, GameState.maxAsteroidDistance, onlyAsteroids);
+                    RaycastHit2D[] thingsIHit = Physics2D.RaycastAll((Vector2)transform.position, 
+                        directionOfCursor, GameState.maxAsteroidDistance, onlyAsteroids);
                     if (thingsIHit.Length > 1)
                     {
                         Transform otherAsteroid = thingsIHit[1].transform; // thingsIHit[0]  is the asteroid we're standing on so we want the next one
@@ -47,6 +56,7 @@ public class ManualJump : MonoBehaviour
                         JumpFail(directionOfCursor.normalized * GameState.maxAsteroidDistance + (Vector2)transform.position);
                     }
                     timeHeld = 0;
+
                     hasCanceled = false;
 					manuallyJumping = false;
                     jump.Stop();
@@ -84,6 +94,8 @@ public class ManualJump : MonoBehaviour
                 }
             }
         }
+
+        jumpIndicator.SetFloat("JumpTime", timeHeld);
     }
 
     // If you click and hold and there's no asteroid in your path

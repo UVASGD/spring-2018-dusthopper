@@ -55,7 +55,7 @@ public class ObtainFragment : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		print (state);
+		print (state);
 		switch (state) {
 		default:
 			transform.eulerAngles += new Vector3 (0f, 0f, -rotSpeed * Time.deltaTime);

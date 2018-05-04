@@ -1,6 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
+
+public class isPausedExample {
+    [MenuItem("Examples/Scene paused in play mode")]
+    static void EditorPlaying() {
+        if (EditorApplication.isPaused) {
+            Debug.Log("Paused");
+        }
+    }
+}
 
 public class PlayerCollision : MonoBehaviour {
 
@@ -104,13 +115,13 @@ public class PlayerCollision : MonoBehaviour {
 		}
 
 		if (other.tag == "Plant" && holding) {
-			if (heldObject.GetComponent<Pollen> () != null) {
+            if (heldObject.GetComponent<Pollen> () != null && !other.GetComponent<Plant>().bloomed) {
 				if (heldObject.GetComponent<Pollen> ().name == other.GetComponent<Plant> ().myPollen) {
 					Debug.Log ("you gave the plant some pollen!");
 					if (heldObject.name.ToLower().Contains("red")) {
 						resetJumpDistance();
 					}
-					other.GetComponent<Plant> ().dispenseReward ();
+					other.GetComponent<Plant> ().DispenseReward ();
 					if (GetPlant) {
 						GetPlant.Play ();
 					}

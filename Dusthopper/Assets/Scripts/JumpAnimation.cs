@@ -33,11 +33,13 @@ public class JumpAnimation : MonoBehaviour {
 
 	void Update () {
 		if (origin) {
-			Vector3 directVect = (origin.position + 2.5f * Time.deltaTime * (Vector3)GameState.asteroid.GetComponent<Rigidbody2D> ().velocity - transform.position).normalized;
+			Vector3 directVect = (origin.position + 2.5f * Time.deltaTime *
+                (Vector3)GameState.asteroid.GetComponent<Rigidbody2D> ().velocity - transform.position).normalized;
 			float angle = Mathf.Atan2 (directVect.y, directVect.x) * Mathf.Rad2Deg;
 			transform.eulerAngles = Vector3.forward * (angle + 90);
 
-			transform.position = Vector3.SmoothDamp (transform.position, origin.position + 2.5f * Time.deltaTime * (Vector3)GameState.asteroid.GetComponent<Rigidbody2D> ().velocity, ref vel, smoothing);
+			transform.position = Vector3.SmoothDamp (transform.position, origin.position + 
+                2.5f * Time.deltaTime * (Vector3)GameState.asteroid.GetComponent<Rigidbody2D> ().velocity, ref vel, smoothing);
 			if ((transform.position - origin.position).magnitude < 0.5f) {
 				smoothing = 0.05f;
 
@@ -65,6 +67,9 @@ public class JumpAnimation : MonoBehaviour {
 					if (GameState.player.GetComponent<PlayerCollision> ().holding) {
 						GameState.player.GetComponent<PlayerCollision> ().heldObject.SetActive (true);
 					}
+
+                    AsteroidInfo aI = destination.GetComponent<AsteroidInfo>();
+                    if (aI != null) aI.TriggerPulse();
 					Destroy (gameObject);
 				}
 			}
